@@ -16,6 +16,9 @@
     <link href="<?php echo  base_url('/assets/css/jquery.fancybox.css'); ?>" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <script src="<?php echo base_url('/assets/js/jquery.js'); ?>" type="text/javascript"></script>
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script>
         var base_url='<?php echo base_url(); ?>';
     </script>
