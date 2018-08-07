@@ -157,10 +157,28 @@ jQuery(document).ready(function() {
                }
            });
        } else{
-           alert('Please sellec all necessary value');
+           alert('Please select all necessary value');
        }
     });
 
+    jQuery('body').on('change', '.upload_images', function(e){
+        e.preventDefault();
+        var this_element=jQuery(this);
+        var parent = this_element.closest('.add_question_row');
+        var form_data = new FormData(parent.find('.addQ_form')[0]);
+        jQuery.ajax({
+            type: "POST",
+            url: base_url + 'ajax/upload_images_and_options',
+            processData: false,
+            contentType: false,
+            data: form_data,
+            success: function (data) {
+                jQuery('#upload_images_section').hide();
+                jQuery('#uploaded_images').show();
+                jQuery('#uploaded_images').append(data);
+            }
+        });
+    });
 });
 
 
