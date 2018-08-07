@@ -1,0 +1,191 @@
+<?php
+class User_model extends CI_Model{
+
+	public function __construct(){
+
+		parent::__construct();
+		$this->load->database();
+
+	}
+
+	public function register_user($user){
+
+
+		$this->db->insert('user', $user);
+
+	}
+
+	public function activate_user($email) {
+		$this->db->set('activation', 1);
+		$this->db->where('email_address',$email);
+		$this->db->update('user');
+	}
+
+	public function login_user($email,$pass){
+
+		$this->db->select('*');
+		$this->db->from('user');
+		$this->db->where('email_address',$email);
+		$this->db->where('password',$pass);
+		$this->db->where('activation',1);
+
+		if($query=$this->db->get())
+		{
+			return $query->row_array();
+		}
+		else{
+			return false;
+		}
+
+
+	}
+	public function email_check($email){
+
+		$this->db->select('*');
+		$this->db->from('user');
+		$this->db->where('email_address',$email);
+		$query=$this->db->get();
+
+		if($query->num_rows()>0){
+			return false;
+		}else{
+			return true;
+		}
+
+	}
+
+	public function get_userdata() {
+		$user_id = $this->session->userdata('user_id');
+		$this->db->select('*');
+		$this->db->from('user');
+		$this->db->where('id',$user_id);
+
+		if($query=$this->db->get())
+		{
+			return $query->row_array();
+		}
+		else{
+			return false;
+		}
+	}
+
+	public function save_profile($user) {
+		$this->db->set('fname', $user['fname']);
+		$this->db->set('lname', $user['lname']);
+		$this->db->set('phone', $user['phone']);
+		if(isset($user['password']) && !empty($user['password'])) {
+			$this->db->set( 'password', $user['password'] );
+		}
+		$this->db->where('email_address',$user['email_address']);
+		$this->db->update('user');
+	}
+
+	public function reset_password($user) {
+		$this->db->set( 'password', $user['password'] );
+		$this->db->where('email_address',$user['email_address']);
+		$this->db->update('user');
+	}
+
+	public function get_memberships() {
+		$this->db->select('*');
+		$this->db->from('membership');
+		$this->db->order_by("id", "desc");
+
+		if($query = $this->db->get())
+		{
+			return $query->result_array();
+		}
+		else{
+			return false;
+		}
+	}
+
+	public function get_memberships_by_id($membership_id) {
+		$this->db->select('*');
+		$this->db->from('membership');
+		$this->db->where("id", $membership_id);
+
+		if($query = $this->db->get())
+		{
+			return $query->row_array();
+		}
+		else{
+			return false;
+		}
+	}
+
+	public function subscribe( $user_id, $membership_plan, $amount, $ym, $customer ) {
+		$this->db->set( 'membership_plan', $membership_plan );
+		$this->db->set( 'price', $amount );
+		$this->db->set( 'ym', $ym );
+		$this->db->set( 'start_date', date('Y-m-d H:i:s') );
+		$this->db->set( 'stripe_cust_json', json_encode($customer) );
+		$this->db->where('id',$user_id);
+		$this->db->update('user');
+		return true;
+	}
+
+	public function get_child_data($user_id) {
+		$this->db->select('*');
+		$this->db->from('user');
+		$this->db->where('parent', $user_id);
+
+		if($query=$this->db->get())
+		{
+			return $query->result_array();
+		}
+		else{
+			return false;
+		}
+	}
+
+	public function add_child($user) {
+		if($this->db->insert('user', $user)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public function get_child_data_by_id($child_id) {
+		$this->db->select('*');
+		$this->db->from('user');
+		$this->db->where('id', $child_id);
+
+		if($query=$this->db->get())
+		{
+			return $query->row_array();
+		}
+		else{
+			return false;
+		}
+	}
+
+	public function edit_child($user) {
+		$this->db->set('fname', $user['fname']);
+		$this->db->set('lname', $user['lname']);
+		if(isset($user['password'])) {
+			$this->db->set('password', $user['password']);
+		}
+		$this->db->where('id', $user['id']);
+		if($this->db->update('user')) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public function delete_child($child_id) {
+		$this->db->where('id', $child_id);
+		if($this->db->delete('user')) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+
+}
+
+
+?>

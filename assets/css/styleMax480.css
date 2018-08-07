@@ -1,0 +1,63 @@
+.container {
+    width: auto !important;
+}
+.logo{
+    text-align: center;
+}
+.subjects{
+    text-align: center;
+    margin-bottom: 9px;
+}
+.reg-log-section {
+    text-align: center;
+}
+.circleWrap1, .circleWrap2, .circleWrap3, .circleWrap4, .circleWrap5, .circleWrap6, .circleWrap7, .circleWrap8, .circleWrap9, .circleWrap10, .circleWrap11, .circleWrap12{
+    margin: 15px auto;
+}
+.wrapper3 .row1, .wrapper3 .row2{
+    margin-bottom: 0px;
+}
+.wrapper5 .get-started a{
+    padding: 12px 28px;
+}
+.wrapper9 .get-started a{
+    padding: 12px 28px;
+}
+.wrapper10 .col1 {
+    margin-bottom: 15px;
+    margin-top: 25px;
+}
+.wrapper7-left{
+    height: auto;
+    width: 100%;
+}
+.wrapper7-left ul li:nth-child(1){
+    display: none;
+}
+.wrapper7-left ul li:nth-child(2){
+    display: none;
+}
+.wrapper7-left ul li:nth-child(3){
+    width: 100%;
+}
+.wrapper7-left ul li:nth-child(4){
+    display: none;
+}
+.wrapper7-right{
+    float: left;
+    width: 100%;
+}
+.wrapper7-right ul li:nth-child(1){
+    width: 100%;
+    padding: 33px 36px;
+}
+.wrapper7-right ul li:nth-child(2){
+    display: none;
+}
+.wrapper7-right ul li:nth-child(3){
+    display: none;
+}
+.wrapper7-right ul li:nth-child(4){
+    width: 100%;
+    padding: 33px 36px;
+}

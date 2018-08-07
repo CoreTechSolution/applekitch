@@ -1,0 +1,124 @@
+.pagebanner{
+    height: 150px;
+}
+.inner-pages{
+   /* padding: 20px 0;*/
+}
+.backend{
+    border-top: 1px solid #eeeeee;
+    padding: 20px 0;
+}
+.inner-pages .contentSection{
+    /*min-height: 350px;*/
+    padding: 35px 0;
+}
+.inner-pages h1{
+    font-size: 34px;
+    font-weight: 500;
+    color: #151523;
+    margin: 0 0 25px 0;
+}
+.inner-pages p{
+    font-size: 14px;
+    font-weight: 400;
+    color: #151523;
+    margin: 0 0 25px 0;
+    line-height: 175%;
+}
+.boxwrapper{
+    box-shadow: 0px 0px 10px 0px #dddddd;
+    border: 1px solid #dddddd;
+    padding: 30px 10px;
+}
+.boxwrapper label span{
+    color: red;
+}
+.boxwrapper label.error{
+    font-size: 13px;
+    font-weight: 300;
+    color: red;
+    font-style: italic;
+}
+.page-template-template_login h1, .page-template-template_signup h1, .boxwrapper h1{
+    text-align: center;
+}
+.page-template-template_login .inner-pages p, .page-template-template_thankyou .inner-pages p, .page-template-template_activation .inner-pages p{
+    margin: 0;
+}
+.dashboard-section label span.required{
+    color: red;
+}
+.dashboard-section label.error{
+    font-size: 13px;
+    font-weight: 300;
+    color: red;
+    font-style: italic;
+}
+.box-wrapper{
+    box-shadow: 0px 0px 10px 0px #dddddd;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    min-height: 330px;
+}
+.box-title{
+    background: #f1693c;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #FFFFFF;
+    border-radius: 4px 4px 0 0;
+}
+.box-container{
+    padding: 20px 10px;
+}
+
+
+
+.dashboard-section{
+    padding: 14px 0;
+    background: #FFFFFF;
+    min-height: 250px;
+}
+.profile-sidebar{
+    padding: 14px 0;
+    background: #F1F3FA;
+    text-align: center;
+    margin-top: 50px;
+}
+.profile-img img{
+    box-shadow: 0px 0px 0 1px #f1693c;
+    border-radius: 100%;
+    border: 4px solid #FFFFFF;
+}
+.profile-display-name{
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #0b3f6d;
+}
+.logged-in-usermenus{
+    background: #f1693c;
+}
+.logged-in-usermenus ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.logged-in-usermenus ul li{
+    font-size: 14px;
+    color: #ffffff;
+}
+.logged-in-usermenus ul li .fa{
+    width: 20px;
+    text-align: left;
+}
+.logged-in-usermenus ul li a{
+    font-size: 14px;
+    font-weight: 400;
+    color: #ffffff;
+    display: block;
+    padding: 5px 10px;
+}
+.logged-in-usermenus ul li a:hover, .logged-in-usermenus ul li a.current{
+    background: #f1693c;
+}
