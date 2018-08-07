@@ -84,8 +84,10 @@ jQuery(document).ready(function() {
         var this_element = jQuery(this);
         var id = this_element.val();
         var html = jQuery('#qOption_'+id).html();
+        console.log(html);
         //html=combinations(id);
-        jQuery(this_element).closest('.addQ_field_grp').append(html);
+        jQuery(this_element).closest('.addQ_field_grp').find('.question_wrap').html('');
+        jQuery(this_element).closest('.addQ_field_grp').find('.question_wrap').html(html);
     });
     jQuery('body').on('click','.option_add_q',function (e) {
         e.preventDefault();
