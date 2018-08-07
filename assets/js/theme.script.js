@@ -326,6 +326,16 @@ jQuery(document).ready(function(){
         theme: 'tooltipster-punk',
         trigger: 'click'
     });
+
+    jQuery('body').on('click', '.imgselector img', function(e){
+        e.preventDefault();
+        var this_element = jQuery(this);
+        jQuery('.imgselector img').addClass('img-thumbnail');
+        jQuery('.imgselector img').removeClass('selectedImg');
+
+        jQuery(this_element).addClass('selectedImg');
+        jQuery(this_element).removeClass('img-thumbnail');
+    });
 });
 jQuery("#button").click(function() {
     jQuery('html, body').animate({
