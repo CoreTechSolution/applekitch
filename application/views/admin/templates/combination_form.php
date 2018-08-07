@@ -12,6 +12,22 @@
 		</div>
 	</div>
 </div>
+<!---->
+<div id="qOption_2">
+    <div class="form-group">
+        <div class="row">
+            <div class="col-lg-6">
+                <label for="imageQ_upload">Upload Images</label>
+                <input type="file" multiple name="imageQ_upload" class="form-control imageQ_upload">
+            </div>
+            <div class="col-lg-6">
+                <!--<label for="ans_textbox">Answer</label>
+                <input type="text" name="ans_textbox" class="form-control ans_textbox">-->
+            </div>
+        </div>
+    </div>
+</div>
+<!---->
 <div id="qOption_3">
     <div class="form-group">
         <div class="row">
