@@ -91,8 +91,23 @@ jQuery(document).ready(function() {
     jQuery('body').on('click','.option_add_q',function (e) {
         e.preventDefault();
         var this_element=jQuery(this);
-        var demo_html=jQuery('#option_add_div').html();
+        var demo_html=jQuery(this_element).closest('.addQ_field_grp').find('#option_add_div').html();
         jQuery(this_element).prev('.option_add_div_app').append(demo_html);
+
+    });
+    jQuery('body').on('click','.option_done',function (e) {
+        e.preventDefault();
+        var this_element=jQuery(this);
+        jQuery('.arrange1').hide();
+        jQuery('.arrange2').show();
+        var html = '<ul id="sortable">';
+        jQuery(this_element).closest('.addQ_field_grp').find('.option_1').each(function(){
+            html = html+'<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>'+jQuery(this).val()+'</li>';
+        });
+        html = '</ul>';
+        jQuery(this_element).prev('.option_add_div_app').append(html);
+        jQuery( "#sortable" ).sortable();
+        jQuery( "#sortable" ).disableSelection();
 
     });
     jQuery('body').on('click','.addQ_preview',function (e) {
