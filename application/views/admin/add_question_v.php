@@ -91,14 +91,12 @@ require_once 'templates/header.php';
 
                                             </div>
 
-                                            <!--<label for="question">Question Type</label>
+                                            <!--<label for="questQuestion with Arranging Optionion">Question Type</label>
                                             --><?php /*echo form_dropdown('question_type',form_dropdown_cr(array('type_id','type_name'),'question_type'),'',array('class'=>'form-control')); */?>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="question_wrap">
-
-                                </div>
+                                <div class="question_wrap"></div>
                             </div>
                                 <a href="javascript:void(0)" class="btn add_row_save addQ_preview"><span data-feather="eye"></span> Preview</a>
                                 <a href="javascript:void(0)" class="btn add_row_save addQ_save"><span data-feather="save"></span> Save</a>
