@@ -116,6 +116,8 @@ jQuery(document).ready(function(){
                         jQuery('.qAns_form').html('<h3>Exam End!</h3>')
                     }else{
                         jQuery('.qAns_form').html(data['html']);
+                        jQuery( "#sortable" ).sortable();
+                        jQuery( "#sortable" ).disableSelection();
                     }
 
                 }, 5000);
