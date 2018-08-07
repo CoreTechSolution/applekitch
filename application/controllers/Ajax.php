@@ -193,7 +193,7 @@ class Ajax extends CI_Controller {
 			$img_path = image_upload( $_FILES, 'upload_images', 'uploads/images' );
 			array_push($img_array, $img_path);
 		}
-		//print_r($img_array);
+		//$img_array_json = json_encode($img_array);
 		$uploaded_images_forms = '';
 		$uploaded_images_forms .= '<div class="row"><div class="col-lg-12"><label>Choose correct answer</label></div></div>';
 		$uploaded_images_forms .= '<div class="row">';
@@ -205,7 +205,7 @@ class Ajax extends CI_Controller {
 			$uploaded_images_forms .= '<div style="text-align: center; margin: 5px 0 10px 0;"><input type="radio" name="answer" value="' .$img_name.'"></div>';
 			$uploaded_images_forms .= '</div></div>';
 		}
-		$uploaded_images_forms .= '</div>';
+		$uploaded_images_forms .= '<input type="hidden" name="img_array" value="'.implode('|',$img_array).'"></div>';
 		echo $uploaded_images_forms;
 	}
 
