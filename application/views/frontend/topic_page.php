@@ -136,6 +136,39 @@ $this->load->view('templates/header');
                                             <p>Answer 1: </p><span><input type="text" name="qAns_box" class="form-control"></span>
 
                                         </div>
+	                                <?php }  elseif ($form_data['question_option']=='14') { ?>
+		                                <?php //print_r($form_data); ?>
+                                        <div class="option_list_d">
+                                            <div class="option_list_d">
+		                                        <?php $option_counter=1; ?>
+		                                        <?php foreach ($form_data['option_1'] as $option){ ?>
+                                                    <div class="inputGroup">
+                                                        <input id="radio<?php echo $option_counter; ?>" name="option_1" value="<?php echo $option; ?>" type="radio"/>
+                                                        <label for="radio<?php echo $option_counter; ?>"><?php echo $option; ?></label>
+                                                    </div>
+			                                        <?php $option_counter++; ?>
+		                                        <?php } ?>
+                                            </div>
+                                        </div>
+	                                <?php }  elseif ($form_data['question_option']=='5') { ?>
+		                                <?php //print_r($form_data); ?>
+                                        <div class="option_list_d">
+                                            <?php //print_r($form_data['option_arrange']); ?>
+                                            <div class="option_list_d onlyclickable" id="sortable">
+				                                <?php $option_counter=1; ?>
+				                                <?php foreach ($form_data['option_dearrange'] as $option){ ?>
+                                                    <div class="inputGroup">
+                                                        <label><?php echo $option; ?></label>
+                                                        <input type="hidden" name="option_arrange[]" value="<?php echo $option; ?>"/>
+                                                    </div>
+					                                <?php $option_counter++; ?>
+				                                <?php } ?>
+                                                <script>
+                                                    jQuery( "#sortable" ).sortable();
+                                                    jQuery( "#sortable" ).disableSelection();
+                                                </script>
+                                            </div>
+                                        </div>
 	                                <?php } ?>
 
                                     <input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">
