@@ -46,6 +46,8 @@
     <link rel="stylesheet" media="only screen and (max-width: 768px) and (min-width: 481px)" href="<?php echo base_url('/assets/css/styleMax768.css'); ?>">
     <link rel="stylesheet" media="only screen and (max-width: 480px)" href="<?php echo base_url('/assets/css/styleMax480.css'); ?>">
     <script src="<?php echo base_url('/assets/js/jquery.js'); ?>" type="text/javascript"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">-->
     <script>
         var base_url='<?php echo base_url(); ?>';
     </script>
