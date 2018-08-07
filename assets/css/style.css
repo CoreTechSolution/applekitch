@@ -2053,3 +2053,19 @@ only screen and (min-device-pixel-ratio: 1.5) {
     display: -webkit-flex;
     display: flex
 }
+.imgselector input[type=radio]{
+    margin:0;padding:0;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    background: red;
+}
+.imgselector img{
+    cursor: pointer;
+}
+.selectedImg{
+    border: 1px solid #f1693c;
+    padding: .25rem;
+    background-color: #fff;
+    border-radius: .25rem;
+}
