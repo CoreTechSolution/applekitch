@@ -169,6 +169,21 @@ $this->load->view('templates/header');
                                                 </script>
                                             </div>
                                         </div>
+	                                <?php } elseif ($form_data['question_option']=='13') { ?>
+		                                <?php //print_r($form_data); ?>
+                                        <div class="option_list_d">
+			                                <?php $option_counter=1; ?>
+			                                <?php foreach ($form_data['option_1'] as $option){ ?>
+                                                <div class="inputGroup">
+                                                    <input id="radio<?php echo $option_counter; ?>" name="option_1" value="<?php echo $option; ?>" type="radio"/>
+                                                    <label for="radio<?php echo $option_counter; ?>"><?php echo $option; ?></label>
+                                                </div>
+				                                <?php $option_counter++; ?>
+			                                <?php } ?>
+                                            <div class="form-group">
+                                                <textarea class="form-control" style="width: 68%; height: 150px;" name="13_textbox"></textarea>
+                                            </div>
+                                        </div>
 	                                <?php } ?>
 
                                     <input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">
