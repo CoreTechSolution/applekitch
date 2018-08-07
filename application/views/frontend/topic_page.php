@@ -100,8 +100,31 @@ $this->load->view('templates/header');
                                             <p>Answer: </p><span><input type="text" name="qAns_box" class="form-control"></span>
                                         </div>
 
+	                                <?php }  elseif ($form_data['question_option']=='2') { ?>
+                                        <?php $img_array = explode('|',$form_data['img_array']); ?>
+		                                <?php if(!empty($img_array)){ ?>
+                                            <div class="row">
+                                                <?php $i = 1; ?>
+                                                <?php foreach($img_array as $img){ ?>
+                                                    <?php
+                                                    $reversedParts = explode('/', strrev($img), 2);
+                                                    $img_name = strrev($reversedParts[0]);
+                                                    ?>
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <div class="imgselector">
+                                                                <input id="img_<?php echo $i; ?>" type="radio" name="answer" value="<?php echo $img_name; ?>" autocomplete="off">
+                                                                <label for="img_<?php echo $i; ?>">
+                                                                    <img src="<?php echo $img; ?>" class="img-thumbnail" style="max-width: 100%;width: auto;height: 150px;">
+                                                                </label>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                <?php $i++;  } ?>
+                                            </div>
+                                        <?php } ?>
 	                                <?php }  elseif ($form_data['question_option']=='3') { ?>
-		                                <?php //print_r($form_data); ?>
                                         <div class="option_list_d onlyclickable">
 			                                <?php $option_counter=1; ?>
 			                                <?php foreach ($form_data['option_1'] as $option){ ?>
