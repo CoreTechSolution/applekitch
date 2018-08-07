@@ -96,6 +96,7 @@ require_once 'templates/header.php';
                                         </div>
                                     </div>
                                 </div>
+                                <div class="question_wrap"></div>
                             </div>
                                 <a href="javascript:void(0)" class="btn add_row_save addQ_preview"><span data-feather="eye"></span> Preview</a>
                                 <a href="javascript:void(0)" class="btn add_row_save addQ_save"><span data-feather="save"></span> Save</a>
