@@ -101,11 +101,11 @@ jQuery(document).ready(function() {
         jQuery('.arrange1').hide();
         jQuery('.arrange2').show();
         var html = '<ul id="sortable">';
-        jQuery(this_element).closest('.addQ_field_grp').find('.option_1').each(function(){
-            html = html+'<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>'+jQuery(this).val()+'</li>';
+        jQuery(this_element).closest('.addQ_field_grp').find('.option_arrange').each(function(){
+            html = html+'<li class="ui-state-default"><input type="hidden" name="option_dearrange[]" value="'+jQuery(this).val()+'"/>'+jQuery(this).val()+'</li>';
         });
-        html = '</ul>';
-        jQuery(this_element).prev('.option_add_div_app').append(html);
+        html = html+'</ul>';
+        jQuery('.arrange2').append(html);
         jQuery( "#sortable" ).sortable();
         jQuery( "#sortable" ).disableSelection();
 
@@ -168,7 +168,7 @@ jQuery(document).ready(function() {
                    }
                    jQuery('#loading').hide();
                    jQuery('#add_row').show();
-                   this_element.val('Update');
+                   this_element.text('Update');
                }
            });
        } else{

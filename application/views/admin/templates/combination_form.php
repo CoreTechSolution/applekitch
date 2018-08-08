@@ -92,8 +92,8 @@
         </div>
     </div>
 </div>
-<!-- Question with Check Box -->
-<div id="qOption_14">
+<!-- Question With TextBox And Option -->
+<div id="qOption_13">
     <div class="form-group">
         <div class="row">
             <div class="col-lg-6">
@@ -107,6 +107,44 @@
             <div class="col-lg-6">
                 <label for="ans_textbox">Answer</label>
                 <input type="text" name="ans_textbox" class="form-control ans_textbox">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Question with Check Box -->
+<div id="qOption_14">
+    <div class="form-group">
+        <div class="row">
+            <div class="col-lg-12">
+                <label>Answer</label>
+                <input type="text" name="ans_textbox" class="form-control ans_textbox">
+                <label>Check Boxes</label>
+                <div id="option_add_div">
+                    <input type="text" name="option_1[]" class="form-control option_1">
+                </div>
+                <div id="option_add_div_app" class="option_add_div_app"></div>
+                <a style="float: right;" class="option_add_q" href="#"><span data-feather="plus-circle" title="Add Option"></span></a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Question with Arranging Option -->
+<div id="qOption_5">
+    <div class="form-group">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="arrange1">
+                    <label>Answers</label>
+                    <div id="option_add_div">
+                        <input type="text" name="option_arrange[]" class="form-control option_arrange">
+                    </div>
+                    <div id="option_add_div_app" class="option_add_div_app"></div>
+                    <a style="float: right;" class="btn btn-primary option_add_q" href="#"><span data-feather="plus-circle" title="Add Option"></span></a>
+                    <a style="float: right; margin-right: 20px;" class="btn btn-primary option_done" href="#">Done</a>
+                </div>
+                <div class="arrange2" style="display: none;">
+                    <label>Re Arrange</label>
+                </div>
             </div>
         </div>
     </div>
@@ -147,3 +185,8 @@
         </form>
     </div>
 </div>
+<style>
+    #sortable { list-style-type: none; margin: 0; padding: 0; }
+    #sortable li { margin: 0 3px 3px 3px; padding: 12px; padding-left: 1.5em; font-size: 1.4em; height: 18px; line-height: 0; }
+    #sortable li span { position: absolute; margin-left: -1.3em; }
+</style>
