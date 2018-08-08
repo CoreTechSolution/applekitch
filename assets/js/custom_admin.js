@@ -162,6 +162,7 @@ jQuery(document).ready(function() {
                contentType: false,
                data: form_data,
                success: function (data) {
+                   console.log(data);
                    if (data != '0') {
                        jQuery('#loading').hide();
                        parent.find('.question_id').val(data);
