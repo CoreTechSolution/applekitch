@@ -117,6 +117,29 @@ class Ajax extends CI_Controller {
 					$rtntext['type']='false';
 					$rtntext['content']='Wrong: Correct answer is : '.$form_data_ans['ans_textbox'];
 				}
+			} elseif ($form_data['question_option']=='2'){
+				$qview_option='qView_option_'.$form_data['question_option'];
+				//print_r($questions_next);
+				if(!empty($questions_next)) {
+					$html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
+				} else {
+					$html='';
+				}
+				$rtntext['html']=$html;
+				//echo $html; //exit();
+				//print_r($form_data['qAns_box']);
+				//exit();
+				/*if(strtolower($form_data_ans['answer'])==strtolower($form_data['correct_answer'])){
+					$this->session->set_userdata('score_ans',($form_data['answred']+1));
+					$this->session->set_userdata('score_smart',($form_data['score']+10));
+					$rtntext['type']='true';
+					$rtntext['content']='Correct';
+
+				} else {
+					$this->session->set_userdata('score_ans',($form_data['answred']+1));
+					$rtntext['type']='false';
+					$rtntext['content']='Wrong: Correct answer is : '.$form_data_ans['answer'];
+				}*/
 			} elseif ($form_data['question_option']=='3'){
 				$qview_option='qView_option_'.$form_data['question_option'];
 				if(!empty($questions_next))
@@ -231,6 +254,57 @@ class Ajax extends CI_Controller {
                                         <div class="qAns_box">
                                             <p>Answer: </p><span><input type="text" name="qAns_box" class="form-control"></span>
                                         </div>';
+		$rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
+		$rtntext.='</div>';
+		$rtntext.='</div>';
+
+		return $rtntext;
+	}
+	public function qView_option_2($data,$grade_id,$subject_id,$topic_id,$start){
+		$rtntext='';
+		$start=$start+1;
+		$rtntext.='<input type="hidden" name="start" value="'.$start.'" />
+                            <input type="hidden" name="grade_id" value="'.$grade_id.'" />
+                            <input type="hidden" name="subject_id" value="'.$subject_id.'" />
+                            <input type="hidden" name="topic_id" value="'.$topic_id.'" />';
+		$rtntext.='<div class="row">';
+		$rtntext.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
+                                <div class="col-lg-5">
+                                    <div class="question_count">Question <i class="fas fa-volume-up"></i></div>
+                                    <div class="question_display">'.$data->question_name.'</div>
+                                </div>';
+		$rtntext.='<div class="col-lg-7">';
+		$form_serializedata=unserialize($data->form_data);
+		$img_array = explode('|',$form_serializedata['img_array']);
+		$rtntext.='<input type="hidden" name="question_option" value="'.$form_serializedata['question_option'].'">';
+		$rtntext.='<input type="hidden" name="qAns_box" value="'.$form_serializedata['answer'].'">';
+		if(!empty($img_array)){
+			$rtntext.='<div class="row">';
+			$i = 1;
+			foreach($img_array as $img){
+				$reversedParts = explode('/', strrev($img), 2);
+				$img_name = strrev($reversedParts[0]);
+
+				$rtntext.='<div class="col-lg-6">';
+				$rtntext.='<div class="form-group">';
+				$rtntext.='<div class="imgselector">';
+				$rtntext.='<input id="img_'.$i.'" type="radio" name="answer" value="'.$img_name.'" autocomplete="off">';
+				$rtntext.='<label for="img_'.$i.'">';
+				$rtntext.='<img src="'.$img.'" class="img-thumbnail" style="max-width: 100%;width: auto;height: 150px;">';
+				$rtntext.='</label>';
+				$rtntext.='</div>';
+				$rtntext.='</div>';
+				$rtntext.='</div>';
+				$i++;
+			}
+			$rtntext.='</div>';
+		}
+		/*$rtntext.='<div class="question_image">
+                                            <img src="'.$form_serializedata['img'].'" alt="">
+                                        </div>
+                                        <div class="qAns_box">
+                                            <p>Answer: </p><span><input type="text" name="qAns_box" class="form-control"></span>
+                                        </div>';*/
 		$rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
 		$rtntext.='</div>';
 		$rtntext.='</div>';
