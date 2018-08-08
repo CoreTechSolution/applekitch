@@ -104,6 +104,7 @@ $this->load->view('templates/header');
                                         <?php $img_array = explode('|',$form_data['img_array']); ?>
 		                                <?php if(!empty($img_array)){ ?>
                                             <div class="row">
+                                                <input id="img_answer" type="hidden" name="img_answer" value="">
                                                 <?php $i = 1; ?>
                                                 <?php foreach($img_array as $img){ ?>
                                                     <?php
@@ -113,11 +114,10 @@ $this->load->view('templates/header');
                                                     <div class="col-lg-6">
                                                         <div class="form-group">
                                                             <div class="imgselector">
-                                                                <input id="img_<?php echo $i; ?>" type="radio" name="answer" value="<?php echo $img_name; ?>" autocomplete="off">
                                                                 <label for="img_<?php echo $i; ?>">
-                                                                    <img src="<?php echo $img; ?>" class="img-thumbnail" style="max-width: 100%;width: auto;height: 150px;">
+                                                                    <img data-img_name="<?php echo $img_name; ?>" src="<?php echo $img; ?>" class="img-thumbnail" style="max-width: 100%;width: auto;height: 150px;">
                                                                 </label>
-
+                                                                <!--<input id="img_<?php /*echo $i; */?>" type="radio" name="img_answer" value="<?php /*echo $img_name; */?>">-->
                                                             </div>
                                                         </div>
                                                     </div>
