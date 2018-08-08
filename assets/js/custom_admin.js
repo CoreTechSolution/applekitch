@@ -168,7 +168,7 @@ jQuery(document).ready(function() {
                    }
                    jQuery('#loading').hide();
                    jQuery('#add_row').show();
-                   this_element.hide();
+                   this_element.text('Update');
                }
            });
        } else{
