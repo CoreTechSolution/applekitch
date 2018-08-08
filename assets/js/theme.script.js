@@ -337,6 +337,8 @@ jQuery(document).ready(function(){
 
         jQuery(this_element).addClass('selectedImg');
         jQuery(this_element).removeClass('img-thumbnail');
+        var selected_answer = jQuery(this_element).data('img_name');
+        jQuery('#img_answer').val(selected_answer);
     });
 });
 jQuery("#button").click(function() {
