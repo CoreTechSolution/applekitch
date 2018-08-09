@@ -44,6 +44,25 @@
         </div>
     </div>
 </div>
+<!---->
+<div id="qOption_6">
+    <div class="form-group">
+        <div class="row">
+            <div class="col-lg-6">
+                <label for="imageQ_upload">Options</label>
+                <div id="option_add_div">
+                    <input type="text" name="option_1[]" class="form-control option_1">
+                </div>
+                <div id="option_add_div_app" class="option_add_div_app"></div>
+                <a class="option_add_q" href="#"><span data-feather="plus-circle" title="Add Option"></span></a>
+            </div>
+            <div class="col-lg-6">
+                <label for="ans_textbox">Answer</label>
+                <input type="text" name="ans_textbox" class="form-control ans_textbox">
+            </div>
+        </div>
+    </div>
+</div>
 <div id="qOption_9">
     <div class="form-group">
         <div class="row">
@@ -179,6 +198,7 @@
                         </div>
                     </div>
                 </div>
+                <div class="question_wrap"></div>
             </div>
             <a href="javascript:void(0)" class="btn add_row_save addQ_preview"><span data-feather="eye"></span> Preview</a>
             <a href="javascript:void(0)" class="btn add_row_save addQ_save"><span data-feather="save"></span> Save</a>
