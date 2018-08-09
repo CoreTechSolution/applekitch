@@ -59,6 +59,18 @@ class Ajax extends CI_Controller {
 			}
 			$form_data['img'] = $image_upload;
 		}
+		if($form_data['question_option']=='20') {
+			if ( ! empty( $_FILES['imageQ_upload']['name'] ) ) {
+				$img_path = image_upload( $_FILES, 'imageQ_upload', 'uploads/images' );
+				if ( $img_path ) {
+					$image_upload = $img_path;
+				} else {
+
+					$image_upload = '';
+				}
+			}
+			$form_data['img'] = $image_upload;
+		}
 
 		if(!empty($form_data['question_id'])){
 			$question_id=$form_data['question_id'];
@@ -252,6 +264,25 @@ class Ajax extends CI_Controller {
 					$rtntext['content']='Wrong: Correct answer is : '.$form_data_ans['ans_textbox'];
 				}
 			} elseif ($form_data['question_option']=='13'){
+				$qview_option='qView_option_'.$form_data['question_option'];
+				if(!empty($questions_next))
+					$html=$this->$qview_option($questions_next[0],$grade_id,$subject_id,$topic_id,$start);
+				if(empty($html)){
+					$html='';
+				}
+				//echo $html; exit();
+				$rtntext['html']=$html;
+				if(strtolower($form_data_ans['ans_textbox'])==strtolower($form_data['option_1'])){
+					$this->session->set_userdata('score_ans',($form_data['answred']+1));
+					$this->session->set_userdata('score_smart',($form_data['score']+10));
+					$rtntext['type']='true';
+					$rtntext['content']='Correct';
+				} else{
+					$this->session->set_userdata('score_ans',($form_data['answred']+1));
+					$rtntext['type']='false';
+					$rtntext['content']='Wrong: Correct answer is : '.$form_data_ans['ans_textbox'];
+				}
+			} elseif ($form_data['question_option']=='20'){
 				$qview_option='qView_option_'.$form_data['question_option'];
 				if(!empty($questions_next))
 					$html=$this->$qview_option($questions_next[0],$grade_id,$subject_id,$topic_id,$start);
@@ -590,6 +621,41 @@ class Ajax extends CI_Controller {
 			$option_counter++;
 		}
 		$rtntext.='<div class="form-group"><textarea class="form-control" style="width: 68%; height: 150px;" name="13_textbox"></textarea></div>';
+		$rtntext.='</div>';
+		$rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
+		$rtntext.='</div>';
+		$rtntext.='</div>';
+
+		return $rtntext;
+	}
+	public function qView_option_20($data,$grade_id,$subject_id,$topic_id,$start){
+		$rtntext='';
+		$start=$start+1;
+		$rtntext.='<input type="hidden" name="start" value="'.$start.'" />
+                            <input type="hidden" name="grade_id" value="'.$grade_id.'" />
+                            <input type="hidden" name="subject_id" value="'.$subject_id.'" />
+                            <input type="hidden" name="topic_id" value="'.$topic_id.'" />';
+		$rtntext.='<div class="row">';
+		$rtntext.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
+                                <div class="col-lg-5">
+                                    <div class="question_count">Question <i class="fas fa-volume-up"></i></div>
+                                    <div class="question_display">'.$data->question_name.'</div>
+                                </div>';
+		$rtntext.='<div class="col-lg-7">';
+		$form_serializedata=unserialize($data->form_data);
+		$rtntext.='<input type="hidden" name="question_option" value="'.$form_serializedata['question_option'].'">';
+		$rtntext.='<div class="question_image">
+                                            <img src="'.$form_serializedata['img'].'" alt="">
+                                        </div>';
+		$rtntext.='<div class="option_list_d onlyclickable">';
+		$option_counter=1;
+		foreach ($form_serializedata['option_1'] as $option){
+			$rtntext.='<div class="inputGroup">
+                           <input id="radio'.$option_counter.'" name="option_1" value="'. $option.'" type="radio"/>
+                            <label for="radio'.$option_counter.'">'.$option.'</label>
+                        </div>';
+			$option_counter++;
+		}
 		$rtntext.='</div>';
 		$rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
 		$rtntext.='</div>';
