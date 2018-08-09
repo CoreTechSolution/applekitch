@@ -442,6 +442,38 @@ class Ajax extends CI_Controller {
 
 		return $rtntext;
 	}
+	public function qView_option_5($data,$grade_id,$subject_id,$topic_id,$start){
+		$rtntext='';
+		$start=$start+1;
+		$rtntext.='<input type="hidden" name="start" value="'.$start.'" />
+                            <input type="hidden" name="grade_id" value="'.$grade_id.'" />
+                            <input type="hidden" name="subject_id" value="'.$subject_id.'" />
+                            <input type="hidden" name="topic_id" value="'.$topic_id.'" />';
+		$rtntext.='<div class="row">';
+		$rtntext.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
+                                <div class="col-lg-5">
+                                    <div class="question_count">Question <i class="fas fa-volume-up"></i></div>
+                                    <div class="question_display">'.$data->question_name.'</div>
+                                </div>';
+		$rtntext.='<div class="col-lg-7">';
+		$form_serializedata=unserialize($data->form_data);
+		$rtntext.='<input type="hidden" name="question_option" value="'.$form_serializedata['question_option'].'">';
+		$rtntext.='<div class="option_list_d onlyclickable" id="sortable">';
+		$option_counter=1;
+		foreach ($form_serializedata['option_dearrange'] as $option){
+			$rtntext.='<div class="inputGroup">
+                            <label>'.$option.'</label>
+                            <input type="hidden" name="option_arrange[]" value="'.$option.'"/>
+                        </div>';
+			$option_counter++;
+		}
+		$rtntext.='</div>';
+		$rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
+		$rtntext.='</div>';
+		$rtntext.='</div>';
+
+		return $rtntext;
+	}
 	public function qView_option_6($data,$grade_id,$subject_id,$topic_id,$start){
 		$rtntext='';
 		$start=$start+1;
@@ -531,70 +563,6 @@ class Ajax extends CI_Controller {
 
 		return $rtntext;
 	}
-	public function qView_option_14($data,$grade_id,$subject_id,$topic_id,$start){
-		$rtntext='';
-		$start=$start+1;
-		$rtntext.='<input type="hidden" name="start" value="'.$start.'" />
-                            <input type="hidden" name="grade_id" value="'.$grade_id.'" />
-                            <input type="hidden" name="subject_id" value="'.$subject_id.'" />
-                            <input type="hidden" name="topic_id" value="'.$topic_id.'" />';
-		$rtntext.='<div class="row">';
-		$rtntext.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
-                                <div class="col-lg-5">
-                                    <div class="question_count">Question <i class="fas fa-volume-up"></i></div>
-                                    <div class="question_display">'.$data->question_name.'</div>
-                                </div>';
-		$rtntext.='<div class="col-lg-7">';
-		$form_serializedata=unserialize($data->form_data);
-		$rtntext.='<input type="hidden" name="question_option" value="'.$form_serializedata['question_option'].'">';
-		$rtntext.='<div class="option_list_d">';
-		$option_counter=1;
-		foreach ($form_serializedata['option_1'] as $option){
-			$rtntext.='<div class="inputGroup">
-                           <input id="radio'.$option_counter.'" name="option_1" value="'. $option.'" type="radio"/>
-                            <label for="radio'.$option_counter.'">'.$option.'</label>
-                        </div>';
-			$option_counter++;
-		}
-		$rtntext.='</div>';
-		$rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
-		$rtntext.='</div>';
-		$rtntext.='</div>';
-
-		return $rtntext;
-	}
-	public function qView_option_5($data,$grade_id,$subject_id,$topic_id,$start){
-		$rtntext='';
-		$start=$start+1;
-		$rtntext.='<input type="hidden" name="start" value="'.$start.'" />
-                            <input type="hidden" name="grade_id" value="'.$grade_id.'" />
-                            <input type="hidden" name="subject_id" value="'.$subject_id.'" />
-                            <input type="hidden" name="topic_id" value="'.$topic_id.'" />';
-		$rtntext.='<div class="row">';
-		$rtntext.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
-                                <div class="col-lg-5">
-                                    <div class="question_count">Question <i class="fas fa-volume-up"></i></div>
-                                    <div class="question_display">'.$data->question_name.'</div>
-                                </div>';
-		$rtntext.='<div class="col-lg-7">';
-		$form_serializedata=unserialize($data->form_data);
-		$rtntext.='<input type="hidden" name="question_option" value="'.$form_serializedata['question_option'].'">';
-		$rtntext.='<div class="option_list_d onlyclickable" id="sortable">';
-		$option_counter=1;
-		foreach ($form_serializedata['option_dearrange'] as $option){
-			$rtntext.='<div class="inputGroup">
-                            <label>'.$option.'</label>
-                            <input type="hidden" name="option_arrange[]" value="'.$option.'"/>
-                        </div>';
-			$option_counter++;
-		}
-		$rtntext.='</div>';
-		$rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
-		$rtntext.='</div>';
-		$rtntext.='</div>';
-
-		return $rtntext;
-	}
 	public function qView_option_13($data,$grade_id,$subject_id,$topic_id,$start){
 		$rtntext='';
 		$start=$start+1;
@@ -628,6 +596,86 @@ class Ajax extends CI_Controller {
 
 		return $rtntext;
 	}
+	public function qView_option_14($data,$grade_id,$subject_id,$topic_id,$start){
+		$rtntext='';
+		$start=$start+1;
+		$rtntext.='<input type="hidden" name="start" value="'.$start.'" />
+                            <input type="hidden" name="grade_id" value="'.$grade_id.'" />
+                            <input type="hidden" name="subject_id" value="'.$subject_id.'" />
+                            <input type="hidden" name="topic_id" value="'.$topic_id.'" />';
+		$rtntext.='<div class="row">';
+		$rtntext.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
+                                <div class="col-lg-5">
+                                    <div class="question_count">Question <i class="fas fa-volume-up"></i></div>
+                                    <div class="question_display">'.$data->question_name.'</div>
+                                </div>';
+		$rtntext.='<div class="col-lg-7">';
+		$form_serializedata=unserialize($data->form_data);
+		$rtntext.='<input type="hidden" name="question_option" value="'.$form_serializedata['question_option'].'">';
+		$rtntext.='<div class="option_list_d">';
+		$option_counter=1;
+		foreach ($form_serializedata['option_1'] as $option){
+			$rtntext.='<div class="inputGroup">
+                           <input id="radio'.$option_counter.'" name="option_1" value="'. $option.'" type="radio"/>
+                            <label for="radio'.$option_counter.'">'.$option.'</label>
+                        </div>';
+			$option_counter++;
+		}
+		$rtntext.='</div>';
+		$rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
+		$rtntext.='</div>';
+		$rtntext.='</div>';
+
+		return $rtntext;
+	}
+	public function qView_option_15($data,$grade_id,$subject_id,$topic_id,$start){
+		$rtntext='';
+		$start=$start+1;
+		$rtntext.='<input type="hidden" name="start" value="'.$start.'" />
+                            <input type="hidden" name="grade_id" value="'.$grade_id.'" />
+                            <input type="hidden" name="subject_id" value="'.$subject_id.'" />
+                            <input type="hidden" name="topic_id" value="'.$topic_id.'" />';
+		$rtntext.='<div class="row">';
+		$rtntext.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
+                                <div class="col-lg-5">
+                                    <div class="question_count">Question <i class="fas fa-volume-up"></i></div>
+                                    <div class="question_display">'.$data->question_name.'</div>
+                                </div>';
+		$rtntext.='<div class="col-lg-7">';
+		$form_serializedata=unserialize($data->form_data);
+		$img_array = explode('|',$form_serializedata['img_array']);
+		$rtntext.='<input type="hidden" name="question_option" value="'.$form_serializedata['question_option'].'">';
+		//$rtntext.='<input type="hidden" name="qAns_box" value="'.$form_serializedata['answer'].'">';
+		if(!empty($img_array)){
+			$rtntext.='<div class="row">';
+			$rtntext.='<input id="img_answer" type="hidden" name="img_answer" value="">';
+			$i = 1;
+			foreach($img_array as $img){
+				$reversedParts = explode('/', strrev($img), 2);
+				$img_name = strrev($reversedParts[0]);
+
+				$rtntext.='<div class="col-lg-6">';
+				$rtntext.='<div class="form-group">';
+				$rtntext.='<div class="imgselector">';
+				//$rtntext.='<input id="img_'.$i.'" type="radio" name="answer" value="'.$img_name.'" autocomplete="off">';
+				$rtntext.='<label for="img_'.$i.'">';
+				$rtntext.='<img data-img_name="'.$img_name.'"src="'.$img.'" class="img-thumbnail" style="max-width: 100%;width: auto;height: 150px;">';
+				$rtntext.='</label>';
+				$rtntext.='</div>';
+				$rtntext.='</div>';
+				$rtntext.='</div>';
+				$i++;
+			}
+			$rtntext.='</div>';
+		}
+		$rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
+		$rtntext.='</div>';
+		$rtntext.='</div>';
+
+		return $rtntext;
+	}
+
+
 	public function qView_option_20($data,$grade_id,$subject_id,$topic_id,$start){
 		$rtntext='';
 		$start=$start+1;
