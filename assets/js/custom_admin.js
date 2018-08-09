@@ -190,8 +190,8 @@ jQuery(document).ready(function() {
             data: form_data,
             success: function (data) {
                 jQuery('#upload_images_section').hide();
-                jQuery('#uploaded_images').show();
-                jQuery('#uploaded_images').append(data);
+                jQuery(this_element).closest('.addQ_field_grp').find('#uploaded_images').show();
+                jQuery(this_element).closest('.addQ_field_grp').find('#uploaded_images').append(data);
             }
         });
     });
