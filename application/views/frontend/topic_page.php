@@ -135,6 +135,17 @@ $this->load->view('templates/header');
 				                                <?php $option_counter++; ?>
 			                                <?php } ?>
                                         </div>
+	                                <?php } elseif ($form_data['question_option']=='6') { ?>
+                                        <div class="option_list_d onlyclickable">
+			                                <?php $option_counter=1; ?>
+			                                <?php foreach ($form_data['option_1'] as $option){ ?>
+                                                <div class="inputGroup">
+                                                    <input id="radio<?php echo $option_counter; ?>" name="option_1" value="<?php echo $option; ?>" type="radio"/>
+                                                    <label for="radio<?php echo $option_counter; ?>"><?php echo $option; ?></label>
+                                                </div>
+				                                <?php $option_counter++; ?>
+			                                <?php } ?>
+                                        </div>
 	                                <?php } elseif ($form_data['question_option']=='9') { ?>
 		                                <?php //print_r($form_data); ?>
                                         <div class="option_list_d">
