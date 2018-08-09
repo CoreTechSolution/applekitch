@@ -153,6 +153,19 @@
     </div>
 </div>
 <!---->
+<div id="qOption_15">
+    <div class="form-group">
+        <div class="row" id="upload_images_section">
+            <div class="col-lg-6">
+                <label for="upload_images">Upload Images</label>
+                <input type="file" multiple name="upload_images[]" class="form-control upload_images">
+            </div>
+            <div class="col-lg-6"></div>
+        </div>
+        <div id="uploaded_images" style="display: none;"></div>
+    </div>
+</div>
+<!---->
 <div id="qOption_18">
     <div class="form-group">
         <div class="row">
