@@ -45,6 +45,28 @@
     </div>
 </div>
 <!---->
+<!-- Question with Arranging Option -->
+<div id="qOption_5">
+    <div class="form-group">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="arrange1">
+                    <label>Answers</label>
+                    <div id="option_add_div">
+                        <input type="text" name="option_arrange[]" class="form-control option_arrange">
+                    </div>
+                    <div id="option_add_div_app" class="option_add_div_app"></div>
+                    <a style="float: right;" class="btn btn-primary option_add_q" href="#"><span data-feather="plus-circle" title="Add Option"></span></a>
+                    <a style="float: right; margin-right: 20px;" class="btn btn-primary option_done" href="#">Done</a>
+                </div>
+                <div class="arrange2" style="display: none;">
+                    <label>Re Arrange</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!---- ----->
 <div id="qOption_6">
     <div class="form-group">
         <div class="row">
@@ -94,23 +116,6 @@
         </div>
     </div>
 </div>
-<div id="qOption_18">
-    <div class="form-group">
-        <div class="row">
-            <div class="col-lg-6">
-                <label for="ans_textbox">Answer 1</label>
-                <input type="text" name="ans_textbox1" class="form-control ans_textbox">
-                <br>
-                <br>
-                <label for="ans_textbox">Answer 2</label>
-                <input type="text" name="ans_textbox2" class="form-control ans_textbox">
-            </div>
-            <div class="col-lg-6">
-
-            </div>
-        </div>
-    </div>
-</div>
 <!-- Question With TextBox And Option -->
 <div id="qOption_13">
     <div class="form-group">
@@ -147,27 +152,50 @@
         </div>
     </div>
 </div>
-<!-- Question with Arranging Option -->
-<div id="qOption_5">
+<!---->
+<div id="qOption_18">
     <div class="form-group">
         <div class="row">
-            <div class="col-lg-12">
-                <div class="arrange1">
-                    <label>Answers</label>
-                    <div id="option_add_div">
-                        <input type="text" name="option_arrange[]" class="form-control option_arrange">
-                    </div>
-                    <div id="option_add_div_app" class="option_add_div_app"></div>
-                    <a style="float: right;" class="btn btn-primary option_add_q" href="#"><span data-feather="plus-circle" title="Add Option"></span></a>
-                    <a style="float: right; margin-right: 20px;" class="btn btn-primary option_done" href="#">Done</a>
-                </div>
-                <div class="arrange2" style="display: none;">
-                    <label>Re Arrange</label>
-                </div>
+            <div class="col-lg-6">
+                <label for="ans_textbox">Answer 1</label>
+                <input type="text" name="ans_textbox1" class="form-control ans_textbox">
+                <br>
+                <br>
+                <label for="ans_textbox">Answer 2</label>
+                <input type="text" name="ans_textbox2" class="form-control ans_textbox">
+            </div>
+            <div class="col-lg-6">
+
             </div>
         </div>
     </div>
 </div>
+<!--- --->
+<div id="qOption_20">
+    <div class="form-group">
+        <div class="row" id="upload_images_section">
+            <div class="col-lg-6">
+                <label for="imageQ_upload">Image</label>
+                <input type="file" name="imageQ_upload" class="form-control imageQ_upload">
+            </div>
+            <div class="col-lg-6">
+                <label for="ans_textbox">Answer</label>
+                <input type="text" name="ans_textbox" class="form-control ans_textbox">
+            </div>
+            <div class="col-lg-6">
+                <label for="imageQ_upload">Options</label>
+                <div id="option_add_div">
+                    <input type="text" name="option_1[]" class="form-control option_1">
+                </div>
+                <div id="option_add_div_app" class="option_add_div_app"></div>
+                <a class="option_add_q" href="#"><span data-feather="plus-circle" title="Add Option"></span></a>
+            </div>
+        </div>
+        <div id="uploaded_images" style="display: none;"></div>
+    </div>
+</div>
+<!---->
+
 <div id="combination_add_row_demo">
     <div class="add_question_row">
         <div class="row_delete">
