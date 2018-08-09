@@ -218,6 +218,21 @@ $this->load->view('templates/header');
                                                 <textarea class="form-control" style="width: 68%; height: 150px;" name="13_textbox"></textarea>
                                             </div>
                                         </div>
+	                                <?php } elseif ($form_data['question_option']=='20') { ?>
+                                        <div class="option_list_d onlyclickable">
+                                            <div class="question_image">
+                                                <img src="<?php echo $form_data['img']; ?>" alt="">
+                                            </div>
+			                                <?php $option_counter=1; ?>
+			                                <?php foreach ($form_data['option_1'] as $option){ ?>
+
+                                                <div class="inputGroup">
+                                                    <input id="radio<?php echo $option_counter; ?>" name="option_1" value="<?php echo $option; ?>" type="radio"/>
+                                                    <label for="radio<?php echo $option_counter; ?>"><?php echo $option; ?></label>
+                                                </div>
+				                                <?php $option_counter++; ?>
+			                                <?php } ?>
+                                        </div>
 	                                <?php } ?>
 
                                     <input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">
