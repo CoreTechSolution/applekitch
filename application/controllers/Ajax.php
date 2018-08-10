@@ -244,6 +244,26 @@ class Ajax extends CI_Controller {
 					$rtntext['type']='false';
 					$rtntext['content']='Wrong: Correct answer is : '.$form_data_ans['ans_textbox'];
 				}
+			} elseif ($form_data['question_option']=='15'){
+				$qview_option='qView_option_'.$form_data['question_option'];
+				//print_r($questions_next);
+				if(!empty($questions_next)) {
+					$html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
+				} else {
+					$html='';
+				}
+				$rtntext['html']=$html;
+				if(strtolower($form_data_ans['answer'])==strtolower($form_data['img_answer'])){
+					$this->session->set_userdata('score_ans',($form_data['answred']+1));
+					$this->session->set_userdata('score_smart',($form_data['score']+10));
+					$rtntext['type']='true';
+					$rtntext['content']='Correct';
+
+				} else {
+					$this->session->set_userdata('score_ans',($form_data['answred']+1));
+					$rtntext['type']='false';
+					$rtntext['content']='Wrong: Correct answer is : '.$form_data_ans['answer'];
+				}
 			} elseif ($form_data['question_option']=='5'){
 				$qview_option='qView_option_'.$form_data['question_option'];
 				if(!empty($questions_next))
