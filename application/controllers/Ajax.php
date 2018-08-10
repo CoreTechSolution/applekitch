@@ -356,6 +356,35 @@ class Ajax extends CI_Controller {
 		echo $uploaded_images_forms;
 	}
 
+	function SelectMultibleImages(){
+		$img_array = array();
+		$files = $_FILES;
+		$filesCount = count($_FILES['upload_images']['name']);
+		for($i = 0; $i < $filesCount; $i++){
+			$_FILES['upload_images']['name']     = $files['upload_images']['name'][$i];
+			$_FILES['upload_images']['type']     = $files['upload_images']['type'][$i];
+			$_FILES['upload_images']['tmp_name'] = $files['upload_images']['tmp_name'][$i];
+			$_FILES['upload_images']['error']     = $files['upload_images']['error'][$i];
+			$_FILES['upload_images']['size']     = $files['upload_images']['size'][$i];
+			$img_path = image_upload( $_FILES, 'upload_images', 'uploads/images' );
+			array_push($img_array, $img_path);
+		}
+		//$img_array_json = json_encode($img_array);
+		$uploaded_images_forms = '';
+		$uploaded_images_forms .= '<div class="row"><div class="col-lg-12"><label>Choose correct answers</label></div></div>';
+		$uploaded_images_forms .= '<div class="row">';
+		foreach($img_array as $img) {
+			$reversedParts = explode('/', strrev($img), 2);
+			$img_name = strrev($reversedParts[0]);
+			$uploaded_images_forms .= '<div class="col-lg-3"><div class="form-group">';
+			$uploaded_images_forms .= '<label><img src="' .$img.'" style="max-width: 100%;width: 263px;height: 150px;" />';
+			$uploaded_images_forms .= '<div style="text-align: center; margin: 5px 0 10px 0;"><input type="checkbox" name="answer[]" value="' .$img_name.'"></div></label>';
+			$uploaded_images_forms .= '</div></div>';
+		}
+		$uploaded_images_forms .= '<input type="hidden" name="img_array" value="'.implode('|',$img_array).'"></div>';
+		echo $uploaded_images_forms;
+	}
+
 	public function qView_option_1($data,$grade_id,$subject_id,$topic_id,$start){
 		$rtntext='';
 		$start=$start+1;
