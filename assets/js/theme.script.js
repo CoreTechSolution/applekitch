@@ -340,6 +340,24 @@ jQuery(document).ready(function(){
         var selected_answer = jQuery(this_element).data('img_name');
         jQuery('#img_answer').val(selected_answer);
     });
+
+    jQuery('body').on('click', '.imgselectorMultiple img', function(e){
+        e.preventDefault();
+        var this_element = jQuery(this);
+        if(jQuery(this_element).hasClass('selectedImg')) {
+            jQuery(this_element).addClass('img-thumbnail');
+            jQuery(this_element).removeClass('selectedImg');
+        } else {
+            jQuery(this_element).addClass('selectedImg');
+            jQuery(this_element).removeClass('img-thumbnail');
+        }
+        var selected_answer = jQuery(this_element).data('img_name');
+        if(jQuery('#img_answer').val() == '') {
+            jQuery('#img_answer').val(selected_answer);
+        } else {
+            jQuery('#img_answer').val(jQuery('#img_answer').val()+','+selected_answer);
+        }
+    });
 });
 jQuery("#button").click(function() {
     jQuery('html, body').animate({
