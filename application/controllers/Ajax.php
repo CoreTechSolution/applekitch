@@ -202,7 +202,6 @@ class Ajax extends CI_Controller {
 					$this->session->set_userdata('score_smart',($form_data['score']+10));
 					$rtntext['type']='true';
 					$rtntext['content']='Correct';
-
 				} else {
 					$this->session->set_userdata('score_ans',($form_data['answred']+1));
 					$rtntext['type']='false';
