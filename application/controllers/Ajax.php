@@ -187,6 +187,26 @@ class Ajax extends CI_Controller {
 					$rtntext['type']='false';
 					$rtntext['content']='Wrong: Correct answer is : '.$form_data_ans['ans_textbox'];
 				}
+			} elseif ($form_data['question_option']=='8'){
+				$qview_option='qView_option_'.$form_data['question_option'];
+				//print_r($questions_next);
+				if(!empty($questions_next)) {
+					$html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
+				} else {
+					$html='';
+				}
+				$rtntext['html']=$html;
+				$img_answer = explode(',', $form_data['img_answer']);
+				if($form_data_ans['answer']==$img_answer){
+					$this->session->set_userdata('score_ans',($form_data['answred']+1));
+					$this->session->set_userdata('score_smart',($form_data['score']+10));
+					$rtntext['type']='true';
+					$rtntext['content']='Correct';
+				} else {
+					$this->session->set_userdata('score_ans',($form_data['answred']+1));
+					$rtntext['type']='false';
+					$rtntext['content']='Wrong';
+				}
 			} elseif ($form_data['question_option']=='9'){
 				$qview_option='qView_option_'.$form_data['question_option'];
 				if(!empty($questions_next))
@@ -350,6 +370,35 @@ class Ajax extends CI_Controller {
 			$uploaded_images_forms .= '<div class="col-lg-3"><div class="form-group">';
 			$uploaded_images_forms .= '<img src="' .$img.'" style="max-width: 100%;width: 263px;height: 150px;" />';
 			$uploaded_images_forms .= '<div style="text-align: center; margin: 5px 0 10px 0;"><input type="radio" name="answer" value="' .$img_name.'"></div>';
+			$uploaded_images_forms .= '</div></div>';
+		}
+		$uploaded_images_forms .= '<input type="hidden" name="img_array" value="'.implode('|',$img_array).'"></div>';
+		echo $uploaded_images_forms;
+	}
+
+	function SelectMultibleImages(){
+		$img_array = array();
+		$files = $_FILES;
+		$filesCount = count($_FILES['upload_images']['name']);
+		for($i = 0; $i < $filesCount; $i++){
+			$_FILES['upload_images']['name']     = $files['upload_images']['name'][$i];
+			$_FILES['upload_images']['type']     = $files['upload_images']['type'][$i];
+			$_FILES['upload_images']['tmp_name'] = $files['upload_images']['tmp_name'][$i];
+			$_FILES['upload_images']['error']     = $files['upload_images']['error'][$i];
+			$_FILES['upload_images']['size']     = $files['upload_images']['size'][$i];
+			$img_path = image_upload( $_FILES, 'upload_images', 'uploads/images' );
+			array_push($img_array, $img_path);
+		}
+		//$img_array_json = json_encode($img_array);
+		$uploaded_images_forms = '';
+		$uploaded_images_forms .= '<div class="row"><div class="col-lg-12"><label>Choose correct answers</label></div></div>';
+		$uploaded_images_forms .= '<div class="row">';
+		foreach($img_array as $img) {
+			$reversedParts = explode('/', strrev($img), 2);
+			$img_name = strrev($reversedParts[0]);
+			$uploaded_images_forms .= '<div class="col-lg-3"><div class="form-group">';
+			$uploaded_images_forms .= '<label><img src="' .$img.'" style="max-width: 100%;width: 263px;height: 150px;" />';
+			$uploaded_images_forms .= '<div style="text-align: center; margin: 5px 0 10px 0;"><input type="checkbox" name="answer[]" value="' .$img_name.'"></div></label>';
 			$uploaded_images_forms .= '</div></div>';
 		}
 		$uploaded_images_forms .= '<input type="hidden" name="img_array" value="'.implode('|',$img_array).'"></div>';
@@ -520,6 +569,52 @@ class Ajax extends CI_Controller {
 			$option_counter++;
 		}
 		$rtntext.='</div>';
+		$rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
+		$rtntext.='</div>';
+		$rtntext.='</div>';
+
+		return $rtntext;
+	}
+	public function qView_option_8($data,$grade_id,$subject_id,$topic_id,$start){
+		$rtntext='';
+		$start=$start+1;
+		$rtntext.='<input type="hidden" name="start" value="'.$start.'" />
+                            <input type="hidden" name="grade_id" value="'.$grade_id.'" />
+                            <input type="hidden" name="subject_id" value="'.$subject_id.'" />
+                            <input type="hidden" name="topic_id" value="'.$topic_id.'" />';
+		$rtntext.='<div class="row">';
+		$rtntext.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
+                                <div class="col-lg-5">
+                                    <div class="question_count">Question <i class="fas fa-volume-up"></i></div>
+                                    <div class="question_display">'.$data->question_name.'</div>
+                                </div>';
+		$rtntext.='<div class="col-lg-7">';
+		$form_serializedata=unserialize($data->form_data);
+		$img_array = explode('|',$form_serializedata['img_array']);
+		$rtntext.='<input type="hidden" name="question_option" value="'.$form_serializedata['question_option'].'">';
+		//$rtntext.='<input type="hidden" name="qAns_box" value="'.$form_serializedata['answer'].'">';
+		if(!empty($img_array)){
+			$rtntext.='<div class="row">';
+			$rtntext.='<input id="img_answer" type="hidden" name="img_answer" value="">';
+			$i = 1;
+			foreach($img_array as $img){
+				$reversedParts = explode('/', strrev($img), 2);
+				$img_name = strrev($reversedParts[0]);
+
+				$rtntext.='<div class="col-lg-6">';
+				$rtntext.='<div class="form-group">';
+				$rtntext.='<div class="imgselectorMultiple">';
+				//$rtntext.='<input id="img_'.$i.'" type="radio" name="answer" value="'.$img_name.'" autocomplete="off">';
+				$rtntext.='<label for="img_'.$i.'">';
+				$rtntext.='<img data-img_name="'.$img_name.'"src="'.$img.'" class="img-thumbnail" style="max-width: 100%;width: auto;height: 150px;">';
+				$rtntext.='</label>';
+				$rtntext.='</div>';
+				$rtntext.='</div>';
+				$rtntext.='</div>';
+				$i++;
+			}
+			$rtntext.='</div>';
+		}
 		$rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
 		$rtntext.='</div>';
 		$rtntext.='</div>';

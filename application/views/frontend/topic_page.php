@@ -166,6 +166,30 @@ $this->load->view('templates/header');
 				                                <?php $option_counter++; ?>
 			                                <?php } ?>
                                         </div>
+	                                <?php }elseif ($form_data['question_option']=='8') { ?>
+		                                <?php $img_array = explode('|',$form_data['img_array']); ?>
+		                                <?php if(!empty($img_array)){ ?>
+                                            <div class="row">
+                                                <input id="img_answer" type="hidden" name="img_answer" value="">
+				                                <?php $i = 1; ?>
+				                                <?php foreach($img_array as $img){ ?>
+					                                <?php
+					                                $reversedParts = explode('/', strrev($img), 2);
+					                                $img_name = strrev($reversedParts[0]);
+					                                ?>
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <div class="imgselectorMultiple">
+                                                                <label for="img_<?php echo $i; ?>">
+                                                                    <img data-img_name="<?php echo $img_name; ?>" src="<?php echo $img; ?>" class="img-thumbnail" style="max-width: 100%;width: auto;height: 150px;">
+                                                                </label>
+                                                                <!--<input id="img_<?php /*echo $i; */?>" type="radio" name="img_answer" value="<?php /*echo $img_name; */?>">-->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+					                                <?php $i++;  } ?>
+                                            </div>
+		                                <?php } ?>
 	                                <?php } elseif ($form_data['question_option']=='9') { ?>
 		                                <?php //print_r($form_data); ?>
                                         <div class="option_list_d">
