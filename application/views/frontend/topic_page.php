@@ -207,14 +207,7 @@ $this->load->view('templates/header');
                                         <div class="qAns_box">
                                             <p>Answer: </p><span><input type="text" name="qAns_box" class="form-control"></span>
                                         </div>
-	                                <?php } elseif ($form_data['question_option']=='18') { ?>
-		                                <?php //print_r($form_data); ?>
-                                        <div class="qAns_box">
-                                            <p>Answer 1: </p><span><input type="text" name="qAns_box" class="form-control"></span><br>
-                                            <p>Answer 1: </p><span><input type="text" name="qAns_box" class="form-control"></span>
-
-                                        </div>
-	                                <?php }  elseif ($form_data['question_option']=='13') { ?>
+	                                <?php }   elseif ($form_data['question_option']=='13') { ?>
 		                                <?php //print_r($form_data); ?>
                                         <div class="option_list_d">
 			                                <?php $option_counter=1; ?>
@@ -267,7 +260,14 @@ $this->load->view('templates/header');
 					                                <?php $i++;  } ?>
                                             </div>
 		                                <?php } ?>
-	                                <?php }  elseif ($form_data['question_option']=='20') { ?>
+	                                <?php }  elseif ($form_data['question_option']=='18') { ?>
+		                                <?php //print_r($form_data); ?>
+                                        <div class="qAns_box">
+                                            <p>Answer 1: </p><span><input type="text" name="qAns_box" class="form-control"></span><br>
+                                            <p>Answer 1: </p><span><input type="text" name="qAns_box" class="form-control"></span>
+
+                                        </div>
+	                                <?php } elseif ($form_data['question_option']=='20') { ?>
                                         <div class="option_list_d onlyclickable">
                                             <div class="question_image">
                                                 <img src="<?php echo $form_data['img']; ?>" alt="">
