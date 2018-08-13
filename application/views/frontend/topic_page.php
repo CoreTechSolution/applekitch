@@ -89,6 +89,7 @@ $this->load->view('templates/header');
                                     <div class="question_display"><?php echo $question->question_name; ?></div>
                                 </div>
                                 <div class="col-lg-7">
+                                    <?php //echo $question->form_data; exit(); ?>
 	                                <?php $form_data=unserialize($question->form_data); ?>
                                     <input type="hidden" name="question_option" value="<?= $form_data['question_option']; ?>">
 
