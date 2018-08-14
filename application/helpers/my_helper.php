@@ -48,6 +48,24 @@ function isLogin($param='admin'){
 		redirect( $param.'/login' );
 	}
 }
+function loginCheck(){
+	$CI = & get_instance();
+	$admin_logged_in = $CI->session->userdata('admin_logged_in');
+	if($admin_logged_in == 1) {
+		return true;
+	} else{
+		return false;
+	}
+}
+function get_current_user_id(){
+	$CI = & get_instance();
+	$user_id = $CI->session->userdata('user_id');
+	if($user_id) {
+		return $user_id;
+	} else{
+		return false;
+	}
+}
 
 function form_dropdown_cr($fields,$table_name){
 	$CI = & get_instance();
