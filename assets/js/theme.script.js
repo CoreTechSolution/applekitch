@@ -131,7 +131,7 @@ jQuery(document).ready(function(){
                         }
                         var grade=data['grade'];
                         var subject=data['subject'];
-                        var score_persentage=100*(qScore/tQ_score);
+                        var score_persentage=(100*(qScore/tQ_score)).toFixed(0);
                         //console.log(qScore);
                         //console.log(tQ_score);
 
