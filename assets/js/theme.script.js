@@ -75,6 +75,7 @@ jQuery(document).ready(function(){
     jQuery('body').on('click', '.qSubmit', function(e) {
         e.preventDefault();
         jQuery('#loading').show();
+        clearInterval(my_time_interval);
         jQuery('.qAns_form').hide();
         var this_element=jQuery(this);
         var form_data = new FormData(jQuery('.qAns_form')[0]);
@@ -88,6 +89,7 @@ jQuery(document).ready(function(){
         form_data.append('score_time_count_hr', score_time_count_hr);
         form_data.append('score_time_count_min', score_time_count_min);
         form_data.append('score_time_count_sec', score_time_count_sec);
+        var totalSubmitTime=(score_time_count_hr*60*60)+(score_time_count_min*60)+score_time_count_sec;
         jQuery.ajax({
             type: "POST",
             url: base_url + 'ajax/question_submit',
@@ -103,15 +105,20 @@ jQuery(document).ready(function(){
                     jQuery('#ans_label').removeClass();
                     jQuery('#ans_label').addClass('wAns');
                     jQuery('#ans_label').html(data['content']);
+                    jQuery('.score_ans').find('.content').html(data['score_ans']);
+                    jQuery('.score_smart').find('.content').html(data['score_smart']);
 
                 } else{
                     jQuery('#ans_label').removeClass();
                     jQuery('#ans_label').addClass('cAns');
                     jQuery('#ans_label').html(data['content']);
+                    jQuery('.score_ans').find('.content').html(data['score_ans']);
+                    jQuery('.score_smart').find('.content').html(data['score_smart']);
                 }
                 setTimeout(function() {
                     jQuery("#ans_label").slideToggle();
                     jQuery('.qAns_form').show();
+                    my_time_interval= setInterval(setTime, 1000);
                     if(data['html']==''){
                         jQuery('.qAns_form').html('<h3>Exam End!</h3>')
                     }else{
