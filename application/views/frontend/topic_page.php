@@ -77,7 +77,7 @@ $this->load->view('templates/header');
                     <!--<div id="wrong_ans_label" class="wAns">Wrong Answer&#8230;</div>-->
 					<?php if(!empty($questions)){ ?>
                         <form class="form qAns_form" method="post" action="" enctype="multipart/form-data">
-                            <input type="hidden" name="start" value="<?php echo $start; ?>" />
+                            <input type="text" name="start" value="<?php echo $start; ?>" />
                             <input type="hidden" name="grade_id" value="<?php echo $grade_id; ?>" />
                             <input type="hidden" name="subject_id" value="<?php echo $subject_id; ?>" />
                             <input type="hidden" name="topic_id" value="<?php echo $topic_id; ?>" />
