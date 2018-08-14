@@ -90,6 +90,7 @@ jQuery(document).ready(function(){
         form_data.append('score_time_count_min', score_time_count_min);
         form_data.append('score_time_count_sec', score_time_count_sec);
         var totalSubmitTime=(score_time_count_hr*60*60)+(score_time_count_min*60)+score_time_count_sec;
+        form_data.append('total_time_inSecond', totalSubmitTime);
         jQuery.ajax({
             type: "POST",
             url: base_url + 'ajax/question_submit',
@@ -120,7 +121,44 @@ jQuery(document).ready(function(){
                     jQuery('.qAns_form').show();
                     my_time_interval= setInterval(setTime, 1000);
                     if(data['html']==''){
-                        jQuery('.qAns_form').html('<h3>Exam End!</h3>')
+                        var tQ_attend= jQuery('.score_ans').find('.content').html();
+                        var qScore=jQuery('.score_smart').find('.content').html();
+                        var total_time=data['total_time'];
+                        var tQ_score=data['tQ_score'];
+                        var user_name=data['user_name'];
+                        var grade=data['grade'];
+                        var subject=data['subject'];
+                        var score_persentage=100*(qScore/tQ_score);
+                        //console.log(qScore);
+                        //console.log(tQ_score);
+
+                        var html='<div class="result_show">';
+                        html+='<table class="table table-bordered table-result">';
+                        html+='<tr>' +
+                            '<th>Name</th>' +
+                            '<td>'+ user_name +'</td>' +
+                            '</tr>' +
+                            '<tr>' +
+                            '<th>Grade</th>' +
+                            '<td>' + grade + '</td>' +
+                            '</tr>' +
+                            '<tr>' +
+                            '<th>Subject</th>' +
+                            '<td>'+ subject +'</td>' +
+                            '</tr>' +
+                            '<tr>' +
+                            '<th>Total Question attend</th>' +
+                            '<td>'+ tQ_attend +'</td>' +
+                            '</tr>' +
+                            '<tr>' +
+                            '<th>Score</th>' +
+                            '<td>'+score_persentage+' %</td>' +
+                            '</tr>';
+                        html+='</table>';
+                        html+='</div>';
+
+                        jQuery('.qAns_form').html(html);
+                        clearInterval(my_time_interval);
                     }else{
                         jQuery('.qAns_form').html(data['html']);
                         jQuery( "#sortable" ).sortable();
