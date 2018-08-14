@@ -40,6 +40,7 @@ class Ajax extends CI_Controller {
 		$data['category_id']=$form_data['category_id'];
 		$data['topic_id']=$form_data['topic_id'];
 		$data['question_name']=$form_data['question'];
+		$data['q_score']=$form_data['q_score'];
 		unset($form_data['country_id']);
 		unset($form_data['subject_id']);
 		unset($form_data['grade_id']);
@@ -116,11 +117,14 @@ class Ajax extends CI_Controller {
 					$html=$this->$qview_option($questions_next[0],$grade_id,$subject_id,$topic_id,$start);
 				if(empty($html)){
 					$html='';
+
 				}
 				$rtntext['html']=$html;
 				if(strtolower($form_data_ans['ans_textbox'])==strtolower($form_data['qAns_box'])){
 					$this->session->set_userdata('score_ans',($form_data['answred']+1));
-					$this->session->set_userdata('score_smart',($form_data['score']+10));
+					$this->session->set_userdata('score_smart',($form_data['score']+$questions->q_score));
+					$rtntext['score_ans']=$this->session->userdata('score_ans');
+					$rtntext['score_smart']=$this->session->userdata('score_smart');
 					$rtntext['type']='true';
 					$rtntext['content']='Correct';
 
@@ -140,7 +144,9 @@ class Ajax extends CI_Controller {
 				$rtntext['html']=$html;
 				if(strtolower($form_data_ans['answer'])==strtolower($form_data['img_answer'])){
 					$this->session->set_userdata('score_ans',($form_data['answred']+1));
-					$this->session->set_userdata('score_smart',($form_data['score']+10));
+					$this->session->set_userdata('score_smart',($form_data['score']+$questions->q_score));
+					$rtntext['score_ans']=$this->session->userdata('score_ans');
+					$rtntext['score_smart']=$this->session->userdata('score_smart');
 					$rtntext['type']='true';
 					$rtntext['content']='Correct';
 
@@ -160,7 +166,9 @@ class Ajax extends CI_Controller {
 				$rtntext['html']=$html;
 				if(strtolower($form_data_ans['ans_textbox'])==strtolower($form_data['option_1'])){
 					$this->session->set_userdata('score_ans',($form_data['answred']+1));
-					$this->session->set_userdata('score_smart',($form_data['score']+10));
+					$this->session->set_userdata('score_smart',($form_data['score']+$questions->q_score));
+					$rtntext['score_ans']=$this->session->userdata('score_ans');
+					$rtntext['score_smart']=$this->session->userdata('score_smart');
 					$rtntext['type']='true';
 					$rtntext['content']='Correct';
 				} else{
@@ -179,7 +187,9 @@ class Ajax extends CI_Controller {
 				$rtntext['html']=$html;
 				if(strtolower($form_data_ans['ans_textbox'])==strtolower($form_data['option_1'])){
 					$this->session->set_userdata('score_ans',($form_data['answred']+1));
-					$this->session->set_userdata('score_smart',($form_data['score']+10));
+					$this->session->set_userdata('score_smart',($form_data['score']+$questions->q_score));
+					$rtntext['score_ans']=$this->session->userdata('score_ans');
+					$rtntext['score_smart']=$this->session->userdata('score_smart');
 					$rtntext['type']='true';
 					$rtntext['content']='Correct';
 				} else{
@@ -199,7 +209,9 @@ class Ajax extends CI_Controller {
 				$img_answer = explode(',', $form_data['img_answer']);
 				if($form_data_ans['answer']==$img_answer){
 					$this->session->set_userdata('score_ans',($form_data['answred']+1));
-					$this->session->set_userdata('score_smart',($form_data['score']+10));
+					$this->session->set_userdata('score_smart',($form_data['score']+$questions->q_score));
+					$rtntext['score_ans']=$this->session->userdata('score_ans');
+					$rtntext['score_smart']=$this->session->userdata('score_smart');
 					$rtntext['type']='true';
 					$rtntext['content']='Correct';
 				} else {
@@ -218,7 +230,9 @@ class Ajax extends CI_Controller {
 				$rtntext['html']=$html;
 				if(strtolower($form_data_ans['ans_textbox'])==strtolower($form_data['option_1'])){
 					$this->session->set_userdata('score_ans',($form_data['answred']+1));
-					$this->session->set_userdata('score_smart',($form_data['score']+10));
+					$this->session->set_userdata('score_smart',($form_data['score']+$questions->q_score));
+					$rtntext['score_ans']=$this->session->userdata('score_ans');
+					$rtntext['score_smart']=$this->session->userdata('score_smart');
 					$rtntext['type']='true';
 					$rtntext['content']='Correct';
 				} else{
@@ -236,7 +250,9 @@ class Ajax extends CI_Controller {
 				$rtntext['html']=$html;
 				if(strtolower($form_data_ans['ans_textbox'])==strtolower($form_data['qAns_box'])){
 					$this->session->set_userdata('score_ans',($form_data['answred']+1));
-					$this->session->set_userdata('score_smart',($form_data['score']+10));
+					$this->session->set_userdata('score_smart',($form_data['score']+$questions->q_score));
+					$rtntext['score_ans']=$this->session->userdata('score_ans');
+					$rtntext['score_smart']=$this->session->userdata('score_smart');
 					$rtntext['type']='true';
 					$rtntext['content']='Correct';
 
@@ -256,7 +272,9 @@ class Ajax extends CI_Controller {
 				$rtntext['html']=$html;
 				if(strtolower($form_data_ans['ans_textbox'])==strtolower($form_data['option_1'])){
 					$this->session->set_userdata('score_ans',($form_data['answred']+1));
-					$this->session->set_userdata('score_smart',($form_data['score']+10));
+					$this->session->set_userdata('score_smart',($form_data['score']+$questions->q_score));
+					$rtntext['score_ans']=$this->session->userdata('score_ans');
+					$rtntext['score_smart']=$this->session->userdata('score_smart');
 					$rtntext['type']='true';
 					$rtntext['content']='Correct';
 				} else{
@@ -275,7 +293,9 @@ class Ajax extends CI_Controller {
 				$rtntext['html']=$html;
 				if(strtolower($form_data_ans['answer'])==strtolower($form_data['img_answer'])){
 					$this->session->set_userdata('score_ans',($form_data['answred']+1));
-					$this->session->set_userdata('score_smart',($form_data['score']+10));
+					$this->session->set_userdata('score_smart',($form_data['score']+$questions->q_score));
+					$rtntext['score_ans']=$this->session->userdata('score_ans');
+					$rtntext['score_smart']=$this->session->userdata('score_smart');
 					$rtntext['type']='true';
 					$rtntext['content']='Correct';
 
@@ -295,7 +315,9 @@ class Ajax extends CI_Controller {
 				$rtntext['html']=$html;
 				if($form_data_ans['option_arrange']==$form_data['option_arrange']){
 					$this->session->set_userdata('score_ans',($form_data['answred']+1));
-					$this->session->set_userdata('score_smart',($form_data['score']+10));
+					$this->session->set_userdata('score_smart',($form_data['score']+$questions->q_score));
+					$rtntext['score_ans']=$this->session->userdata('score_ans');
+					$rtntext['score_smart']=$this->session->userdata('score_smart');
 					$rtntext['type']='true';
 					$rtntext['content']='Correct';
 				} else{
@@ -314,7 +336,9 @@ class Ajax extends CI_Controller {
 				$rtntext['html']=$html;
 				if(strtolower($form_data_ans['ans_textbox'])==strtolower($form_data['option_1'])){
 					$this->session->set_userdata('score_ans',($form_data['answred']+1));
-					$this->session->set_userdata('score_smart',($form_data['score']+10));
+					$this->session->set_userdata('score_smart',($form_data['score']+$questions->q_score));
+					$rtntext['score_ans']=$this->session->userdata('score_ans');
+					$rtntext['score_smart']=$this->session->userdata('score_smart');
 					$rtntext['type']='true';
 					$rtntext['content']='Correct';
 				} else{
@@ -328,12 +352,15 @@ class Ajax extends CI_Controller {
 					$html=$this->$qview_option($questions_next[0],$grade_id,$subject_id,$topic_id,$start);
 				if(empty($html)){
 					$html='';
+
 				}
 				//echo $html; exit();
 				$rtntext['html']=$html;
 				if(strtolower($form_data_ans['ans_textbox'])==strtolower($form_data['option_1'])){
 					$this->session->set_userdata('score_ans',($form_data['answred']+1));
-					$this->session->set_userdata('score_smart',($form_data['score']+10));
+					$this->session->set_userdata('score_smart',($form_data['score']+$questions->q_score));
+					$rtntext['score_ans']=$this->session->userdata('score_ans');
+					$rtntext['score_smart']=$this->session->userdata('score_smart');
 					$rtntext['type']='true';
 					$rtntext['content']='Correct';
 				} else{
