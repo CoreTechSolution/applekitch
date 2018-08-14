@@ -110,6 +110,7 @@ class Ajax extends CI_Controller {
 			$questions=$this->ajax_model->get_questions($conditions,true);
 			$form_data_ans=unserialize($questions->form_data);
 			$questions_next=$this->ajax_model->get_questions_by_one(array('grade_id'=>$grade_id,'subject_id'=>$subject_id,'topic_id'=>$topic_id),false,$start);
+
 			//print_r($questions_next); exit();
 			if($form_data['question_option']=='1'){
 				$qview_option='qView_option_'.$form_data['question_option'];
@@ -123,6 +124,8 @@ class Ajax extends CI_Controller {
 				if(strtolower($form_data_ans['ans_textbox'])==strtolower($form_data['qAns_box'])){
 					$this->session->set_userdata('score_ans',($form_data['answred']+1));
 					$this->session->set_userdata('score_smart',($form_data['score']+$questions->q_score));
+
+
 					$rtntext['score_ans']=$this->session->userdata('score_ans');
 					$rtntext['score_smart']=$this->session->userdata('score_smart');
 					$rtntext['type']='true';
@@ -369,7 +372,34 @@ class Ajax extends CI_Controller {
 					$rtntext['content']='Wrong: Correct answer is : '.$form_data_ans['ans_textbox'];
 				}
 			}
-
+			/// premium user save data in database
+			if(loginCheck() && get_returnfield('user','id',get_current_user_id(),'membership_plan')=='1'){
+				$save_data['user_id']=get_current_user_id();
+				$save_data['question_id']=$questions->question_id;
+				$save_data['country_id']=$questions->country_id;
+				$save_data['subject_id']=$questions->subject_id;
+				$save_data['grade_id']=$questions->grade_id;
+				$save_data['category_id']=$questions->category_id;
+				$save_data['topic_id']=$questions->topic_id;
+				$save_data['question_type']=$form_data['question_option'];
+				$save_data['marks']=$questions->q_score;
+				$save_data['answer_type']=strtolower($rtntext['type']);
+				$save_data['ans_time']=$form_data['total_time_inSecond'];
+				$save_data['submit_date']=date('Y-m-d H:i:s');
+				$save_question=$this->ajax_model->save_student_qns_ans($save_data);
+			}
+			if(!empty($this->session->userdata('total_qScore'))){
+				$this->session->set_userdata('total_qScore',($this->session->userdata('total_qScore')+$questions->q_score));
+			} else{
+				$this->session->set_userdata('total_qScore',($questions->q_score));
+			}
+			$rtntext['user_name']=get_returnfield('user','id',get_current_user_id(),'fname').' '.get_returnfield('user','id',get_current_user_id(),'fname');
+			$rtntext['grade']=get_returnfield('grade','id',$questions->grade_id,'name');
+			$rtntext['subject']=get_returnfield('subject','id',$questions->subject_id,'name');
+			//$rtntext['tQ_attend']=$this->session->userdata('score_ans');
+			//$rtntext['tQ_score']=$this->session->userdata('score_smart');
+			$rtntext['total_time']=$form_data['total_time_inSecond'];
+			$rtntext['tQ_score']=$this->session->userdata('total_qScore');
 		}
 		echo json_encode($rtntext);
 	}
