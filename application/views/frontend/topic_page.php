@@ -45,7 +45,7 @@ $this->load->view('templates/header');
                             </div>
                             <div class="score_smart">
                                 <div class="title">Smart Score <br><sup>out of 100</sup> <a title="This is my span's tooltip message!" href="javascript:void(0)"><i class="fas fa-question-circle"></i></a></div>
-                                <div class="content"><?= (!empty($this->session->userdata('score_ans')))? $this->session->userdata('score_smart'):'0' ?></div>
+                                <div class="content"><?= (!empty($this->session->userdata('score_smart')))? $this->session->userdata('score_smart'):'0' ?></div>
                             </div>
                             <div class="score_time">
                                 <div class="title">Time Elapsed</div>
