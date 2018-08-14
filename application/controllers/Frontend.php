@@ -47,6 +47,8 @@ class Frontend extends CI_Controller {
 		$data['topic_id']=$topic_id;
 		//print_r($data); exit();
 		//echo $this->db->last_query(); exit();
+		$this->session->unset_userdata('score_ans');
+		$this->session->unset_userdata('score_smart');
 		$this->load->view('frontend/topic_page',$data);
 	}
 }
