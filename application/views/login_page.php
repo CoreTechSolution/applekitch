@@ -33,7 +33,7 @@ require_once 'templates/header.php';
 						}
 						?>
 						<div class="login_form">
-							<form id="login_form" action="/login/login_user" method="POST">
+							<form id="login_form" action="<?php echo base_url('/login/login_user'); ?>" method="POST">
 								<div class="from-group">
 									<label>Email Address</label>
 									<input type="text" name="email_id" class="form-control">
@@ -42,7 +42,7 @@ require_once 'templates/header.php';
 								<div class="from-group">
 									<label>Password</label>
 									<input type="password" name="pwd" class="form-control">
-									<p style="text-align: right;"><a href="<?= base_url('/forgot-password') ?>">Forgot Password?</a></p>
+									<p style="text-align: right;"><a href="<?php echo base_url('/forgot-password') ?>">Forgot Password?</a></p>
 								</div>
 								<br>
 								<div class="from-group">
