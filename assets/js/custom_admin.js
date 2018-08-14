@@ -138,40 +138,45 @@ jQuery(document).ready(function() {
     jQuery('body').on('click','.addQ_save',function(e){
        e.preventDefault();
         if(jQuery('#country_id').val()!='0' && jQuery('#subject_id').val()!='0' && jQuery('#grade_id').val()!='0' && jQuery('#category_id').val()!='0' && jQuery('#topic_id').val()!='0') {
-            jQuery('#loading').show();
-            var this_element=jQuery(this);
+            if(jQuery('#q_score').val()!='') {
+                jQuery('#loading').show();
+                var this_element = jQuery(this);
 
-           var country_id = jQuery('#country_id').val();
-           var subject_id = jQuery('#subject_id').val();
-           var grade_id = jQuery('#grade_id').val();
-           var category_id = jQuery('#category_id').val();
-           var topic_id = jQuery('#topic_id').val();
-           var parent = this_element.closest('.add_question_row');
-           var questions_option_drop = parent.find('.questions_option_drop').val();
-           var form_data = new FormData(parent.find('.addQ_form')[0]);
-           form_data.append('country_id', country_id);
-           form_data.append('subject_id', subject_id);
-           form_data.append('grade_id', grade_id);
-           form_data.append('category_id', category_id);
-           form_data.append('topic_id', topic_id);
+                var country_id = jQuery('#country_id').val();
+                var subject_id = jQuery('#subject_id').val();
+                var grade_id = jQuery('#grade_id').val();
+                var category_id = jQuery('#category_id').val();
+                var topic_id = jQuery('#topic_id').val();
+                var parent = this_element.closest('.add_question_row');
+                var questions_option_drop = parent.find('.questions_option_drop').val();
+                var form_data = new FormData(parent.find('.addQ_form')[0]);
+                form_data.append('country_id', country_id);
+                form_data.append('subject_id', subject_id);
+                form_data.append('grade_id', grade_id);
+                form_data.append('category_id', category_id);
+                form_data.append('topic_id', topic_id);
 
-           jQuery.ajax({
-               type: "POST",
-               url: base_url + 'ajax/save_question',
-               processData: false,
-               contentType: false,
-               data: form_data,
-               success: function (data) {
-                   //console.log(data);
-                   if (data != '0') {
-                       jQuery('#loading').hide();
-                       parent.find('.question_id').val(data);
-                   }
-                   jQuery('#loading').hide();
-                   jQuery('#add_row').show();
-                   this_element.text('Update');
-               }
-           });
+                jQuery.ajax({
+                    type: "POST",
+                    url: base_url + 'ajax/save_question',
+                    processData: false,
+                    contentType: false,
+                    data: form_data,
+                    success: function (data) {
+                        //console.log(data);
+                        if (data != '0') {
+                            jQuery('#loading').hide();
+                            parent.find('.question_id').val(data);
+                        }
+                        jQuery('#loading').hide();
+                        jQuery('#add_row').show();
+                        this_element.text('Update');
+                    }
+                });
+            } else {
+                alert('Please enter question marks!');
+            }
+
        } else{
            alert('Please select all necessary value');
        }
