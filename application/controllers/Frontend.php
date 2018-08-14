@@ -41,7 +41,7 @@ class Frontend extends CI_Controller {
 		$topic_id=$topic;
 		$data['subjects']=get_table_data(array('id','name'),'subject');
 		$data['questions']=$this->frontend_model->get_questions_by_one(array('grade_id'=>$grade_id,'subject_id'=>$subject_id,'topic_id'=>$topic_id),false,$start);
-		$data['start']=0;
+		$data['start']=1;
 		$data['grade_id']=$grade_id;
 		$data['subject_id']=$subject_id;
 		$data['topic_id']=$topic_id;
