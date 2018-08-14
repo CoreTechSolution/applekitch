@@ -15,7 +15,7 @@ class Login extends CI_Controller {
 		);
 		$this->load->view('login_page', $data);
 	}
-	function login_user() {
+	public function login_user() {
 		$user_login=array(
 
 			'email_id'=>$this->input->post('email_id'),
