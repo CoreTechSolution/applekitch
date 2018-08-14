@@ -52,6 +52,13 @@ class Ajax_model extends CI_Model{
 			return false;
 		}
 	}
+	function save_student_qns_ans($data){
+		$this->db->insert('student_qns_ans',$data);
+		if($this->db->affected_rows()>0) {
+			$insert_id = $this->db->insert_id();
+		}
+		return $insert_id;
+	}
 	function get_questions_by_one($conditions=array(),$row=true,$start='',$not_in=array()){
 		$this->db->select('*');
 		if(!empty($conditions)){
@@ -66,9 +73,10 @@ class Ajax_model extends CI_Model{
 		else{
 			$this->db->limit(1, 0);
 		}
-		$this->db->order_by('rand()');
+		$this->db->order_by('question_id');
 		$this->db->from('questions');
 		$queries=$this->db->get();
+		//echo $this->db->last_query();
 		if($row==true){
 			$query=$queries->row();
 		} else{
