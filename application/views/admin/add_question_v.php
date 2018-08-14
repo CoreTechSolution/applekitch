@@ -87,6 +87,10 @@ require_once 'templates/header.php';
                                             <?php echo form_dropdown('question_option',form_dropdown_cr(array('option_id','option_name'),'question_option'),'',array('class'=>'form-control questions_option_drop','required'=>true)); ?>
                                         </div>
                                         <div class="col-lg-6">
+                                            <label for="q_score">Question Marks</label>
+                                            <input class="form-control" name="q_score" id="q_score" type="text" required>
+                                        </div>
+                                        <div class="col-lg-6">
                                             <div class="add_dynamic_field">
 
                                             </div>
