@@ -71,16 +71,21 @@ class Admin_model extends CI_Model {
 			return false;
 		}
 	}
-	function get_questions() {
+	function get_questions($conditions=array(), $row=false) {
 		$this->db->select('*');
+		if(!empty($conditions))
+			$this->db->where($conditions);
+
 		$this->db->from('questions');
 		$this->db->order_by("question_id", "desc");
-
-		if($query = $this->db->get())
-		{
-			return $query->result();
-		}
-		else{
+		$query = $this->db->get();
+		if($query){
+			if($row==false){
+				return $query->result();
+			} else{
+				return $query->row();
+			}
+		} else{
 			return false;
 		}
 	}
