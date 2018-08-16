@@ -93,12 +93,38 @@ class Admin extends CI_Controller {
 	public function edit_role_process() {
 
 	}
-	public function questions() {
+	public function questions($s='') {
 		isLogin('admin');
-		$data['title']='Questions';
-		$data['questions']=$this->admin_model->get_questions();
-		$this->load->view( 'admin/questions_v', $data );
+		if($s=='') {
+			$data['title']     = 'Questions';
+			$data['questions'] = $this->admin_model->get_questions();
+			$this->load->view( 'admin/questions_v', $data );
+		} else{
+			$conditions=array();
+			if(!empty($this->input->post('country_id')))
+				$conditions=array('country_id'=>$this->input->post('country_id'));
+			if(!empty($this->input->post('subject_id')))
+				$conditions=array('subject_id'=>$this->input->post('subject_id'));
+			if(!empty($this->input->post('grade_id')))
+				$conditions=array('grade_id'=>$this->input->post('grade_id'));
+			if(!empty($this->input->post('category_id')))
+				$conditions=array('category_id'=>$this->input->post('category_id'));
+			if(!empty($this->input->post('topic_id')))
+				$conditions=array('topic_id'=>$this->input->post('topic_id'));
+			if(!empty($conditions)){
+				$data['title']     = 'Search Result';
+				$data['questions'] = $this->admin_model->get_questions($conditions,false);
+				$this->load->view( 'admin/questions_v', $data );
+			}
 
+		}
+	}
+	public function edit_question($question_id){
+		isLogin('admin');
+		$data['title']='Edit Question';
+		$data['questions']=$this->admin_model->get_questions(array('question_id'=>$question_id), true);
+		//print_r($data['questions']);
+		$this->load->view( 'admin/edit_question_v', $data );
 	}
 	public function question_option() {
 		isLogin('admin');
