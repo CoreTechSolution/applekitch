@@ -65,7 +65,7 @@ require_once 'templates/header.php';
 				</div>
 				<hr>
 					<?php $form_data=unserialize($questions->form_data); ?>
-                    <?php //print_r($form_data); ?>
+                    <?php print_r($form_data); ?>
 				<h4>Add question here</h4>
 				<div id="add_row_demo">
 					<div class="add_question_row">
