@@ -1758,6 +1758,7 @@ label.error{color: #FF0000; }
 .inputGroup label *::after {
     box-sizing: inherit;
 }
+
 .inputGroup label html {
     box-sizing: border-box;
 }
