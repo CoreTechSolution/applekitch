@@ -219,6 +219,9 @@ jQuery(document).ready(function() {
             }
         });
     });
+
+    /*for GIGo Grid System*/
+
 });
 
 
