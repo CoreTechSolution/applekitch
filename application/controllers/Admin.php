@@ -71,6 +71,7 @@ class Admin extends CI_Controller {
 
 	}
 	public function edit_role() {
+		//echo dirname(__DIR__); exit();
 		isLogin('admin');
 		$role_id = $this->input->get('role_id');
 		if(isset($role_id)) {
@@ -88,6 +89,7 @@ class Admin extends CI_Controller {
 			);
 			$this->load->view( 'admin/user_roles', $data );
 		}
+
 
 	}
 	public function edit_role_process() {
