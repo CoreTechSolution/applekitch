@@ -53,7 +53,10 @@ body {
   /*margin-top: 2px;*/
 }
 .edit_question_img{
-
+  width: 210px;
+  margin: 20px 0 0 0;
+  border: 1px solid #ccc;
+  padding: 2px;
 }
 #option_add_div input[type='text']{
   margin-bottom: 5px;
