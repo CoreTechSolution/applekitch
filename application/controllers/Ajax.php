@@ -393,7 +393,11 @@ class Ajax extends CI_Controller {
 			} else{
 				$this->session->set_userdata('total_qScore',($questions->q_score));
 			}
-			$rtntext['user_name']=get_returnfield('user','id',get_current_user_id(),'fname').' '.get_returnfield('user','id',get_current_user_id(),'fname');
+			$user_name=get_returnfield('user','id',get_current_user_id(),'fname').' '.get_returnfield('user','id',get_current_user_id(),'fname');
+			if($user_name=='' || $user_name==' '){
+				$user_name='Guest';
+			}
+			$rtntext['user_name']=$user_name;
 			$rtntext['grade']=get_returnfield('grade','id',$questions->grade_id,'name');
 			$rtntext['subject']=get_returnfield('subject','id',$questions->subject_id,'name');
 			//$rtntext['tQ_attend']=$this->session->userdata('score_ans');
