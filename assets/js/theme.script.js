@@ -126,13 +126,10 @@ jQuery(document).ready(function(){
                         var total_time=data['total_time'];
                         var tQ_score=data['tQ_score'];
                         var user_name=data['user_name'];
-                        if(user_name==''){
-                            user_name='Guest';
-                        }
                         var grade=data['grade'];
                         var subject=data['subject'];
                         var score_persentage=(100*(qScore/tQ_score)).toFixed(0);
-                        //console.log(qScore);
+                        console.log(user_name);
                         //console.log(tQ_score);
 
                         var html='<div class="result_show">';
