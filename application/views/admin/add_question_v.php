@@ -90,6 +90,18 @@ require_once 'templates/header.php';
                                             <label for="q_score">Question Marks</label>
                                             <input class="form-control" name="q_score" id="q_score" type="text" required>
                                         </div>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <div class="col-lg-6">
+                                            <label for="qRight_feedback">If Answer Right</label>
+                                            <input type="text" class="form-control" name="qRight_feedback" id="qRight_feedback">
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label for="qRight_feedback">If Answer Wrong (explanation)</label>
+                                            <textarea class="form-control" name="qRight_feedback" id="qRight_feedback"></textarea>
+                                        </div>
                                         <div class="col-lg-6">
                                             <div class="add_dynamic_field">
 
@@ -98,14 +110,7 @@ require_once 'templates/header.php';
                                             <!--<label for="question">Question Type</label>
                                             --><?php /*echo form_dropdown('question_type',form_dropdown_cr(array('type_id','type_name'),'question_type'),'',array('class'=>'form-control')); */?>
                                         </div>
-                                        <div class="col-lg-6">
-                                            <label for="qRight_feedback">If Answer Right</label>
-                                            <input type="text" class="form-control" name="qRight_feedback" id="qRight_feedback">
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <label for="qRight_feedback">If Answer Wrong</label>
-                                            <textarea class="form-control" name="qRight_feedback" id="qRight_feedback"></textarea>
-                                        </div>
+
                                     </div>
                                 </div>
                                 <div class="question_wrap"></div>
