@@ -99,20 +99,21 @@ jQuery(document).ready(function(){
             data: form_data,
             dataType: 'json',
             success: function (data) {
+                console.log(data);
                 jQuery('#loading').hide();
                 jQuery('#ans_label').slideToggle();
                 jQuery('.qAns_form').html('');
                 if (data['type'] != 'true') {
                     jQuery('#ans_label').removeClass();
                     jQuery('#ans_label').addClass('wAns');
-                    jQuery('#ans_label').html(data['content']);
+                    jQuery('#ans_label').html(data['qWrong_feedback']);
                     jQuery('.score_ans').find('.content').html(data['score_ans']);
                     jQuery('.score_smart').find('.content').html(data['score_smart']);
 
                 } else{
                     jQuery('#ans_label').removeClass();
                     jQuery('#ans_label').addClass('cAns');
-                    jQuery('#ans_label').html(data['content']);
+                    jQuery('#ans_label').html(data['qRight_feedback']);
                     jQuery('.score_ans').find('.content').html(data['score_ans']);
                     jQuery('.score_smart').find('.content').html(data['score_smart']);
                 }
@@ -129,7 +130,7 @@ jQuery(document).ready(function(){
                         var grade=data['grade'];
                         var subject=data['subject'];
                         var score_persentage=(100*(qScore/tQ_score)).toFixed(0);
-                        console.log(user_name);
+                        //console.log(user_name);
                         //console.log(tQ_score);
 
                         var html='<div class="result_show">';
