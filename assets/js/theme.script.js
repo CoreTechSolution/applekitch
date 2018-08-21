@@ -106,9 +106,64 @@ jQuery(document).ready(function(){
                 if (data['type'] != 'true') {
                     jQuery('#ans_label').removeClass();
                     jQuery('#ans_label').addClass('wAns');
-                    jQuery('#ans_label').html(data['qWrong_feedback']);
+                    //alert(data['qWrong_feedback']);
+                    var gotIt='<br><br><br><a href="" class="btn btn-primary btn-sm got_it">Got it</a>'
+                    jQuery('#ans_label').html(data['qWrong_feedback']+gotIt);
                     jQuery('.score_ans').find('.content').html(data['score_ans']);
                     jQuery('.score_smart').find('.content').html(data['score_smart']);
+                    /// On Got it click next question
+                    jQuery('body').on('click', '.got_it', function(e) {
+                        e.preventDefault();
+                        jQuery("#ans_label").slideToggle();
+                        jQuery('.qAns_form').show();
+                        my_time_interval= setInterval(setTime, 1000);
+                        if(data['html']==''){
+                            var tQ_attend= jQuery('.score_ans').find('.content').html();
+                            var qScore=jQuery('.score_smart').find('.content').html();
+                            var total_time=data['total_time'];
+                            var tQ_score=data['tQ_score'];
+                            var user_name=data['user_name'];
+                            var grade=data['grade'];
+                            var subject=data['subject'];
+                            var score_persentage=(100*(qScore/tQ_score)).toFixed(0);
+                            //console.log(user_name);
+                            //console.log(tQ_score);
+
+                            var html='<div class="result_show">';
+                            html+='<table class="table table-bordered table-result">';
+                            html+='<tr>' +
+                                '<th>Name</th>' +
+                                '<td>'+ user_name +'</td>' +
+                                '</tr>' +
+                                '<tr>' +
+                                '<th>Grade</th>' +
+                                '<td>' + grade + '</td>' +
+                                '</tr>' +
+                                '<tr>' +
+                                '<th>Subject</th>' +
+                                '<td>'+ subject +'</td>' +
+                                '</tr>' +
+                                '<tr>' +
+                                '<th>Total Question attend</th>' +
+                                '<td>'+ tQ_attend +'</td>' +
+                                '</tr>' +
+                                '<tr>' +
+                                '<th>Score</th>' +
+                                '<td>'+score_persentage+' %</td>' +
+                                '</tr>';
+                            html+='</table>';
+                            html+='</div>';
+
+                            jQuery('.qAns_form').html(html);
+                            clearInterval(my_time_interval);
+                        }else{
+                            jQuery('.qAns_form').html(data['html']);
+                            jQuery( "#sortable" ).sortable();
+                            jQuery( "#sortable" ).disableSelection();
+                        }
+
+                    });
+                    //////////////////////////////////
 
                 } else{
                     jQuery('#ans_label').removeClass();
@@ -116,57 +171,61 @@ jQuery(document).ready(function(){
                     jQuery('#ans_label').html(data['qRight_feedback']);
                     jQuery('.score_ans').find('.content').html(data['score_ans']);
                     jQuery('.score_smart').find('.content').html(data['score_smart']);
+                    /// Timer start for next question
+                    setTimeout(function() {
+                        jQuery("#ans_label").slideToggle();
+                        jQuery('.qAns_form').show();
+                        my_time_interval= setInterval(setTime, 1000);
+                        if(data['html']==''){
+                            var tQ_attend= jQuery('.score_ans').find('.content').html();
+                            var qScore=jQuery('.score_smart').find('.content').html();
+                            var total_time=data['total_time'];
+                            var tQ_score=data['tQ_score'];
+                            var user_name=data['user_name'];
+                            var grade=data['grade'];
+                            var subject=data['subject'];
+                            var score_persentage=(100*(qScore/tQ_score)).toFixed(0);
+                            //console.log(user_name);
+                            //console.log(tQ_score);
+
+                            var html='<div class="result_show">';
+                            html+='<table class="table table-bordered table-result">';
+                            html+='<tr>' +
+                                '<th>Name</th>' +
+                                '<td>'+ user_name +'</td>' +
+                                '</tr>' +
+                                '<tr>' +
+                                '<th>Grade</th>' +
+                                '<td>' + grade + '</td>' +
+                                '</tr>' +
+                                '<tr>' +
+                                '<th>Subject</th>' +
+                                '<td>'+ subject +'</td>' +
+                                '</tr>' +
+                                '<tr>' +
+                                '<th>Total Question attend</th>' +
+                                '<td>'+ tQ_attend +'</td>' +
+                                '</tr>' +
+                                '<tr>' +
+                                '<th>Score</th>' +
+                                '<td>'+score_persentage+' %</td>' +
+                                '</tr>';
+                            html+='</table>';
+                            html+='</div>';
+
+                            jQuery('.qAns_form').html(html);
+                            clearInterval(my_time_interval);
+                        }else{
+                            jQuery('.qAns_form').html(data['html']);
+                            jQuery( "#sortable" ).sortable();
+                            jQuery( "#sortable" ).disableSelection();
+                        }
+
+                    }, 2000);
+                    //////////////////////////////
                 }
-                setTimeout(function() {
-                    jQuery("#ans_label").slideToggle();
-                    jQuery('.qAns_form').show();
-                    my_time_interval= setInterval(setTime, 1000);
-                    if(data['html']==''){
-                        var tQ_attend= jQuery('.score_ans').find('.content').html();
-                        var qScore=jQuery('.score_smart').find('.content').html();
-                        var total_time=data['total_time'];
-                        var tQ_score=data['tQ_score'];
-                        var user_name=data['user_name'];
-                        var grade=data['grade'];
-                        var subject=data['subject'];
-                        var score_persentage=(100*(qScore/tQ_score)).toFixed(0);
-                        //console.log(user_name);
-                        //console.log(tQ_score);
 
-                        var html='<div class="result_show">';
-                        html+='<table class="table table-bordered table-result">';
-                        html+='<tr>' +
-                            '<th>Name</th>' +
-                            '<td>'+ user_name +'</td>' +
-                            '</tr>' +
-                            '<tr>' +
-                            '<th>Grade</th>' +
-                            '<td>' + grade + '</td>' +
-                            '</tr>' +
-                            '<tr>' +
-                            '<th>Subject</th>' +
-                            '<td>'+ subject +'</td>' +
-                            '</tr>' +
-                            '<tr>' +
-                            '<th>Total Question attend</th>' +
-                            '<td>'+ tQ_attend +'</td>' +
-                            '</tr>' +
-                            '<tr>' +
-                            '<th>Score</th>' +
-                            '<td>'+score_persentage+' %</td>' +
-                            '</tr>';
-                        html+='</table>';
-                        html+='</div>';
 
-                        jQuery('.qAns_form').html(html);
-                        clearInterval(my_time_interval);
-                    }else{
-                        jQuery('.qAns_form').html(data['html']);
-                        jQuery( "#sortable" ).sortable();
-                        jQuery( "#sortable" ).disableSelection();
-                    }
-
-                }, 5000);
                 //jQuery('#ans_label').hide().delay(8000);
 
             }
