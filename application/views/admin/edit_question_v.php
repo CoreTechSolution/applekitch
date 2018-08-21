@@ -16,7 +16,7 @@ require_once 'templates/header.php';
 								<h1 class="h2"><?= $title; ?></h1>
 							</div>
 							<div class="col-lg-6">
-
+                                <a href="<?php echo base_url('admin/questions'); ?>" class="btn btn-primary btn-sm">Back</a>
 							</div>
 						</div>
 					</div>
@@ -94,6 +94,18 @@ require_once 'templates/header.php';
 											<label for="q_score">Question Marks</label>
 											<input class="form-control" name="q_score" id="q_score" value="<?php echo $questions->q_score; ?>" type="text" required>
 										</div>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <div class="col-lg-6">
+                                            <label for="qRight_feedback">If Answer Right</label>
+                                            <input type="text" class="form-control" name="qRight_feedback" id="qRight_feedback" value="<?php echo !empty($form_data['qRight_feedback'])?$form_data['qRight_feedback']:''; ?>">
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label for="qRight_feedback">If Answer Wrong (explanation)</label>
+                                            <textarea class="form-control" name="qWrong_feedback" id="qWrong_feedback"><?php echo !empty($form_data['qWrong_feedback'])?$form_data['qWrong_feedback']:''; ?></textarea>
+                                        </div>
 										<div class="col-lg-12">
 											<div class="add_dynamic_field">
                                                 <?php
