@@ -403,7 +403,10 @@ class Ajax extends CI_Controller {
 			//$rtntext['tQ_attend']=$this->session->userdata('score_ans');
 			//$rtntext['tQ_score']=$this->session->userdata('score_smart');
 			$rtntext['total_time']=$form_data['total_time_inSecond'];
+			$rtntext['qRight_feedback']=(!empty($form_data['qRight_feedback'])) ? $form_data['qRight_feedback']:'Correct';
+			$rtntext['qWrong_feedback']=(!empty($form_data['qWrong_feedback'])) ? $form_data['qWrong_feedback']:$rtntext['content'];
 			$rtntext['tQ_score']=$this->session->userdata('total_qScore');
+
 		}
 		echo json_encode($rtntext);
 	}
