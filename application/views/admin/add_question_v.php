@@ -100,7 +100,7 @@ require_once 'templates/header.php';
                                         </div>
                                         <div class="col-lg-6">
                                             <label for="qRight_feedback">If Answer Wrong (explanation)</label>
-                                            <textarea class="form-control" name="qRight_feedback" id="qRight_feedback"></textarea>
+                                            <textarea class="form-control" name="qWrong_feedback" id="qWrong_feedback"></textarea>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="add_dynamic_field">
