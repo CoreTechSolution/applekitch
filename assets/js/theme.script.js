@@ -75,7 +75,7 @@ jQuery(document).ready(function(){
     jQuery('body').on('click', '.qSubmit', function(e) {
         e.preventDefault();
         jQuery('#loading').show();
-        clearInterval(my_time_interval);
+        clearInterval(my_time_interval);////////////////////////////Stop Timer
         jQuery('.qAns_form').hide();
         var this_element=jQuery(this);
         var form_data = new FormData(jQuery('.qAns_form')[0]);
@@ -114,9 +114,9 @@ jQuery(document).ready(function(){
                     /// On Got it click next question
                     jQuery('body').on('click', '.got_it', function(e) {
                         e.preventDefault();
-                        jQuery("#ans_label").slideToggle();
+                        jQuery("#ans_label").hide();
                         jQuery('.qAns_form').show();
-                        my_time_interval= setInterval(setTime, 1000);
+                        my_time_interval= setInterval(setTime, 1000); //////////////// Start Timer
                         if(data['html']==''){
                             var tQ_attend= jQuery('.score_ans').find('.content').html();
                             var qScore=jQuery('.score_smart').find('.content').html();
@@ -157,6 +157,7 @@ jQuery(document).ready(function(){
                             jQuery('.qAns_form').html(html);
                             clearInterval(my_time_interval);
                         }else{
+
                             jQuery('.qAns_form').html(data['html']);
                             jQuery( "#sortable" ).sortable();
                             jQuery( "#sortable" ).disableSelection();
