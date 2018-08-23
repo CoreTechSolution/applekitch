@@ -49,6 +49,12 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link<?php if($title == 'Certificates' || $title == 'Add Certificate') { ?> active<?php } ?>" href="<?= base_url('/admin/certifications'); ?>">
+                <span data-feather="file"></span>
+                Certificates
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link<?php if($title == 'Questions' || $title == 'Add Question' || $title == 'Add Question Type') { ?> active<?php } ?>" href="<?= base_url('/admin/questions'); ?>">
                 <span data-feather="help-circle"></span>
                 Questions
