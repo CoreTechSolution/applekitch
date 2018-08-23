@@ -325,4 +325,20 @@ INNER JOIN country ON subject.country = country.id INNER JOIN grade ON subject.g
 			return false;
 		}
 	}
+	function get_certificates($conditions=array(),$row=false) {
+		$this->db->select('*');
+		if (!empty($conditions))
+			$this->db->where($conditions);
+		$this->db->from('certificates');
+		$query=$this->db->get();
+		if($query) {
+			if ( $row == true ) {
+				return $query->row();
+			} else if ( $row == false ) {
+				return $query->result();
+			}
+		} else {
+			return false;
+		}
+	}
 }
