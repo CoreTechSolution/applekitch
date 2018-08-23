@@ -129,15 +129,19 @@ function get_question_count($country='',$subject='',$grade=''){
 	return $num_rows;
 }
 function get_id_by_slug($id='id',$slug,$table){
+	$rtntxt=0;
 	$CI = & get_instance();
 	$CI->db->select($id);
 	$CI->db->where('slug',$slug);
 	$CI->db->from($table);
 	$queries=$CI->db->get();
 	$values= $queries->result();
+	if($values){
+		$vv=$id;
+		$rtntxt=$values[0]->$vv;
+	}
 	//print_r($values);exit();
-	$vv=$id;
-	return $values[0]->$vv;
+	return $rtntxt;
 }
 function get_returnfield($db,$p_field,$p_value,$r_field){
 	$rtntext='';
@@ -153,14 +157,16 @@ function get_returnfield($db,$p_field,$p_value,$r_field){
 	//print_r($rtntext); exit();
 	return $rtntext;
 }
-function get_topic_by($grade_id,$subject_id){
+function get_topic_by($grade_id,$subject_id,$order_by='category_id', $order='ASC'){
 	$CI = & get_instance();
 	$CI->db->distinct();
 	$CI->db->select('topic_id');
+	$CI->db->select('category_id');
 	$CI->db->where(array('grade_id'=>$grade_id,'subject_id'=>$subject_id));
-	//$CI->db->group_by('category_id');
+	$CI->db->order_by($order_by,$order);
 	$CI->db->from('questions');
 	$queries=$CI->db->get();
+	//echo $CI->db->last_query(); exit();
 	$values= $queries->result();
 	/*//print_r($values);exit();
 	$vv=$id;*/
