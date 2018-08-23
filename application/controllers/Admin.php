@@ -573,4 +573,46 @@ class Admin extends CI_Controller {
 		$this->admin_model->update_category($category_array);
 		redirect('admin/category');
 	}
+	public function certificates() {
+		isLogin('admin');
+		$data['title']='Certificates';
+		$data['certificate']=$this->admin_model->get_certificates();
+		$this->load->view( 'admin/certificate_v', $data );
+	}
+	public function add_certificate() {
+		isLogin('admin');
+		$data['method']='add_certificate';
+		$data['title']='Add Certificate';
+		if(!empty($this->input->post('save'))){
+			$this->form_validation->set_rules('name', 'Certificate Name', 'required');
+			$this->form_validation->set_rules('subject_id', 'Subject', 'required');
+			$this->form_validation->set_rules('grade_id', 'Grade', 'required');
+			$this->form_validation->set_rules('category_id', 'Category', 'required');
+			$this->form_validation->set_rules('topic_id', 'Topic', 'required');
+			if ($this->form_validation->run() == FALSE){
+				$this->load->view( 'admin/add_certificate_v', $data );
+			} else{
+				$value['name']=$this->input->post('name');
+				$value['subject_id']=$this->input->post('subject_id');
+				$value['grade_id']=$this->input->post('grade_id');
+				$value['category_id']=$this->input->post('category_id');
+				$value['topic_id']=$this->input->post('topic_id');
+				$value['status']='active';
+				$value['create_dt']=date('Y-m-d H:i:s');;
+				$insert=$this->admin_model->insert_category($value);
+				if($insert){
+					$this->session->set_flashdata(array('msg_type'=>'success','msg'=>'New certificate added!'));
+					$this->load->view( 'admin/add_certificate_v', $data );
+				}
+			}
+		} else {
+			$this->load->view( 'admin/add_certificate_v', $data );
+		}
+	}
+	public function edit_certificate() {
+		isLogin('admin');
+		$data['title']='Certificates';
+		$data['certificate']=$this->admin_model->get_certificates();
+		$this->load->view( 'admin/certificate_v', $data );
+	}
 }
