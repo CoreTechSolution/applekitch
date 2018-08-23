@@ -1338,6 +1338,158 @@ label.error{color: #FF0000; }
     -ms-user-select: none;
     user-select: none;
 }
+.listing_category{
+    font-size: 19px;
+    font-weight: 500;
+    color: #f1693c;
+    padding: 0 0;
+    margin: 10px 0 5px 0;
+}
+.grade_side_list{
+
+}
+.grade_side_list ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.grade_side_list ul li{
+
+}
+.grade_side_list ul li a{
+    width: 106px;
+    height: 106px;
+    overflow: hidden;
+    /* border: 1px solid #000; */
+    display: block;
+    text-align: center;
+    border-radius: 100%;
+    padding: 42px 0;
+    margin: 0 0 10px 0;
+    font-weight: 500;
+}
+.grade_side_list ul li a:hover{
+
+}
+.grade_ci_1{
+    background: #f1693c;
+    color: #fff;
+    border: 1px solid #f1693c;
+}
+.grade_ci_1:hover{
+    color: #000000;
+    background: #ffffff;
+
+}
+.grade_ci_2{
+    background: #f39620;
+    color: #fff;
+    border: 1px solid #f39620;
+}
+.grade_ci_2:hover {
+    color: #000000;
+    background: #ffffff;
+}
+.grade_ci_3{
+    background: #46b01e;
+    color: #fff;
+    border: 1px solid #46b01e;
+}
+.grade_ci_3:hover{
+    color: #000000;
+    background: #ffffff;
+
+}
+.grade_ci_4{
+    background: #00a1de;
+    color: #fff;
+    border: 1px solid #00a1de;
+}
+.grade_ci_4:hover{
+    color: #000000;
+    background: #ffffff;
+
+}
+.grade_ci_5{
+    background: #00b971;
+    color: #fff;
+    border: 1px solid #00b971;
+}
+.grade_ci_5:hover{
+    color: #000000;
+    background: #ffffff;
+
+}
+.grade_ci_6{
+    background: #e9681b;
+    color: #fff;
+    border: 1px solid #e9681b;
+}
+.grade_ci_6:hover{
+    color: #000000;
+    background: #ffffff;
+
+}
+.grade_ci_7{
+    background: #0b863c;
+    color: #fff;
+    border: 1px solid #0b863c;
+}
+.grade_ci_7:hover{
+    color: #000000;
+    background: #ffffff;
+
+}
+.grade_ci_8{
+    background: #eabc00;
+    color: #fff;
+    border: 1px solid #eabc00;
+}
+.grade_ci_8:hover{
+    color: #000000;
+    background: #ffffff;
+
+}
+.grade_ci_9{
+    background: #7027a5;
+    color: #fff;
+    border: 1px solid #7027a5;
+}
+.grade_ci_9:hover{
+    color: #000000;
+    background: #ffffff;
+
+}
+.grade_ci_10{
+    background: #c83131;
+    color: #fff;
+    border: 1px solid #c83131;
+}
+.grade_ci_10:hover{
+    color: #000000;
+    background: #ffffff;
+
+}
+.grade_ci_11{
+    background: #147cc4;
+    color: #fff;
+    border: 1px solid #147cc4;
+}
+.grade_ci_11:hover{
+    color: #000000;
+    background: #ffffff;
+
+}
+.grade_ci_12{
+    background: #0bc1b6;
+    color: #fff;
+    border: 1px solid #0bc1b6;
+}
+.grade_ci_12:hover{
+    color: #000000;
+    background: #ffffff;
+
+}
 
 .stripe-connect span {
     display: block;
