@@ -85,4 +85,35 @@ class Ajax_model extends CI_Model{
 		return $query;
 
 	}
+	function get_certificates($conditions=array(),$row=false) {
+		$this->db->select('*');
+		if (!empty($conditions))
+			$this->db->where($conditions);
+		$this->db->from('certificates');
+		$query=$this->db->get();
+		//print_r($query->result());
+		if(!empty($query->result())) {
+			if ( $row == true ) {
+				return $query->row();
+			} else if ( $row == false ) {
+				return $query->result();
+			}
+		} else {
+			$this->db->select('*');
+			$this->db->where(array('default_status'=>'true'));
+			$this->db->from('certificates');
+			$query1=$this->db->get();
+			//echo $this->db->last_query();
+			if ( $row == true ) {
+				return $query1->row();
+			} else if ( $row == false ) {
+				return $query1->result();
+			}
+		}
+	}
+	function insert_ans_certificate($data) {
+		$this->db->insert('student_ans_topic', $data);
+		$insert_id = $this->db->insert_id();
+		return $insert_id;
+	}
 }
