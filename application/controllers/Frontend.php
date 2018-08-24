@@ -22,7 +22,8 @@ class Frontend extends CI_Controller {
 		);
 		$this->load->view('home_page', $data);
 	}
-	public function grade($grade,$subject){
+	public function topic($grade,$subject){
+		$data['banner_title']=ucfirst($subject);
 		$data['title']=ucfirst($grade.' '.$subject);
 		$grade_id=get_id_by_slug('id',$grade,'grade');
 		$subject_id=get_id_by_slug('id',$subject,'subject');
@@ -31,9 +32,9 @@ class Frontend extends CI_Controller {
 		//$data['topic']=get_returnfield('topics','topic_id',$topic_id,'slug');
 		$data['topics']=get_topic_by($grade_id,$subject_id);
 		$data['questions']=$this->frontend_model->get_questions(array('grade_id'=>$grade_id,'subject_id'=>$subject_id),false);
-		$this->load->view('frontend/grade_page',$data);
+		$this->load->view('frontend/topic_page',$data);
 	}
-	public function topic($grade,$subject,$topic,$start=0){
+	public function questions($grade,$subject,$topic,$start=0){
 		$data['banner_title']=ucfirst($subject);
 		$data['title']=ucfirst($grade);
 		$grade_id=get_id_by_slug('id',$grade,'grade');
@@ -49,6 +50,6 @@ class Frontend extends CI_Controller {
 		//echo $this->db->last_query(); exit();
 		$this->session->unset_userdata('score_ans');
 		$this->session->unset_userdata('score_smart');
-		$this->load->view('frontend/topic_page',$data);
+		$this->load->view('frontend/questions_page',$data);
 	}
 }

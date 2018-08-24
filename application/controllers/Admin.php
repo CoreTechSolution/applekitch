@@ -576,7 +576,7 @@ class Admin extends CI_Controller {
 	public function certificates() {
 		isLogin('admin');
 		$data['title']='Certificates';
-		$data['certificate']=$this->admin_model->get_certificates();
+		$data['certificates']=$this->admin_model->get_certificates();
 		$this->load->view( 'admin/certificate_v', $data );
 	}
 	public function add_certificate() {
@@ -597,11 +597,17 @@ class Admin extends CI_Controller {
 				$value['grade_id']=$this->input->post('grade_id');
 				$value['category_id']=$this->input->post('category_id');
 				$value['topic_id']=$this->input->post('topic_id');
+				$value['description']=$this->input->post('description');
+				if(!empty($this->input->post('default_status')))
+					$value['default_status']='true';
 				$value['status']='active';
-				$value['create_dt']=date('Y-m-d H:i:s');;
-				$insert=$this->admin_model->insert_category($value);
+				$value['create_dt']=date('Y-m-d H:i:s');
+				$insert=$this->admin_model->insert_certificate($value);
 				if($insert){
 					$this->session->set_flashdata(array('msg_type'=>'success','msg'=>'New certificate added!'));
+					$this->load->view( 'admin/add_certificate_v', $data );
+				} else{
+					$this->session->set_flashdata(array('msg_type'=>'error','msg'=>'Something goes wrong. Please try again later!'));
 					$this->load->view( 'admin/add_certificate_v', $data );
 				}
 			}
@@ -609,10 +615,41 @@ class Admin extends CI_Controller {
 			$this->load->view( 'admin/add_certificate_v', $data );
 		}
 	}
-	public function edit_certificate() {
+	public function edit_certificate($id) {
 		isLogin('admin');
-		$data['title']='Certificates';
-		$data['certificate']=$this->admin_model->get_certificates();
-		$this->load->view( 'admin/certificate_v', $data );
+		$data['method']='edit_certificate';
+		$data['title']='Edit Certificate';
+		$data['certificates']=$this->admin_model->get_certificates(array('id'=>$id),true);
+		if(!empty($this->input->post('update'))){
+			$this->form_validation->set_rules('name', 'Certificate Name', 'required');
+			$this->form_validation->set_rules('subject_id', 'Subject', 'required');
+			$this->form_validation->set_rules('grade_id', 'Grade', 'required');
+			$this->form_validation->set_rules('category_id', 'Category', 'required');
+			$this->form_validation->set_rules('topic_id', 'Topic', 'required');
+			if ($this->form_validation->run() == FALSE){
+				$this->load->view( 'admin/add_certificate_v', $data );
+			} else{
+				$value['name']=$this->input->post('name');
+				$value['subject_id']=$this->input->post('subject_id');
+				$value['grade_id']=$this->input->post('grade_id');
+				$value['category_id']=$this->input->post('category_id');
+				$value['topic_id']=$this->input->post('topic_id');
+				//$value['status']=$this->input->post('status');
+				$value['description']=$this->input->post('description');
+				//$value['create_dt']=date('Y-m-d H:i:s');
+				$conditions=array('id'=>$id);
+				$update=$this->admin_model->edit_certificate($conditions,$value);
+				if($update){
+					$data['certificates']=$this->admin_model->get_certificates(array('id'=>$id),true);
+					$this->session->set_flashdata(array('msg_type'=>'success','msg'=>'certificate updated successfully!'));
+					$this->load->view( 'admin/edit_certificate_v', $data );
+				} else{
+					$this->session->set_flashdata(array('msg_type'=>'error','msg'=>'Something goes wrong. Please try again later!'));
+					$this->load->view( 'admin/edit_certificate_v', $data );
+				}
+			}
+		} else {
+			$this->load->view( 'admin/edit_certificate_v', $data );
+		}
 	}
 }

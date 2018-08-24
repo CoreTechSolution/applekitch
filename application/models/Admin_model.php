@@ -171,6 +171,8 @@ class Admin_model extends CI_Model {
 
 	function insert_grade($grade) {
 		$this->db->insert('grade', $grade);
+		$insert_id = $this->db->insert_id();
+		return $insert_id;
 	}
 
 	function delete_grade($grade) {
@@ -234,6 +236,8 @@ class Admin_model extends CI_Model {
 
 	function insert_subject($subject) {
 		$this->db->insert('subject', $subject);
+		$insert_id = $this->db->insert_id();
+		return $insert_id;
 
 	}
 
@@ -278,6 +282,8 @@ INNER JOIN country ON subject.country = country.id INNER JOIN grade ON subject.g
 
 	function insert_category($category) {
 		$this->db->insert('category', $category);
+		$insert_id = $this->db->insert_id();
+		return $insert_id;
 	}
 	function get_categories($conditions=array(), $row=true){
 		$this->db->select('*');
@@ -338,6 +344,20 @@ INNER JOIN country ON subject.country = country.id INNER JOIN grade ON subject.g
 				return $query->result();
 			}
 		} else {
+			return false;
+		}
+	}
+	function insert_certificate($data) {
+		$this->db->insert('certificates', $data);
+		$insert_id = $this->db->insert_id();
+		return $insert_id;
+	}
+	function edit_certificate($conditions,$data) {
+		$this->db->set($data);  //Set the column name and which value to set..
+		$this->db->where($conditions); //set column_name and value in which row need to update
+		if($this->db->update('certificates')){
+			return true;
+		} else{
 			return false;
 		}
 	}

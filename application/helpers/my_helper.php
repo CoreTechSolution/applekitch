@@ -182,3 +182,6 @@ function get_table_data($fields=array(), $table, $conditions=array()){
 	$queries=$CI->db->get();
 	return $queries->result();
 }
+function dateFormat($format='d-m-Y', $givenDate=null){
+	return date($format, strtotime($givenDate));
+}

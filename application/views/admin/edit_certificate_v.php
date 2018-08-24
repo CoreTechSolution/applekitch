@@ -1,5 +1,4 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
 require_once 'templates/header.php';
 ?>
 	<div class="container-fluid">
@@ -24,12 +23,12 @@ require_once 'templates/header.php';
 					</div>
 				</div>
 				<?php $this->load->view('admin/templates/error_v.php'); ?>
-				<form method="post" action="<?php echo base_url('/admin/'.$method) ?>">
+				<form method="post" action="<?php echo base_url('/admin/'.$method.'/'.$certificates->id) ?>">
 					<div class="form-group">
 						<div class="row">
 							<div class="col-md-12">
 								<label>Certificate Name: </label>
-								<input required type="text" name="name" class="form-control" value=""/>
+								<input required type="text" name="name" class="form-control" value="<?php echo (!empty($certificates->name))?$certificates->name:''; ?>"/>
 							</div>
 
 						</div>
@@ -38,7 +37,7 @@ require_once 'templates/header.php';
 						<div class="row">
 							<div class="col-md-12">
 								<label>Description: </label>
-								<textarea name="description" class="form-control teaxtarea-nostyle" rows="10"></textarea>
+								<textarea name="description" class="form-control teaxtarea-nostyle" rows="10"><?php echo (!empty($certificates->description))?$certificates->description:''; ?></textarea>
 							</div>
 
 						</div>
@@ -47,11 +46,11 @@ require_once 'templates/header.php';
 						<div class="row">
 							<div class="col-md-6">
 								<label>Subject: </label>
-								<?php echo form_dropdown('subject_id',form_dropdown_cr(array('id','name'),'subject'),'',array('class'=>'form-control','id'=>'subject_id','required'=>true)); ?>
+								<?php echo form_dropdown('subject_id',form_dropdown_cr(array('id','name'),'subject'),(!empty($certificates->subject_id))?$certificates->subject_id:'',array('class'=>'form-control','id'=>'subject_id','required'=>true)); ?>
 							</div>
 							<div class="col-md-6">
 								<label>Grade: </label>
-								<?php echo form_dropdown('grade_id',form_dropdown_cr(array('id','name'),'grade'),'',array('class'=>'form-control','id'=>'grade_id','required'=>true)); ?>
+								<?php echo form_dropdown('grade_id',form_dropdown_cr(array('id','name'),'grade'),(!empty($certificates->grade_id))?$certificates->grade_id:'',array('class'=>'form-control','id'=>'grade_id','required'=>true)); ?>
 
 							</div>
 						</div>
@@ -60,19 +59,19 @@ require_once 'templates/header.php';
 						<div class="row">
 							<div class="col-md-6">
 								<label>Category: </label>
-								<?php echo form_dropdown('category_id',form_dropdown_cr(array('id','name'),'category'),'',array('class'=>'form-control','id'=>'category_id','required'=>true)); ?>
+								<?php echo form_dropdown('category_id',form_dropdown_cr(array('id','name'),'category'),(!empty($certificates->category_id))?$certificates->category_id:'',array('class'=>'form-control','id'=>'category_id','required'=>true)); ?>
 
 							</div>
 							<div class="col-md-6">
 								<label>Topic: </label>
-								<?php echo form_dropdown('topic_id',form_dropdown_cr(array('topic_id','topic_name'),'topics'),'',array('class'=>'form-control','id'=>'topic_id','required'=>true)); ?>
+								<?php echo form_dropdown('topic_id',form_dropdown_cr(array('topic_id','topic_name'),'topics'),(!empty($certificates->topic_id))?$certificates->topic_id:'',array('class'=>'form-control','id'=>'topic_id','required'=>true)); ?>
 							</div>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="row">
 							<div class="col-md-12">
-								<input type="submit" name="save" class="btn btn-primary btn-primary-green" value="Add"/>
+								<input type="submit" name="update" class="btn btn-primary btn-primary-green" value="Update"/>
 							</div>
 						</div>
 					</div>
