@@ -15,17 +15,39 @@ require_once 'templates/header.php';
 							<div class="col-lg-6">
 								<h1 class="h2"><?= $title; ?></h1>
 							</div>
-							<div class="col-lg-6">
-								<!--<div style="text-align: right;">
-									<a class="btn btn-primary btn-primary-green" href="<?/*= base_url('/admin/add_page'); */?>">Add Page</a>
-								</div>-->
-							</div>
+							<div class="col-lg-6"></div>
 						</div>
 					</div>
 				</div>
-				<form class="form" method="post" action="">
-
-				</form>
+                <div class="pageWrapper">
+                    <div class="container">
+                        <form method="post" action="<?php echo base_url('/admin/'.$method) ?>">
+                            <div class="form-group">
+                                <label>Page: </label>
+                                <input type="text" name="page_name" value="" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Title: </label>
+                                <input type="text" name="page_title" value="" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Content: </label>
+                                <textarea name="page_content" class="form-control textarea-no-styles" rows="10"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Meta Keyword: </label>
+                                <input type="text" name="meta_keyword" value="" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Meta Description: </label>
+                                <textarea name="meta_description" class="form-control"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" name="add_page" value="Add Page" class="btn btn-primary">
+                            </div>
+                        </form>
+                    </div>
+                </div>
 			</main>
 		</div>
 	</div>
