@@ -106,6 +106,7 @@ class Ajax extends CI_Controller {
 			$subject_id=$form_data['subject_id'];
 			$topic_id=$form_data['topic_id'];
 			$start=$form_data['start'];
+			//print_r($form_data); exit();
 			$conditions=array('question_id'=>$question_id);
 			$questions=$this->ajax_model->get_questions($conditions,true);
 			$form_data_ans=unserialize($questions->form_data);
@@ -400,6 +401,10 @@ class Ajax extends CI_Controller {
 			$rtntext['user_name']=$user_name;
 			$rtntext['grade']=get_returnfield('grade','id',$questions->grade_id,'name');
 			$rtntext['subject']=get_returnfield('subject','id',$questions->subject_id,'name');
+			$rtntext['subject_id']=$questions->subject_id;
+			$rtntext['grade_id']=$questions->grade_id;
+			$rtntext['category_id']=$questions->category_id;
+			$rtntext['topic_id']=$questions->topic_id;
 			//$rtntext['tQ_attend']=$this->session->userdata('score_ans');
 			//$rtntext['tQ_score']=$this->session->userdata('score_smart');
 			$rtntext['total_time']=$form_data['total_time_inSecond'];
@@ -890,5 +895,29 @@ class Ajax extends CI_Controller {
 		$rtntext.='</div>';
 
 		return $rtntext;
+	}
+	public function save_ans_certificate(){
+		//print_r($this->session->userdata('logged_in')); exit();
+		if($this->session->userdata('logged_in')=='1'){
+
+			$subject_id=$_POST['subject_id'];
+			$grade_id=$_POST['grade_id'];
+			$category_id=$_POST['category_id'];
+			$topic_id=$_POST['topic_id'];
+			$conditions=array('subject_id'=>$subject_id, 'grade_id'=>$grade_id, 'category_id'=>$category_id, 'topic_id'=>$topic_id);
+			$certificates=$this->ajax_model->get_certificates($conditions,true);
+			//print_r($certificates); exit();
+			$values['certificate_id']=$certificates->id;
+			$values['user_id']=get_current_user_id();
+			$values['topic_id']=$topic_id;
+			$values['submit_dt']=date('Y-m-d H:i:s');
+			$insert=$this->ajax_model->insert_ans_certificate($values);
+			if($insert){
+				echo true;
+			} else{
+				echo false;
+			}
+		}
+
 	}
 }

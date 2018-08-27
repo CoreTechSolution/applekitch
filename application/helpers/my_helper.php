@@ -39,14 +39,25 @@ function decripted($data){
 	$final_data = explode('|', $val);
 	return $final_data[1];
 }
-function isLogin($param='admin'){
+function isLogin($param=''){
 	$CI = & get_instance();
-	$admin_logged_in = $CI->session->userdata('admin_logged_in');
-	if($admin_logged_in == 1) {
+	if($param=='admin'){
+		$logged_in = $CI->session->userdata('admin_logged_in');
+		if($logged_in == 1) {
 
+		} else{
+			redirect( $param.'/login' );
+		}
 	} else{
-		redirect( $param.'/login' );
+		$logged_in = $CI->session->userdata('logged_in');
+		if($logged_in == '1') {
+
+		} else{
+			redirect( 'login' );
+		}
 	}
+
+
 }
 function loginCheck(){
 	$CI = & get_instance();

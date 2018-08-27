@@ -72,6 +72,16 @@ require_once 'templates/header.php';
 					<div class="form-group">
 						<div class="row">
 							<div class="col-md-12">
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input"  name="default_status" id="defaultUnchecked">
+									<label class="custom-control-label" for="defaultUnchecked">Default</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-12">
 								<input type="submit" name="save" class="btn btn-primary btn-primary-green" value="Add"/>
 							</div>
 						</div>

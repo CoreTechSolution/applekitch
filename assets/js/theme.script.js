@@ -126,6 +126,7 @@ jQuery(document).ready(function(){
                             var grade=data['grade'];
                             var subject=data['subject'];
                             var score_persentage=(100*(qScore/tQ_score)).toFixed(0);
+
                             //console.log(user_name);
                             //console.log(tQ_score);
 
@@ -153,7 +154,20 @@ jQuery(document).ready(function(){
                                 '</tr>';
                             html+='</table>';
                             html+='</div>';
+                            // save certificate
+                            jQuery.ajax({
+                                type: "POST",
+                                url: base_url + 'ajax/save_ans_certificate',
+                                data: {subject_id:data['subject_id'],grade_id:data['grade_id'],category_id:data['category_id'],topic_id:data['topic_id']},
+                                success: function (res) {
+                                    if (res==true){
 
+                                    } else{
+
+                                    }
+                                }
+                            });
+                            ///
                             jQuery('.qAns_form').html(html);
                             clearInterval(my_time_interval);
                         }else{
@@ -213,7 +227,20 @@ jQuery(document).ready(function(){
                                 '</tr>';
                             html+='</table>';
                             html+='</div>';
+                            // save certificate
+                            jQuery.ajax({
+                                type: "POST",
+                                url: base_url + 'ajax/save_ans_certificate',
+                                data: {subject_id:data['subject_id'],grade_id:data['grade_id'],category_id:data['category_id'],topic_id:data['topic_id']},
+                                success: function (res) {
+                                    if (res==true){
 
+                                    } else{
+
+                                    }
+                                }
+                            });
+                            ///
                             jQuery('.qAns_form').html(html);
                             clearInterval(my_time_interval);
                         }else{

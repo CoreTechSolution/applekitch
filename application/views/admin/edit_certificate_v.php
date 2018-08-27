@@ -71,6 +71,20 @@ require_once 'templates/header.php';
 					<div class="form-group">
 						<div class="row">
 							<div class="col-md-12">
+								<div class="custom-control custom-checkbox">
+									<?php if(!empty($certificates->default_status) && $certificates->default_status=='true'){ ?>
+										<input type="checkbox" class="custom-control-input"  name="default_status" id="defaultUnchecked" checked>
+									<?php } else { ?>
+										<input type="checkbox" class="custom-control-input"  name="default_status" id="defaultUnchecked">
+									<?php } ?>
+									<label class="custom-control-label" for="defaultUnchecked">Default</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-12">
 								<input type="submit" name="update" class="btn btn-primary btn-primary-green" value="Update"/>
 							</div>
 						</div>

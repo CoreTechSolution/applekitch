@@ -636,6 +636,8 @@ class Admin extends CI_Controller {
 				$value['topic_id']=$this->input->post('topic_id');
 				//$value['status']=$this->input->post('status');
 				$value['description']=$this->input->post('description');
+				if(!empty($this->input->post('default_status')))
+					$value['default_status']='true';
 				//$value['create_dt']=date('Y-m-d H:i:s');
 				$conditions=array('id'=>$id);
 				$update=$this->admin_model->edit_certificate($conditions,$value);
