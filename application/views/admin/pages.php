@@ -37,7 +37,7 @@ require_once 'templates/header.php';
 						<tr>
 							<td><?php echo $page['page']; ?></td>
 							<td><?php echo $page['page_title']; ?></td>
-							<td><a class="edit_link" href="<?= base_url('/admin/edit_page'); ?>/?page_id=<?= $page['page_id']; ?>"><span data-feather="edit"></span> Edit</a> | <a class="delete_link" onclick="delete_data(<?php echo $page['page_id']; ?>,'page_id','pages');" href="javascript:void(0)"><span data-feather="delete"></span> Delete</a></td>
+							<td><a class="edit_link" href="<?= base_url('/admin/edit_page'); ?>/<?= $page['page_id']; ?>"><span data-feather="edit"></span> Edit</a> | <a class="delete_link" onclick="delete_data(<?php echo $page['page_id']; ?>,'page_id','pages');" href="javascript:void(0)"><span data-feather="delete"></span> Delete</a></td>
 						</tr>
 						<?php } ?>
 					<?php } ?>
