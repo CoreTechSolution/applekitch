@@ -652,4 +652,42 @@ class Admin extends CI_Controller {
 			$this->load->view( 'admin/edit_certificate_v', $data );
 		}
 	}
+
+	public function pages() {
+		isLogin('admin');
+		$pages = $this->admin_model->get_pages();
+		$data = array(
+			'title' => 'Pages',
+			'pages' => $pages
+		);
+		$this->load->view( 'admin/pages', $data );
+	}
+
+	public function add_page(){
+		isLogin('admin');
+		$data = array(
+			'title' => 'Add Page',
+		);
+		$this->load->view( 'admin/add_page', $data );
+		/*$page_id = $this->admin_model->insert_page($data);
+		if ($page_id > 0) {
+			return $page_id;
+		} else {
+			return FALSE;
+		}*/
+	}
+	/*public function get_page($conditions=array(), $row=true){
+		$pages = $this->pages_m->get_pages($conditions, $row);
+		return $pages;
+	}
+
+	public function edit_page($data, $con){
+		$res = $this->pages_m->edit_pages($data, $con);
+		if ($res) {
+			return $res;
+		} else {
+			return FALSE;
+		}
+	}*/
+
 }
