@@ -667,29 +667,37 @@ class Admin extends CI_Controller {
 
 	public function add_page(){
 		isLogin('admin');
-		$data = array(
+		/*$data = array(
 			'title' => 'Add Page',
-		);
-		$this->load->view( 'admin/add_page', $data );
-		/*$page_id = $this->admin_model->insert_page($data);
-		if ($page_id > 0) {
-			return $page_id;
-		} else {
-			return FALSE;
-		}*/
-	}
-	/*public function get_page($conditions=array(), $row=true){
-		$pages = $this->pages_m->get_pages($conditions, $row);
-		return $pages;
-	}
+		);*/
 
-	public function edit_page($data, $con){
-		$res = $this->pages_m->edit_pages($data, $con);
-		if ($res) {
-			return $res;
+		$data['method']='add_page';
+		$data['title']='Add Page';
+		if(!empty($this->input->post('add_page'))){
+			$this->form_validation->set_rules('page_name', 'Page Name', 'required');
+			$this->form_validation->set_rules('page_title', 'Page Title', 'required');
+			if ($this->form_validation->run() == FALSE){
+				$this->load->view( 'admin/add_page', $data );
+			} else {
+				$value['page']=$this->input->post('page_name');
+				$value['page_title']=$this->input->post('page_title');
+				$value['page_content']=$this->input->post('page_content');
+				$value['meta_keyword']=$this->input->post('meta_keyword');
+				$value['meta_description']=$this->input->post('meta_description');
+				$value['status']='active';
+				$value['create_dt']=date('Y-m-d H:i:s');
+				$value['modify_dt']=date('Y-m-d H:i:s');
+				$insert=$this->admin_model->insert_page($value);
+				if($insert){
+					$this->session->set_flashdata(array('msg_type'=>'success','msg'=>'New page added!'));
+					$this->load->view( 'admin/add_page', $data );
+				} else{
+					$this->session->set_flashdata(array('msg_type'=>'error','msg'=>'Something goes wrong. Please try again later!'));
+					$this->load->view( 'admin/add_page', $data );
+				}
+			}
 		} else {
-			return FALSE;
+			$this->load->view( 'admin/add_page', $data );
 		}
-	}*/
-
+	}
 }
