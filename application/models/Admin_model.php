@@ -374,17 +374,8 @@ INNER JOIN country ON subject.country = country.id INNER JOIN grade ON subject.g
 	}
 
 	function insert_page($data){
-		/*$name = $this->input->post('name');
-		$name = $this->input->post('name');
-		$name = $this->input->post('name');
-		$name = $this->input->post('name');
-		$name = $this->input->post('name');
-		$name = $this->input->post('name');
-		$id = $this->db->insert('mytable');
-		if ($id > 0) {
-			return $id;
-		} else {
-			return FALSE;
-		}*/
+		$this->db->insert('pages', $data);
+		$insert_id = $this->db->insert_id();
+		return $insert_id;
 	}
 }
