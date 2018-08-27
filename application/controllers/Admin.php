@@ -700,4 +700,39 @@ class Admin extends CI_Controller {
 			$this->load->view( 'admin/add_page', $data );
 		}
 	}
+
+	public function edit_page($id){
+		isLogin('admin');
+		$data['method']='edit_page';
+		$data['title']='Edit Page';
+		$data['page_data']=$this->admin_model->get_page_data(array('page_id'=>$id),true);
+		if(!empty($this->input->post('update_page'))){
+			$this->form_validation->set_rules('page_name', 'Page Name', 'required');
+			$this->form_validation->set_rules('page_title', 'Page Title', 'required');
+			if ($this->form_validation->run() == FALSE) {
+				$this->load->view( 'admin/edit_page', $data );
+			} else {
+				$value['page']=$this->input->post('page_name');
+				$value['page_title']=$this->input->post('page_title');
+				$value['page_content']=$this->input->post('page_content');
+				$value['meta_keyword']=$this->input->post('meta_keyword');
+				$value['meta_description']=$this->input->post('meta_description');
+				$value['status']='active';
+				$value['modify_dt']=date('Y-m-d H:i:s');
+				$conditions=array('page_id'=>$id);
+				$update=$this->admin_model->edit_page($conditions,$value);
+
+				if($update){
+					$data['page_data']=$this->admin_model->get_page_data(array('page_id'=>$id),true);
+					$this->session->set_flashdata(array('msg_type'=>'success','msg'=>'Page updated successfully!'));
+					$this->load->view( 'admin/edit_page', $data );
+				} else{
+					$this->session->set_flashdata(array('msg_type'=>'error','msg'=>'Something goes wrong. Please try again later!'));
+					$this->load->view( 'admin/edit_page', $data );
+				}
+			}
+		} else {
+			$this->load->view( 'admin/edit_page', $data );
+		}
+	}
 }
