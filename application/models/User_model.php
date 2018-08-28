@@ -183,7 +183,7 @@ class User_model extends CI_Model{
 			return false;
 		}
 	}
-	function get_certificates_by_user($user_id){
+	function get_ans_certificates_by_user($user_id){
 		//print_r($user_id); exit();
 		$this->db->select('*');
 		$this->db->where('user_id',$user_id);
@@ -192,6 +192,20 @@ class User_model extends CI_Model{
 		//echo $this->db->last_query(); exit();
 		if($query->result()){
 			return $query->result();
+		}
+		else{
+			return false;
+		}
+	}
+	function get_ans_certificates_by_id($id){
+		//print_r($user_id); exit();
+		$this->db->select('*');
+		$this->db->where('certificate_id',$id);
+		$this->db->from('student_ans_topic');
+		$query=$this->db->get();
+		//echo $this->db->last_query(); exit();
+		if($query->result()){
+			return $query->row();
 		}
 		else{
 			return false;
