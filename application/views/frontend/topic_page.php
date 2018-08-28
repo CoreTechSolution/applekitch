@@ -1,6 +1,18 @@
 <?php
 $this->load->view('templates/header');
 ?>
+<script>
+    jQuery(document).ready(function() {
+        jQuery("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {
+            e.preventDefault();
+            jQuery(this).siblings('a.active').removeClass("active");
+            jQuery(this).addClass("active");
+            var index = jQuery(this).index();
+            jQuery("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
+            jQuery("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
+        });
+    });
+</script>
     <div class="wrapper inner-pages">
         <div class="inner_page_banner">
 
@@ -34,8 +46,79 @@ $this->load->view('templates/header');
 					<?php if(!empty($topics)){ ?>
                         <div class="topic_list">
                             <div class="row">
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
+                                    <div class="list-group">
+                                        <a href="#" class="list-group-item active text-center">Reception</a>
+                                        <a href="#" class="list-group-item text-center">Year 1</a>
+                                        <a href="#" class="list-group-item text-center">Year 2</a>
+                                        <a href="#" class="list-group-item text-center">Year 3</a>
+                                        <a href="#" class="list-group-item text-center">Year 4</a>
+                                        <a href="#" class="list-group-item text-center">Year 5</a>
+                                        <a href="#" class="list-group-item text-center">Year 6</a>
+                                        <a href="#" class="list-group-item text-center">Year 7</a>
+                                        <a href="#" class="list-group-item text-center">Year 8</a>
+                                        <a href="#" class="list-group-item text-center">Year 9</a>
+                                        <a href="#" class="list-group-item text-center">Year 10</a>
+                                        <a href="#" class="list-group-item text-center">Year 11</a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 bhoechie-tab">
+                                    <div class="bhoechie-tab-content active">
+                                        <div class="row">
+		                                    <?php foreach ($cate_arrays as $cate_array=>$values){ ?>
+                                                <div class="col-lg-4">
+				                                    <?php echo '<h4 class="listing_category">'.ucfirst(get_returnfield('category','id',$cate_array,'name')).'</h4>'; ?>
+                                                    <ul>
+					                                    <?php foreach ($values as $cate_arra){ ?>
+                                                            <li>
+                                                                <a href="<?php echo base_url('frontend/questions/'.$grade.'/'.$subject.'/'.$cate_arra) ?>">
+                                                                    <span data-feather="edit"></span> <?php echo get_returnfield('topics','topic_id',$cate_arra,'topic_name'); ?>
+                                                                </a>
+                                                            </li>
+					                                    <?php } ?>
+                                                    </ul>
+                                                </div>
+		                                    <?php } ?>
+                                        </div>
+                                    </div>
+                                    <div class="bhoechie-tab-content">
+
+                                    </div>
+                                    <div class="bhoechie-tab-content">
+
+                                    </div>
+                                    <div class="bhoechie-tab-content">
+
+                                    </div>
+                                    <div class="bhoechie-tab-content">
+
+                                    </div>
+                                    <div class="bhoechie-tab-content">
+
+                                    </div>
+                                    <div class="bhoechie-tab-content">
+
+                                    </div>
+                                    <div class="bhoechie-tab-content">
+
+                                    </div>
+                                    <div class="bhoechie-tab-content">
+
+                                    </div>
+                                    <div class="bhoechie-tab-content">
+
+                                    </div>
+                                    <div class="bhoechie-tab-content">
+
+                                    </div>
+                                    <div class="bhoechie-tab-content">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="display: none;">
                                 <div class="col-lg-2">
-                                    <div class="grade_side_list">
+                                    <div class="grade_side_list ok">
                                         <ul>
                                             <li><a class="grade_ci_1" href="">Reception</a></li>
                                             <li><a class="grade_ci_2" href="#">Year 1</a></li>
@@ -76,9 +159,7 @@ $this->load->view('templates/header');
                 </div>
             </div>
         </div>
-
     </div>
-
 <?php
 $this->load->view('templates/footer');
 ?>
