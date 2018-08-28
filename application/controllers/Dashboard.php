@@ -230,4 +230,30 @@ class Dashboard extends CI_Controller {
 			}
 		}
 	}
+	public function certificates(){
+		isLogin();
+		$user_id=get_current_user_id();
+		$data['certificates']=$this->user_model->get_certificates_by_user($user_id);
+		$data['title']='Certificates';
+		$data['user_data'] = $this->user_model->get_userdata();
+		$this->load->view('certificate_v',$data);
+	}
+	public function generate_pdf(){
+		$this->load->view('certificate_pdf_v');
+		$html = $this->output->get_output();
+
+		$this->load->library('pdf');
+
+		// Load HTML content
+		$this->dompdf->loadHtml($html);
+
+		// (Optional) Setup the paper size and orientation
+		$this->dompdf->setPaper('A4', 'landscape');
+
+		// Render the HTML as PDF
+		$this->dompdf->render();
+
+		// Output the generated PDF (1 = download and 0 = preview)
+		$this->dompdf->stream("welcome.pdf", array("Attachment"=>0));
+	}
 }
