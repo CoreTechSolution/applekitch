@@ -1,4 +1,4 @@
-<link href="https://fonts.googleapis.com/css?family=Aguafina+Script" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Aguafina+Script" rel="stylesheet" media="all">
 <style>
     @page { margin: 0px; }
     body { margin: 0px; }
@@ -28,40 +28,50 @@
     .certified_name{
         color: #f1693c;
         font-size: 30px;
-        font-weight: 500;
-        margin: 10px 0 27px 0;
+        font-weight: bold !important;
+        margin: 10px 0 35px 0;
     }
-    .certified_name p{
 
-    }
-    .certificate_content p span{
-        font-weight: 500;
+    .certificate_content p b{
+        font-weight: bold !important;
+        font-size: 23px !important;
     }
     .certificate_footer{
 
     }
     .certificate_logo{
-        width: 50%;
-        float: right;
-        margin: 103px 0 20px 0;
+        width: 100%;
+        /* float: right; */
+        margin: 21px 0px 20px 0;
+        text-align: right;
+        padding: 0 75px 0 0;
     }
     .certificate_signature{
-
+        width: 100%;
+        /* float: right; */
+        margin: 100px 0 0 0;
+        text-align: right;
+        padding: 0 75px 0 0;
+    }
+    .certificate_signature img{
+        width: 200px;
     }
 </style>
 <div id="printableArea">
+    <?php //print_r($certificates); exit(); ?>
     <div class="certificate_div" style="background: url('<?php echo base_url("assets/images/certificate-background.jpg"); ?>')">
         <div class="certificate_content">
             <div class="certificate_header">
-                Certificate of Excellence
+                <?php echo get_returnfield('certificates','id',$certificates->certificate_id,'name'); ?>
             </div>
             <p>This certificate is awarded to</p>
-            <div class="certified_name">Rana Ghosh</div>
-            <p>by <span>Applekitch</span> on <span>6 JANUARY 2018</span></p>
-            <p>for excellent performance on <span>10 reception maths skills</span></p>
+            <?php $user_name=get_returnfield('user','id',$certificates->user_id,'fname').' '.get_returnfield('user','id',$certificates->user_id,'lname'); ?>
+            <div class="certified_name"><?php echo $user_name; ?></div>
+            <p>by <b>Applekitch</b> on <b><?php echo strtoupper( dateFormat('d F Y ',$certificates->submit_dt)); ?></b></p>
+            <p><?php echo get_returnfield('certificates','id',$certificates->certificate_id,'description'); ?></p>
             <div class="certificate_footer">
-                <div class="certificate_logo"><img src="http://localhost/applekitch/assets/images/logo.png" alt=""></div>
-                <div class="certificate_signature"></div>
+                <div class="certificate_signature"><img src="<?php echo base_url('assets/images/signature.png'); ?>" alt=""></div>
+                <div class="certificate_logo"><img src="<?php echo base_url('assets/images/logo.png'); ?>" alt=""></div>
             </div>
         </div>
     </div>
