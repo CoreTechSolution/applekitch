@@ -76,10 +76,23 @@
 <script src="<?php echo base_url('/assets/js/theme.script.js'); ?>" type="text/javascript"></script>
 <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
 <script>
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+    }
+</script>
+<script>
     jQuery(function(){
         jQuery('.table').footable();
     });
 </script>
+
 
 </body>
 </html>

@@ -16,7 +16,8 @@ require_once 'templates/header.php';
 							</div>
 							<div class="col-lg-6">
 								<div style="text-align: right;">
-									<a class="btn btn-primary btn-primary-green" href="<?php echo base_url('/admin/add_certificate'); ?>">Add New</a>
+									<a class="btn btn-sm btn-sm btn-primary btn-primary-green" href="<?php echo base_url('/admin/add_certificate'); ?>">Add New</a>
+									<!--<a class="btn btn-sm btn-secondary btn-primary-green" href="<?php /*echo base_url('/admin/certificate_settings'); */?>">Settings</a>-->
 								</div>
 							</div>
 						</div>

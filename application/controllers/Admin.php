@@ -655,6 +655,13 @@ class Admin extends CI_Controller {
 		}
 	}
 
+	public function certificate_settings(){
+		isLogin('admin');
+		$data['title']='Certificate settings';
+		$data['settings']=$this->admin_model->get_certificate_settings();
+		$this->load->view( 'admin/certificate_settings_v', $data );
+
+	}
 	public function pages() {
 		isLogin('admin');
 		$pages = $this->admin_model->get_pages();
