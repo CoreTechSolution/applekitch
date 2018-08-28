@@ -361,4 +361,48 @@ INNER JOIN country ON subject.country = country.id INNER JOIN grade ON subject.g
 			return false;
 		}
 	}
+
+	function get_pages() {
+		$this->db->select('*');
+		$this->db->from('pages');
+
+		if($query = $this->db->get()) {
+			return $query->result_array();
+		} else {
+			return false;
+		}
+	}
+
+	function insert_page($data){
+		$this->db->insert('pages', $data);
+		$insert_id = $this->db->insert_id();
+		return $insert_id;
+	}
+
+	function edit_page($conditions,$data) {
+		$this->db->set($data);  //Set the column name and which value to set..
+		$this->db->where($conditions); //set column_name and value in which row need to update
+		if($this->db->update('pages')){
+			return true;
+		} else{
+			return false;
+		}
+	}
+
+	function get_page_data($conditions=array(),$row=false){
+		$this->db->select('*');
+		if (!empty($conditions))
+			$this->db->where($conditions);
+		$this->db->from('pages');
+		$query=$this->db->get();
+		if($query) {
+			if ( $row == true ) {
+				return $query->row();
+			} else if ( $row == false ) {
+				return $query->result();
+			}
+		} else {
+			return false;
+		}
+	}
 }

@@ -60,5 +60,11 @@
                 Questions
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link<?php if($title == 'Pages' || $title == 'Add Page') { ?> active<?php } ?>" href="<?php echo base_url('/admin/pages'); ?>">
+                <span data-feather="file-text"></span>
+                Pages
+            </a>
+        </li>
     </ul>
 </div>
