@@ -405,4 +405,22 @@ INNER JOIN country ON subject.country = country.id INNER JOIN grade ON subject.g
 			return false;
 		}
 	}
+	function get_award_templates($conditions=array(),$row=false){
+		$this->db->select('*');
+		if(!empty($conditions))
+			$this->db->where($conditions);
+
+		$this->db->from('award_templates');
+		$query = $this->db->get();
+		if($query){
+			if($row==true){
+				return $query->result();
+			} else{
+				return $query->row();
+			}
+		}
+		else{
+			return false;
+		}
+	}
 }

@@ -62,5 +62,6 @@ $route['children'] = 'dashboard/children';
 $route['add-child'] = 'dashboard/add_child';
 $route['edit-child'] = 'dashboard/edit_child';
 $route['delete-child'] = 'dashboard/delete_child';
+$route['certificates'] = 'dashboard/certificates';
 
 /*admin*/

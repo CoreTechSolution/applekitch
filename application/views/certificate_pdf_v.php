@@ -59,7 +59,7 @@
 </style>
 <div id="printableArea">
     <?php //print_r($certificates); exit(); ?>
-    <div class="certificate_div" style="background: url('<?php echo base_url("assets/images/certificate-background.jpg"); ?>')">
+    <div class="certificate_div" style="background: url('<?php echo $certificate_details->cer_bg_img; ?>')">
         <div class="certificate_content">
             <div class="certificate_header">
                 <?php echo get_returnfield('certificates','id',$certificates->certificate_id,'name'); ?>
@@ -70,7 +70,7 @@
             <p>by <b>Applekitch</b> on <b><?php echo strtoupper( dateFormat('d F Y ',$certificates->submit_dt)); ?></b></p>
             <p><?php echo get_returnfield('certificates','id',$certificates->certificate_id,'description'); ?></p>
             <div class="certificate_footer">
-                <div class="certificate_signature"><img src="<?php echo base_url('assets/images/signature.png'); ?>" alt=""></div>
+                <div class="certificate_signature"><img src="<?php echo $certificate_details->cer_signature_img; ?>" alt=""></div>
                 <div class="certificate_logo"><img src="<?php echo base_url('assets/images/logo.png'); ?>" alt=""></div>
             </div>
         </div>

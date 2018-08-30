@@ -241,6 +241,7 @@ class Dashboard extends CI_Controller {
 	public function generate_pdf($certificate_id){
 
 		$data['certificates']=$this->user_model->get_ans_certificates_by_id($certificate_id);
+		$data['certificate_details']=$this->user_model->get_certificates_by_id($certificate_id);
 		$this->load->view('certificate_pdf_v',$data);
 		$html = $this->output->get_output();
 
@@ -255,6 +256,6 @@ class Dashboard extends CI_Controller {
 		$this->dompdf->render();
 
 		// Output the generated PDF (1 = download and 0 = preview)
-		$this->dompdf->stream("welcome.pdf", array("Attachment"=>0));
+		$this->dompdf->stream("certificates.pdf", array("Attachment"=>0));
 	}
 }

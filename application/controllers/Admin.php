@@ -602,6 +602,26 @@ class Admin extends CI_Controller {
 					$value['default_status']='true';
 				$value['status']='active';
 				$value['create_dt']=date('Y-m-d H:i:s');
+
+				if(!empty($_FILES['cer_bg_img']['name'])){
+					$img_path=image_upload($_FILES,'cer_bg_img','uploads');
+					if($img_path){
+						$value['cer_bg_img']=$img_path;
+					} else{
+						$this->load->view( 'admin/add_certificate_v', $data );
+						return false;
+					}
+				}
+				if(!empty($_FILES['cer_signature_img']['name'])){
+					$img_path=image_upload($_FILES,'cer_signature_img','uploads');
+					if($img_path){
+						$value['cer_signature_img']=$img_path;
+					} else{
+						$this->load->view( 'admin/add_certificate_v', $data );
+						return false;
+					}
+				}
+
 				$insert=$this->admin_model->insert_certificate($value);
 				if($insert){
 					$this->session->set_flashdata(array('msg_type'=>'success','msg'=>'New certificate added!'));
@@ -639,6 +659,24 @@ class Admin extends CI_Controller {
 				if(!empty($this->input->post('default_status')))
 					$value['default_status']='true';
 				//$value['create_dt']=date('Y-m-d H:i:s');
+				if(!empty($_FILES['cer_bg_img']['name'])){
+					$img_path=image_upload($_FILES,'cer_bg_img','uploads');
+					if($img_path){
+						$value['cer_bg_img']=$img_path;
+					} else{
+						$this->load->view( 'admin/add_certificate_v', $data );
+						return false;
+					}
+				}
+				if(!empty($_FILES['cer_signature_img']['name'])){
+					$img_path=image_upload($_FILES,'cer_signature_img','uploads');
+					if($img_path){
+						$value['cer_signature_img']=$img_path;
+					} else{
+						$this->load->view( 'admin/add_certificate_v', $data );
+						return false;
+					}
+				}
 				$conditions=array('id'=>$id);
 				$update=$this->admin_model->edit_certificate($conditions,$value);
 				if($update){
@@ -740,6 +778,43 @@ class Admin extends CI_Controller {
 			}
 		} else {
 			$this->load->view( 'admin/edit_page', $data );
+		}
+	}
+
+	public function award_templates(){
+		isLogin('admin');
+		$data['title']='Award Templates';
+		$data['templates']=$this->admin_model->get_award_templates(array(),false);
+		$this->load->view( 'admin/award_templates_v', $data );
+	}
+	public function add_award_template(){
+		isLogin('admin');
+		$data['method']='add_award_template';
+		$data['title']='Add Template';
+		if(!empty($this->input->post('save'))){
+			$this->form_validation->set_rules('title', 'title', 'required');
+			if ($this->form_validation->run() == FALSE){
+				$this->load->view( 'admin/add_award_template_v', $data );
+			} else {
+				$value['title']=$this->input->post('title');
+				$value['details']=$this->input->post('details');
+				/*$value['page_content']=$this->input->post('page_content');
+				$value['meta_keyword']=$this->input->post('meta_keyword');
+				$value['meta_description']=$this->input->post('meta_description');
+				$value['status']='active';*/
+				$value['create_dt']=date('Y-m-d H:i:s');
+				$value['modify_dt']=date('Y-m-d H:i:s');
+				$insert=$this->admin_model->insert_award_template($value);
+				if($insert){
+					$this->session->set_flashdata(array('msg_type'=>'success','msg'=>'New template added!'));
+					$this->load->view( 'admin/award_templates_v', $data );
+				} else{
+					$this->session->set_flashdata(array('msg_type'=>'error','msg'=>'Something goes wrong. Please try again later!'));
+					$this->load->view( 'admin/add_award_template_v', $data );
+				}
+			}
+		} else {
+			$this->load->view( 'admin/add_award_template_v', $data );
 		}
 	}
 }

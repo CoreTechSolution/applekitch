@@ -318,3 +318,14 @@ input[type='file']{
 #option_add_div_app input[type='text']{
   margin: 5px 0;
 }
+.form-group sup{
+  color: red !important;
+  margin-top: 15px !important;
+}
+.admin_edit_img_preview{
+  vertical-align: middle;
+  border: 1px solid #ccc;
+  width: 200px;
+  display: block;
+  padding: 3px;
+}

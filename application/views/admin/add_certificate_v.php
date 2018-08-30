@@ -13,18 +13,18 @@ require_once 'templates/header.php';
 					<div class="container">
 						<div class="row">
 							<div class="col-lg-6">
-								<h1 class="h2"><?= $title; ?></h1>
+								<h1 class="h2"><?php echo $title; ?></h1>
 							</div>
 							<div class="col-lg-6">
 								<div style="text-align: right;">
-									<a class="btn btn-sm btn-secondary" href="<?= base_url('/admin/certificates'); ?>">Certificates</a>
+									<a class="btn btn-sm btn-secondary" href="<?php echo base_url('/admin/certificates'); ?>">Certificates</a>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 				<?php $this->load->view('admin/templates/error_v.php'); ?>
-				<form method="post" action="<?php echo base_url('/admin/'.$method) ?>">
+				<form method="post" action="<?php echo base_url('/admin/'.$method) ?>" enctype="multipart/form-data">
 					<div class="form-group">
 						<div class="row">
 							<div class="col-md-12">
@@ -69,6 +69,21 @@ require_once 'templates/header.php';
 							</div>
 						</div>
 					</div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Background Image: </label>
+                                <input type="file" id="cer_bg_img" name="cer_bg_img" class="form-control">
+                                <sup>Image size must be 1122px X 772px</sup>
+
+                            </div>
+                            <div class="col-md-6">
+                                <label>Signature: </label>
+                                <input type="file" id="cer_signature_img" name="cer_signature_img" class="form-control">
+                                <sup>Image size width be 200px</sup>
+                            </div>
+                        </div>
+                    </div>
 					<div class="form-group">
 						<div class="row">
 							<div class="col-md-12">

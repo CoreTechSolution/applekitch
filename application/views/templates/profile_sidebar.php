@@ -11,6 +11,7 @@
 		<li><a href="<?php echo base_url('/membership-plan'); ?>"><i class="fa fa-bookmark fa-fw" aria-hidden="true"></i> Membership Plans</a></li>
 		<li><a href="<?php echo base_url('/children'); ?>"><i class="fa fa-child" aria-hidden="true"></i> Children</a></li>
         <?php } ?>
+        <li><a href="<?php echo base_url('/certificates'); ?>"><i class="fa fa-user fa-fw" aria-hidden="true"></i> Certificates center</a></li>
 		<li><a href="<?php echo base_url('/login/user_logout'); ?>"><i class="fa fa-sign-out-alt fa-fw" aria-hidden="true"></i> Logout</a></li>
 	</ul>
 </div>

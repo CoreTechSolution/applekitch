@@ -23,7 +23,7 @@ require_once 'templates/header.php';
 					</div>
 				</div>
 				<?php $this->load->view('admin/templates/error_v.php'); ?>
-				<form method="post" action="<?php echo base_url('/admin/'.$method.'/'.$certificates->id) ?>">
+				<form method="post" action="<?php echo base_url('/admin/'.$method.'/'.$certificates->id) ?>" enctype="multipart/form-data">
 					<div class="form-group">
 						<div class="row">
 							<div class="col-md-12">
@@ -68,6 +68,27 @@ require_once 'templates/header.php';
 							</div>
 						</div>
 					</div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Background Image: </label>
+                                <input type="file" id="cer_bg_img" name="cer_bg_img" class="form-control">
+                                <sup>Image size must be 1122px X 772px</sup>
+	                            <?php if(!empty($certificates->cer_bg_img) && $certificates->cer_bg_img!==''){ ?>
+                                    <img src="<?php echo $certificates->cer_bg_img; ?>" alt="" class="admin_edit_img_preview">
+	                            <?php } ?>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Signature: </label>
+                                <input type="file" id="cer_signature_img" name="cer_signature_img" class="form-control">
+                                <sup>Image size width be 200px</sup>
+	                            <?php if(!empty($certificates->cer_signature_img) && $certificates->cer_signature_img!==''){ ?>
+                                    <img src="<?php echo $certificates->cer_signature_img; ?>" alt="" class="admin_edit_img_preview">
+	                            <?php } ?>
+                            </div>
+                        </div>
+                    </div>
 					<div class="form-group">
 						<div class="row">
 							<div class="col-md-12">
