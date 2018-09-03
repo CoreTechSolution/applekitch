@@ -26,7 +26,7 @@ require_once 'templates/header.php';
                         </div>
 					<?php } ?>
 					<div class="login_form">
-						<form id="register_form" action="/register/check" method="POST">
+						<form id="register_form" action="<?php echo base_url('register/check'); ?>" method="POST">
                             <div class="from-group">
                                 <div class="row">
                                     <div class="col-lg-12">

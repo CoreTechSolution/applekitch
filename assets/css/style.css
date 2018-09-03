@@ -1620,22 +1620,46 @@ label.error{color: #FF0000; }
 }
 .wAns{
     padding: 25px 50px;
-    width: 100%;
+    width: 75%;
     text-align: center;
     color: red;
     font-size: 30px;
     background: #fde8e8;
     border: 1px solid #f9baba;
-    display: none;
+    z-index: 9999;
+    position: absolute;
+    top: 50%;
+    left: 10%;
 }
 .cAns{
-    padding: 25px 50px;
+    padding: 25px 40px;
     width: 100%;
     text-align: center;
     color: green;
-    font-size: 30px;
+    font-size: 36px;
     background: #e8ffe8;
-    border: 1px solid #b4f5b4;
+    border: 1px solid #6ed86e;
+    /* display: none; */
+    width: 25%;
+    z-index: 9999;
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    font-weight: bold;
+    /* display: none; */
+    /*display: none;*/
+}
+.overlay{
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    background: rgba(107, 107, 107, 0.5);
+    z-index: 999;
+    left: 0;
+    top: 0;
+    right: 0;
+    border: 0;
     display: none;
 }
 .loading {
@@ -1663,7 +1687,11 @@ label.error{color: #FF0000; }
     height: 100%;
     background-color: rgba(0,0,0,0.3);
 }
-
+.img-thumbnail{
+    max-width: 100%;
+    width: auto;
+    height: 150px;
+}
 /* :not(:required) hides these rules from IE9 and below */
 .loading:not(:required) {
     /* hide "loading..." text */
@@ -1758,14 +1786,14 @@ label.error{color: #FF0000; }
     }
 }
 .question_image{
-    width: 400px;
+    width: 300px;
     overflow: hidden;
-    border: 1px solid #000;
+    /*border: 1px solid #000;*/
     padding: 2px;
     /*height: 400px;*/
 }
 .question_image img{
-    width: 100%;
+   /* width: 100%;*/
 }
 .qAns_box{
     margin-top: 27px;
@@ -1993,7 +2021,7 @@ label.error{color: #FF0000; }
     float: right;*/
 }
 .score_time_div .score_ans{
-    width: 28%;
+    width: 100%;
     border: 2px solid #f1693c;
     display: inline-block;
     border-radius: 10px;
@@ -2007,7 +2035,7 @@ label.error{color: #FF0000; }
     /* height: 59px; */
     font-size: 22px;
     font-weight: 600;
-    padding: 8px 20px;
+    padding: 21px 20px;
     display: inline-block;
     width: 56%;
     line-height: 124%;
@@ -2017,15 +2045,15 @@ label.error{color: #FF0000; }
     font-size: 30px;
     font-weight: bold;
     display: inline-block;
-    vertical-align: super;
+    vertical-align: sub;
     /* margin: 2px 2px 2px 2px; */
 }
 .score_time_div .score_time{
-    width: 34%;
+    width: 100%;
     border: 2px solid #f7bc01;
     display: inline-block;
     border-radius: 10px;
-    overflow: hidden;
+    overflow    : hidden;
 }
 .score_time_div .score_time .title{
     background: #f7bc01;
@@ -2033,7 +2061,7 @@ label.error{color: #FF0000; }
     /* height: 59px; */
     font-size: 22px;
     font-weight: 600;
-    padding: 8px 20px;
+    padding: 21px 20px;
     display: inline-block;
     width: 42%;
     line-height: 124%;
@@ -2052,7 +2080,7 @@ label.error{color: #FF0000; }
 }
 
 .score_time_div .score_smart{
-    width: 29%;
+    width: 100%;
     border: 2px solid #0bc1b6;
     display: inline-block;
     border-radius: 10px;
@@ -2095,7 +2123,7 @@ label.error{color: #FF0000; }
 }
 .breadcrumbs{
 
-    height: 40px;
+    height: 30px;
     font-size: 12px;
     list-style: none;
     margin: 0;
@@ -2103,7 +2131,7 @@ label.error{color: #FF0000; }
 }
 .breadcrumbs li{
     display: inline-block;
-    padding: 10px 20px 10px 0;
+    padding: 3px 20px 5px 0;
 }
 .breadcrumbs li:after{
     content: "›";
@@ -2174,7 +2202,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
 .inner_page_banner{
     background: #65b7f5;
     background-size: cover;
-    padding: 28px 0;
+    padding: 15px 0;
 }
 .inner_page_banner h1{
     color: #ffffff !important;
@@ -2183,9 +2211,9 @@ only screen and (min-device-pixel-ratio: 1.5) {
 }
 .top_tap_sub{
     background: #064a6a;
-    height: 50px;
+    height: 40px;
     color: #fff;
-    padding: 15px 0;
+    padding: 10px 0;
 }
 .top_tap_sub ul{
     list-style: none;
@@ -2350,4 +2378,7 @@ div.list-group a:nth-child(11){
 }
 div.list-group a:nth-child(12){
     background: #0bc1b6;
+}
+.ans_template_text{
+    font-size: 20px !important;
 }

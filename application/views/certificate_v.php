@@ -17,7 +17,7 @@ require_once 'templates/header.php';
 										<a class="btn btn-primary" href="<?/*= base_url('add-child'); */?>">Add Child</a>
 										<p><br/></p>
 									</div>-->
-									<?php if(!empty($certificates)) { ?>
+
 										<table class="table">
 											<thead>
 											<tr>
@@ -27,7 +27,7 @@ require_once 'templates/header.php';
 											</thead>
 											<tbody>
 											<?php
-
+											if(!empty($certificates)) {
 											foreach($certificates as $certificate) {
 												?>
 												<tr>
@@ -38,11 +38,12 @@ require_once 'templates/header.php';
 												</tr>
 												<?php
 											}
+                                            }
 											?>
 											</tbody>
 										</table>
 										<?php
-									}
+
 									?>
 								</div>
 							</div>

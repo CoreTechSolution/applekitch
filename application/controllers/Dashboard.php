@@ -52,6 +52,17 @@ class Dashboard extends CI_Controller {
 				//'phone'         => $this->input->post( 'phone' ),
 			);
 		}
+		if(!empty($_FILES['profile_img']['name'])){
+			$img_path=image_upload($_FILES,'profile_img','uploads');
+			if($img_path){
+				$user['profile_img']=$img_path;
+			} else{
+				redirect('manage-profile');
+				return false;
+			}
+		}
+		//print_r($user); exit();
+		//$user['profile_img']=
 		$this->user_model->save_profile($user);
 		$this->session->set_flashdata('success_msg', 'Profile updated successfully');
 		redirect('manage-profile');
@@ -133,6 +144,7 @@ class Dashboard extends CI_Controller {
 				'user_data' => $this->user_model->get_userdata(),
 				'child_data' => $this->user_model->get_child_data($user_id)
 			);
+			//echo $this->db->last_query(); exit();
 			$this->load->view( 'children', $data );
 		} else {
 			$this->session->set_flashdata('error_msg', 'Please login first');
@@ -231,11 +243,18 @@ class Dashboard extends CI_Controller {
 		}
 	}
 	public function certificates(){
+
 		isLogin();
 		$user_id=get_current_user_id();
-		$data['certificates']=$this->user_model->get_ans_certificates_by_user($user_id);
 		$data['title']='Certificates';
 		$data['user_data'] = $this->user_model->get_userdata();
+		if(!empty($this->input->post('filter'))){
+			$conditions=array('user_id');
+		} else{
+			$data['certificates']=$this->user_model->get_ans_certificates_by_user($user_id);
+		}
+
+
 		$this->load->view('certificate_v',$data);
 	}
 	public function generate_pdf($certificate_id){

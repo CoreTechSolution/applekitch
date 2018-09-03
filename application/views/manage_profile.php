@@ -33,23 +33,23 @@ require_once 'templates/header.php';
 										<?php
 									}
 									?>
-									<form id="manage_profile" action="<?= base_url('/dashboard/save_profile'); ?>" method="POST" enctype="multipart/form-data">
+									<form id="manage_profile" action="<?php echo base_url('/dashboard/save_profile'); ?>" method="POST" enctype="multipart/form-data">
 										<div class="from-group">
 											<din class="row">
 												<div class="col-lg-6">
 													<label>First Name <span>*</span></label>
-													<input type="text" name="fname" class="form-control" value="<?= $user_data['fname']; ?>" />
+													<input type="text" name="fname" class="form-control" value="<?php echo $user_data['fname']; ?>" />
 												</div>
 												<div class="col-lg-6">
 													<label>Last Name <span>*</span></label>
-													<input type="text" name="lname" class="form-control" value="<?= $user_data['lname']; ?>" />
+													<input type="text" name="lname" class="form-control" value="<?php echo $user_data['lname']; ?>" />
 												</div>
 											</din>
 										</div>
 										<br>
 										<div class="from-group">
 											<label>Email Address <span>*</span></label>
-											<input type="text" name="email_address" readonly="readonly" class="form-control" value="<?= $user_data['email_address']; ?>" />
+											<input type="text" name="email_address" readonly="readonly" class="form-control" value="<?php echo $user_data['email_address']; ?>" />
 										</div>
 										<br>
 										<div class="from-group">
@@ -64,6 +64,20 @@ require_once 'templates/header.php';
 												</div>
 											</din>
 										</div>
+                                        <br><br>
+                                        <div class="from-group">
+                                            <din class="row">
+                                                <div class="col-lg-6">
+                                                    <label>Profile Image </label>
+                                                    <input id="profile_img" type="file" name="profile_img" class="form-control" />
+                                                </div>
+                                                <div class="col-lg-6">
+	                                                <?php if(!empty($user_data['profile_img']) && $user_data['profile_img']!==''){ ?>
+                                                        <img src="<?php echo $user_data['profile_img']; ?>" alt="" class="admin_edit_img_preview">
+	                                                <?php } ?>
+                                                </div>
+                                            </din>
+                                        </div>
 										<!--<br>
 										<div class="from-group">
 											<label>Phone</label>

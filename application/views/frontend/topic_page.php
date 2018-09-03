@@ -15,7 +15,24 @@ $this->load->view('templates/header');
 </script>
     <div class="wrapper inner-pages">
         <div class="inner_page_banner">
+            <div class="container">
+                <div class="row">
+                    <h1>Learning <?php echo $banner_title; ?></h1>
+                </div>
+            </div>
 
+        </div>
+        <div class="breadcrumbs_section">
+            <div class="container">
+                <div class="row">
+                    <ul class="breadcrumbs">
+					    <?php //print_r($this->uri->segment(3)); ?>
+                        <li class="breadcrumbs__item"><a href="<?= base_url(); ?>" class="breadcrumbs__element">Home</a></li>
+                        <li class="breadcrumbs__item"><a href="<?= base_url('frontend/grades/'); ?>" class="breadcrumbs__element">Grade</a></li>
+                        <li class="breadcrumbs__item breadcrumbs__item_active"><span class="breadcrumbs__element">Topic</span></li>
+                    </ul>
+                </div>
+            </div>
         </div>
         <div class="inner_page_content">
             <div class="container">
@@ -82,37 +99,37 @@ $this->load->view('templates/header');
                                         </div>
                                     </div>
                                     <div class="bhoechie-tab-content">
-
+                                        <h4 class="listing_category">Coming Soon</h4>
                                     </div>
                                     <div class="bhoechie-tab-content">
-
+                                        <h4 class="listing_category">Coming Soon</h4>
                                     </div>
                                     <div class="bhoechie-tab-content">
-
+                                        <h4 class="listing_category">Coming Soon</h4>
                                     </div>
                                     <div class="bhoechie-tab-content">
-
+                                        <h4 class="listing_category">Coming Soon</h4>
                                     </div>
                                     <div class="bhoechie-tab-content">
-
+                                        <h4 class="listing_category">Coming Soon</h4>
                                     </div>
                                     <div class="bhoechie-tab-content">
-
+                                        <h4 class="listing_category">Coming Soon</h4>
                                     </div>
                                     <div class="bhoechie-tab-content">
-
+                                        <h4 class="listing_category">Coming Soon</h4>
                                     </div>
                                     <div class="bhoechie-tab-content">
-
+                                        <h4 class="listing_category">Coming Soon</h4>
                                     </div>
                                     <div class="bhoechie-tab-content">
-
+                                        <h4 class="listing_category">Coming Soon</h4>
                                     </div>
                                     <div class="bhoechie-tab-content">
-
+                                        <h4 class="listing_category">Coming Soon</h4>
                                     </div>
                                     <div class="bhoechie-tab-content">
-
+                                        <h4 class="listing_category">Coming Soon</h4>
                                     </div>
                                 </div>
                             </div>

@@ -22,6 +22,10 @@ class Frontend extends CI_Controller {
 		);
 		$this->load->view('home_page', $data);
 	}
+	public function grades(){
+		$data['title']='Grades';
+		$this->load->view('frontend/grade_page',$data);
+	}
 	public function topic($grade,$subject){
 		$data['banner_title']=ucfirst($subject);
 		$data['title']=ucfirst($grade.' '.$subject);
