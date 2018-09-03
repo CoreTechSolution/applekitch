@@ -1,6 +1,7 @@
+<div class="ans_template_text">
 <?php if ($question_option=='1'){ ?>
 	<div class="question_image">
-		<img src="<?php echo $form_data['img']; ?>" alt="">
+		<img src="<?php echo $form_data['img']; ?>" alt="" class="img-thumbnail">
 	</div>
 	<div class="qAns_box">
 		<p>Answer: </p><span><input type="text" name="qAns_box" class="form-control"></span>
@@ -181,7 +182,7 @@
 <?php } elseif($question_option=='20'){ ?>
 	<div class="option_list_d onlyclickable">
 		<div class="question_image">
-			<img src="<?php echo $form_data['img']; ?>" alt="">
+			<img src="<?php echo $form_data['img']; ?>" alt="" class="img-thumbnail">
 		</div>
 		<?php $option_counter=1; ?>
 		<?php foreach ($form_data['option_1'] as $option){ ?>
@@ -195,3 +196,4 @@
 	</div>
 <?php } elseif($question_option=='21'){ ?>
 <?php }  ?>
+</div>
