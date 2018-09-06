@@ -1,11 +1,24 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+require FCPATH . 'assets\google-cloud\vendor\autoload.php';
+
+use Google\Cloud\TextToSpeech\V1\AudioConfig;
+use Google\Cloud\TextToSpeech\V1\AudioEncoding;
+use Google\Cloud\TextToSpeech\V1\SynthesisInput;
+use Google\Cloud\TextToSpeech\V1\TextToSpeechClient;
+use Google\Cloud\TextToSpeech\V1\VoiceSelectionParams;
+//use Google\Cloud\TextToSpeech\V1\TextToSpeechClient;
+use Google\Cloud\Storage\StorageClient;
+use Google\Auth\Credentials\AppIdentityCredentials;
+
 
 class Ajax extends CI_Controller {
+
 	public function __construct(){
 
 		parent::__construct();
 		$this->load->model('ajax_model');
+
 
 	}
 	public function index()
@@ -485,8 +498,8 @@ class Ajax extends CI_Controller {
 		$rtntext.='<div class="row">';
 		$rtntext.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
                                 <div class="col-lg-5">
-                                    <div class="question_count">Question <i class="fas fa-volume-up"></i></div>
-                                    <div class="question_display">'.$data->question_name.'</div>
+                                    <div class="question_count">Question <a href="javacript:void(0);" id="play_question" data-question="<?php echo ($question->question_name); ?>"><i class="fas fa-volume-up"></i></a></div>
+                                            <div class="question_display"><?php echo $question->question_name; ?></div>
                                 </div>';
 		$rtntext.='<div class="col-lg-7">';
 		$form_serializedata=unserialize($data->form_data);
@@ -513,8 +526,8 @@ class Ajax extends CI_Controller {
 		$rtntext.='<div class="row">';
 		$rtntext.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
                                 <div class="col-lg-5">
-                                    <div class="question_count">Question <i class="fas fa-volume-up"></i></div>
-                                    <div class="question_display">'.$data->question_name.'</div>
+                                    <div class="question_count">Question <a href="javacript:void(0);" id="play_question" data-question="<?php echo ($question->question_name); ?>"><i class="fas fa-volume-up"></i></a></div>
+                                            <div class="question_display"><?php echo $question->question_name; ?></div>
                                 </div>';
 		$rtntext.='<div class="col-lg-7">';
 		$form_serializedata=unserialize($data->form_data);
@@ -559,8 +572,8 @@ class Ajax extends CI_Controller {
 		$rtntext.='<div class="row">';
 		$rtntext.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
                                 <div class="col-lg-5">
-                                    <div class="question_count">Question <i class="fas fa-volume-up"></i></div>
-                                    <div class="question_display">'.$data->question_name.'</div>
+                                    <div class="question_count">Question <a href="javacript:void(0);" id="play_question" data-question="'.$data->question_name.'"><i class="fas fa-volume-up"></i></a></div>
+                                            <div class="question_display">'.$data->question_name.'</div>
                                 </div>';
 		$rtntext.='<div class="col-lg-7">';
 		$form_serializedata=unserialize($data->form_data);
@@ -591,8 +604,8 @@ class Ajax extends CI_Controller {
 		$rtntext.='<div class="row">';
 		$rtntext.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
                                 <div class="col-lg-5">
-                                    <div class="question_count">Question <i class="fas fa-volume-up"></i></div>
-                                    <div class="question_display">'.$data->question_name.'</div>
+                                    <div class="question_count">Question <a href="javacript:void(0);" id="play_question" data-question="'.$data->question_name.'"><i class="fas fa-volume-up"></i></a></div>
+                                            <div class="question_display">'.$data->question_name.'</div>
                                 </div>';
 		$rtntext.='<div class="col-lg-7">';
 		$form_serializedata=unserialize($data->form_data);
@@ -623,8 +636,8 @@ class Ajax extends CI_Controller {
 		$rtntext.='<div class="row">';
 		$rtntext.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
                                 <div class="col-lg-5">
-                                    <div class="question_count">Question <i class="fas fa-volume-up"></i></div>
-                                    <div class="question_display">'.$data->question_name.'</div>
+                                    <div class="question_count">Question <a href="javacript:void(0);" id="play_question" data-question="'.$data->question_name.'"><i class="fas fa-volume-up"></i></a></div>
+                                            <div class="question_display">'.$data->question_name.'</div>
                                 </div>';
 		$rtntext.='<div class="col-lg-7">';
 		$form_serializedata=unserialize($data->form_data);
@@ -655,8 +668,8 @@ class Ajax extends CI_Controller {
 		$rtntext.='<div class="row">';
 		$rtntext.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
                                 <div class="col-lg-5">
-                                    <div class="question_count">Question <i class="fas fa-volume-up"></i></div>
-                                    <div class="question_display">'.$data->question_name.'</div>
+                                    <div class="question_count">Question <a href="javacript:void(0);" id="play_question" data-question="'.$data->question_name.'"><i class="fas fa-volume-up"></i></a></div>
+                                            <div class="question_display">'.$data->question_name.'</div>
                                 </div>';
 		$rtntext.='<div class="col-lg-7">';
 		$form_serializedata=unserialize($data->form_data);
@@ -701,8 +714,8 @@ class Ajax extends CI_Controller {
 		$rtntext.='<div class="row">';
 		$rtntext.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
                                 <div class="col-lg-5">
-                                    <div class="question_count">Question <i class="fas fa-volume-up"></i></div>
-                                    <div class="question_display">'.$data->question_name.'</div>
+                                    <div class="question_count">Question <a href="javacript:void(0);" id="play_question" data-question="'.$data->question_name.'"><i class="fas fa-volume-up"></i></a></div>
+                                            <div class="question_display">'.$data->question_name.'</div>
                                 </div>';
 		$rtntext.='<div class="col-lg-7">';
 		$form_serializedata=unserialize($data->form_data);
@@ -733,8 +746,8 @@ class Ajax extends CI_Controller {
 		$rtntext.='<div class="row">';
 		$rtntext.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
                                 <div class="col-lg-5">
-                                    <div class="question_count">Question <i class="fas fa-volume-up"></i></div>
-                                    <div class="question_display">'.$data->question_name.'</div>
+                                    <div class="question_count">Question <a href="javacript:void(0);" id="play_question" data-question="'.$data->question_name.'"><i class="fas fa-volume-up"></i></a></div>
+                                            <div class="question_display">'.$data->question_name.'</div>
                                 </div>';
 		$rtntext.='<div class="col-lg-7">';
 		$form_serializedata=unserialize($data->form_data);
@@ -758,8 +771,8 @@ class Ajax extends CI_Controller {
 		$rtntext.='<div class="row">';
 		$rtntext.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
                                 <div class="col-lg-5">
-                                    <div class="question_count">Question <i class="fas fa-volume-up"></i></div>
-                                    <div class="question_display">'.$data->question_name.'</div>
+                                    <div class="question_count">Question <a href="javacript:void(0);" id="play_question" data-question="'.$data->question_name.'"><i class="fas fa-volume-up"></i></a></div>
+                                            <div class="question_display">'.$data->question_name.'</div>
                                 </div>';
 		$rtntext.='<div class="col-lg-7">';
 		$form_serializedata=unserialize($data->form_data);
@@ -791,8 +804,8 @@ class Ajax extends CI_Controller {
 		$rtntext.='<div class="row">';
 		$rtntext.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
                                 <div class="col-lg-5">
-                                    <div class="question_count">Question <i class="fas fa-volume-up"></i></div>
-                                    <div class="question_display">'.$data->question_name.'</div>
+                                    <div class="question_count">Question <a href="javacript:void(0);" id="play_question" data-question="'.$data->question_name.'"><i class="fas fa-volume-up"></i></a></div>
+                                            <div class="question_display">'.$data->question_name.'</div>
                                 </div>';
 		$rtntext.='<div class="col-lg-7">';
 		$form_serializedata=unserialize($data->form_data);
@@ -823,8 +836,8 @@ class Ajax extends CI_Controller {
 		$rtntext.='<div class="row">';
 		$rtntext.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
                                 <div class="col-lg-5">
-                                    <div class="question_count">Question <i class="fas fa-volume-up"></i></div>
-                                    <div class="question_display">'.$data->question_name.'</div>
+                                    <div class="question_count">Question <a href="javacript:void(0);" id="play_question" data-question="'.$data->question_name.'"><i class="fas fa-volume-up"></i></a></div>
+                                            <div class="question_display">'.$data->question_name.'</div>
                                 </div>';
 		$rtntext.='<div class="col-lg-7">';
 		$form_serializedata=unserialize($data->form_data);
@@ -871,8 +884,8 @@ class Ajax extends CI_Controller {
 		$rtntext.='<div class="row">';
 		$rtntext.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
                                 <div class="col-lg-5">
-                                    <div class="question_count">Question <i class="fas fa-volume-up"></i></div>
-                                    <div class="question_display">'.$data->question_name.'</div>
+                                    <div class="question_count">Question <a href="javacript:void(0);" id="play_question" data-question="'.$data->question_name.'"><i class="fas fa-volume-up"></i></a></div>
+                                            <div class="question_display">'.$data->question_name.'</div>
                                 </div>';
 		$rtntext.='<div class="col-lg-7">';
 		$form_serializedata=unserialize($data->form_data);
@@ -895,6 +908,37 @@ class Ajax extends CI_Controller {
 		$rtntext.='</div>';
 
 		return $rtntext;
+	}
+	public function get_speech(){
+
+		//echo __DIR__; exit();
+		//putenv('GOOGLE_APPLICATION_CREDENTIALS='.base_url('assets/tts/text-to-speech-215407-c38280fd6489.json'));
+		$storage = new StorageClient([
+			'keyFilePath' => FCPATH. 'assets\google-cloud\text-to-speech-c74c9f5e7c87.json',
+			'projectId' => 'text-to-speech-215407'
+		]);
+		/*foreach ($storage->buckets() as $bucket) {
+			printf('Bucket: %s' . PHP_EOL, $bucket->name());
+		}*/
+		//print_r($storage); exit();
+		$textToSpeechClient = new TextToSpeechClient();
+
+		$input = new SynthesisInput();
+		$input->setText('Japan\'s national soccer team won against Colombia!');
+		$voice = new VoiceSelectionParams();
+		$voice->setLanguageCode('en-US');
+		$audioConfig = new AudioConfig();
+		$audioConfig->setAudioEncoding(AudioEncoding::MP3);
+		$files=FCPATH.'uploads\audio'.'\audiotest.mp3';
+		$resp = $textToSpeechClient->synthesizeSpeech($input, $voice, $audioConfig);
+		file_put_contents($files, $resp->getAudioContent());
+
+		$rtntext='<audio controls="controls" autoplay="autoplay">
+  			<source src="'.$files.'" type="audio/mp3" />
+			</audio>';
+		echo $rtntext;
+
+
 	}
 	public function save_ans_certificate(){
 		//print_r($this->session->userdata('logged_in')); exit();

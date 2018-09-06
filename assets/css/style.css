@@ -16,7 +16,7 @@ p{
     line-height: 150%;
 }
 a {
-    color: #064a6a;
+    color: #0bc1b6;
 }
 a:hover, a:focus {
     color: #f1693c;
@@ -2026,18 +2026,18 @@ label.error{color: #FF0000; }
     display: inline-block;
     border-radius: 10px;
     overflow: hidden;
-    margin: 0 45px 0 0;
+    margin: 0 45px 10px 0;
 }
 
 .score_time_div .score_ans .title{
     background: #f1693c;
     color: #fff;
     /* height: 59px; */
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 600;
-    padding: 21px 20px;
+    padding: 19px 10px;
     display: inline-block;
-    width: 56%;
+    width: 46%;
     line-height: 124%;
 }
 .score_time_div .score_ans .content{
@@ -2061,14 +2061,14 @@ label.error{color: #FF0000; }
     /* height: 59px; */
     font-size: 22px;
     font-weight: 600;
-    padding: 21px 20px;
+    padding: 19px 10px;
     display: inline-block;
-    width: 42%;
+    width: 46%;
     line-height: 124%;
 }
 .score_time_div .score_time .content{
-    padding: 10px 10px 10px 22px;
-    font-size: 30px;
+    padding: 10px 6px 10px 9px;
+    font-size: 20px;
     font-weight: bold;
     display: inline-block;
     vertical-align: bottom;
@@ -2085,18 +2085,25 @@ label.error{color: #FF0000; }
     display: inline-block;
     border-radius: 10px;
     overflow: hidden;
-    margin: 0 45px 0 0;
+    margin: 0 45px 10px 0;
 }
 .score_time_div .score_smart .title{
     background: #0bc1b6;
     color: #fff;
     /* height: 59px; */
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 600;
-    padding: 8px 20px;
+    padding: 8px 10px;
     display: inline-block;
-    width: 56%;
+    width: 46%;
     line-height: 124%;
+}
+.active{
+    color: #f1693c !important;
+}
+.time_dis_counter{
+    display: inline-block;
+    margin: 0 10px 0 0;
 }
 .score_time_div .score_smart .title sup{
     top:0 !important;

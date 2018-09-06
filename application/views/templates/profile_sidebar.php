@@ -1,6 +1,6 @@
 <div class="profile-sidebar">
 	<div class="profile-img">
-		<img src="<?php echo base_url('/assets/images/noimg.png'); ?>">
+		<img src="<?php echo get_image($user_data['profile_img']); ?>">
 	</div>
 	<div class="profile-display-name"><?php echo $user_data['fname']; ?> <?php echo $user_data['lname'] ?></div>
 </div>

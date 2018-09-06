@@ -76,6 +76,9 @@ class User_model extends CI_Model{
 		if(isset($user['password']) && !empty($user['password'])) {
 			$this->db->set( 'password', $user['password'] );
 		}
+		if(isset($user['profile_img']) && !empty($user['profile_img'])) {
+			$this->db->set( 'profile_img', $user['profile_img'] );
+		}
 		$this->db->where('email_address',$user['email_address']);
 		$this->db->update('user');
 	}
