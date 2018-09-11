@@ -289,7 +289,7 @@ class Dashboard extends CI_Controller {
 		}
 		$this->load->view('analytics_usage_v',$data);
 	}
-	public function score($subject='2', $grade='1'){
+	public function scorechart($subject='2', $grade='1'){
 		isLogin();
 		$user_id=get_current_user_id();
 		$data['title']='Score';
