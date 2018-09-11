@@ -41,7 +41,7 @@ require_once 'templates/header.php';
 										</div>
 									</div>
 									<div class="table_body">
-										<button class="accordion">Count to 3</button>
+										<button class="accordion">Count to 3 </button>
 										<div class="panel">
 											<div class="row">
 												<div class="col-lg-4"><div class="table_body_text">A.1 Learn to count - up to 3</div></div>

@@ -24,7 +24,6 @@
 
     <link rel="stylesheet" media="all" href="<?php echo base_url('/assets/css/bootstrap.min.css'); ?>" />
     <link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700|Open+Sans:300,400,600,700|Raleway:300,400,500,600|Roboto:100,300,400,500,700|Lato:100,300,400,700|Fredoka+One|Istok+Web:400" />
-    <link rel="stylesheet" media="all" href="<?php echo base_url('/assets/css/fontawesome-all.css'); ?>" />
     <link rel="stylesheet" media="all" href="<?php echo base_url('/assets/css/jquery.fancybox.css'); ?>" />
     <link rel="stylesheet" media="all" href="<?php echo base_url('/assets/css/slicknav.css'); ?>" />
     <link rel="stylesheet" media="all" href="<?php echo base_url('/assets/css/jquery.bxslider.css'); ?>" />
@@ -34,7 +33,7 @@
     <link rel="stylesheet" media="all" href="<?php echo base_url('/assets/css/style.css'); ?>" />
     <link rel="stylesheet" media="all" href="<?php echo base_url('/assets/css/backend.css'); ?>" />
     <link rel="stylesheet" media="all" href="<?php echo base_url('/assets/css/tooltipster.bundle.min.css'); ?>" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="<?php echo base_url('/assets/css/font-awesome.css'); ?>" >
 
     <!--[if lt IE 9]>
 

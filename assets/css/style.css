@@ -2490,16 +2490,17 @@ div.list-group a:nth-child(12){
     background-color: #f1693c;
     color: #2f2f2f;
 }
+
 .accordion:after {
-    content: '\02795'; /* Unicode character for "plus" sign (+) */
-    font-size: 13px;
+    content: '\f0d7';
+    font-size: 17px;
     /*color: #f1693c!important;*/
     float: right;
     margin-left: 5px;
 }
 
 .active:after {
-    content: "\2796"; /* Unicode character for "minus" sign (-) */
+    content: "\f0d8"; /* Unicode character for "minus" sign (-) */
 }
 /* Style the accordion panel. Note: hidden by default */
 .panel {
@@ -2545,13 +2546,13 @@ div.list-group a:nth-child(12){
 }
 
 .improvement-container .arrow.right-arrow {
-    background: transparent url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1pZCIgd2lkdGg9IjE0IiBoZWlnaHQ9IjIwIiB2aWV3Qm94PSIwIDAgMTQgMjAiPgogIDxkZWZzPgogICAgPHN0eWxlPgogICAgICAuY2xzLTEgewogICAgICAgIGZpbGw6ICM4YWM5MDA7CiAgICAgICAgZmlsbC1ydWxlOiBldmVub2RkOwogICAgICB9CiAgICA8L3N0eWxlPgogIDwvZGVmcz4KICA8cGF0aCBkPSJNNS4wMjAsMC4wMDAgTDE0LjAwMCwxMC4wMDAgTDUuMDIwLDIwLjAwMCBMNS4wMjAsMTQuNTY2IEwwLjAwMSwxNC41NjYgTDAuMDAxLDUuNDMzIEw1LjAyMCw1LjQzMyBMNS4wMjAsMC4wMDAgWiIgY2xhc3M9ImNscy0xIi8+Cjwvc3ZnPgo=) 0 0 no-repeat;
+    background: transparent url('../images/right_arrow_head.svg') 0 0 no-repeat;
     height: 20px;
     width: 14px
 }
 
 .improvement-container .arrow.left-arrow {
-    background: transparent url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1pZCIgd2lkdGg9IjE0IiBoZWlnaHQ9IjIwIiB2aWV3Qm94PSIwIDAgMTQgMjAiPgogIDxkZWZzPgogICAgPHN0eWxlPgogICAgICAuY2xzLTEgewogICAgICAgIGZpbGw6ICNjZjU2NTQ7CiAgICAgICAgZmlsbC1ydWxlOiBldmVub2RkOwogICAgICB9CiAgICA8L3N0eWxlPgogIDwvZGVmcz4KICA8cGF0aCBkPSJNOC45ODAsMjAuMDAwIEwtMC4wMDAsMTAuMDAwIEw4Ljk4MCwwLjAwMCBMOC45ODAsNS40MzQgTDEzLjk5OSw1LjQzNCBMMTMuOTk5LDE0LjU2NyBMOC45ODAsMTQuNTY3IEw4Ljk4MCwyMC4wMDAgWiIgY2xhc3M9ImNscy0xIi8+Cjwvc3ZnPgo=) 0 0 no-repeat;
+    background: transparent url('../images/left_arrow_head.svg') 0 0 no-repeat;
     height: 20px;
     width: 14px
 }
