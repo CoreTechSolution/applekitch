@@ -72,6 +72,30 @@ jQuery(document).ready(function(){
         }
 
     });
+    // Text to speech click volume icon
+    jQuery('body').on('click', '#play_question', function(e) {
+        e.preventDefault();
+        var this_element=jQuery(this);
+        var text_speech=this_element.attr('data-question');
+
+        var voiceOptions = 'Microsoft Anna - English (United States)';
+        var volumeSlider = 1;
+        var rateSlider = 1;
+        var pitchSlider = 1;
+        var myText = text_speech;
+
+        var voiceMap = [];
+
+        var msg = new SpeechSynthesisUtterance();
+        msg.volume = volumeSlider;
+        msg.voice = voiceMap[voiceOptions];
+        msg.rate = rateSlider;
+        msg.Pitch = pitchSlider;
+        msg.text = myText;
+        window.speechSynthesis.speak(msg);
+
+    });
+    ////////////////
     jQuery('body').on('click', '.qSubmit', function(e) {
         e.preventDefault();
         jQuery('#loading').show();
@@ -101,20 +125,22 @@ jQuery(document).ready(function(){
             success: function (data) {
                 console.log(data);
                 jQuery('#loading').hide();
-                jQuery('#ans_label').slideToggle();
+                jQuery('#overlay').slideToggle();
+                //jQuery('#ans_label').slideToggle();
                 jQuery('.qAns_form').html('');
                 if (data['type'] != 'true') {
                     jQuery('#ans_label').removeClass();
                     jQuery('#ans_label').addClass('wAns');
                     //alert(data['qWrong_feedback']);
                     var gotIt='<br><br><br><a href="" class="btn btn-primary btn-sm got_it">Got it</a>'
-                    jQuery('#ans_label').html(data['qWrong_feedback']+gotIt);
+                    jQuery('#ans_label').html('<i class="fa fa-times" aria-hidden="true"></i> '+data['qWrong_feedback']+gotIt);
                     jQuery('.score_ans').find('.content').html(data['score_ans']);
                     jQuery('.score_smart').find('.content').html(data['score_smart']);
                     /// On Got it click next question
                     jQuery('body').on('click', '.got_it', function(e) {
                         e.preventDefault();
-                        jQuery("#ans_label").hide();
+                        jQuery("#overlay").hide();
+                        //jQuery("#ans_label").hide();
                         jQuery('.qAns_form').show();
                         my_time_interval= setInterval(setTime, 1000); //////////////// Start Timer
                         if(data['html']==''){
@@ -183,12 +209,13 @@ jQuery(document).ready(function(){
                 } else{
                     jQuery('#ans_label').removeClass();
                     jQuery('#ans_label').addClass('cAns');
-                    jQuery('#ans_label').html(data['qRight_feedback']);
+                    jQuery('#ans_label').html('<i class="fa fa-check" aria-hidden="true"></i> '+ data['qRight_feedback']);
                     jQuery('.score_ans').find('.content').html(data['score_ans']);
                     jQuery('.score_smart').find('.content').html(data['score_smart']);
                     /// Timer start for next question
                     setTimeout(function() {
-                        jQuery("#ans_label").slideToggle();
+                        jQuery("#overlay").slideToggle();
+                        //jQuery("#ans_label").slideToggle();
                         jQuery('.qAns_form').show();
                         my_time_interval= setInterval(setTime, 1000);
                         if(data['html']==''){
@@ -254,7 +281,7 @@ jQuery(document).ready(function(){
                 }
 
 
-                //jQuery('#ans_label').hide().delay(8000);
+                //jQuery('.overlay').hide().delay(8000);
 
             }
         });
@@ -497,4 +524,30 @@ jQuery("#button").click(function() {
         scrollTop: jQuery("#wrapper3").offset().top
     }, 2000);
 });
+
+function checkCompatibilty () {
+    if(!('speechSynthesis' in window)){
+        alert('Your browser is not supported. If google chrome, please upgrade!!');
+    }
+};
+
+checkCompatibilty();
+
+
+
+/*function loadVoices () {
+    var voices = speechSynthesis.getVoices();
+    for (var i = 0; i < voices.length; i++) {
+        var voice = voices[i];
+        var option = document.createElement('option');
+        option.value = voice.name;
+        option.innerHTML = voice.name;
+        voiceOptions.appendChild(option);
+        voiceMap[voice.name] = voice;
+    };
+};
+
+window.speechSynthesis.onvoiceschanged = function(e){
+    loadVoices();
+};*/
 //new WOW().init();
