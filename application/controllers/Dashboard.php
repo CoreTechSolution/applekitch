@@ -277,4 +277,34 @@ class Dashboard extends CI_Controller {
 		// Output the generated PDF (1 = download and 0 = preview)
 		$this->dompdf->stream("certificates.pdf", array("Attachment"=>0));
 	}
+	public function usage(){
+		isLogin();
+		$user_id=get_current_user_id();
+		$data['title']='Certificates';
+		$data['user_data'] = $this->user_model->get_userdata();
+		if(!empty($this->input->post('filter'))){
+			$conditions=array('user_id');
+		} else{
+			$data['certificates']=$this->user_model->get_ans_certificates_by_user($user_id);
+		}
+		$this->load->view('analytics_usage_v',$data);
+	}
+	public function show(){
+
+	}
+	public function progress(){
+
+	}
+	public function questionlog(){
+
+	}
+	public function scorechart(){
+
+	}
+	public function skill(){
+
+	}
+	public function troublespot(){
+
+	}
 }
