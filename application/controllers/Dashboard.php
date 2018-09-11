@@ -289,16 +289,25 @@ class Dashboard extends CI_Controller {
 		}
 		$this->load->view('analytics_usage_v',$data);
 	}
+	public function score($subject='2', $grade='1'){
+		isLogin();
+		$user_id=get_current_user_id();
+		$data['title']='Score';
+		$data['user_data'] = $this->user_model->get_userdata();
+		$this->load->view('analytics_score_chart_v',$data);
+	}
+	public function progress($subject='2', $grade='1'){
+		isLogin();
+		$user_id=get_current_user_id();
+		$data['title']='Progress';
+		$data['user_data'] = $this->user_model->get_userdata();
+		$this->load->view('analytics_progress_v',$data);
+	}
 	public function show(){
 
 	}
-	public function progress(){
 
-	}
 	public function questionlog(){
-
-	}
-	public function scorechart(){
 
 	}
 	public function skill(){
