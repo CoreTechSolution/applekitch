@@ -275,11 +275,3 @@ require_once 'templates/header.php';
 <?php
 require_once 'templates/footer.php';
 ?>
-<script>
-    jQuery('.accordion').on('click', function (e) {
-        e.preventDefault();
-        var this_element=jQuery(this);
-        this_element.next('div.panel').slideToggle();
-    });
-
-</script>
