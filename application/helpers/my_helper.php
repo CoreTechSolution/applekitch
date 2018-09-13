@@ -59,9 +59,13 @@ function isLogin($param=''){
 
 
 }
-function loginCheck(){
+function loginCheck($user_type='user'){
 	$CI = & get_instance();
-	$admin_logged_in = $CI->session->userdata('admin_logged_in');
+	if($user_type=='admin'){
+		$admin_logged_in = $CI->session->userdata('admin_logged_in');
+	} else{
+		$admin_logged_in = $CI->session->userdata('logged_in');
+	}
 	if($admin_logged_in == 1) {
 		return true;
 	} else{
