@@ -2416,7 +2416,7 @@ div.list-group a:nth-child(12){
     text-align: center;
     border-right: 1px solid #ecebeb;
 }
-.total_usage_counter_div .total_usage_list_box:nth-last-child{
+.total_usage_counter_div .col-lg-4:last-child .total_usage_list_box{
     text-align: center;
     border-right: none;
 }
