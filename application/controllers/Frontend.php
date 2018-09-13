@@ -54,6 +54,7 @@ class Frontend extends CI_Controller {
 		//echo $this->db->last_query(); exit();
 		$this->session->unset_userdata('score_ans');
 		$this->session->unset_userdata('score_smart');
+		$this->session->unset_userdata('total_qScore');
 		$this->load->view('frontend/questions_page',$data);
 	}
 }
