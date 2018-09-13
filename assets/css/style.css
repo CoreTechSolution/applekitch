@@ -2110,7 +2110,7 @@ label.error{color: #FF0000; }
     line-height: 124%;
 }
 .active{
-    color: #f1693c !important;
+    color: #f1693c;
 }
 .time_dis_counter{
     display: inline-block;
@@ -2246,6 +2246,9 @@ only screen and (min-device-pixel-ratio: 1.5) {
     color: #fff;
     padding: 10px 45px 10px 0;
     font-weight: 500;
+}
+.top_tap_sub ul li a.active{
+    color: #f1693c;
 }
 .inner_page_content{
     padding:30px 0;
@@ -2482,11 +2485,11 @@ div.list-group a:nth-child(12){
 }
 
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-.active, .accordion:hover {
+.accordion.active, .accordion:hover {
     background-color: #f1693c;
     color: #2f2f2f;
 }
-.active{
+.accordion.active{
     background-color: #f1693c;
     color: #2f2f2f;
 }
@@ -2499,7 +2502,7 @@ div.list-group a:nth-child(12){
     margin-left: 5px;
 }
 
-.active:after {
+.accordion.active:after {
     content: "\f0d8"; /* Unicode character for "minus" sign (-) */
 }
 /* Style the accordion panel. Note: hidden by default */
