@@ -95,7 +95,7 @@ jQuery(document).ready(function(){
         window.speechSynthesis.speak(msg);
 
     });
-    ////////////////
+    ////////////////// Question submit AJAX ////////////////
     jQuery('body').on('click', '.qSubmit', function(e) {
         e.preventDefault();
         jQuery('#loading').show();
@@ -126,8 +126,8 @@ jQuery(document).ready(function(){
                 console.log(data);
                 jQuery('#loading').hide();
                 jQuery('#overlay').slideToggle();
-                //jQuery('#ans_label').slideToggle();
                 jQuery('.qAns_form').html('');
+                ////////////////////// IF answer is wrong ///////////////////////////////
                 if (data['type'] != 'true') {
                     jQuery('#ans_label').removeClass();
                     jQuery('#ans_label').addClass('wAns');
@@ -143,7 +143,7 @@ jQuery(document).ready(function(){
                         //jQuery("#ans_label").hide();
                         jQuery('.qAns_form').show();
                         my_time_interval= setInterval(setTime, 1000); //////////////// Start Timer
-                        if(data['html']==''){
+                        if(data['html']==''){  ////////////////// If next question not found or end of topic //////////
                             var tQ_attend= jQuery('.score_ans').find('.content').html();
                             var qScore=jQuery('.score_smart').find('.content').html();
                             var total_time=data['total_time'];
@@ -177,10 +177,17 @@ jQuery(document).ready(function(){
                                 '<tr>' +
                                 '<th>Score</th>' +
                                 '<td>'+score_persentage+' %</td>' +
+                                '</tr>' +
+                                '<tr>' +
+                                '<th>Time Taken</th>' +
+                                '<td>'+score_time_count_hr+ ':' + score_time_count_min + ':'+ score_time_count_sec+'</td>' +
                                 '</tr>';
                             html+='</table>';
+                            html+='<div class="print_action_div">';
+                            html+='<a class="btn btn-small btn-outline-default" onclick="printDiv(\'printableArea\')">Print</a> <a href="'+ base_url +'frontend/topic/reception/english" class="btn btn-small btn-outline-default" >Back to Main Menu</a>';
                             html+='</div>';
-                            // save certificate
+                            html+='</div>';
+                            //////////////// save certificate after complete a topic /////////////////////////
                             jQuery.ajax({
                                 type: "POST",
                                 url: base_url + 'ajax/save_ans_certificate',
@@ -193,11 +200,10 @@ jQuery(document).ready(function(){
                                     }
                                 }
                             });
-                            ///
+                            /////////////////////////////////////////////
                             jQuery('.qAns_form').html(html);
                             clearInterval(my_time_interval);
                         }else{
-
                             jQuery('.qAns_form').html(data['html']);
                             jQuery( "#sortable" ).sortable();
                             jQuery( "#sortable" ).disableSelection();
@@ -206,7 +212,7 @@ jQuery(document).ready(function(){
                     });
                     //////////////////////////////////
 
-                } else{
+                } else{  ////////////////////// IF answer is right ///////////////////////////////
                     jQuery('#ans_label').removeClass();
                     jQuery('#ans_label').addClass('cAns');
                     jQuery('#ans_label').html('<i class="fa fa-check" aria-hidden="true"></i> '+ data['qRight_feedback']);
@@ -230,7 +236,7 @@ jQuery(document).ready(function(){
                             //console.log(user_name);
                             //console.log(tQ_score);
 
-                            var html='<div class="result_show">';
+                            var html='<div class="result_show" id="printableArea">';
                             html+='<table class="table table-bordered table-result">';
                             html+='<tr>' +
                                 '<th>Name</th>' +
@@ -251,8 +257,15 @@ jQuery(document).ready(function(){
                                 '<tr>' +
                                 '<th>Score</th>' +
                                 '<td>'+score_persentage+' %</td>' +
+                                '</tr>' +
+                                '<tr>' +
+                                '<th>Time Taken</th>' +
+                                '<td>'+score_time_count_hr+ ':' + score_time_count_min + ':'+ score_time_count_sec+'</td>' +
                                 '</tr>';
                             html+='</table>';
+                            html+='<div class="print_action_div">';
+                            html+='<a class="btn btn-small btn-outline-default" onclick="printDiv(\'printableArea\')">Print</a> <a href="'+ base_url +'frontend/topic/reception/english" class="btn btn-small btn-outline-default" >Back to Main Menu</a>';
+                            html+='</div>';
                             html+='</div>';
                             // save certificate
                             jQuery.ajax({
@@ -279,14 +292,12 @@ jQuery(document).ready(function(){
                     }, 2000);
                     //////////////////////////////
                 }
-
-
-                //jQuery('.overlay').hide().delay(8000);
-
             }
         });
 
     });
+    ////////////////// Question submit AJAX End here ////////////////
+
     var width = jQuery(window).width();
 
     var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
@@ -533,21 +544,9 @@ function checkCompatibilty () {
 
 checkCompatibilty();
 
-
-
-/*function loadVoices () {
-    var voices = speechSynthesis.getVoices();
-    for (var i = 0; i < voices.length; i++) {
-        var voice = voices[i];
-        var option = document.createElement('option');
-        option.value = voice.name;
-        option.innerHTML = voice.name;
-        voiceOptions.appendChild(option);
-        voiceMap[voice.name] = voice;
-    };
-};
-
-window.speechSynthesis.onvoiceschanged = function(e){
-    loadVoices();
-};*/
-//new WOW().init();
+jQuery('.accordion').on('click', function (e) {
+    e.preventDefault();
+    var this_element=jQuery(this);
+    this_element.toggleClass('active','');
+    this_element.next('div.panel').slideToggle();
+});
