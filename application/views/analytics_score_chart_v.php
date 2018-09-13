@@ -172,11 +172,3 @@ require_once 'templates/footer.php';
     }
     google.charts.setOnLoadCallback(drawChart);
 </script>
-<script>
-    jQuery('.accordion').on('click', function (e) {
-        e.preventDefault();
-        var this_element=jQuery(this);
-        this_element.next('div.panel').slideToggle();
-    });
-
-</script>
