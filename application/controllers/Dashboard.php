@@ -303,17 +303,18 @@ class Dashboard extends CI_Controller {
 		$data['user_data'] = $this->user_model->get_userdata();
 		$this->load->view('analytics_progress_v',$data);
 	}
-	public function show(){
-
-	}
-
 	public function questionlog(){
-
-	}
-	public function skill(){
-
+		isLogin();
+		$user_id=get_current_user_id();
+		$data['title']='Trouble Spots';
+		$data['user_data'] = $this->user_model->get_userdata();
+		$this->load->view('analytics_trouble_spots_v',$data);
 	}
 	public function troublespot(){
-
+		isLogin();
+		$user_id=get_current_user_id();
+		$data['title']='Trouble Spots';
+		$data['user_data'] = $this->user_model->get_userdata();
+		$this->load->view('analytics_trouble_spots_v',$data);
 	}
 }
