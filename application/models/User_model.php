@@ -228,9 +228,38 @@ class User_model extends CI_Model{
 			return false;
 		}
 	}
+	function get_questions_ans($conditions=array(),$row=true,$order='id',$order_by='asc'){
+		$this->db->select('*');
+		if(!empty($conditions)){
+			$this->db->where($conditions);
+		}
+		$this->db->order_by($order,$order_by);
+		$this->db->from('student_qns_ans');
+		$queries=$this->db->get();
+		if($row==true){
+			$query=$queries->row();
+		} else{
+			$query=$queries->result();
+		}
+		return $query;
+
+	}
+	function get_ans_topic($conditions=array(),$row=true){
+		$this->db->select('*');
+		if(!empty($conditions)){
+			$this->db->where($conditions);
+		}
+
+		$this->db->from('student_ans_topic');
+		$queries=$this->db->get();
+		if($row==true){
+			$query=$queries->row();
+		} else{
+			$query=$queries->result();
+		}
+		return $query;
+
+	}
 
 
 }
-
-
-?>
