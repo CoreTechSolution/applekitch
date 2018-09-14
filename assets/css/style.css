@@ -2585,6 +2585,9 @@ div.list-group a:nth-child(12){
     font-size: 16px;
     font-weight: 600;
 }
+.award_header .reward h4 a {
+    color: #ffffff;
+}
 .award_header .reward .reward_img img {
     max-height: 105px;
     cursor: move;
