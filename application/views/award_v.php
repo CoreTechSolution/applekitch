@@ -43,7 +43,20 @@ $data['title'] = $title;
 $data['question_ans'] = $question_ans;
 $data['ans_topic'] = $ans_topic;
 
-$this->load->view('awards/'.$subject_var->slug.'/'.$grade_var->slug, $data);
+define('EXT', '.php');
+if (is_file(APPPATH.'views/awards/' . $subject_var->slug.'/'.$grade_var->slug. EXT)) {
+	$this->load->view('awards/'.$subject_var->slug.'/'.$grade_var->slug, $data);
+} else {
+    ?>
+    <div class="container" style="min-height: 300px;">
+        <div class="row">
+            <div class="col-lg-12">
+				<h1>Coming Soon...</h1>
+            </div>
+        </div>
+    </div>
+    <?php
+}
 ?>
 <?php
 require_once 'templates/footer.php';
