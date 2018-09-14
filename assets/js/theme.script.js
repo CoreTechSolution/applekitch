@@ -317,7 +317,7 @@ jQuery(document).ready(function(){
         rules: {
             email_id: {
                 required: true,
-                email: true
+                //email: true
             },
             pwd:{
                 required: true
@@ -451,7 +451,7 @@ jQuery(document).ready(function(){
             },
             email: {
                 required: true,
-                email: true
+                //email: true
             },
             password:{
                 required: true,
@@ -473,7 +473,7 @@ jQuery(document).ready(function(){
             },
             email: {
                 required: true,
-                email: true
+                //email: true
             },
             password:{
                 minlength: 8
@@ -498,6 +498,14 @@ jQuery(document).ready(function(){
         delay: 200,
         theme: 'tooltipster-punk',
         trigger: 'click'
+    });
+
+    jQuery('.tooltip_award').tooltipster({
+        animation: 'fade',
+        delay: 200,
+        theme: 'tooltipster-punk',
+        maxWidth: 300,
+        side: 'top'
     });
 
     jQuery('body').on('click', '.imgselector img', function(e){
