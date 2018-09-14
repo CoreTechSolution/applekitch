@@ -61,6 +61,7 @@
 	</div>
 </div>
 
+<script src="<?php echo base_url('/assets/js/loader.js'); ?>" type="text/javascript"></script>
 <script src="<?php echo base_url('/assets/js/html5.js'); ?>" type="text/javascript"></script>
 <script src="<?php echo base_url('/assets/js/bootstrap.min.js'); ?>" type="text/javascript"></script>
 <script src="<?php echo base_url('/assets/js/footable.js'); ?>" type="text/javascript"></script>

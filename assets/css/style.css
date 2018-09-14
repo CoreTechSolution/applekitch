@@ -16,7 +16,7 @@ p{
     line-height: 150%;
 }
 a {
-    color: #064a6a;
+    color: #0bc1b6;
 }
 a:hover, a:focus {
     color: #f1693c;
@@ -148,6 +148,17 @@ img.aligncenter {display: block; margin-left: auto; margin-right: auto}
 }
 .nav #mega-menu-wrap-mainmenu #mega-menu-mainmenu > li.mega-menu-megamenu > ul.mega-sub-menu > li.mega-menu-item li.mega-menu-item > a.mega-menu-link, .nav #mega-menu-wrap-mainmenu #mega-menu-mainmenu > li.mega-menu-megamenu > ul.mega-sub-menu > li.mega-menu-item li.mega-menu-item > a.mega-menu-link:hover{
     color: #FFFFFF;
+}
+ul.dropdown_list{
+    background: #f79170 !important;
+    margin: 0 !important;
+    display: none;
+}
+ul.dropdown_list li{
+    border-bottom: 1px solid #CCCCCC ;
+}
+.dropdown_list li a{
+    width: 100%;
 }
 .container{
     width: 1200px;
@@ -2026,18 +2037,18 @@ label.error{color: #FF0000; }
     display: inline-block;
     border-radius: 10px;
     overflow: hidden;
-    margin: 0 45px 0 0;
+    margin: 0 45px 10px 0;
 }
 
 .score_time_div .score_ans .title{
     background: #f1693c;
     color: #fff;
     /* height: 59px; */
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 600;
-    padding: 21px 20px;
+    padding: 19px 10px;
     display: inline-block;
-    width: 56%;
+    width: 46%;
     line-height: 124%;
 }
 .score_time_div .score_ans .content{
@@ -2061,14 +2072,14 @@ label.error{color: #FF0000; }
     /* height: 59px; */
     font-size: 22px;
     font-weight: 600;
-    padding: 21px 20px;
+    padding: 19px 10px;
     display: inline-block;
-    width: 42%;
+    width: 46%;
     line-height: 124%;
 }
 .score_time_div .score_time .content{
-    padding: 10px 10px 10px 22px;
-    font-size: 30px;
+    padding: 10px 6px 10px 9px;
+    font-size: 20px;
     font-weight: bold;
     display: inline-block;
     vertical-align: bottom;
@@ -2085,18 +2096,25 @@ label.error{color: #FF0000; }
     display: inline-block;
     border-radius: 10px;
     overflow: hidden;
-    margin: 0 45px 0 0;
+    margin: 0 45px 10px 0;
 }
 .score_time_div .score_smart .title{
     background: #0bc1b6;
     color: #fff;
     /* height: 59px; */
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 600;
-    padding: 8px 20px;
+    padding: 8px 10px;
     display: inline-block;
-    width: 56%;
+    width: 46%;
     line-height: 124%;
+}
+.active{
+    color: #f1693c;
+}
+.time_dis_counter{
+    display: inline-block;
+    margin: 0 10px 0 0;
 }
 .score_time_div .score_smart .title sup{
     top:0 !important;
@@ -2228,6 +2246,9 @@ only screen and (min-device-pixel-ratio: 1.5) {
     color: #fff;
     padding: 10px 45px 10px 0;
     font-weight: 500;
+}
+.top_tap_sub ul li a.active{
+    color: #f1693c;
 }
 .inner_page_content{
     padding:30px 0;
@@ -2381,4 +2402,192 @@ div.list-group a:nth-child(12){
 }
 .ans_template_text{
     font-size: 20px !important;
+}
+.total_usage_counter_div{
+    padding: 20px 10px;
+    display: block;
+    /* border-bottom: 1px solid #bbb8b8; */
+    margin: 0 0 20px 0;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.34);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.34);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.34);
+}
+.total_usage_counter_div .total_usage_list_box{
+    text-align: center;
+    border-right: 1px solid #ecebeb;
+}
+.total_usage_counter_div .col-lg-4:last-child .total_usage_list_box{
+    text-align: center;
+    border-right: none;
+}
+.total_usage_counter_div .total_usage_list_box .icon{
+    font-size: 30px;
+    margin: 0 0 20px 0;
+}
+.total_usage_counter_div .total_usage_list_box .normal_text{
+    color: #777777;
+    text-transform: uppercase;
+    font-size: 17px;
+    font-weight: 300;
+    margin: 10px 0;
+}
+.total_usage_counter_div .total_usage_list_box .score_text{
+    font-size: 28px;
+    font-weight: 500;
+    color: #676666;
+}
+.text_color_seegreen{
+    color: #0bc1b6;
+}
+.text_color_orange{
+    color: #f1693c;
+}
+.text_color_yellow{
+    color: #f7bc01;
+}
+.filter_box{
+    margin-bottom: 20px;
+}
+.filter_box form{
+
+}
+.filter_box form select{
+    display: inline-block;
+    width: 20%;
+    margin: 0 10px 0;
+}
+.score_table{
+    padding: 5px 5px;
+    background: #46b01e;
+    border-radius: 2px;
+}
+.table_head{
+    padding: 10px 5px;
+}
+.table_head_text{
+    color: #ffffff;
+    font-weight: 400;
+}
+.table_body{
+
+}
+.accordion {
+    background-color: #eee;
+    color: #2f2f2f;
+    cursor: pointer;
+    padding: 15px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+    border-bottom: 1px solid #d4d4d4;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.accordion.active, .accordion:hover {
+    background-color: #f1693c;
+    color: #2f2f2f;
+}
+.accordion.active{
+    background-color: #f1693c;
+    color: #2f2f2f;
+}
+
+.accordion:after {
+    content: '\f0d7';
+    font-size: 17px;
+    /*color: #f1693c!important;*/
+    float: right;
+    margin-left: 5px;
+}
+
+.accordion.active:after {
+    content: "\f0d8"; /* Unicode character for "minus" sign (-) */
+}
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+    padding: 10px 18px;
+    background-color: white;
+    display: none;
+    overflow: hidden;
+}
+.table_body_text{
+    font-size: 15px;
+    padding: 5px 0;
+}
+.skill-improvement{
+    /* padding-left: 30px;
+     left: calc(441px + 19%);
+     box-sizing: border-box;
+     width: 30%;*/
+}
+.improvement-container {
+    display: inline-block;
+    height: 22px;
+    margin: 0 40px 0 30px;
+    position: relative;
+    width: 170px
+}
+.improvement-container .progress-bar.green-bar {
+    background: #8cc713
+}
+
+.improvement-container .progress-bar.red-bar {
+    background: #cd5757
+}
+
+.improvement-container .score {
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    width: 30px;
+    z-index: 7;
+
+}
+
+.improvement-container .arrow.right-arrow {
+    background: transparent url('../images/right_arrow_head.svg') 0 0 no-repeat;
+    height: 20px;
+    width: 14px
+}
+
+.improvement-container .arrow.left-arrow {
+    background: transparent url('../images/left_arrow_head.svg') 0 0 no-repeat;
+    height: 20px;
+    width: 14px
+}
+.improvement-container .arrow {
+    height: 20px;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    -webkit-transform: translate(0, -50%);
+    width: 14px;
+    z-index: 6
+}
+.improvement-container .progress-bar {
+    border-radius: 3px;
+    height: 10px;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    -webkit-transform: translate(0, -50%);
+    z-index: 7
+}
+.improvement-container .bar {
+    background-color: #e1e1e1;
+    border-radius: 3px;
+    height: 10px;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    -webkit-transform: translate(0, -50%);
+    width: 100%;
+    z-index: 5
 }

@@ -302,4 +302,44 @@ class Dashboard extends CI_Controller {
 
 		$this->load->view('award_v',$data);
 	}
+	public function usage(){
+		isLogin();
+		$user_id=get_current_user_id();
+		$data['title']='Certificates';
+		$data['user_data'] = $this->user_model->get_userdata();
+		if(!empty($this->input->post('filter'))){
+			$conditions=array('user_id');
+		} else{
+			$data['certificates']=$this->user_model->get_ans_certificates_by_user($user_id);
+		}
+		$this->load->view('analytics_usage_v',$data);
+	}
+	public function scorechart($subject='2', $grade='1'){
+		isLogin();
+		$user_id=get_current_user_id();
+		$data['title']='Score';
+		$data['user_data'] = $this->user_model->get_userdata();
+		$this->load->view('analytics_score_chart_v',$data);
+	}
+	public function progress($subject='2', $grade='1'){
+		isLogin();
+		$user_id=get_current_user_id();
+		$data['title']='Progress';
+		$data['user_data'] = $this->user_model->get_userdata();
+		$this->load->view('analytics_progress_v',$data);
+	}
+	public function questionlog(){
+		isLogin();
+		$user_id=get_current_user_id();
+		$data['title']='Trouble Spots';
+		$data['user_data'] = $this->user_model->get_userdata();
+		$this->load->view('analytics_trouble_spots_v',$data);
+	}
+	public function troublespot(){
+		isLogin();
+		$user_id=get_current_user_id();
+		$data['title']='Trouble Spots';
+		$data['user_data'] = $this->user_model->get_userdata();
+		$this->load->view('analytics_trouble_spots_v',$data);
+	}
 }

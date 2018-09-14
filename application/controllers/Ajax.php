@@ -2,10 +2,12 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Ajax extends CI_Controller {
+
 	public function __construct(){
 
 		parent::__construct();
 		$this->load->model('ajax_model');
+
 
 	}
 	public function index()
@@ -111,7 +113,8 @@ class Ajax extends CI_Controller {
 			$questions=$this->ajax_model->get_questions($conditions,true);
 			$form_data_ans=unserialize($questions->form_data);
 			$questions_next=$this->ajax_model->get_questions_by_one(array('grade_id'=>$grade_id,'subject_id'=>$subject_id,'topic_id'=>$topic_id),false,$start);
-
+			$your_ans='';
+			$correct_ans='';
 			//print_r($questions_next); exit();
 			if($form_data['question_option']=='1'){
 				$qview_option='qView_option_'.$form_data['question_option'];
@@ -122,6 +125,8 @@ class Ajax extends CI_Controller {
 
 				}
 				$rtntext['html']=$html;
+				$your_ans=$form_data_ans['ans_textbox'];
+				$correct_ans=$form_data['qAns_box'];
 				if(strtolower($form_data_ans['ans_textbox'])==strtolower($form_data['qAns_box'])){
 					$this->session->set_userdata('score_ans',($form_data['answred']+1));
 					$this->session->set_userdata('score_smart',($form_data['score']+$questions->q_score));
@@ -146,6 +151,8 @@ class Ajax extends CI_Controller {
 					$html='';
 				}
 				$rtntext['html']=$html;
+				$your_ans=$form_data_ans['answer'];
+				$correct_ans=$form_data['img_answer'];
 				if(strtolower($form_data_ans['answer'])==strtolower($form_data['img_answer'])){
 					$this->session->set_userdata('score_ans',($form_data['answred']+1));
 					$this->session->set_userdata('score_smart',($form_data['score']+$questions->q_score));
@@ -168,6 +175,8 @@ class Ajax extends CI_Controller {
 				}
 				//echo $html; exit();
 				$rtntext['html']=$html;
+				$your_ans=$form_data_ans['ans_textbox'];
+				$correct_ans=$form_data['option_1'];
 				if(strtolower($form_data_ans['ans_textbox'])==strtolower($form_data['option_1'])){
 					$this->session->set_userdata('score_ans',($form_data['answred']+1));
 					$this->session->set_userdata('score_smart',($form_data['score']+$questions->q_score));
@@ -189,6 +198,8 @@ class Ajax extends CI_Controller {
 				}
 				//echo $html; exit();
 				$rtntext['html']=$html;
+				$your_ans=$form_data_ans['ans_textbox'];
+				$correct_ans=$form_data['option_1'];
 				if(strtolower($form_data_ans['ans_textbox'])==strtolower($form_data['option_1'])){
 					$this->session->set_userdata('score_ans',($form_data['answred']+1));
 					$this->session->set_userdata('score_smart',($form_data['score']+$questions->q_score));
@@ -211,6 +222,8 @@ class Ajax extends CI_Controller {
 				}
 				$rtntext['html']=$html;
 				$img_answer = explode(',', $form_data['img_answer']);
+				$your_ans=$form_data_ans['answer'];
+				$correct_ans=$img_answer;
 				if($form_data_ans['answer']==$img_answer){
 					$this->session->set_userdata('score_ans',($form_data['answred']+1));
 					$this->session->set_userdata('score_smart',($form_data['score']+$questions->q_score));
@@ -232,6 +245,8 @@ class Ajax extends CI_Controller {
 				}
 				//echo $html; exit();
 				$rtntext['html']=$html;
+				$your_ans=$form_data_ans['ans_textbox'];
+				$correct_ans=$form_data['option_1'];
 				if(strtolower($form_data_ans['ans_textbox'])==strtolower($form_data['option_1'])){
 					$this->session->set_userdata('score_ans',($form_data['answred']+1));
 					$this->session->set_userdata('score_smart',($form_data['score']+$questions->q_score));
@@ -252,6 +267,8 @@ class Ajax extends CI_Controller {
 					$html='';
 				}
 				$rtntext['html']=$html;
+				$your_ans=$form_data_ans['ans_textbox'];
+				$correct_ans=$form_data['qAns_box'];
 				if(strtolower($form_data_ans['ans_textbox'])==strtolower($form_data['qAns_box'])){
 					$this->session->set_userdata('score_ans',($form_data['answred']+1));
 					$this->session->set_userdata('score_smart',($form_data['score']+$questions->q_score));
@@ -274,6 +291,8 @@ class Ajax extends CI_Controller {
 				}
 				//echo $html; exit();
 				$rtntext['html']=$html;
+				$your_ans=$form_data_ans['ans_textbox'];
+				$correct_ans=$form_data['option_1'];
 				if(strtolower($form_data_ans['ans_textbox'])==strtolower($form_data['option_1'])){
 					$this->session->set_userdata('score_ans',($form_data['answred']+1));
 					$this->session->set_userdata('score_smart',($form_data['score']+$questions->q_score));
@@ -295,6 +314,8 @@ class Ajax extends CI_Controller {
 					$html='';
 				}
 				$rtntext['html']=$html;
+				$your_ans=$form_data_ans['answer'];
+				$correct_ans=$form_data['img_answer'];
 				if(strtolower($form_data_ans['answer'])==strtolower($form_data['img_answer'])){
 					$this->session->set_userdata('score_ans',($form_data['answred']+1));
 					$this->session->set_userdata('score_smart',($form_data['score']+$questions->q_score));
@@ -317,6 +338,8 @@ class Ajax extends CI_Controller {
 				}
 				//echo $html; exit();
 				$rtntext['html']=$html;
+				$your_ans=$form_data_ans['option_arrange'];
+				$correct_ans=$form_data['option_arrange'];
 				if($form_data_ans['option_arrange']==$form_data['option_arrange']){
 					$this->session->set_userdata('score_ans',($form_data['answred']+1));
 					$this->session->set_userdata('score_smart',($form_data['score']+$questions->q_score));
@@ -338,6 +361,8 @@ class Ajax extends CI_Controller {
 				}
 				//echo $html; exit();
 				$rtntext['html']=$html;
+				$your_ans=$form_data_ans['ans_textbox'];
+				$correct_ans=$form_data['option_1'];
 				if(strtolower($form_data_ans['ans_textbox'])==strtolower($form_data['option_1'])){
 					$this->session->set_userdata('score_ans',($form_data['answred']+1));
 					$this->session->set_userdata('score_smart',($form_data['score']+$questions->q_score));
@@ -360,6 +385,8 @@ class Ajax extends CI_Controller {
 				}
 				//echo $html; exit();
 				$rtntext['html']=$html;
+				$your_ans=$form_data_ans['ans_textbox'];
+				$correct_ans=$form_data['option_1'];
 				if(strtolower($form_data_ans['ans_textbox'])==strtolower($form_data['option_1'])){
 					$this->session->set_userdata('score_ans',($form_data['answred']+1));
 					$this->session->set_userdata('score_smart',($form_data['score']+$questions->q_score));
@@ -387,9 +414,12 @@ class Ajax extends CI_Controller {
 				$save_data['answer_type']=strtolower($rtntext['type']);
 				$save_data['ans_time']=$form_data['total_time_inSecond'];
 				$save_data['submit_date']=date('Y-m-d H:i:s');
+				$save_data['your_ans']=$your_ans;
+				$save_data['correct_ans']=$correct_ans;
 				$save_question=$this->ajax_model->save_student_qns_ans($save_data);
 			}
 			if(!empty($this->session->userdata('total_qScore'))){
+
 				$this->session->set_userdata('total_qScore',($this->session->userdata('total_qScore')+$questions->q_score));
 			} else{
 				$this->session->set_userdata('total_qScore',($questions->q_score));
@@ -408,6 +438,8 @@ class Ajax extends CI_Controller {
 			//$rtntext['tQ_attend']=$this->session->userdata('score_ans');
 			//$rtntext['tQ_score']=$this->session->userdata('score_smart');
 			$rtntext['total_time']=$form_data['total_time_inSecond'];
+			$rtntext['your_ans']=$your_ans;
+			$rtntext['correct_ans']=$correct_ans;
 			//print_r($form_data_ans); exit();
 			$rtntext['qRight_feedback']=(!empty($form_data_ans['qRight_feedback'])) ? $form_data_ans['qRight_feedback']:'Correct';
 			$rtntext['qWrong_feedback']=(!empty($form_data_ans['qWrong_feedback'])) ? $form_data_ans['qWrong_feedback']:$rtntext['content'];
@@ -485,8 +517,8 @@ class Ajax extends CI_Controller {
 		$rtntext.='<div class="row">';
 		$rtntext.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
                                 <div class="col-lg-5">
-                                    <div class="question_count">Question <i class="fas fa-volume-up"></i></div>
-                                    <div class="question_display">'.$data->question_name.'</div>
+                                    <div class="question_count">Question <a href="javacript:void(0);" id="play_question" data-question="<?php echo ($question->question_name); ?>"><i class="fas fa-volume-up"></i></a></div>
+                                            <div class="question_display"><?php echo $question->question_name; ?></div>
                                 </div>';
 		$rtntext.='<div class="col-lg-7">';
 		$form_serializedata=unserialize($data->form_data);
@@ -513,8 +545,8 @@ class Ajax extends CI_Controller {
 		$rtntext.='<div class="row">';
 		$rtntext.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
                                 <div class="col-lg-5">
-                                    <div class="question_count">Question <i class="fas fa-volume-up"></i></div>
-                                    <div class="question_display">'.$data->question_name.'</div>
+                                    <div class="question_count">Question <a href="javacript:void(0);" id="play_question" data-question="<?php echo ($question->question_name); ?>"><i class="fas fa-volume-up"></i></a></div>
+                                            <div class="question_display"><?php echo $question->question_name; ?></div>
                                 </div>';
 		$rtntext.='<div class="col-lg-7">';
 		$form_serializedata=unserialize($data->form_data);
@@ -559,8 +591,8 @@ class Ajax extends CI_Controller {
 		$rtntext.='<div class="row">';
 		$rtntext.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
                                 <div class="col-lg-5">
-                                    <div class="question_count">Question <i class="fas fa-volume-up"></i></div>
-                                    <div class="question_display">'.$data->question_name.'</div>
+                                    <div class="question_count">Question <a href="javacript:void(0);" id="play_question" data-question="'.$data->question_name.'"><i class="fas fa-volume-up"></i></a></div>
+                                            <div class="question_display">'.$data->question_name.'</div>
                                 </div>';
 		$rtntext.='<div class="col-lg-7">';
 		$form_serializedata=unserialize($data->form_data);
@@ -591,8 +623,8 @@ class Ajax extends CI_Controller {
 		$rtntext.='<div class="row">';
 		$rtntext.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
                                 <div class="col-lg-5">
-                                    <div class="question_count">Question <i class="fas fa-volume-up"></i></div>
-                                    <div class="question_display">'.$data->question_name.'</div>
+                                    <div class="question_count">Question <a href="javacript:void(0);" id="play_question" data-question="'.$data->question_name.'"><i class="fas fa-volume-up"></i></a></div>
+                                            <div class="question_display">'.$data->question_name.'</div>
                                 </div>';
 		$rtntext.='<div class="col-lg-7">';
 		$form_serializedata=unserialize($data->form_data);
@@ -623,8 +655,8 @@ class Ajax extends CI_Controller {
 		$rtntext.='<div class="row">';
 		$rtntext.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
                                 <div class="col-lg-5">
-                                    <div class="question_count">Question <i class="fas fa-volume-up"></i></div>
-                                    <div class="question_display">'.$data->question_name.'</div>
+                                    <div class="question_count">Question <a href="javacript:void(0);" id="play_question" data-question="'.$data->question_name.'"><i class="fas fa-volume-up"></i></a></div>
+                                            <div class="question_display">'.$data->question_name.'</div>
                                 </div>';
 		$rtntext.='<div class="col-lg-7">';
 		$form_serializedata=unserialize($data->form_data);
@@ -655,8 +687,8 @@ class Ajax extends CI_Controller {
 		$rtntext.='<div class="row">';
 		$rtntext.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
                                 <div class="col-lg-5">
-                                    <div class="question_count">Question <i class="fas fa-volume-up"></i></div>
-                                    <div class="question_display">'.$data->question_name.'</div>
+                                    <div class="question_count">Question <a href="javacript:void(0);" id="play_question" data-question="'.$data->question_name.'"><i class="fas fa-volume-up"></i></a></div>
+                                            <div class="question_display">'.$data->question_name.'</div>
                                 </div>';
 		$rtntext.='<div class="col-lg-7">';
 		$form_serializedata=unserialize($data->form_data);
@@ -701,8 +733,8 @@ class Ajax extends CI_Controller {
 		$rtntext.='<div class="row">';
 		$rtntext.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
                                 <div class="col-lg-5">
-                                    <div class="question_count">Question <i class="fas fa-volume-up"></i></div>
-                                    <div class="question_display">'.$data->question_name.'</div>
+                                    <div class="question_count">Question <a href="javacript:void(0);" id="play_question" data-question="'.$data->question_name.'"><i class="fas fa-volume-up"></i></a></div>
+                                            <div class="question_display">'.$data->question_name.'</div>
                                 </div>';
 		$rtntext.='<div class="col-lg-7">';
 		$form_serializedata=unserialize($data->form_data);
@@ -733,8 +765,8 @@ class Ajax extends CI_Controller {
 		$rtntext.='<div class="row">';
 		$rtntext.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
                                 <div class="col-lg-5">
-                                    <div class="question_count">Question <i class="fas fa-volume-up"></i></div>
-                                    <div class="question_display">'.$data->question_name.'</div>
+                                    <div class="question_count">Question <a href="javacript:void(0);" id="play_question" data-question="'.$data->question_name.'"><i class="fas fa-volume-up"></i></a></div>
+                                            <div class="question_display">'.$data->question_name.'</div>
                                 </div>';
 		$rtntext.='<div class="col-lg-7">';
 		$form_serializedata=unserialize($data->form_data);
@@ -758,8 +790,8 @@ class Ajax extends CI_Controller {
 		$rtntext.='<div class="row">';
 		$rtntext.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
                                 <div class="col-lg-5">
-                                    <div class="question_count">Question <i class="fas fa-volume-up"></i></div>
-                                    <div class="question_display">'.$data->question_name.'</div>
+                                    <div class="question_count">Question <a href="javacript:void(0);" id="play_question" data-question="'.$data->question_name.'"><i class="fas fa-volume-up"></i></a></div>
+                                            <div class="question_display">'.$data->question_name.'</div>
                                 </div>';
 		$rtntext.='<div class="col-lg-7">';
 		$form_serializedata=unserialize($data->form_data);
@@ -791,8 +823,8 @@ class Ajax extends CI_Controller {
 		$rtntext.='<div class="row">';
 		$rtntext.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
                                 <div class="col-lg-5">
-                                    <div class="question_count">Question <i class="fas fa-volume-up"></i></div>
-                                    <div class="question_display">'.$data->question_name.'</div>
+                                    <div class="question_count">Question <a href="javacript:void(0);" id="play_question" data-question="'.$data->question_name.'"><i class="fas fa-volume-up"></i></a></div>
+                                            <div class="question_display">'.$data->question_name.'</div>
                                 </div>';
 		$rtntext.='<div class="col-lg-7">';
 		$form_serializedata=unserialize($data->form_data);
@@ -823,8 +855,8 @@ class Ajax extends CI_Controller {
 		$rtntext.='<div class="row">';
 		$rtntext.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
                                 <div class="col-lg-5">
-                                    <div class="question_count">Question <i class="fas fa-volume-up"></i></div>
-                                    <div class="question_display">'.$data->question_name.'</div>
+                                    <div class="question_count">Question <a href="javacript:void(0);" id="play_question" data-question="'.$data->question_name.'"><i class="fas fa-volume-up"></i></a></div>
+                                            <div class="question_display">'.$data->question_name.'</div>
                                 </div>';
 		$rtntext.='<div class="col-lg-7">';
 		$form_serializedata=unserialize($data->form_data);
@@ -871,8 +903,8 @@ class Ajax extends CI_Controller {
 		$rtntext.='<div class="row">';
 		$rtntext.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
                                 <div class="col-lg-5">
-                                    <div class="question_count">Question <i class="fas fa-volume-up"></i></div>
-                                    <div class="question_display">'.$data->question_name.'</div>
+                                    <div class="question_count">Question <a href="javacript:void(0);" id="play_question" data-question="'.$data->question_name.'"><i class="fas fa-volume-up"></i></a></div>
+                                            <div class="question_display">'.$data->question_name.'</div>
                                 </div>';
 		$rtntext.='<div class="col-lg-7">';
 		$form_serializedata=unserialize($data->form_data);
@@ -896,6 +928,7 @@ class Ajax extends CI_Controller {
 
 		return $rtntext;
 	}
+
 	public function save_ans_certificate(){
 		//print_r($this->session->userdata('logged_in')); exit();
 		if($this->session->userdata('logged_in')=='1'){
