@@ -2686,10 +2686,14 @@ div.list-group a:nth-child(12){
     /*color: #f1693c!important;*/
     float: right;
     margin-left: 5px;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
 }
 
 .accordion.active:after {
     content: "\f0d8"; /* Unicode character for "minus" sign (-) */
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
 }
 /* Style the accordion panel. Note: hidden by default */
 .panel {
