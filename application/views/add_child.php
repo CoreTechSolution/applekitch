@@ -46,8 +46,9 @@ require_once 'templates/header.php';
 										<div class="form-group">
 											<div class="row">
 												<div class="col-lg-12">
-													<label for="email">Email <span class="required">*</span></label>
-													<input id="email" name="email" type="email"<?php if(isset($child_data)) { ?> value="<?=$child_data['email_address'];?>" disabled<?php } ?> class="form-control"/>
+													<label for="email">Username <span class="required">*</span></label>
+													<input id="email" name="email" type="text"<?php if(isset($child_data)) { ?>
+                                                        value="<?=$child_data['email_address'];?>" disabled<?php } ?> class="form-control"/>
 													<?php if(isset($child_data)) { ?>
 														<input type="hidden" name="child_id" value="<?=$child_data['id'];?>" />
 													<?php } ?>

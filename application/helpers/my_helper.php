@@ -254,3 +254,27 @@ function secondsToTime($seconds, $format='default') {
 
 	return $timeString;
 }
+function secondsToTime($seconds) {
+	$dtF = new \DateTime('@0');
+	$dtT = new \DateTime("@$seconds");
+	//return $dtF->diff($dtT)->format('%a days, %h hours, %i minutes and %s seconds');
+	$d = $dtF->diff($dtT)->format('%a');
+	$h = $dtF->diff($dtT)->format('%h');
+	$m = $dtF->diff($dtT)->format('%i');
+	$s = $dtF->diff($dtT)->format('%s');
+
+	$timeString = '';
+	if(!empty($d) || $d != '00') {
+		$timeString .= $d.' days';
+	}
+	if(!empty($h) || $h != '00') {
+		$timeString .= ' '.$h.' hours';
+	}
+	if(!empty($m) || $m != '00') {
+		$timeString .= ' '.$m.' minutes';
+	}
+	if(!empty($s) || $s != '00') {
+		$timeString .= ' '.$s.' seconds';
+	}
+	return $timeString;
+}

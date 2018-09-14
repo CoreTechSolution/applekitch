@@ -15,7 +15,7 @@ require_once 'templates/header.php';
 								<div class="box-title">Welcome to AppleKitch</div>
 								<div class="box-container">
 									<p>You are logged in as <strong><?php echo $user_data['fname']; ?> <?php echo $user_data['lname'] ?></strong>. If you are not <?php echo $user_data['fname']; ?> <?php echo $user_data['lname'] ?>, please <a href="<?= base_url('/login/user_logout'); ?>">click here</a> to logout.</p>
-                                    <?php if($user_data['membership_plan'] != 1) { ?>
+                                    <?php if($user_data['membership_plan'] != 1 && $user_data['role'] != 3) { ?>
                                         <div class="alert alert-success">
                                             <div style="float: left; margin: 7px 0;">You are on Free Membership Plan.</div> <a style="float: right;" class="btn btn-primary btn-primary-green" href="<?= base_url('/membership-plan'); ?>">Upgrade</a>
                                             <div style="clear: both;"></div>
