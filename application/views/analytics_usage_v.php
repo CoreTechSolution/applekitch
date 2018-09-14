@@ -105,11 +105,7 @@ require_once 'templates/footer.php';
         // Define the chart to be drawn.
         var data = google.visualization.arrayToDataTable([
             ['Day', 'Questions'],
-            ['02, Sep',  5],
-            ['03, Sep',  0],
-            ['04, Sep',  10],
-            ['05, Sep',  3],
-            ['08, Sep',  11]
+            <?php echo $jquery_day_text; ?>
         ]);
 
         var options = {title: '',
