@@ -35,7 +35,7 @@ require_once 'templates/header.php';
 						<div class="login_form">
 							<form id="login_form" action="<?php echo base_url('/login/login_user'); ?>" method="POST">
 								<div class="from-group">
-									<label>Email Address</label>
+									<label>Username or Email Address</label>
 									<input type="text" name="email_id" class="form-control">
 								</div>
 								<br>

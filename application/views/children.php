@@ -41,7 +41,7 @@ require_once 'templates/header.php';
 										<thead>
 										<tr>
 											<th>Name</th>
-											<th>Email</th>
+											<th>Username</th>
 											<th>Actions</th>
 										</tr>
 										</thead>

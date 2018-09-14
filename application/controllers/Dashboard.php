@@ -277,4 +277,29 @@ class Dashboard extends CI_Controller {
 		// Output the generated PDF (1 = download and 0 = preview)
 		$this->dompdf->stream("certificates.pdf", array("Attachment"=>0));
 	}
+	public function awards($subject = 'english', $grade = 'reception'){
+
+		$this->load->model('award_model');
+		isLogin();
+		$user_id=get_current_user_id();
+		$data['user_data'] = $this->user_model->get_userdata();
+		$data['subjects'] = $this->award_model->get_subjects();
+		$data['grades'] = $this->award_model->get_grades();
+		$data['subject_var'] = $this->award_model->get_subject_by_slug($subject);
+		$data['grade_var'] = $this->award_model->get_grade_by_slug($grade);
+		$data['title'] = $data['grade_var']->name.' '.$data['subject_var']->name.' Awards';
+
+		$data['question_ans'] = $this->award_model->get_question_ans_by_sub_grade($data['subject_var']->id, $data['grade_var']->id, get_current_user_id());
+		$data['ans_topic'] = $this->award_model->get_ans_topic_by_sub_grade($data['subject_var']->id, $data['grade_var']->id, get_current_user_id());
+
+
+		if(!empty($this->input->post('filter'))){
+			$conditions=array('user_id');
+		} else{
+			$data['certificates']=$this->user_model->get_ans_certificates_by_user($user_id);
+		}
+
+
+		$this->load->view('award_v',$data);
+	}
 }
