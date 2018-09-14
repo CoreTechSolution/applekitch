@@ -2417,6 +2417,9 @@ div.list-group a:nth-child(12){
     padding: 10px 40px;
     border-right: 1px solid #cccccc;
 }
+.award_subject ul li.active a {
+    text-decoration: underline;
+}
 .award_subject ul li a {
     color: #e84e37;
 }
@@ -2442,6 +2445,9 @@ div.list-group a:nth-child(12){
     font-size: 12px;
     border-right: 1px solid #074a6a;
     line-height: 80%;
+}
+.award_grade ul li.active a {
+    text-decoration: underline;
 }
 .award_grade ul li a {
     color: #074a6a;
