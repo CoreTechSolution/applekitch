@@ -313,39 +313,30 @@ class Dashboard extends CI_Controller {
 			$data['certificates']=$this->user_model->get_ans_certificates_by_user($user_id);
 		}
 		$data['user_details']=$this->user_model->get_questions_ans(array('user_id'=>get_current_user_id()),false,'submit_date','asc');
-		//echo $this->db->last_query(); exit();
 		$total_time=0;
 		$jquery_day_text='';
-		$date=date('Y-m-d');
-		$count=0;
+		$jquery_day_array=array();
 		foreach ($data['user_details'] as $userdetails){
 			$total_time=$total_time+$userdetails->ans_time;
-			//$rcv_date=strtotime($userdetails->submit_date);
-			$rcv_date=dateFormat('Y-m-d',$userdetails->submit_date);
-			if($date==$rcv_date){
-				$count=$count+1;
+			 $rcv_date=dateFormat('Y-m-d',$userdetails->submit_date);
+			if(!empty($jquery_day_array[$rcv_date])){
+				$jquery_day_array[$rcv_date]=1+$jquery_day_array[$rcv_date];
 			} else{
-				if($count!=0){
-					$count=0;
-					$count=$count+1;
-					$jquery_day_text.='['.dateFormat('d M',$date).',  '.$count.'],';
-				} else{
-					$count=0;
-					$count=$count+1;
-				}
-
+				$jquery_day_array[$rcv_date]=1;
 			}
-			$date=$rcv_date;
+
 		}
-		print_r($jquery_day_text); exit;
+		//print_r($jquery_day_array); exit();
 		$data['user_skill_details']=$this->user_model->get_ans_topic(array('user_id'=>get_current_user_id()),false);
-		//print_r(count($data['user_details'])    ); exit();
 		$data['total_q_ans']=count($data['user_details']);
 		$data['total_time_spent']=secondsToTime($total_time, 'short');
 		$data['total_completed_topic']=count($data['user_skill_details']);
 		// count day wise question
-
-
+		foreach ($jquery_day_array as $key=>$value){
+			$jquery_day_text.="['".dateFormat('d M',$key)."',  ".$value."],";
+		}
+		//print_r($jquery_day_text); exit();
+		$data['jquery_day_text']=$jquery_day_text;
 		$this->load->view('analytics_usage_v',$data);
 	}
 	public function scorechart($subject='2', $grade='1'){
