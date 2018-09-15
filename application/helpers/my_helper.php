@@ -214,27 +214,43 @@ function get_table_data($fields=array(), $table, $conditions=array()){
 function dateFormat($format='d-m-Y', $givenDate=null){
 	return date($format, strtotime($givenDate));
 }
-function secondsToTime($seconds) {
+function secondsToTime($seconds, $format='default') {
 	$dtF = new \DateTime('@0');
 	$dtT = new \DateTime("@$seconds");
-	//return $dtF->diff($dtT)->format('%a days, %h hours, %i minutes and %s seconds');
+//return $dtF->diff($dtT)->format('%a days, %h hours, %i minutes and %s seconds');
 	$d = $dtF->diff($dtT)->format('%a');
 	$h = $dtF->diff($dtT)->format('%h');
 	$m = $dtF->diff($dtT)->format('%i');
 	$s = $dtF->diff($dtT)->format('%s');
 
 	$timeString = '';
-	if(!empty($d) || $d != '00') {
-		$timeString .= $d.' days';
+	if($format=='default'){
+		if(!empty($d) || $d != '00') {
+			$timeString .= $d.' days';
+		}
+		if(!empty($h) || $h != '00') {
+			$timeString .= ' '.$h.' hours';
+		}
+		if(!empty($m) || $m != '00') {
+			$timeString .= ' '.$m.' minutes';
+		}
+		if(!empty($s) || $s != '00') {
+			$timeString .= ' '.$s.' seconds';
+		}
+	} elseif($format=='short'){
+		if(!empty($d) || $d != '00') {
+			$timeString .= $d.' d';
+		}
+		if(!empty($h) || $h != '00') {
+			$timeString .= ' '.$h.' hr';
+		}
+		if(!empty($m) || $m != '00') {
+			$timeString .= ' '.$m.' min';
+		}
+		/*if(!empty($s) || $s != '00') {
+			$timeString .= ' '.$s.' sec';
+		}*/
 	}
-	if(!empty($h) || $h != '00') {
-		$timeString .= ' '.$h.' hours';
-	}
-	if(!empty($m) || $m != '00') {
-		$timeString .= ' '.$m.' minutes';
-	}
-	if(!empty($s) || $s != '00') {
-		$timeString .= ' '.$s.' seconds';
-	}
+
 	return $timeString;
 }

@@ -30,3 +30,10 @@
 		<li><a href="<?php echo base_url('/login/user_logout'); ?>"><i class="fa fa-sign-out-alt fa-fw" aria-hidden="true"></i> Logout</a></li>
 	</ul>
 </div>
+<script>
+    jQuery('.logged-in-usermenus ul > li.dropdown > a').on('click', function (e) {
+        e.preventDefault();
+        var this_element = jQuery(this);
+        this_element.parent().find('ul').slideToggle();
+    });
+</script>
