@@ -497,7 +497,7 @@ jQuery(document).ready(function(){
         animation: 'fade',
         delay: 200,
         theme: 'tooltipster-punk',
-        trigger: 'click'
+        trigger: 'clickdropdown'
     });
 
     jQuery('.tooltip_award').tooltipster({
@@ -557,4 +557,11 @@ jQuery('.accordion').on('click', function (e) {
     var this_element=jQuery(this);
     this_element.toggleClass('active','');
     this_element.next('div.panel').slideToggle();
+});
+
+jQuery('.logged-in-usermenus ul li.dropdown > a').on('click', function(e) {
+   var thisClass = jQuery(this);
+    thisClass.parent().toggleClass('opened');
+   e.preventDefault();
+   thisClass.parent().find('ul.dropdown_list').slideToggle();
 });
