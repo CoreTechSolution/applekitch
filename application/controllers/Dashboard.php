@@ -351,6 +351,47 @@ class Dashboard extends CI_Controller {
 		$user_id=get_current_user_id();
 		$data['title']='Progress';
 		$data['user_data'] = $this->user_model->get_userdata();
+		$data['search_url']='progress';
+		$conditions="user_id='".get_current_user_id()."'";
+		if(!empty($_POST['subject_id'])){
+			$conditions.=" AND subject_id='".$_POST['subject_id']."'";
+		}
+		if(!empty($_POST['grade_id'])){
+			$conditions.=" AND grade_id='".$_POST['grade_id']."'";
+		}
+		$data['user_details']=$this->user_model->get_questions_ans($conditions,false,'category_id','asc');
+		//echo $this->db->last_query(); exit;
+		foreach ($data['user_details'] as $userdetails){
+			//$total_time=$total_time+$userdetails->ans_time;
+			//$rcv_date=dateFormat('Y-m-d',$userdetails->submit_date);
+			if(!empty($jquery_day_array[$userdetails->category_id])){ //// if category id array key present
+				if(!empty($jquery_day_array[$userdetails->category_id][$userdetails->topic_id])) { //// if topic id array key present
+					$jquery_day_array[ $userdetails->category_id ][$userdetails->topic_id]['total_time']=( $jquery_day_array[ $userdetails->category_id ][ $userdetails->topic_id ]['total_time'] ) + $userdetails->ans_time;
+					$jquery_day_array[ $userdetails->category_id ][$userdetails->topic_id]['total_ans']=( $jquery_day_array[ $userdetails->category_id ][ $userdetails->topic_id ]['total_ans'] ) + 1;
+					if($userdetails->answer_type=='true'){
+						$jquery_day_array[ $userdetails->category_id ][$userdetails->topic_id]['total_ans_right']=( $jquery_day_array[ $userdetails->category_id ][ $userdetails->topic_id ]['total_ans_right'] ) + 1;
+					}
+				}else {
+					$jquery_day_array[$userdetails->category_id][$userdetails->topic_id]['total_time']=$userdetails->ans_time;
+					$jquery_day_array[$userdetails->category_id][$userdetails->topic_id]['total_ans']=1;
+					if($userdetails->answer_type=='true'){
+						$jquery_day_array[ $userdetails->category_id ][$userdetails->topic_id]['total_ans_right']= 1;
+					}
+				}
+			} else{ //// if category id array key not present
+				$jquery_day_array[$userdetails->category_id][$userdetails->topic_id]['total_time']=$userdetails->ans_time;
+				$jquery_day_array[$userdetails->category_id][$userdetails->topic_id]['total_ans']=1;
+				if($userdetails->answer_type=='true'){
+					$jquery_day_array[$userdetails->category_id][$userdetails->topic_id]['total_ans_right']= 1;
+				}
+			}
+
+		}
+		if(!empty($jquery_day_array)){
+			$data['jquery_day_array']=$jquery_day_array;
+		}
+
+		//print_r($jquery_day_array); exit;
 		$this->load->view('analytics_progress_v',$data);
 	}
 	public function questionlog(){
