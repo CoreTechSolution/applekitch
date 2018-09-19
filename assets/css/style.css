@@ -2790,3 +2790,52 @@ div.list-group a:nth-child(12){
     width: 100%;
     z-index: 5
 }
+.award_wrap {
+    background: #44bd79;
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 15px;
+}
+.award_wrap p {
+    font-size: 14px;
+}
+.award_squares {
+    background: #ffffff;
+    padding: 20px;
+    clear: both;
+}
+.award_square_wrap {
+    width: 25%;
+    float: left;
+    background: transparent;
+}
+.award_square {
+    background: #e5e3e3;
+    padding: 15px;
+    margin: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+.award_square img {
+    height: 50px;
+    width: auto;
+}
+.award_info {
+    background: #feefd8;
+    padding: 20px;
+    height: 92.5%;
+}
+.award_info h4 {
+    font-size: 16px;
+    font-weight: 600;
+}
+.award_info_header {
+    background: #e84e37;
+    padding: 20px;
+}
+.award_info_header h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff38c;
+    margin-bottom: 0;
+}

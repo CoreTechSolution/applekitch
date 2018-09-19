@@ -18,7 +18,7 @@
         <li><a href="<?php echo base_url('/certificates'); ?>"><i class="fa fa-certificate fa-fw" aria-hidden="true"></i> Certificates center</a></li>
         <li><a href="<?php echo base_url('/awards'); ?>"><i class="fa fa-trophy fa-fw" aria-hidden="true"></i> Awards</a></li>
 
-        <li class="dropdown"><a href="javacript:void(0);"><i class="fa fa-chart-pie fa-fw" aria-hidden="true"></i> Analytics &nbsp;<i class="fa fa-caret-down"></i></a>
+        <li class="dropdown"><a href=""><i class="fa fa-chart-pie fa-fw" aria-hidden="true"></i> Analytics &nbsp;<i class="fa fa-caret-down"></i></a>
             <ul class="dropdown_list">
                 <li><a href="<?php echo base_url('dashboard/usage'); ?>">Usage</a></li>
                 <li><a href="<?php echo base_url('dashboard/troublespot'); ?>">Trouble Spots</a></li>
