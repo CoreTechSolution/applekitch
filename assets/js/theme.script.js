@@ -559,9 +559,10 @@ jQuery('.accordion').on('click', function (e) {
     this_element.next('div.panel').slideToggle();
 });
 
+/*
 jQuery('.logged-in-usermenus ul li.dropdown > a').on('click', function(e) {
    var thisClass = jQuery(this);
     thisClass.parent().toggleClass('opened');
    e.preventDefault();
    thisClass.parent().find('ul.dropdown_list').slideToggle();
-});
+});*/
