@@ -45,87 +45,28 @@ require_once 'templates/header.php';
 										</div>
 									</div>
 									<div class="table_body">
-										<button class="accordion">Count to 3</button>
-										<div class="panel">
-											<div class="row">
-												<div class="col-lg-4"><div class="table_body_text">A.1 Learn to count - up to 3</div></div>
-												<div class="col-lg-2"><div class="table_body_text">84</div></div>
-												<div class="col-lg-2"><div class="table_body_text">13</div></div>
-												<div class="col-lg-2"><div class="table_body_text">3 min</div></div>
-												<div class="col-lg-2"><div class="table_body_text">10th Sep, 2018</div></div>
-											</div>
-											<div class="row">
-												<div class="col-lg-4"><div class="table_body_text">A.1 Learn to count - up to 3</div></div>
-												<div class="col-lg-2"><div class="table_body_text">84</div></div>
-												<div class="col-lg-2"><div class="table_body_text">13</div></div>
-												<div class="col-lg-2"><div class="table_body_text">3 min</div></div>
-												<div class="col-lg-2"><div class="table_body_text">10th Sep, 2018</div></div>
-											</div>
-											<div class="row">
-												<div class="col-lg-4"><div class="table_body_text">A.1 Learn to count - up to 3</div></div>
-												<div class="col-lg-2"><div class="table_body_text">84</div></div>
-												<div class="col-lg-2"><div class="table_body_text">13</div></div>
-												<div class="col-lg-2"><div class="table_body_text">3 min</div></div>
-												<div class="col-lg-2"><div class="table_body_text">10th Sep, 2018</div></div>
-											</div>
-											<div class="row">
-												<div class="col-lg-4"><div class="table_body_text">A.1 Learn to count - up to 3</div></div>
-												<div class="col-lg-2"><div class="table_body_text">84</div></div>
-												<div class="col-lg-2"><div class="table_body_text">13</div></div>
-												<div class="col-lg-2"><div class="table_body_text">3 min</div></div>
-												<div class="col-lg-2"><div class="table_body_text">10th Sep, 2018</div></div>
-											</div>
-										</div>
+										<?php //print_r($jquery_day_array); exit(); ?>
+										<?php if(!empty($jquery_day_array)){ ?>
+											<?php foreach ($jquery_day_array as $key_cat=>$value_cat){ ?>
+                                                <button class="accordion"><?php echo get_returnfield('category','id', $key_cat,'name'); ?> </button>
+                                                <div class="panel">
+													<?php foreach($value_cat as $key_top=>$value_top) { ?>
+                                                        <div class="row">
+                                                            <div class="col-lg-4"><div class="table_body_text"><?php echo get_returnfield('topics','topic_id', $key_top,'topic_name'); ?></div></div>
+                                                            <?php if(empty($value_top['total_ans_right'])){
+	                                                            $value_top['total_ans_right']=0;
+                                                            } ?>
+	                                                        <?php $persantage=round(($value_top['total_ans_right']/$value_top['total_ans'])*100); ?>
+                                                            <div class="col-lg-2"><div class="table_body_text"><?php echo $persantage; ?></div></div>
+                                                            <div class="col-lg-2"><div class="table_body_text"><?php echo $value_top['total_ans']; ?></div></div>
+                                                            <div class="col-lg-2"><div class="table_body_text"><?php echo $value_top['total_time']; ?> min</div></div>
+                                                            <div class="col-lg-2"><div class="table_body_text"><?php echo dateFormat('m-d-Y',$value_top['last_date']); ?></div></div>
+                                                        </div>
+													<?php } ?>
+                                                </div>
+											<?php } ?>
+										<?php } else { echo '<h3>No data found!</h3>'; } ?>
 
-										<button class="accordion">Count to 5</button>
-										<div class="panel">
-											<div class="row">
-												<div class="col-lg-4"><div class="table_body_text">A.1 Learn to count - up to 3</div></div>
-												<div class="col-lg-2"><div class="table_body_text">84</div></div>
-												<div class="col-lg-2"><div class="table_body_text">13</div></div>
-												<div class="col-lg-2"><div class="table_body_text">3 min</div></div>
-												<div class="col-lg-2"><div class="table_body_text">10th Sep, 2018</div></div>
-											</div>
-											<div class="row">
-												<div class="col-lg-4"><div class="table_body_text">A.1 Learn to count - up to 3</div></div>
-												<div class="col-lg-2"><div class="table_body_text">84</div></div>
-												<div class="col-lg-2"><div class="table_body_text">13</div></div>
-												<div class="col-lg-2"><div class="table_body_text">3 min</div></div>
-												<div class="col-lg-2"><div class="table_body_text">10th Sep, 2018</div></div>
-											</div>
-											<div class="row">
-												<div class="col-lg-4"><div class="table_body_text">A.1 Learn to count - up to 3</div></div>
-												<div class="col-lg-2"><div class="table_body_text">84</div></div>
-												<div class="col-lg-2"><div class="table_body_text">13</div></div>
-												<div class="col-lg-2"><div class="table_body_text">3 min</div></div>
-												<div class="col-lg-2"><div class="table_body_text">10th Sep, 2018</div></div>
-											</div>
-										</div>
-
-										<button class="accordion">Count to 10</button>
-										<div class="panel">
-											<div class="row">
-												<div class="col-lg-4"><div class="table_body_text">A.1 Learn to count - up to 3</div></div>
-												<div class="col-lg-2"><div class="table_body_text">84</div></div>
-												<div class="col-lg-2"><div class="table_body_text">13</div></div>
-												<div class="col-lg-2"><div class="table_body_text">3 min</div></div>
-												<div class="col-lg-2"><div class="table_body_text">10th Sep, 2018</div></div>
-											</div>
-											<div class="row">
-												<div class="col-lg-4"><div class="table_body_text">A.1 Learn to count - up to 3</div></div>
-												<div class="col-lg-2"><div class="table_body_text">84</div></div>
-												<div class="col-lg-2"><div class="table_body_text">13</div></div>
-												<div class="col-lg-2"><div class="table_body_text">3 min</div></div>
-												<div class="col-lg-2"><div class="table_body_text">10th Sep, 2018</div></div>
-											</div>
-											<div class="row">
-												<div class="col-lg-4"><div class="table_body_text">A.1 Learn to count - up to 3</div></div>
-												<div class="col-lg-2"><div class="table_body_text">84</div></div>
-												<div class="col-lg-2"><div class="table_body_text">13</div></div>
-												<div class="col-lg-2"><div class="table_body_text">3 min</div></div>
-												<div class="col-lg-2"><div class="table_body_text">10th Sep, 2018</div></div>
-											</div>
-										</div>
 									</div>
 
 								</div>
