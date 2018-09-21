@@ -288,20 +288,35 @@ class Dashboard extends CI_Controller {
 		// Output the generated PDF (1 = download and 0 = preview)
 		$this->dompdf->stream("certificates.pdf", array("Attachment"=>0));
 	}
+	public function childaward() {
+		isLogin();
+		$user_id = $this->session->userdata('user_id');
+		$data['title']='Children';
+		$data['user_data']=$this->user_model->get_userdata();
+		$data['child_data']=$this->user_model->get_child_data($user_id);
+		//echo $this->db->last_query(); exit();
+		$this->load->view( 'children_award_v', $data );
+
+	}
 	public function awards($subject = 'english', $grade = 'reception'){
 
 		$this->load->model('award_model');
 		isLogin();
-		$user_id=get_current_user_id();
-		$data['user_data'] = $this->user_model->get_userdata();
+		if(!empty($_GET['child_id'])) {
+			$user_id = $_GET['child_id'];
+			$data['user_data'] = $this->user_model->get_userdata_by_id($user_id);
+		} else {
+			$user_id = get_current_user_id();
+			$data['user_data'] = $this->user_model->get_userdata();
+		}
 		$data['subjects'] = $this->award_model->get_subjects();
 		$data['grades'] = $this->award_model->get_grades();
 		$data['subject_var'] = $this->award_model->get_subject_by_slug($subject);
 		$data['grade_var'] = $this->award_model->get_grade_by_slug($grade);
 		$data['title'] = $data['grade_var']->name.' '.$data['subject_var']->name.' Awards';
 
-		$data['question_ans'] = $this->award_model->get_question_ans_by_sub_grade($data['subject_var']->id, $data['grade_var']->id, get_current_user_id());
-		$data['ans_topic'] = $this->award_model->get_ans_topic_by_sub_grade($data['subject_var']->id, $data['grade_var']->id, get_current_user_id());
+		$data['question_ans'] = $this->award_model->get_question_ans_by_sub_grade($data['subject_var']->id, $data['grade_var']->id, $user_id);
+		$data['ans_topic'] = $this->award_model->get_ans_topic_by_sub_grade($data['subject_var']->id, $data['grade_var']->id, $user_id);
 
 
 		if(!empty($this->input->post('filter'))){
