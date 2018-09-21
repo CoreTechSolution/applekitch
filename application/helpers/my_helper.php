@@ -46,6 +46,7 @@ function isLogin($param=''){
 		if($logged_in == 1) {
 
 		} else{
+			$this->session->set_flashdata('error_msg', 'Please login first');
 			redirect( $param.'/login' );
 		}
 	} else{
@@ -53,6 +54,7 @@ function isLogin($param=''){
 		if($logged_in == '1') {
 
 		} else{
+			$this->session->set_flashdata('error_msg', 'Please login first');
 			redirect( 'login' );
 		}
 	}
@@ -68,6 +70,15 @@ function loginCheck($user_type='user'){
 	}
 	if($admin_logged_in == 1) {
 		return true;
+	} else{
+		return false;
+	}
+}
+function isUserType($param){
+	$CI = & get_instance();
+	if(strtolower($param)==strtolower($CI->session->userdata('user_type'))){
+		return true;
+
 	} else{
 		return false;
 	}

@@ -242,10 +242,20 @@ class Dashboard extends CI_Controller {
 			}
 		}
 	}
+	public function childcertificate() {
+		isLogin();
+		$user_id = $this->session->userdata('user_id');
+		$data['title']='Children';
+		$data['user_data']=$this->user_model->get_userdata();
+		$data['child_data']=$this->user_model->get_child_data($user_id);
+		//echo $this->db->last_query(); exit();
+		$this->load->view( 'children_certificate_v', $data );
+
+	}
 	public function certificates(){
 
 		isLogin();
-		$user_id=get_current_user_id();
+		$user_id=(!empty($_GET['child_id']))?$_GET['child_id']:get_current_user_id();
 		$data['title']='Certificates';
 		$data['user_data'] = $this->user_model->get_userdata();
 		if(!empty($this->input->post('filter'))){
@@ -267,6 +277,7 @@ class Dashboard extends CI_Controller {
 		$this->load->library('pdf');
 		// Load HTML content
 		$this->dompdf->loadHtml($html);
+		//echo $html; exit();
 
 		// (Optional) Setup the paper size and orientation
 		$this->dompdf->setPaper('A4', 'landscape');
