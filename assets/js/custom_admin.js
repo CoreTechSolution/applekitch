@@ -170,7 +170,7 @@ jQuery(document).ready(function() {
                         }
                         jQuery('#loading').hide();
                         jQuery('#add_row').show();
-                        this_element.text('Update');
+                        this_element.hide();
                     }
                 });
             } else {
