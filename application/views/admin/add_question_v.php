@@ -27,7 +27,7 @@ require_once 'templates/header.php';
 						<div class="row">
 							<div class="col-md-6">
 								<label>Country: </label>
-								<?php echo form_dropdown('country',form_dropdown_cr(array('id','name'),'country'),'',array('class'=>'form-control','id'=>'country_id','required'=>true)); ?>
+								<?php echo form_dropdown('country',form_dropdown_cr(array('id','name'),'country'),'251',array('class'=>'form-control','id'=>'country_id','required'=>true)); ?>
 							</div>
 							<div class="col-md-6">
 								<label>Subject: </label>
@@ -174,4 +174,3 @@ require_once 'templates/header.php';
 	</script>
 <?php
 require_once 'templates/footer.php';
-?>

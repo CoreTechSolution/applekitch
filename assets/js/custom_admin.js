@@ -137,7 +137,7 @@ jQuery(document).ready(function() {
     });
     jQuery('body').on('click','.addQ_save',function(e){
        e.preventDefault();
-        if(jQuery('#country_id').val()!='0' && jQuery('#subject_id').val()!='0' && jQuery('#grade_id').val()!='0' && jQuery('#category_id').val()!='0' && jQuery('#topic_id').val()!='0') {
+        if(jQuery('#country_id').val()!='0' && jQuery('#subject_id').val()!='0' && jQuery('#grade_id').val()!='0' && jQuery('#category_id').val()!='0' && jQuery('#topic_id').val()!='0' && jQuery('#q_score').val()!='' && jQuery('#q_score').val()!='') {
             if(jQuery('#q_score').val()!='') {
                 jQuery('#loading').show();
                 var this_element = jQuery(this);

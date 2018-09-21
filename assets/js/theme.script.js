@@ -132,7 +132,7 @@ jQuery(document).ready(function(){
                     jQuery('#ans_label').removeClass();
                     jQuery('#ans_label').addClass('wAns');
                     //alert(data['qWrong_feedback']);
-                    var gotIt='<br><br><br><a href="" class="btn btn-primary btn-sm got_it">Got it</a>'
+                    var gotIt='<br><br><br><a href="" class="btn btn-primary btn-sm got_it">Got it</a>';
                     jQuery('#ans_label').html('<i class="fa fa-times" aria-hidden="true"></i> '+data['qWrong_feedback']+gotIt);
                     jQuery('.score_ans').find('.content').html(data['score_ans']);
                     jQuery('.score_smart').find('.content').html(data['score_smart']);
