@@ -8,7 +8,7 @@ require_once 'templates/header.php';
 				<?php if(!empty($subjects)) { ?>
 				<ul>
 					<?php foreach($subjects as $subject) { ?>
-					<li<?php if($subject->id == $subject_var->id) { echo ' class="active"'; } ?>><a href="<?php echo base_url('/awards/'.$subject->slug.'/'.$grade_var->slug); ?>"><?php echo $subject->name;
+					<li<?php if($subject->id == $subject_var->id) { echo ' class="active"'; } ?>><a href="<?php echo base_url('/awards/'.$subject->slug.'/'.$grade_var->slug); ?>/?child_id=<?php echo $_GET['child_id']; ?>"><?php echo $subject->name;
 					?> Awards</a></li>
 					<?php } ?>
 				</ul>
@@ -24,12 +24,7 @@ require_once 'templates/header.php';
 				<?php if(!empty($grades)) { ?>
 				<ul>
 					<?php foreach($grades as $grade) { ?>
-					<li<?php if($grade->id == $grade_var->id) { echo ' class="active"'; } ?>><a href="<?php echo base_url('/awards/'
-                                                                                                                .$subject_var->slug.'/'
-                                                                                                   .$grade->slug); ?>"><?php
-                        echo
-                        $grade->name;
-					?></a></li>
+					<li<?php if($grade->id == $grade_var->id) { echo ' class="active"'; } ?>><a href="<?php echo base_url('/awards/'.$subject_var->slug.'/'.$grade->slug); ?>/?child_id=<?php echo $_GET['child_id']; ?>"><?php echo $grade->name; ?></a></li>
 					<?php } ?>
 				</ul>
 				<?php } ?>
