@@ -15,7 +15,12 @@
 		<li><a href="<?php echo base_url('/membership-plan'); ?>"><i class="fa fa-bookmark fa-fw" aria-hidden="true"></i> Membership Plans</a></li>
 		<li><a href="<?php echo base_url('/children'); ?>"><i class="fa fa-child" aria-hidden="true"></i> Children</a></li>
         <?php } ?>
-        <li><a href="<?php echo base_url('/certificates'); ?>"><i class="fa fa-certificate fa-fw" aria-hidden="true"></i> Certificates center</a></li>
+        <?php if(isUserType('Parent')==true || isUserType('Teacher')==true || isUserType('School')==true){ ?>
+            <li><a href="<?php echo base_url('/childcertificate'); ?>"><i class="fa fa-certificate fa-fw" aria-hidden="true"></i> Certificates center</a></li>
+        <?php } elseif (isUserType('Student')) { ?>
+            <li><a href="<?php echo base_url('/certificates'); ?>"><i class="fa fa-certificate fa-fw" aria-hidden="true"></i> Certificates center</a></li>
+        <?php } ?>
+
         <li><a href="<?php echo base_url('/awards'); ?>"><i class="fa fa-trophy fa-fw" aria-hidden="true"></i> Awards</a></li>
 
         <li class="dropdown"><a href=""><i class="fa fa-chart-pie fa-fw" aria-hidden="true"></i> Analytics &nbsp;<i class="fa fa-caret-down"></i></a>
