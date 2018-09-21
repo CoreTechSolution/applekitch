@@ -28,7 +28,7 @@ class Pdf
 	public function __construct(){
 
 		// include autoloader
-		require_once FCPATH.'/assets/dompdf/autoload.inc.php';
+		require_once FCPATH.'/assets/dompdf2/vendor/autoload.php';
 		$options = new Options();
 		$options->set('defaultFont', 'Courier');
 		$options->set('isRemoteEnabled', TRUE);

@@ -343,6 +343,7 @@ class Dashboard extends CI_Controller {
 		isLogin();
 		$user_id=get_current_user_id();
 		$data['title']='Score';
+		$data['search_url']='scorechart';
 		$data['user_data'] = $this->user_model->get_userdata();
 
 		$conditions="user_id='".get_current_user_id()."'";
