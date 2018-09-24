@@ -46,7 +46,7 @@ function isLogin($param=''){
 		if($logged_in == 1) {
 
 		} else{
-			$this->session->set_flashdata('error_msg', 'Please login first');
+			$CI->session->set_flashdata('error_msg', 'Please login first');
 			redirect( $param.'/login' );
 		}
 	} else{
@@ -54,7 +54,7 @@ function isLogin($param=''){
 		if($logged_in == '1') {
 
 		} else{
-			$this->session->set_flashdata('error_msg', 'Please login first');
+			$CI->session->set_flashdata('error_msg', 'Please login first');
 			redirect( 'login' );
 		}
 	}

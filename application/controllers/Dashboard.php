@@ -468,9 +468,20 @@ class Dashboard extends CI_Controller {
 	public function questionlog(){
 		isLogin();
 		$user_id=get_current_user_id();
-		$data['title']='Trouble Spots';
+		$data['title']='Question Logs';
+        $data['search_url']='questionlog';
 		$data['user_data'] = $this->user_model->get_userdata();
-		$this->load->view('analytics_trouble_spots_v',$data);
+        $conditions="user_id='".get_current_user_id()."'";
+        if(!empty($_POST['subject_id'])){
+            $conditions.=" AND subject_id='".$_POST['subject_id']."'";
+        }
+        if(!empty($_POST['grade_id'])){
+            $conditions.=" AND grade_id='".$_POST['grade_id']."'";
+        }
+        $data['user_details']=$this->user_model->get_questions_ans($conditions,false,'category_id','asc');
+        //print_r($data['user_details']); exit();
+
+		$this->load->view('analytics_question_log_v',$data);
 	}
 	public function troublespot(){
 		isLogin();
