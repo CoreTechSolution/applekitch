@@ -11,6 +11,23 @@ $this->load->view('templates/header');
             jQuery("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
             jQuery("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
         });
+
+        var grade_id = <?php echo $grade_id; ?>;
+        //var tabid = jQuery("div.bhoechie-tab-menu>div.list-group>a").data('tabid');
+        jQuery("div.bhoechie-tab-menu>div.list-group>a").removeClass("active");
+        jQuery("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
+        jQuery("div.bhoechie-tab-menu>div.list-group>a").each(function(){
+            var tabid = jQuery(this).data('tabid');
+            console.log('grade_id: '+grade_id+'   tabid: '+tabid);
+            if(grade_id == tabid){
+                var index = jQuery(this).index();
+                console.log(index);
+                jQuery("div.bhoechie-tab-menu>div.list-group>a").eq(index).addClass("active");
+                jQuery("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
+                jQuery("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
+            }
+        });
+
     });
 </script>
     <div class="wrapper inner-pages">
@@ -46,15 +63,25 @@ $this->load->view('templates/header');
 
                     <h1><?php echo $title; ?></h1>
 					<?php if(!empty($topics)){
+
 						$cate_arrays=array(); $category='';
 						foreach ($topics as $topic){
+						    //print_r($topic); exit();
+							$grade_key = $topic->grade_id;
 							$topic_key = $topic->topic_id;
-							$topic_value = $topic->category_id;
-							if(array_key_exists($topic_value, $cate_arrays)){
-								array_push($cate_arrays[$topic_value], $topic_key);
+							$cate_key = $topic->category_id;
+
+							if(array_key_exists($grade_key, $cate_arrays)){
+							    if(array_key_exists($cate_key,$cate_arrays)){
+								    array_push($cate_arrays[$grade_key][$cate_key], $topic_key);
+                                } else{
+								    $cate_arrays[$grade_key][$cate_key] = array();
+								    array_push($cate_arrays[$grade_key][$cate_key], $topic_key);
+                                }
+
 							} else {
-								$cate_arrays[$topic_value] = array();
-								array_push($cate_arrays[$topic_value], $topic_key);
+								$cate_arrays[$grade_key][$cate_key] = array();
+								array_push($cate_arrays[$grade_key][$cate_key], $topic_key);
 							}
 						}
 						//print_r($cate_array);
@@ -65,112 +92,44 @@ $this->load->view('templates/header');
                             <div class="row">
                                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
                                     <div class="list-group">
-                                        <a href="#" class="list-group-item active text-center">Reception</a>
-                                        <a href="#" class="list-group-item text-center">Year 1</a>
-                                        <a href="#" class="list-group-item text-center">Year 2</a>
-                                        <a href="#" class="list-group-item text-center">Year 3</a>
-                                        <a href="#" class="list-group-item text-center">Year 4</a>
-                                        <a href="#" class="list-group-item text-center">Year 5</a>
-                                        <a href="#" class="list-group-item text-center">Year 6</a>
-                                        <a href="#" class="list-group-item text-center">Year 7</a>
-                                        <a href="#" class="list-group-item text-center">Year 8</a>
-                                        <a href="#" class="list-group-item text-center">Year 9</a>
-                                        <a href="#" class="list-group-item text-center">Year 10</a>
-                                        <a href="#" class="list-group-item text-center">Year 11</a>
+                                        <?php
+                                            if(!empty($grades_lists)){
+                                                foreach ($grades_lists as $grades_list){ ?>
+                                                    <a href="#" class="list-group-item text-center" data-tabid="<?php echo $grades_list->id; ?>" ><?php echo $grades_list->name; ?></a>
+
+                                        <?php   }
+                                            }
+                                        ?>
+
                                     </div>
                                 </div>
                                 <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 bhoechie-tab">
-                                    <div class="bhoechie-tab-content active">
-                                        <div class="row">
-		                                    <?php foreach ($cate_arrays as $cate_array=>$values){ ?>
-                                                <div class="col-lg-4">
-				                                    <?php echo '<h4 class="listing_category">'.ucfirst(get_returnfield('category','id',$cate_array,'name')).'</h4>'; ?>
-                                                    <ul>
-					                                    <?php foreach ($values as $cate_arra){ ?>
-                                                            <li>
-                                                                <a href="<?php echo base_url('frontend/questions/'.$grade.'/'.$subject.'/'.$cate_arra) ?>">
-                                                                    <span data-feather="edit"></span> <?php echo get_returnfield('topics','topic_id',$cate_arra,'topic_name'); ?>
-                                                                </a>
-                                                            </li>
-					                                    <?php } ?>
-                                                    </ul>
-                                                </div>
-		                                    <?php } ?>
+	                                <?php foreach ($cate_arrays as $cate_array1=>$values1){ ?>
+                                        <div class="bhoechie-tab-content">
+                                            <div class="row">
+				                                <?php foreach ($values1 as $cate_array=>$values){ ?>
+
+                                                    <div class="col-lg-4">
+						                                <?php echo '<h4 class="listing_category">'.ucfirst(get_returnfield('category','id',$cate_array,'name')).'</h4>'; ?>
+                                                        <ul>
+							                                <?php foreach ($values as $cate_arra){ ?>
+                                                                <li>
+                                                                    <a href="<?php echo base_url('frontend/questions/'.$grade.'/'.$subject.'/'.$cate_arra) ?>">
+                                                                        <span data-feather="edit"></span> <?php echo get_returnfield('topics','topic_id',$cate_arra,'topic_name'); ?>
+                                                                    </a>
+                                                                </li>
+							                                <?php } ?>
+                                                        </ul>
+                                                    </div>
+				                                <?php } ?>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="bhoechie-tab-content">
-                                        <h4 class="listing_category">Coming Soon</h4>
-                                    </div>
-                                    <div class="bhoechie-tab-content">
-                                        <h4 class="listing_category">Coming Soon</h4>
-                                    </div>
-                                    <div class="bhoechie-tab-content">
-                                        <h4 class="listing_category">Coming Soon</h4>
-                                    </div>
-                                    <div class="bhoechie-tab-content">
-                                        <h4 class="listing_category">Coming Soon</h4>
-                                    </div>
-                                    <div class="bhoechie-tab-content">
-                                        <h4 class="listing_category">Coming Soon</h4>
-                                    </div>
-                                    <div class="bhoechie-tab-content">
-                                        <h4 class="listing_category">Coming Soon</h4>
-                                    </div>
-                                    <div class="bhoechie-tab-content">
-                                        <h4 class="listing_category">Coming Soon</h4>
-                                    </div>
-                                    <div class="bhoechie-tab-content">
-                                        <h4 class="listing_category">Coming Soon</h4>
-                                    </div>
-                                    <div class="bhoechie-tab-content">
-                                        <h4 class="listing_category">Coming Soon</h4>
-                                    </div>
-                                    <div class="bhoechie-tab-content">
-                                        <h4 class="listing_category">Coming Soon</h4>
-                                    </div>
-                                    <div class="bhoechie-tab-content">
-                                        <h4 class="listing_category">Coming Soon</h4>
-                                    </div>
+	                                <?php } ?>
                                 </div>
+
+
                             </div>
-                            <div class="row" style="display: none;">
-                                <div class="col-lg-2">
-                                    <div class="grade_side_list ok">
-                                        <ul>
-                                            <li><a class="grade_ci_1" href="">Reception</a></li>
-                                            <li><a class="grade_ci_2" href="#">Year 1</a></li>
-                                            <li><a class="grade_ci_3" href="#">Year 2</a></li>
-                                            <li><a class="grade_ci_4" href="#">Year 3</a></li>
-                                            <li><a class="grade_ci_5" href="#">Year 4</a></li>
-                                            <li><a class="grade_ci_6" href="#">Year 5</a></li>
-                                            <li><a class="grade_ci_7" href="#">Year 6</a></li>
-                                            <li><a class="grade_ci_8" href="#">Year 7</a></li>
-                                            <li><a class="grade_ci_9" href="#">Year 8</a></li>
-                                            <li><a class="grade_ci_10" href="#">Year 9</a></li>
-                                            <li><a class="grade_ci_11" href="#">Year 10</a></li>
-                                            <li><a class="grade_ci_12" href="#">Year 11</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-lg-10">
-                                    <div class="row">
-                                    <?php foreach ($cate_arrays as $cate_array=>$values){ ?>
-                                        <div class="col-lg-4">
-                                            <?php echo '<h4 class="listing_category">'.ucfirst(get_returnfield('category','id',$cate_array,'name')).'</h4>'; ?>
-                                            <ul>
-                                                <?php foreach ($values as $cate_arra){ ?>
-                                                    <li>
-                                                        <a href="<?php echo base_url('frontend/questions/'.$grade.'/'.$subject.'/'.$cate_arra) ?>">
-                                                            <span data-feather="edit"></span> <?php echo get_returnfield('topics','topic_id',$cate_arra,'topic_name'); ?>
-                                                        </a>
-                                                    </li>
-                                                <?php } ?>
-                                            </ul>
-                                        </div>
-                                    <?php } ?>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
 					<?php } ?>
                 </div>

@@ -21,6 +21,23 @@ class Frontend_model extends CI_Model {
 		return $query;
 
 	}
+	function get_grades($conditions=array(),$row=true){
+		$this->db->select('*');
+		if(!empty($conditions)){
+			$this->db->where($conditions);
+		}
+		$this->db->order_by('id','asc');
+
+		$this->db->from('grade');
+		$queries=$this->db->get();
+		if($row==true){
+			$query=$queries->row();
+		} else{
+			$query=$queries->result();
+		}
+		return $query;
+
+	}
 	function get_questions_by_one($conditions=array(),$row=true,$start='',$not_in=array()){
 		$this->db->select('*');
 		if(!empty($conditions)){

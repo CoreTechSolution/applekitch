@@ -34,7 +34,10 @@ class Frontend extends CI_Controller {
 		$data['grade']=get_returnfield('grade','id',$grade_id,'slug');
 		$data['subject']=get_returnfield('subject','id',$subject_id,'slug');
 		//$data['topic']=get_returnfield('topics','topic_id',$topic_id,'slug');
-		$data['topics']=get_topic_by($grade_id,$subject_id);
+		$data['topics']=get_topic_by(0,$subject_id);
+		$data['grades_lists']=$this->frontend_model->get_grades(array(), false);
+		//print_r( $data['topics']); exit();
+		$data['grade_id']=$grade_id;
 		$data['questions']=$this->frontend_model->get_questions(array('grade_id'=>$grade_id,'subject_id'=>$subject_id),false);
 		$this->load->view('frontend/topic_page',$data);
 	}

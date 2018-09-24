@@ -202,7 +202,13 @@ function get_topic_by($grade_id,$subject_id,$order_by='category_id', $order='ASC
 	$CI->db->distinct();
 	$CI->db->select('topic_id');
 	$CI->db->select('category_id');
-	$CI->db->where(array('grade_id'=>$grade_id,'subject_id'=>$subject_id));
+	$CI->db->select('grade_id');
+	if($grade_id!=0){
+		$CI->db->where(array('grade_id'=>$grade_id,'subject_id'=>$subject_id));
+	} else{
+		$CI->db->where(array('subject_id'=>$subject_id));
+	}
+
 	$CI->db->order_by($order_by,$order);
 	$CI->db->from('questions');
 	$queries=$CI->db->get();

@@ -2839,3 +2839,6 @@ div.list-group a:nth-child(12){
     color: #fff38c;
     margin-bottom: 0;
 }
+.footable img{
+    width:150px;
+}
