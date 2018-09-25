@@ -276,13 +276,13 @@
                         <br>
                         <br>
                         <br>
-                        <div class="col-lg-6">
+                        <div style="width: 100%; margin: 10px 0;">
                             <label for="qRight_feedback">If Answer Right</label>
                             <input type="text" class="form-control" name="qRight_feedback" id="qRight_feedback">
                         </div>
-                        <div class="col-lg-6">
+                        <div style="width: 100%; margin: 10px 0;">
                             <label for="qRight_feedback">If Answer Wrong (explanation)</label>
-                            <textarea class="form-control" name="qWrong_feedback" id="qWrong_feedback"></textarea>
+                            <textarea class="form-control tynimce" name="qWrong_feedback" id="qWrong_feedback"></textarea>
                         </div>
                         <div class="col-lg-6">
                             <div class="add_dynamic_field">
@@ -297,7 +297,7 @@
                 </div>
                 <div class="question_wrap"></div>
             </div>
-            <a href="javascript:void(0)" class="btn add_row_save addQ_preview"><span data-feather="eye"></span> Preview</a>
+            <!--<a href="javascript:void(0)" class="btn add_row_save addQ_preview"><span data-feather="eye"></span> Preview</a>-->
             <a href="javascript:void(0)" class="btn add_row_save addQ_save"><span data-feather="save"></span> Save</a>
         </form>
     </div>
