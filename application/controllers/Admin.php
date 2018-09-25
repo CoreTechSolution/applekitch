@@ -121,6 +121,13 @@ class Admin extends CI_Controller {
 
 		}
 	}
+	public function preview() {
+		$qid = $_GET['qid'];
+		if(!empty($qid)) {
+			$data['question']=$this->admin_model->get_question_by_id($qid);
+			$this->load->view( 'preview_v', $data );
+		}
+	}
 	public function edit_question($question_id){
 		isLogin('admin');
 		$data['title']='Edit Question';

@@ -423,4 +423,12 @@ INNER JOIN country ON subject.country = country.id INNER JOIN grade ON subject.g
 			return false;
 		}
 	}
+	function get_question_by_id($qid) {
+		$this->db->select('*');
+		$this->db->from('questions');
+		$this->db->where('question_id', $qid);
+		$queries = $this->db->get();
+		$query = $queries->row();
+		return $query;
+	}
 }
