@@ -221,7 +221,30 @@
     </div>
 </div>
 <!---->
-
+<div id="qOption_26">
+    <div class="form-group">
+        <div class="row" id="upload_images_section">
+            <div class="col-lg-6">
+                <label for="imageQ_upload">Image</label>
+                <input type="file" name="imageQ_upload" class="form-control imageQ_upload" required>
+            </div>
+            <div class="col-lg-6">
+                <label for="ans_textbox">Answer</label>
+                <input type="text" name="ans_textbox" class="form-control ans_textbox" required>
+            </div>
+            <div class="col-lg-6">
+                <label for="imageQ_upload">Options</label>
+                <div id="option_add_div">
+                    <input type="text" name="option_1[]" class="form-control option_1" required>
+                </div>
+                <div id="option_add_div_app" class="option_add_div_app"></div>
+                <a class="option_add_q" href="#"><span data-feather="plus-circle" title="Add Option"></span></a>
+            </div>
+        </div>
+        <div id="uploaded_images" style="display: none;"></div>
+    </div>
+</div>
+<!---->
 <div id="combination_add_row_demo">
     <div class="add_question_row">
         <div class="row_delete">
