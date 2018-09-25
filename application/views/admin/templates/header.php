@@ -31,7 +31,7 @@
     <script>
         var base_url='<?php echo base_url(); ?>';
 
-        tinymce.init({
+        /*tinymce.init({
             selector: ".textarea-no-styles",
             height: 400,
             theme: 'modern',
@@ -43,7 +43,7 @@
                 '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
                 '//www.tinymce.com/css/codepen.min.css'
             ]
-        });
+        });*/
     </script>
 </head>
 <body>
