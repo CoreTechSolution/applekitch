@@ -18,15 +18,10 @@
 
     <script src="<?php echo base_url('/assets/js/jquery.js'); ?>" type="text/javascript"></script>
     <script src="<?php echo base_url('/assets/tinymce/tinymce.min.js'); ?>" ></script>
-    <!--<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>-->
-    <!--// GIJGO Grid System-->
-<!--    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css" />
-    <link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/css/gijgo.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/css/demo.min.css" rel="stylesheet" type="text/css" />-->
-    <!--// GIJGO Grid System-->
 
     <script src="<?php echo base_url('/assets/js/jquery-ui.js'); ?>"></script>
     <link rel="stylesheet" href="<?php echo base_url('/assets/css/jquery-ui.css'); ?>">
+    <script src="<?php echo base_url('/assets/js/jquery-fsortable.js'); ?>"></script>
 
     <script>
         var base_url='<?php echo base_url(); ?>';
