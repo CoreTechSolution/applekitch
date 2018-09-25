@@ -1639,31 +1639,32 @@ label.error{color: #FF0000; }
     border: 1px solid #f9baba;
     z-index: 9999;
     position: absolute;
-    top: 50%;
+    top: 30%;
     left: 10%;
+    line-height: 150%;
 }
 .cAns{
     padding: 25px 40px;
-    width: 100%;
+    width: 75%;
     text-align: center;
     color: green;
     font-size: 36px;
     background: #e8ffe8;
     border: 1px solid #6ed86e;
     /* display: none; */
-    width: 25%;
+    /*width: 25%;*/
     z-index: 9999;
     position: absolute;
-    top: 50%;
-    left: 40%;
+    top: 30%;
+    left: 10%;
     font-weight: bold;
+    line-height: 150%;
     /* display: none; */
     /*display: none;*/
 }
 .overlay{
     width: 100%;
-    height: 100%;
-    display: block;
+    height: 150%;
     position: absolute;
     background: rgba(107, 107, 107, 0.5);
     z-index: 999;
