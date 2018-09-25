@@ -64,6 +64,18 @@ require_once 'templates/header.php';
 					<hr>
 					<h4>Add question here</h4>
                     <div id="add_row_demo">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div style="text-align: right;">
+                                        Rows
+                                        <input class="add_row_counter" style="width:100px;" name="add_row_counter" id="add_row_counter" type="text" required>
+                                        <a href="javascript:void(0)" class="btn add_row addQ_row_multiple" style="width: 200px;" ><span data-feather="plus-circle"></span> Add multiple row</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
                         <div class="add_question_row">
                             <div class="row_delete">
                                 <a class="deletQ_row" href="#" title="Delete"><span data-feather="delete"></span></a>

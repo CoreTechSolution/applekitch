@@ -166,7 +166,7 @@ body {
   padding: 25px;
   border:1px solid #CCCCCC;
   border-radius: 5px;
-  margin: 10px 0px;
+  margin: 25px 0px;
 }
 .row_delete{
     text-align: right;
@@ -328,4 +328,10 @@ input[type='file']{
   width: 200px;
   display: block;
   padding: 3px;
+}
+.add_row_counter{
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  vertical-align: middle;
 }
