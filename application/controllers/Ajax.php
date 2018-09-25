@@ -131,11 +131,13 @@ class Ajax extends CI_Controller {
 
 			//print_r($question_form_data);exit);
 			//print_r($questions_next);
-			if(!empty($questions_next)) {
-				$question_form_data=unserialize($questions_next[0]->form_data);
-				if ( $question_form_data['question_option'] == '1' ) {
-					$qview_option = 'qView_option_' . $question_form_data['question_option'];
+
+
+				if ( $form_data['question_option'] == '1' ) {
+
 					if ( ! empty( $questions_next ) ) {
+						$question_form_data=unserialize($questions_next[0]->form_data);
+						$qview_option = 'qView_option_' . $question_form_data['question_option'];
 						$html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
 					}
 					if ( empty( $html ) ) {
@@ -157,10 +159,12 @@ class Ajax extends CI_Controller {
 						$rtntext['type']    = 'false';
 						$rtntext['content'] = 'Wrong: Correct answer is : ' . $form_data_ans['ans_textbox'];
 					}
-				} elseif ( $question_form_data['question_option'] == '2' ) {
-					$qview_option = 'qView_option_' . $question_form_data['question_option'];
+				} elseif ( $form_data['question_option'] == '2' ) {
+
 					//print_r($form_data_ans);
 					if ( ! empty( $questions_next ) ) {
+						$question_form_data=unserialize($questions_next[0]->form_data);
+						$qview_option = 'qView_option_' . $question_form_data['question_option'];
 						$html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
 					} else {
 						$html = '';
@@ -181,9 +185,11 @@ class Ajax extends CI_Controller {
 						$rtntext['type']    = 'false';
 						$rtntext['content'] = 'Wrong: Correct answer is : ' . $form_data_ans['answer'];
 					}
-				} elseif ( $question_form_data['question_option'] == '3' ) {
-					$qview_option = 'qView_option_' . $question_form_data['question_option'];
+				} elseif ( $form_data['question_option'] == '3' ) {
+
 					if ( ! empty( $questions_next ) ) {
+						$question_form_data=unserialize($questions_next[0]->form_data);
+						$qview_option = 'qView_option_' . $question_form_data['question_option'];
 						$html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
 					}
 					if ( empty( $html ) ) {
@@ -205,9 +211,11 @@ class Ajax extends CI_Controller {
 						$rtntext['type']    = 'false';
 						$rtntext['content'] = 'Wrong: Correct answer is : ' . $form_data_ans['ans_textbox'];
 					}
-				} elseif ( $question_form_data['question_option'] == '6' ) {
-					$qview_option = 'qView_option_' . $question_form_data['question_option'];
+				} elseif ( $form_data['question_option'] == '6' ) {
+
 					if ( ! empty( $questions_next ) ) {
+						$question_form_data=unserialize($questions_next[0]->form_data);
+						$qview_option = 'qView_option_' . $question_form_data['question_option'];
 						$html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
 					}
 					if ( empty( $html ) ) {
@@ -229,10 +237,12 @@ class Ajax extends CI_Controller {
 						$rtntext['type']    = 'false';
 						$rtntext['content'] = 'Wrong: Correct answer is : ' . $form_data_ans['ans_textbox'];
 					}
-				} elseif ( $question_form_data['question_option'] == '8' ) {
-					$qview_option = 'qView_option_' . $question_form_data['question_option'];
+				} elseif ( $form_data['question_option'] == '8' ) {
+
 					//print_r($questions_next);
 					if ( ! empty( $questions_next ) ) {
+						$question_form_data=unserialize($questions_next[0]->form_data);
+						$qview_option = 'qView_option_' . $question_form_data['question_option'];
 						$html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
 					} else {
 						$html = '';
@@ -253,9 +263,11 @@ class Ajax extends CI_Controller {
 						$rtntext['type']    = 'false';
 						$rtntext['content'] = 'Wrong';
 					}
-				} elseif ( $question_form_data['question_option'] == '9' ) {
-					$qview_option = 'qView_option_' . $question_form_data['question_option'];
+				} elseif ( $form_data['question_option'] == '9' ) {
+
 					if ( ! empty( $questions_next ) ) {
+						$question_form_data=unserialize($questions_next[0]->form_data);
+						$qview_option = 'qView_option_' . $question_form_data['question_option'];
 						$html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
 					}
 					if ( empty( $html ) ) {
@@ -277,9 +289,11 @@ class Ajax extends CI_Controller {
 						$rtntext['type']    = 'false';
 						$rtntext['content'] = 'Wrong: Correct answer is : ' . $form_data_ans['ans_textbox'];
 					}
-				} elseif ( $question_form_data['question_option'] == '11' ) {
-					$qview_option = 'qView_option_' . $question_form_data['question_option'];
+				} elseif ( $form_data['question_option'] == '11' ) {
+
 					if ( ! empty( $questions_next ) ) {
+						$question_form_data=unserialize($questions_next[0]->form_data);
+						$qview_option = 'qView_option_' . $question_form_data['question_option'];
 						$html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
 					}
 					if ( empty( $html ) ) {
@@ -301,9 +315,11 @@ class Ajax extends CI_Controller {
 						$rtntext['type']    = 'false';
 						$rtntext['content'] = 'Wrong: Correct answer is : ' . $form_data_ans['ans_textbox'];
 					}
-				} elseif ( $question_form_data['question_option'] == '14' ) {
-					$qview_option = 'qView_option_' . $question_form_data['question_option'];
+				} elseif ( $form_data['question_option'] == '14' ) {
+
 					if ( ! empty( $questions_next ) ) {
+						$question_form_data=unserialize($questions_next[0]->form_data);
+						$qview_option = 'qView_option_' . $question_form_data['question_option'];
 						$html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
 					}
 					if ( empty( $html ) ) {
@@ -325,10 +341,12 @@ class Ajax extends CI_Controller {
 						$rtntext['type']    = 'false';
 						$rtntext['content'] = 'Wrong: Correct answer is : ' . $form_data_ans['ans_textbox'];
 					}
-				} elseif ( $question_form_data['question_option'] == '15' ) {
-					$qview_option = 'qView_option_' . $question_form_data['question_option'];
+				} elseif ( $form_data['question_option'] == '15' ) {
+
 					//print_r($questions_next);
 					if ( ! empty( $questions_next ) ) {
+						$question_form_data=unserialize($questions_next[0]->form_data);
+						$qview_option = 'qView_option_' . $question_form_data['question_option'];
 						$html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
 					} else {
 						$html = '';
@@ -349,9 +367,11 @@ class Ajax extends CI_Controller {
 						$rtntext['type']    = 'false';
 						$rtntext['content'] = 'Wrong: Correct answer is : ' . $form_data_ans['answer'];
 					}
-				} elseif ( $question_form_data['question_option'] == '5' ) {
-					$qview_option = 'qView_option_' . $question_form_data['question_option'];
+				} elseif ( $form_data['question_option'] == '5' ) {
+
 					if ( ! empty( $questions_next ) ) {
+						$question_form_data=unserialize($questions_next[0]->form_data);
+						$qview_option = 'qView_option_' . $question_form_data['question_option'];
 						$html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
 					}
 					if ( empty( $html ) ) {
@@ -373,9 +393,11 @@ class Ajax extends CI_Controller {
 						$rtntext['type']    = 'false';
 						$rtntext['content'] = 'Wrong: Correct answer is : ' . $form_data_ans['ans_textbox'];
 					}
-				} elseif ( $question_form_data['question_option'] == '13' ) {
-					$qview_option = 'qView_option_' . $question_form_data['question_option'];
+				} elseif ( $form_data['question_option'] == '13' ) {
+
 					if ( ! empty( $questions_next ) ) {
+						$question_form_data=unserialize($questions_next[0]->form_data);
+						$qview_option = 'qView_option_' . $question_form_data['question_option'];
 						$html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
 					}
 					if ( empty( $html ) ) {
@@ -397,9 +419,11 @@ class Ajax extends CI_Controller {
 						$rtntext['type']    = 'false';
 						$rtntext['content'] = 'Wrong: Correct answer is : ' . $form_data_ans['ans_textbox'];
 					}
-				} elseif ( $question_form_data['question_option'] == '20' ) {
-					$qview_option = 'qView_option_' . $question_form_data['question_option'];
+				} elseif ( $form_data['question_option'] == '20' ) {
+
 					if ( ! empty( $questions_next ) ) {
+						$question_form_data=unserialize($questions_next[0]->form_data);
+						$qview_option = 'qView_option_' . $question_form_data['question_option'];
 						$html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
 					}
 					if ( empty( $html ) ) {
@@ -422,9 +446,11 @@ class Ajax extends CI_Controller {
 						$rtntext['type']    = 'false';
 						$rtntext['content'] = 'Wrong: Correct answer is : ' . $form_data_ans['ans_textbox'];
 					}
-				} elseif ( $question_form_data['question_option'] == '26' ) {
-					$qview_option = 'qView_option_' . $question_form_data['question_option'];
+				} elseif ( $form_data['question_option'] == '26' ) {
+
 					if ( ! empty( $questions_next ) ) {
+						$question_form_data=unserialize($questions_next[0]->form_data);
+						$qview_option = 'qView_option_' . $question_form_data['question_option'];
 						$html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
 					}
 					if ( empty( $html ) ) {
@@ -447,13 +473,6 @@ class Ajax extends CI_Controller {
 						$rtntext['content'] = 'Wrong: Correct answer is : ' . $form_data_ans['ans_textbox'];
 					}
 				}
-
-
-			}
-
-
-
-
 
 
 
@@ -485,7 +504,7 @@ class Ajax extends CI_Controller {
 			} else{
 				$this->session->set_userdata('total_qScore',($questions->q_score));
 			}
-			$user_name=get_returnfield('user','id',get_current_user_id(),'fname').' '.get_returnfield('user','id',get_current_user_id(),'fname');
+			$user_name=get_returnfield('user','id',get_current_user_id(),'fname').' '.get_returnfield('user','id',get_current_user_id(),'lname');
 			if($user_name=='' || $user_name==' '){
 				$user_name='Guest';
 			}
