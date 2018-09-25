@@ -2842,3 +2842,28 @@ div.list-group a:nth-child(12){
 .footable img{
     width:150px;
 }
+.boxed label {
+    display: inline-block;
+    width: 200px;
+    padding: 10px;
+    border: solid 2px #ccc;
+    transition: all 0.3s;
+}
+.boxed input[type="radio"] {
+    display: none;
+}
+.boxed input[type="radio"]:checked + label {
+    border: solid 2px green;
+}
+.row12{
+    margin: 20px 0 0 0;
+}
+.row12 ul{
+    margin: 0;
+    padding: 0;
+}
+.row12 ul li{
+    display: inline-block;
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
