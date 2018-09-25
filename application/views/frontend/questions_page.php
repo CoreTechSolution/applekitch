@@ -67,7 +67,7 @@ $this->load->view('templates/header');
                                         <div class="col-lg-7">
 											<?php //echo $question->form_data; exit(); ?>
 											<?php $form_data=unserialize($question->form_data); ?>
-                                            <?php print_r( $form_data); ?>
+                                            <?php //print_r( $form_data); ?>
                                             <input type="hidden" name="question_option" value="<?php echo $form_data['question_option']; ?>">
 											<?php
 											$check_data['question_option']=$form_data['question_option'];
