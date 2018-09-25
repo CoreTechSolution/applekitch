@@ -64,7 +64,25 @@ function SwalDelete(productId){
 jQuery(document).ready(function() {
     /*var minutesLabel = document.getElementById("minutes");
     var secondsLabel = document.getElementById("seconds");*/
+    jQuery('body').on('click','a.addQ_row_multiple', function (e) {
+        e.preventDefault();
+        var this_element = jQuery(this);
+        if(jQuery('#add_row_counter').val()!='') {
+            var row_counter=jQuery('#add_row_counter').val();
+            var demo_html ='';
+            for(var i=0; i<row_counter; i++ ){
+                if(demo_html==''){
+                    demo_html = jQuery('#combination_add_row_demo').html();
+                } else{
+                    demo_html += jQuery('#combination_add_row_demo').html();
+                }
+            }
+            jQuery('#add_row').append(demo_html);
+            jQuery('#add_row_counter').val('');
+        }
+        //this_element.hide();
 
+    });
     jQuery('body').on('click','a.addQ_row', function (e) {
         e.preventDefault();
         var this_element=jQuery(this);
