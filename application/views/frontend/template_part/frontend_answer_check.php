@@ -194,6 +194,25 @@
 			<?php $option_counter++; ?>
 		<?php } ?>
 	</div>
-<?php } elseif($question_option=='21'){ ?>
+<?php } elseif($question_option=='26'){ ?>
+    <div class="row">
+        <div class="col-lg-12">
+            <img src="<?php echo $form_data['img']; ?>">
+        </div>
+    </div>
+    <div class="row12">
+        <ul>
+        <?php $i = 0; ?>
+        <?php foreach ($form_data['option_1'] as $option){ ?>
+            <li>
+                <div class="boxed">
+                    <input type="radio" id="options_<?php echo $i; ?>" name="selected_option" value="<?php echo $option; ?>">
+                    <label for="options_<?php echo $i; ?>"><?php echo $option; ?></label>
+                </div>
+            </li>
+            <?php $i++; ?>
+        <?php } ?>
+        </ul>
+    </div>
 <?php }  ?>
 </div>
