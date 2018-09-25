@@ -123,7 +123,7 @@ jQuery(document).ready(function(){
             data: form_data,
             dataType: 'json',
             success: function (data) {
-                console.log(data);
+                //console.log(data);
                 jQuery('#loading').hide();
                 jQuery('#overlay').slideToggle();
                 jQuery('.qAns_form').html('');

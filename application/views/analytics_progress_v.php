@@ -7,7 +7,7 @@
  */
 
 ?>
-
+<?php $child_id=(!empty($this->session->userdata('child_id')))?$this->session->userdata('child_id'):get_current_user_id(); ?>
 <?php
 require_once 'templates/header.php';
 ?>
@@ -23,6 +23,24 @@ require_once 'templates/header.php';
 						<div class="box-wrapper">
 							<div class="box-title"><?php echo $title; ?></div>
 							<div class="box-container">
+                                <div class="child_search_div">
+                                    <form action="<?php echo base_url('dashboard/progress') ?>" method="post" class="child_search_drop">
+                                        <div class="row">
+                                            <div class="col-lg-2">
+                                                <h5>Select Child</h5>
+                                            </div>
+                                            <div class="col-lg-3">
+												<?php echo form_dropdown('child_id',form_dropdown_child(get_current_user_id()),$child_id,array('class'=>'form-control')); ?>
+                                            </div>
+
+                                            <div class="col-lg-2" >
+                                                <input type="submit" class="btn btn-small btn-primary" value="Show">
+
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+								<?php if($get_child_id!=0){ ?>
 								<div class="filter_box">
 									<?php echo form_open(base_url('dashboard/'.$search_url),array('class'=>'form-control filter-form')); ?>
 									<?php echo form_dropdown('subject_id',form_dropdown_cr(array('id','name'),'subject'),'',array('class'=>'form-control')); ?>
@@ -48,9 +66,10 @@ require_once 'templates/header.php';
                                                     <?php foreach($value_cat as $key_top=>$value_top) { ?>
                                                         <div class="row">
                                                             <div class="col-lg-4"><div class="table_body_text"><?php echo get_returnfield('topics','topic_id', $key_top,'topic_name'); ?></div></div>
-                                                            <div class="col-lg-2"><div class="table_body_text"><?php echo $value_top['total_time']; ?> min</div></div>
-                                                            <div class="col-lg-2"><div class="table_body_text"><?php echo $value_top['total_ans']; ?></div></div>
-                                                            <?php $persantage=round(($value_top['total_ans_right']/$value_top['total_ans'])*100); ?>
+                                                            <div class="col-lg-2"><div class="table_body_text"><?php echo (!empty($value_top['total_time']))?$value_top['total_time']:'0'; ?> min</div></div>
+                                                            <div class="col-lg-2"><div class="table_body_text"><?php echo (!empty($value_top['total_ans']))?$value_top['total_ans']:'0'; ?></div></div>
+                                                            <?php $persantage=round(((!empty($value_top['total_ans_right']))?$value_top['total_ans_right']:0/$value_top['total_ans'])*100); ?>
+                                                            <?php $persantage=($persantage>100)?100:$persantage; ?>
                                                             <div class="col-lg-4"><div class="table_body_text">
                                                                     <div class="table-cell skill-improvement" id="yui_3_14_0_1_1536582406995_90">
                                                                         <div class="improvement-container" id="yui_3_14_0_1_1536582406995_89">
@@ -72,6 +91,7 @@ require_once 'templates/header.php';
 									</div>
 
 								</div>
+								<?php } ?>
 							</div>
 						</div>
 					</div>
