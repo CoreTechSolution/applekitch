@@ -74,6 +74,18 @@ class Ajax extends CI_Controller {
 			}
 			$form_data['img'] = $image_upload;
 		}
+		if($form_data['question_option']=='26') {
+			if ( ! empty( $_FILES['imageQ_upload']['name'] ) ) {
+				$img_path = image_upload( $_FILES, 'imageQ_upload', 'uploads/images' );
+				if ( $img_path ) {
+					$image_upload = $img_path;
+				} else {
+
+					$image_upload = '';
+				}
+			}
+			$form_data['img'] = $image_upload;
+		}
 
 		if(!empty($form_data['question_id'])){
 			$question_id=$form_data['question_id'];
@@ -388,6 +400,29 @@ class Ajax extends CI_Controller {
 				$your_ans=$form_data_ans['ans_textbox'];
 				$correct_ans=$form_data['option_1'];
 				if(strtolower($form_data_ans['ans_textbox'])==strtolower($form_data['option_1'])){
+					$this->session->set_userdata('score_ans',($form_data['answred']+1));
+					$this->session->set_userdata('score_smart',($form_data['score']+$questions->q_score));
+					$rtntext['score_ans']=$this->session->userdata('score_ans');
+					$rtntext['score_smart']=$this->session->userdata('score_smart');
+					$rtntext['type']='true';
+					$rtntext['content']='Correct';
+				} else{
+					$this->session->set_userdata('score_ans',($form_data['answred']+1));
+					$rtntext['type']='false';
+					$rtntext['content']='Wrong: Correct answer is : '.$form_data_ans['ans_textbox'];
+				}
+			} elseif($form_data['question_option']=='26'){
+				$qview_option='qView_option_'.$form_data['question_option'];
+				if(!empty($questions_next))
+					$html=$this->$qview_option($questions_next[0],$grade_id,$subject_id,$topic_id,$start);
+				if(empty($html)){
+					$html='';
+				}
+
+				$rtntext['html']=$html;
+				$your_ans=$form_data_ans['ans_textbox'];
+				$correct_ans=$form_data['selected_option'];
+				if($form_data_ans['ans_textbox']==$form_data['selected_option']){
 					$this->session->set_userdata('score_ans',($form_data['answred']+1));
 					$this->session->set_userdata('score_smart',($form_data['score']+$questions->q_score));
 					$rtntext['score_ans']=$this->session->userdata('score_ans');
@@ -922,6 +957,43 @@ class Ajax extends CI_Controller {
 			$option_counter++;
 		}
 		$rtntext.='</div>';
+		$rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
+		$rtntext.='</div>';
+		$rtntext.='</div>';
+
+		return $rtntext;
+	}
+
+	public function qView_option_26($data,$grade_id,$subject_id,$topic_id,$start){
+		$rtntext='';
+		$start=$start+1;
+		$rtntext.='<input type="hidden" name="start" value="'.$start.'" />
+                            <input type="hidden" name="grade_id" value="'.$grade_id.'" />
+                            <input type="hidden" name="subject_id" value="'.$subject_id.'" />
+                            <input type="hidden" name="topic_id" value="'.$topic_id.'" />';
+		$rtntext.='<div class="row">';
+		$rtntext.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
+                                <div class="col-lg-5">
+                                    <div class="question_count">Question <a href="javacript:void(0);" id="play_question" data-question="'.$data->question_name.'"><i class="fas fa-volume-up"></i></a></div>
+                                            <div class="question_display">'.$data->question_name.'</div>
+                                </div>';
+		$rtntext.='<div class="col-lg-7">';
+		$form_serializedata=unserialize($data->form_data);
+		$rtntext.='<input type="hidden" name="question_option" value="'.$form_serializedata['question_option'].'">';
+		$rtntext.='<div class="row"><div class="col-lg-12"><img src="'.$form_serializedata['img'].'"></div></div>';
+		$rtntext.='<div class="row12"><ul>';
+		$option_counter=1;
+		foreach ($form_serializedata['option_1'] as $option){
+			$rtntext.='<li>
+                <div class="boxed">
+                    <input type="radio" id="options_'.$option_counter.'" name="selected_option" value="'. $option.'">
+                    <label for="options_'.$option_counter.'">'.$option.'</label>
+                </div>
+            </li>';
+
+			$option_counter++;
+		}
+		$rtntext.='</ul></div>';
 		$rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
 		$rtntext.='</div>';
 		$rtntext.='</div>';
