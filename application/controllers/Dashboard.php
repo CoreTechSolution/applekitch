@@ -331,15 +331,30 @@ class Dashboard extends CI_Controller {
 	}
 	public function usage(){
 		isLogin();
-		$user_id=get_current_user_id();
-		$data['title']='Certificates';
+		//$this->session->unset_userdata('child_id');
+		if(isUserType('Parent')==true || isUserType('Teacher')==true || isUserType('School')==true){
+			if(!empty($_POST['child_id'])){
+				$user_id=$_POST['child_id'];
+				$this->session->set_userdata('child_id',$user_id);
+			} else{
+				$user_id=0;
+			}
+			if(!empty($this->session->userdata('child_id'))){
+				$user_id=$this->session->userdata('child_id');
+			}
+
+		} else{
+			$user_id=get_current_user_id();
+		}
+		$data['get_child_id']=$user_id;
+		$data['title']='Usage';
 		$data['user_data'] = $this->user_model->get_userdata();
 		if(!empty($this->input->post('filter'))){
 			$conditions=array('user_id');
 		} else{
 			$data['certificates']=$this->user_model->get_ans_certificates_by_user($user_id);
 		}
-		$data['user_details']=$this->user_model->get_questions_ans(array('user_id'=>get_current_user_id()),false,'submit_date','asc');
+		$data['user_details']=$this->user_model->get_questions_ans(array('user_id'=>$user_id),false,'submit_date','asc');
 		$total_time=0;
 		$jquery_day_text='';
 		$jquery_day_array=array();
@@ -354,7 +369,7 @@ class Dashboard extends CI_Controller {
 
 		}
 		//print_r($jquery_day_array); exit();
-		$data['user_skill_details']=$this->user_model->get_ans_topic(array('user_id'=>get_current_user_id()),false);
+		$data['user_skill_details']=$this->user_model->get_ans_topic(array('user_id'=>$user_id),false);
 		$data['total_q_ans']=count($data['user_details']);
 		$data['total_time_spent']=secondsToTime($total_time, 'short');
 		$data['total_completed_topic']=count($data['user_skill_details']);
@@ -368,12 +383,26 @@ class Dashboard extends CI_Controller {
 	}
 	public function scorechart($subject='2', $grade='1'){
 		isLogin();
-		$user_id=get_current_user_id();
+		if(isUserType('Parent')==true || isUserType('Teacher')==true || isUserType('School')==true){
+			if(!empty($_POST['child_id'])){
+				$user_id=$_POST['child_id'];
+				$this->session->set_userdata('child_id',$user_id);
+			} else{
+				$user_id=0;
+			}
+			if(!empty($this->session->userdata('child_id'))){
+				$user_id=$this->session->userdata('child_id');
+			}
+
+		} else{
+			$user_id=get_current_user_id();
+		}
+		$data['get_child_id']=$user_id;
 		$data['title']='Score';
 		$data['search_url']='scorechart';
 		$data['user_data'] = $this->user_model->get_userdata();
 
-		$conditions="user_id='".get_current_user_id()."'";
+		$conditions="user_id='".$user_id."'";
 		if(!empty($_POST['subject_id'])){
 			$conditions.=" AND subject_id='".$_POST['subject_id']."'";
 		}
@@ -389,7 +418,11 @@ class Dashboard extends CI_Controller {
 					$jquery_day_array[ $userdetails->category_id ][$userdetails->topic_id]['total_time']=( $jquery_day_array[ $userdetails->category_id ][ $userdetails->topic_id ]['total_time'] ) + $userdetails->ans_time;
 					$jquery_day_array[ $userdetails->category_id ][$userdetails->topic_id]['total_ans']=( $jquery_day_array[ $userdetails->category_id ][ $userdetails->topic_id ]['total_ans'] ) + 1;
 					if($userdetails->answer_type=='true'){
-						$jquery_day_array[ $userdetails->category_id ][$userdetails->topic_id]['total_ans_right']=( $jquery_day_array[ $userdetails->category_id ][ $userdetails->topic_id ]['total_ans_right'] ) + 1;
+						if(!empty($jquery_day_array[ $userdetails->category_id ][$userdetails->topic_id]['total_ans_right'])) {
+							$jquery_day_array[ $userdetails->category_id ][ $userdetails->topic_id ]['total_ans_right'] = ( $jquery_day_array[ $userdetails->category_id ][ $userdetails->topic_id ]['total_ans_right'] ) + 1;
+						} else{
+							$jquery_day_array[ $userdetails->category_id ][ $userdetails->topic_id ]['total_ans_right'] =0;
+						}
 					}
 					$jquery_day_array[ $userdetails->category_id ][$userdetails->topic_id]['last_date']=($jquery_day_array[ $userdetails->category_id ][$userdetails->topic_id]['last_date']>$userdetails->submit_date)?$jquery_day_array[ $userdetails->category_id ][$userdetails->topic_id]['last_date']:$userdetails->submit_date;
 				}else {
@@ -419,11 +452,25 @@ class Dashboard extends CI_Controller {
 	}
 	public function progress($subject='2', $grade='1'){
 		isLogin();
-		$user_id=get_current_user_id();
+		if(isUserType('Parent')==true || isUserType('Teacher')==true || isUserType('School')==true){
+			if(!empty($_POST['child_id'])){
+				$user_id=$_POST['child_id'];
+				$this->session->set_userdata('child_id',$user_id);
+			} else{
+				$user_id=0;
+			}
+			if(!empty($this->session->userdata('child_id'))){
+				$user_id=$this->session->userdata('child_id');
+			}
+
+		} else{
+			$user_id=get_current_user_id();
+		}
+		$data['get_child_id']=$user_id;
 		$data['title']='Progress';
 		$data['user_data'] = $this->user_model->get_userdata();
 		$data['search_url']='progress';
-		$conditions="user_id='".get_current_user_id()."'";
+		$conditions="user_id='".$user_id."'";
 		if(!empty($_POST['subject_id'])){
 			$conditions.=" AND subject_id='".$_POST['subject_id']."'";
 		}
@@ -440,7 +487,11 @@ class Dashboard extends CI_Controller {
 					$jquery_day_array[ $userdetails->category_id ][$userdetails->topic_id]['total_time']=( $jquery_day_array[ $userdetails->category_id ][ $userdetails->topic_id ]['total_time'] ) + $userdetails->ans_time;
 					$jquery_day_array[ $userdetails->category_id ][$userdetails->topic_id]['total_ans']=( $jquery_day_array[ $userdetails->category_id ][ $userdetails->topic_id ]['total_ans'] ) + 1;
 					if($userdetails->answer_type=='true'){
-						$jquery_day_array[ $userdetails->category_id ][$userdetails->topic_id]['total_ans_right']=( $jquery_day_array[ $userdetails->category_id ][ $userdetails->topic_id ]['total_ans_right'] ) + 1;
+						if(!empty($jquery_day_array[ $userdetails->category_id ][$userdetails->topic_id]['total_ans_right'])) {
+							$jquery_day_array[ $userdetails->category_id ][ $userdetails->topic_id ]['total_ans_right'] = ( $jquery_day_array[ $userdetails->category_id ][ $userdetails->topic_id ]['total_ans_right'] ) + 1;
+						} else {
+							$jquery_day_array[ $userdetails->category_id ][$userdetails->topic_id]['total_ans_right']=0;
+						}
 					}
 				}else {
 					$jquery_day_array[$userdetails->category_id][$userdetails->topic_id]['total_time']=$userdetails->ans_time;
@@ -467,11 +518,25 @@ class Dashboard extends CI_Controller {
 	}
 	public function questionlog(){
 		isLogin();
-		$user_id=get_current_user_id();
+		if(isUserType('Parent')==true || isUserType('Teacher')==true || isUserType('School')==true){
+			if(!empty($_POST['child_id'])){
+				$user_id=$_POST['child_id'];
+				$this->session->set_userdata('child_id',$user_id);
+			} else{
+				$user_id=0;
+			}
+			if(!empty($this->session->userdata('child_id'))){
+				$user_id=$this->session->userdata('child_id');
+			}
+
+		} else{
+			$user_id=get_current_user_id();
+		}
+		$data['get_child_id']=$user_id;
 		$data['title']='Question Logs';
         $data['search_url']='questionlog';
 		$data['user_data'] = $this->user_model->get_userdata();
-        $conditions="user_id='".get_current_user_id()."'";
+        $conditions="user_id='".$user_id."'";
         if(!empty($_POST['subject_id'])){
             $conditions.=" AND subject_id='".$_POST['subject_id']."'";
         }
@@ -485,11 +550,25 @@ class Dashboard extends CI_Controller {
 	}
 	public function troublespot(){
 		isLogin();
-		$user_id=get_current_user_id();
+		if(isUserType('Parent')==true || isUserType('Teacher')==true || isUserType('School')==true){
+			if(!empty($_POST['child_id'])){
+				$user_id=$_POST['child_id'];
+				$this->session->set_userdata('child_id',$user_id);
+			} else{
+				$user_id=0;
+			}
+			if(!empty($this->session->userdata('child_id'))){
+				$user_id=$this->session->userdata('child_id');
+			}
+
+		} else{
+			$user_id=get_current_user_id();
+		}
+		$data['get_child_id']=$user_id;
 		$data['title']='Trouble Spots';
 		$data['user_data'] = $this->user_model->get_userdata();
 		$data['search_url']='troublespot';
-		$conditions="user_id='".get_current_user_id()."'";
+		$conditions="user_id='".$user_id."'";
 		if(!empty($_POST['subject_id'])){
 			$conditions.=" AND subject_id='".$_POST['subject_id']."'";
 		}
@@ -501,13 +580,18 @@ class Dashboard extends CI_Controller {
 		foreach ($data['user_details'] as $userdetails){
 			//$total_time=$total_time+$userdetails->ans_time;
 			//$rcv_date=dateFormat('Y-m-d',$userdetails->submit_date);
+
 			if(!empty($jquery_day_array[$userdetails->category_id])){ //// if category id array key present
 				//$jquery_day_array[ $userdetails->category_id ][$userdetails->topic_id]['total_ans_wrong']=0;
 				if(!empty($jquery_day_array[$userdetails->category_id][$userdetails->topic_id])) { //// if topic id array key present
 					$jquery_day_array[ $userdetails->category_id ][$userdetails->topic_id]['total_time']=( $jquery_day_array[ $userdetails->category_id ][ $userdetails->topic_id ]['total_time'] ) + $userdetails->ans_time;
 
 					if($userdetails->answer_type=='true'){
-						$jquery_day_array[ $userdetails->category_id ][$userdetails->topic_id]['total_marks']=( $jquery_day_array[ $userdetails->category_id ][ $userdetails->topic_id ]['total_marks'] ) + $userdetails->marks;
+						if(!empty($jquery_day_array[ $userdetails->category_id ][$userdetails->topic_id]['total_marks'])){
+							$jquery_day_array[ $userdetails->category_id ][$userdetails->topic_id]['total_marks']=( $jquery_day_array[ $userdetails->category_id ][ $userdetails->topic_id ]['total_marks'] ) + $userdetails->marks;
+						} else{
+							$jquery_day_array[ $userdetails->category_id ][$userdetails->topic_id]['total_marks']=0;
+						}
 
 					} else {
 						if(!empty($jquery_day_array[ $userdetails->category_id ][ $userdetails->topic_id ]['total_ans_wrong'])){
@@ -515,6 +599,7 @@ class Dashboard extends CI_Controller {
 						} else{
 							$jquery_day_array[ $userdetails->category_id ][$userdetails->topic_id]['total_ans_wrong']=1;
 						}
+
 
 					}
 				}else {

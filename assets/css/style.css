@@ -2867,3 +2867,26 @@ div.list-group a:nth-child(12){
     margin-right: 15px;
     margin-bottom: 15px;
 }
+.child_search_div {
+    display: block;
+    padding: 13px 17px;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+.child_search_drop{
+
+}
+.child_search_drop select {
+    font-size: 14px;
+    width: 100%;
+    margin: 0 10px 0 0;
+    height: 34px !important;
+}
+.child_search_drop input[type="submit"] {
+    font-size: 14px;
+}
+.child_search_drop h5 {
+    padding: 6px 0;
+    margin: 0;
+}

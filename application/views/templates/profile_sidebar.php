@@ -26,9 +26,7 @@
 		<?php } elseif (isUserType('Student')) { ?>
             <li><a href="<?php echo base_url('awards'); ?>"><i class="fa fa-trophy fa-fw" aria-hidden="true"></i> Awards</a></li>
 		<?php } ?>
-		<?php if(isUserType('Parent')==true || isUserType('Teacher')==true || isUserType('School')==true){ ?>
-            <li><a href="<?php echo base_url('childaward'); ?>"><i class="fa fa-chart-pie fa-fw" aria-hidden="true"></i> Analytics</a></li>
-        <?php } else { ?>
+
             <li class="dropdown"><a href=""><i class="fa fa-chart-pie fa-fw" aria-hidden="true"></i> Analytics &nbsp;<i class="fa fa-caret-down"></i></a>
                 <ul class="dropdown_list">
                     <li><a href="<?php echo base_url('dashboard/usage'); ?>">Usage</a></li>
@@ -38,7 +36,7 @@
                     <li><a href="<?php echo base_url('dashboard/progress'); ?>">Progress</a></li>
                 </ul>
             </li>
-        <?php } ?>
+
 
 		<li><a href="<?php echo base_url('/login/user_logout'); ?>"><i class="fa fa-sign-out-alt fa-fw" aria-hidden="true"></i> Logout</a></li>
 	</ul>

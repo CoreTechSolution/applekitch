@@ -7,7 +7,7 @@
  */
 
 ?>
-
+<?php $child_id=(!empty($this->session->userdata('child_id')))?$this->session->userdata('child_id'):get_current_user_id(); ?>
 <?php
 require_once 'templates/header.php';
 ?>
@@ -15,7 +15,7 @@ require_once 'templates/header.php';
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
-                    <?php require_once 'templates/profile_sidebar.php'; ?>
+					<?php require_once 'templates/profile_sidebar.php'; ?>
                 </div>
                 <div class="col-lg-9">
                     <div class="contentSection">
@@ -23,60 +23,78 @@ require_once 'templates/header.php';
                             <div class="box-wrapper">
                                 <div class="box-title"><?php echo $title; ?></div>
                                 <div class="box-container">
-                                    <table class="table" data-paging="true" data-sorting="true" data-filtering="true" data-paging-size="20">
-                                        <thead>
-                                        <tr>
-                                            <th>Question</th>
-                                            <th>Right Answer</th>
-                                            <th>Your Answer</th>
-                                            <th>Time</th>
-                                            <th>Marks</th>
-                                            <th>SmartScore</th>
-                                            <th>Date</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <?php
-                                        if(!empty($user_details)) {
-                                            foreach($user_details as $user_detail) {
-                                                //print_r($question);
-                                                ?>
-                                                <tr>
-                                                    <td><?php echo get_returnfield('questions','question_id',$user_detail->question_id,'question_name'); ?></td>
-                                                    <td><?php echo $user_detail->correct_ans; ?></td>
-                                                    <td><?php echo $user_detail->your_ans; ?></td>
-                                                    <td><?php echo $user_detail->ans_time; ?></td>
-                                                    <td><?php echo $user_detail->marks; ?></td>
-                                                    <td><?php echo ($user_detail->answer_type=='true')?$user_detail->marks:0; ?></td>
-                                                    <td><?php echo dateFormat('m-d-Y', $user_detail->submit_date); ?></td>
-                                                </tr>
-                                                <?php
+                                    <div class="child_search_div">
+                                        <form action="<?php echo base_url('dashboard/questionlog') ?>" method="post" class="child_search_drop">
+                                            <div class="row">
+                                                <div class="col-lg-2">
+                                                    <h5>Select Child</h5>
+                                                </div>
+                                                <div class="col-lg-3">
+					                                <?php echo form_dropdown('child_id',form_dropdown_child(get_current_user_id()),$child_id,array('class'=>'form-control')); ?>
+                                                </div>
 
-                                            }
-                                        }
-                                        ?>
-                                        </tbody>
-                                        <tfoot>
-                                        <tr>
-                                            <td colspan="4">
-                                                <div class="pagination"></div>
-                                            </td>
-                                        </tr>
-                                        </tfoot>
-                                    </table>
+                                                <div class="col-lg-2" >
+                                                    <input type="submit" class="btn btn-small btn-primary" value="Show">
 
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
+									<?php if($get_child_id!=0){ ?>
+                                        <table class="table" data-paging="true" data-sorting="true" data-filtering="true" data-paging-size="20">
+                                            <thead>
+                                            <tr>
+                                                <th>Question</th>
+                                                <th>Right Answer</th>
+                                                <th>Your Answer</th>
+                                                <th>Time</th>
+                                                <th>Marks</th>
+                                                <th>SmartScore</th>
+                                                <th>Date</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+											<?php
+											if(!empty($user_details)) {
+												foreach($user_details as $user_detail) {
+													//print_r($question);
+													?>
+                                                    <tr>
+                                                        <td><?php echo get_returnfield('questions','question_id',$user_detail->question_id,'question_name'); ?></td>
+                                                        <td><?php echo $user_detail->correct_ans; ?></td>
+                                                        <td><?php echo $user_detail->your_ans; ?></td>
+                                                        <td><?php echo $user_detail->ans_time; ?></td>
+                                                        <td><?php echo $user_detail->marks; ?></td>
+                                                        <td><?php echo ($user_detail->answer_type=='true')?$user_detail->marks:0; ?></td>
+                                                        <td><?php echo dateFormat('m-d-Y', $user_detail->submit_date); ?></td>
+                                                    </tr>
+													<?php
+
+												}
+											}
+											?>
+                                            </tbody>
+                                            <tfoot>
+                                            <tr>
+                                                <td colspan="4">
+                                                    <div class="pagination"></div>
+                                                </td>
+                                            </tr>
+                                            </tfoot>
+                                        </table>
+									<?php } ?>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!--Certificate design-->
-
-                    <!--end here-->
-
                 </div>
+                <!--Certificate design-->
+
+                <!--end here-->
+
             </div>
         </div>
+    </div>
     </div>
 
 <?php

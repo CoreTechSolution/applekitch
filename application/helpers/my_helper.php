@@ -107,6 +107,21 @@ function form_dropdown_cr($fields,$table_name){
 	return $query;
 
 }
+function form_dropdown_child($user_id){
+	$CI = & get_instance();
+	$fields=array('id','fname','lname');
+	$CI->db->select('*');
+	$CI->db->from('user');
+	$CI->db->where('parent', $user_id);
+	$CI->db->order_by($fields[0],'asc');
+	$queries=$CI->db->get();
+	$values= $queries->result_array();
+	$query=array('0'=>'-----Choose-----');
+	foreach ($values as $value){
+		$query[$value[$fields[0]]]=$value[$fields[1]].' '.$value[$fields[2]];
+	}
+	return $query;
+}
 function image_upload($file,$input_name, $path='uploads',$allowed_types='jpg|png',$max_size='5242880'){
 	$rtntext='';
 	//print_r(FCPATH); exit();
