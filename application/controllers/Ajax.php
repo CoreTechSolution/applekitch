@@ -248,7 +248,7 @@ class Ajax extends CI_Controller {
 						$html = '';
 					}
 					$rtntext['html'] = $html;
-					$img_answer      = explode( ',', $question_form_data['img_answer'] );
+					$img_answer      = explode( ',', $form_data['img_answer'] );
 					$your_ans        = $form_data_ans['answer'];
 					$correct_ans     = $img_answer;
 					if ( $form_data_ans['answer'] == $img_answer ) {
