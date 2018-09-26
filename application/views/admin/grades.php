@@ -26,7 +26,7 @@ require_once 'templates/header.php';
 				<table class="table">
 					<thead>
 					<tr>
-						<th>Image</th>
+						<!--<th>Image</th>-->
 						<th>Grade Name</th>
 						<th>Short Name</th>
 						<th>Actions</th>
@@ -38,11 +38,11 @@ require_once 'templates/header.php';
 						foreach($grades as $grade) {
 							?>
 							<tr>
-								<td>
-                                    <?php if(!empty($grade['img'])) { ?>
-                                    <a class="fancybox" href="<?php echo $this->image_crop_gd->show_images($grade['img'], "full"); ?>"><img src="<?php echo $this->image_crop_gd->show_images($grade['img'], "xsmall"); ?>" /></a>
-                                    <?php } ?>
-                                </td>
+								<!--<td>
+                                    <?php /*if(!empty($grade['img'])) { */?>
+                                    <a class="fancybox" href="<?php /*echo $this->image_crop_gd->show_images($grade['img'], "full"); */?>"><img src="<?php /*echo $this->image_crop_gd->show_images($grade['img'], "xsmall"); */?>" /></a>
+                                    <?php /*} */?>
+                                </td>-->
 								<td><?= $grade['name']; ?></td>
 								<td><?= $grade['slug']; ?></td>
 								<td><a class="edit_link" href="<?= base_url('/admin/edit_grade'); ?>/?grade_id=<?= $grade['id']; ?>"><span data-feather="edit"></span> Edit</a> | <a class="delete_link" onclick="delete_data(<?php echo $grade['id']; ?>,'id','grade');" href="javascript:void(0)"><span data-feather="delete"></span> Delete</a></td>
