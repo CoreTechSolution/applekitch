@@ -1238,8 +1238,8 @@ class Ajax extends CI_Controller {
                                             <img src="'.$form_serializedata['img'].'" alt="">
                                         </div>
                                         <div class="qAns_box">
-                                            <p>Answer1: </p><span><input type="text" name="qAns_box" class="form-control"></span><br>
-                                            <p>Answer2: </p><span><input type="text" name="qAns_box" class="form-control"></span>
+                                            <p>Answer1: </p><span><input type="text" name="qAns_box1" class="form-control"></span><br>
+                                            <p>Answer2: </p><span><input type="text" name="qAns_box2" class="form-control"></span>
                                         </div>';
         $rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
         $rtntext.='</div>';
