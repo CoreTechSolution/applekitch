@@ -611,6 +611,10 @@ class Ajax extends CI_Controller {
 				$save_data['answer_type']=strtolower($rtntext['type']);
 				$save_data['ans_time']=$form_data['total_time_inSecond'];
 				$save_data['submit_date']=date('Y-m-d H:i:s');
+				if(is_array($your_ans))
+                    $your_ans=serialize($your_ans);
+                if(is_array($correct_ans))
+                    $correct_ans=serialize($correct_ans);
 				$save_data['your_ans']=$your_ans;
 				$save_data['correct_ans']=$correct_ans;
 				$save_question=$this->ajax_model->save_student_qns_ans($save_data);
