@@ -16,7 +16,7 @@ require_once 'templates/header.php';
 					<thead>
 					<tr>
 						<th>Role Name</th>
-						<th>Actions</th>
+
 					</tr>
 					</thead>
 					<tbody>
@@ -26,7 +26,7 @@ require_once 'templates/header.php';
 							?>
                             <tr>
                                 <td><?= $role['name']; ?></td>
-                                <td><a class="edit_link" href="<?= base_url('/admin/edit_role'); ?>/?role_id=<?= $role['id']; ?>"><span data-feather="edit"></span> Edit</a></td>
+
                             </tr>
 							<?php
 						}
