@@ -2891,3 +2891,28 @@ div.list-group a:nth-child(12){
     padding: 6px 0;
     margin: 0;
 }
+.multiple_text_image{
+    margin: 34px 0 0 0;
+}
+.pre_text {
+    display: inline-block;
+    width: 14%;
+    vertical-align: top;
+    margin: 14px 0 0 0;
+}
+.question_box {
+    display: inline-block;
+    width: 84%;
+    margin: 0px 0 18px 0;
+}
+.ans_text {
+    display: inline-block;
+    width: 55px;
+}
+.ans_img {
+    width: 50px;
+    display: inline-block;
+}
+.ans_operator{
+    display: inline-block;
+}
