@@ -406,7 +406,10 @@ class Ajax extends CI_Controller {
 					} else {
 						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
 						$rtntext['type']    = 'false';
-						$rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
+						if(is_array($correct_ans))
+						    $rtntext['content'] = 'Wrong: Correct answer is : ' . serialize($correct_ans);
+						else
+                            $rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
 					}
 				} elseif ( $form_data['question_option'] == '13' ) {
 
