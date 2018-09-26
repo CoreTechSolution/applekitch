@@ -100,7 +100,7 @@ require_once 'templates/header.php';
                                         </div>
                                         <div class="col-lg-6">
                                             <label for="q_score">Question Marks</label>
-                                            <input class="form-control" name="q_score" id="q_score" type="text" required>
+                                            <input class="form-control" name="q_score" id="q_score" type="number" required>
                                         </div>
                                         <br>
                                         <br>
