@@ -60,6 +60,7 @@ body {
 }
 #option_add_div input[type='text']{
   margin-bottom: 5px;
+
 }
 @supports ((position: -webkit-sticky) or (position: sticky)) {
   .sidebar-sticky {
@@ -310,10 +311,11 @@ input[type='file']{
   }
 }
 #option_add_div{
-
+  width: 100%;
 }
 #option_add_div_app{
   margin: 5px 0;
+  width: 100%;
 }
 #option_add_div_app input[type='text']{
   margin: 5px 0;
@@ -334,4 +336,25 @@ input[type='file']{
   border-radius: .25rem;
   transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
   vertical-align: middle;
+}
+.option_add_q{
+  z-index: 999;
+}
+.pre_text {
+  display: inline-block;
+  width: auto;
+}
+.question_box{
+  display: inline-block;
+}
+.ans_text {
+  display: inline-block;
+  width: 55px;
+}
+.ans_img {
+  width: 60px;
+  display: inline-block;
+}
+.ans_operator{
+  display: inline-block;
 }
