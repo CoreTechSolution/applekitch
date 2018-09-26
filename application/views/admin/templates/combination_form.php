@@ -245,6 +245,61 @@
     </div>
 </div>
 <!---->
+<!--- --->
+<div id="qOption_28">
+    <div class="form-group">
+        <div class="row" id="upload_images_section">
+            <div class="col-lg-6">
+                <label for="imageQ_upload">Question Image</label>
+                <input type="file" name="imageQ_upload" class="form-control imageQ_upload" required>
+            </div>
+            <div class="col-lg-12">
+                <label for="second_question">Question</label>
+                <input type="text" name="second_question" class="form-control" required>
+            </div>
+            <div class="col-lg-6">
+                <label for="upload_images">Answer One</label>
+                <input type="text" name="ans_textbox1" class="form-control" required>
+            </div>
+            <div class="col-lg-6">
+                <label for="upload_images">Answer Two</label>
+                <input type="text" name="ans_textbox2" class="form-control" required>
+            </div>
+        </div>
+        <div id="uploaded_images" style="display: none;"></div>
+    </div>
+</div>
+<!---->
+<!--- --->
+<div id="qOption_31">
+    <div class="form-group">
+        <div class="row" id="upload_images_section">
+            <div class="col-lg-12">
+                <label for="imageQ_upload">Question Pre Text</label>
+                <input type="text" name="ans_check_with" class="form-control" required>
+            </div>
+
+            <div id="option_add_div">
+                    <div class="row">
+                    <div class="col-lg-6">
+                        <label for="imageQ_upload">Question Image</label>
+                        <input type="file" name="imageQ_uploads[]" class="form-control imageQ_upload" required>
+                    </div>
+                    <div class="col-lg-6">
+                        <label for="imageQ_upload">Answer</label>
+                        <input type="text" name="option_1[]" class="form-control option_1" required>
+                    </div>
+                    </div>
+
+            </div>
+            <div id="option_add_div_app" class="option_add_div_app"></div>
+            <a class="option_add_q" href="#"><span data-feather="plus-circle" title="Add Option"></span></a>
+        </div>
+        <div id="uploaded_images" style="display: none;"></div>
+    </div>
+</div>
+
+<!---->
 <div id="combination_add_row_demo">
     <div class="add_question_row">
         <div class="row_delete">

@@ -42,7 +42,8 @@ class Ajax extends CI_Controller {
 		$data['category_id']=$form_data['category_id'];
 		$data['topic_id']=$form_data['topic_id'];
 		$data['question_name']=$form_data['question'];
-		$data['q_score']=$form_data['q_score'];
+        $data['q_score']=$form_data['q_score'];
+        $data['qWrong_feedback']=$form_data['qWrong_feedback'];
 		unset($form_data['country_id']);
 		unset($form_data['subject_id']);
 		unset($form_data['grade_id']);
@@ -50,6 +51,20 @@ class Ajax extends CI_Controller {
 		unset($form_data['topic_id']);
 		//print_r($_FILES);
 		//exit();
+        if($form_data['question_option']=='31') {
+            $form_data['imgs']=$this->upload_multiple_img_path();
+        }
+        if (!empty( $_FILES['imageQ_upload']['name'] ) ) {
+            $img_path = image_upload( $_FILES, 'imageQ_upload', 'uploads/images' );
+            if ( $img_path ) {
+                $image_upload = $img_path;
+            } else {
+
+                $image_upload = '';
+            }
+            $form_data['img'] = $image_upload;
+        }
+
 		if($form_data['question_option']=='1') {
 			if ( ! empty( $_FILES['imageQ_upload']['name'] ) ) {
 				$img_path = image_upload( $_FILES, 'imageQ_upload', 'uploads/images' );
@@ -144,9 +159,9 @@ class Ajax extends CI_Controller {
 						$html = '';
 					}
 					$rtntext['html'] = $html;
-					$your_ans        = $form_data_ans['ans_textbox'];
-					$correct_ans     = $form_data['qAns_box'];
-					if ( strtolower( $form_data_ans['ans_textbox'] ) == strtolower( $form_data['qAns_box'] ) ) {
+					$your_ans        = $form_data['qAns_box'];
+					$correct_ans     = $form_data_ans['ans_textbox'];
+					if ( strtolower( $correct_ans ) == strtolower( $your_ans ) ) {
 						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
 						$this->session->set_userdata( 'score_smart', ( $form_data['score'] + $questions->q_score ) );
 						$rtntext['score_ans']   = $this->session->userdata( 'score_ans' );
@@ -157,7 +172,7 @@ class Ajax extends CI_Controller {
 					} else {
 						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
 						$rtntext['type']    = 'false';
-						$rtntext['content'] = 'Wrong: Correct answer is : ' . $form_data_ans['ans_textbox'];
+						$rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
 					}
 				} elseif ( $form_data['question_option'] == '2' ) {
 
@@ -170,9 +185,9 @@ class Ajax extends CI_Controller {
 						$html = '';
 					}
 					$rtntext['html'] = $html;
-					$your_ans        = $form_data_ans['answer'];
-					$correct_ans     = $form_data['img_answer'];
-					if ( strtolower( $form_data_ans['answer'] ) == strtolower( $form_data['img_answer'] ) ) {
+					$your_ans        = $form_data['img_answer'];
+					$correct_ans     = $form_data_ans['answer'];
+					if ( strtolower( $correct_ans  ) == strtolower( $your_ans ) ) {
 						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
 						$this->session->set_userdata( 'score_smart', ( $form_data['score'] + $questions->q_score ) );
 						$rtntext['score_ans']   = $this->session->userdata( 'score_ans' );
@@ -197,9 +212,9 @@ class Ajax extends CI_Controller {
 					}
 					//echo $html; exit();
 					$rtntext['html'] = $html;
-					$your_ans        = $form_data_ans['ans_textbox'];
-					$correct_ans     = $form_data['option_1'];
-					if ( strtolower( $form_data_ans['ans_textbox'] ) == strtolower( $form_data['option_1'] ) ) {
+					$your_ans        = $form_data['option_1'];
+					$correct_ans     = $form_data_ans['ans_textbox'];
+					if ( strtolower( $correct_ans ) == strtolower( $your_ans ) ) {
 						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
 						$this->session->set_userdata( 'score_smart', ( $form_data['score'] + $questions->q_score ) );
 						$rtntext['score_ans']   = $this->session->userdata( 'score_ans' );
@@ -209,7 +224,7 @@ class Ajax extends CI_Controller {
 					} else {
 						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
 						$rtntext['type']    = 'false';
-						$rtntext['content'] = 'Wrong: Correct answer is : ' . $form_data_ans['ans_textbox'];
+						$rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
 					}
 				} elseif ( $form_data['question_option'] == '6' ) {
 
@@ -223,9 +238,9 @@ class Ajax extends CI_Controller {
 					}
 					//echo $html; exit();
 					$rtntext['html'] = $html;
-					$your_ans        = $form_data_ans['ans_textbox'];
-					$correct_ans     = $form_data['option_1'];
-					if ( strtolower( $form_data_ans['ans_textbox'] ) == strtolower( $form_data['option_1'] ) ) {
+					$your_ans        = $form_data['option_1'];
+					$correct_ans     = $form_data_ans['ans_textbox'];
+					if ( strtolower( $correct_ans ) == strtolower( $your_ans ) ) {
 						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
 						$this->session->set_userdata( 'score_smart', ( $form_data['score'] + $questions->q_score ) );
 						$rtntext['score_ans']   = $this->session->userdata( 'score_ans' );
@@ -235,7 +250,7 @@ class Ajax extends CI_Controller {
 					} else {
 						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
 						$rtntext['type']    = 'false';
-						$rtntext['content'] = 'Wrong: Correct answer is : ' . $form_data_ans['ans_textbox'];
+						$rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
 					}
 				} elseif ( $form_data['question_option'] == '8' ) {
 
@@ -249,9 +264,9 @@ class Ajax extends CI_Controller {
 					}
 					$rtntext['html'] = $html;
 					$img_answer      = explode( ',', $form_data['img_answer'] );
-					$your_ans        = $form_data_ans['answer'];
-					$correct_ans     = $img_answer;
-					if ( $form_data_ans['answer'] == $img_answer ) {
+					$your_ans        = $img_answer;
+					$correct_ans     = $form_data_ans['answer'];
+					if ( $correct_ans == $your_ans ) {
 						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
 						$this->session->set_userdata( 'score_smart', ( $form_data['score'] + $questions->q_score ) );
 						$rtntext['score_ans']   = $this->session->userdata( 'score_ans' );
@@ -275,9 +290,9 @@ class Ajax extends CI_Controller {
 					}
 					//echo $html; exit();
 					$rtntext['html'] = $html;
-					$your_ans        = $form_data_ans['ans_textbox'];
-					$correct_ans     = $form_data['option_1'];
-					if ( strtolower( $form_data_ans['ans_textbox'] ) == strtolower( $form_data['option_1'] ) ) {
+					$your_ans        = $form_data['option_1'];
+					$correct_ans     = $form_data_ans['ans_textbox'];
+					if ( strtolower( $correct_ans ) == strtolower( $your_ans ) ) {
 						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
 						$this->session->set_userdata( 'score_smart', ( $form_data['score'] + $questions->q_score ) );
 						$rtntext['score_ans']   = $this->session->userdata( 'score_ans' );
@@ -287,7 +302,7 @@ class Ajax extends CI_Controller {
 					} else {
 						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
 						$rtntext['type']    = 'false';
-						$rtntext['content'] = 'Wrong: Correct answer is : ' . $form_data_ans['ans_textbox'];
+						$rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
 					}
 				} elseif ( $form_data['question_option'] == '11' ) {
 
@@ -300,9 +315,9 @@ class Ajax extends CI_Controller {
 						$html = '';
 					}
 					$rtntext['html'] = $html;
-					$your_ans        = $form_data_ans['ans_textbox'];
-					$correct_ans     = $form_data['qAns_box'];
-					if ( strtolower( $form_data_ans['ans_textbox'] ) == strtolower( $form_data['qAns_box'] ) ) {
+					$your_ans        = $form_data['qAns_box'];
+					$correct_ans     = $form_data_ans['ans_textbox'];
+					if ( strtolower( $correct_ans ) == strtolower( $your_ans ) ) {
 						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
 						$this->session->set_userdata( 'score_smart', ( $form_data['score'] + $questions->q_score ) );
 						$rtntext['score_ans']   = $this->session->userdata( 'score_ans' );
@@ -313,7 +328,7 @@ class Ajax extends CI_Controller {
 					} else {
 						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
 						$rtntext['type']    = 'false';
-						$rtntext['content'] = 'Wrong: Correct answer is : ' . $form_data_ans['ans_textbox'];
+						$rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
 					}
 				} elseif ( $form_data['question_option'] == '14' ) {
 
@@ -327,9 +342,9 @@ class Ajax extends CI_Controller {
 					}
 					//echo $html; exit();
 					$rtntext['html'] = $html;
-					$your_ans        = $form_data_ans['ans_textbox'];
-					$correct_ans     = $form_data['option_1'];
-					if ( strtolower( $form_data_ans['ans_textbox'] ) == strtolower( $form_data['option_1'] ) ) {
+					$your_ans        = $form_data['option_1'];
+					$correct_ans     = $form_data_ans['ans_textbox'];
+					if ( strtolower( $correct_ans ) == strtolower( $your_ans ) ) {
 						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
 						$this->session->set_userdata( 'score_smart', ( $form_data['score'] + $questions->q_score ) );
 						$rtntext['score_ans']   = $this->session->userdata( 'score_ans' );
@@ -339,7 +354,7 @@ class Ajax extends CI_Controller {
 					} else {
 						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
 						$rtntext['type']    = 'false';
-						$rtntext['content'] = 'Wrong: Correct answer is : ' . $form_data_ans['ans_textbox'];
+						$rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
 					}
 				} elseif ( $form_data['question_option'] == '15' ) {
 
@@ -352,9 +367,9 @@ class Ajax extends CI_Controller {
 						$html = '';
 					}
 					$rtntext['html'] = $html;
-					$your_ans        = $form_data_ans['answer'];
-					$correct_ans     = $form_data['img_answer'];
-					if ( strtolower( $form_data_ans['answer'] ) == strtolower( $form_data['img_answer'] ) ) {
+					$your_ans        = $form_data['img_answer'];
+					$correct_ans     = $form_data_ans['answer'];
+					if ( strtolower( $correct_ans ) == strtolower( $your_ans ) ) {
 						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
 						$this->session->set_userdata( 'score_smart', ( $form_data['score'] + $questions->q_score ) );
 						$rtntext['score_ans']   = $this->session->userdata( 'score_ans' );
@@ -379,9 +394,9 @@ class Ajax extends CI_Controller {
 					}
 					//echo $html; exit();
 					$rtntext['html'] = $html;
-					$your_ans        = $form_data_ans['option_arrange'];
-					$correct_ans     = $form_data['option_arrange'];
-					if ( $form_data_ans['option_arrange'] == $form_data['option_arrange'] ) {
+					$your_ans        = $form_data['option_arrange'];
+					$correct_ans     = $form_data_ans['option_arrange'];
+					if ( $correct_ans == $your_ans ) {
 						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
 						$this->session->set_userdata( 'score_smart', ( $form_data['score'] + $questions->q_score ) );
 						$rtntext['score_ans']   = $this->session->userdata( 'score_ans' );
@@ -391,7 +406,7 @@ class Ajax extends CI_Controller {
 					} else {
 						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
 						$rtntext['type']    = 'false';
-						$rtntext['content'] = 'Wrong: Correct answer is : ' . $form_data_ans['ans_textbox'];
+						$rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
 					}
 				} elseif ( $form_data['question_option'] == '13' ) {
 
@@ -405,9 +420,9 @@ class Ajax extends CI_Controller {
 					}
 					//echo $html; exit();
 					$rtntext['html'] = $html;
-					$your_ans        = $form_data_ans['ans_textbox'];
-					$correct_ans     = $form_data['option_1'];
-					if ( strtolower( $form_data_ans['ans_textbox'] ) == strtolower( $form_data['option_1'] ) ) {
+					$your_ans        = $form_data['option_1'];
+					$correct_ans     = $form_data_ans['ans_textbox'];
+					if ( strtolower( $correct_ans ) == strtolower( $your_ans ) ) {
 						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
 						$this->session->set_userdata( 'score_smart', ( $form_data['score'] + $questions->q_score ) );
 						$rtntext['score_ans']   = $this->session->userdata( 'score_ans' );
@@ -417,9 +432,35 @@ class Ajax extends CI_Controller {
 					} else {
 						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
 						$rtntext['type']    = 'false';
-						$rtntext['content'] = 'Wrong: Correct answer is : ' . $form_data_ans['ans_textbox'];
+						$rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
 					}
-				} elseif ( $form_data['question_option'] == '20' ) {
+				} elseif ( $form_data['question_option'] == '18' ) {
+
+                    if ( ! empty( $questions_next ) ) {
+                        $question_form_data=unserialize($questions_next[0]->form_data);
+                        $qview_option = 'qView_option_' . $question_form_data['question_option'];
+                        $html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
+                    }
+                    if ( empty( $html ) ) {
+                        $html = '';
+                    }
+                    $rtntext['html'] = $html;
+                    $your_ans     = $form_data['qAns_box1'] . 'and' .$form_data['qAns_box2'];
+                    $correct_ans     = $form_data_ans['ans_textbox1']. 'and' .$form_data_ans['ans_textbox2'];
+                    if ( strtolower( $correct_ans ) == strtolower( $your_ans) ) {
+                        $this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
+                        $this->session->set_userdata( 'score_smart', ( $form_data['score'] + $questions->q_score ) );
+                        $rtntext['score_ans']   = $this->session->userdata( 'score_ans' );
+                        $rtntext['score_smart'] = $this->session->userdata( 'score_smart' );
+                        $rtntext['type']        = 'true';
+                        $rtntext['content']     = 'Correct';
+
+                    } else {
+                        $this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
+                        $rtntext['type']    = 'false';
+                        $rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
+                    }
+                } elseif ( $form_data['question_option'] == '20' ) {
 
 					if ( ! empty( $questions_next ) ) {
 						$question_form_data=unserialize($questions_next[0]->form_data);
@@ -432,9 +473,9 @@ class Ajax extends CI_Controller {
 					}
 					//echo $html; exit();
 					$rtntext['html'] = $html;
-					$your_ans        = $form_data_ans['ans_textbox'];
-					$correct_ans     = $form_data['option_1'];
-					if ( strtolower( $form_data_ans['ans_textbox'] ) == strtolower( $form_data['option_1'] ) ) {
+					$your_ans        = $form_data['option_1'];
+					$correct_ans     = $form_data_ans['ans_textbox'];
+					if ( strtolower( $correct_ans ) == strtolower( $your_ans ) ) {
 						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
 						$this->session->set_userdata( 'score_smart', ( $form_data['score'] + $questions->q_score ) );
 						$rtntext['score_ans']   = $this->session->userdata( 'score_ans' );
@@ -444,7 +485,7 @@ class Ajax extends CI_Controller {
 					} else {
 						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
 						$rtntext['type']    = 'false';
-						$rtntext['content'] = 'Wrong: Correct answer is : ' . $form_data_ans['ans_textbox'];
+						$rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
 					}
 				} elseif ( $form_data['question_option'] == '26' ) {
 
@@ -458,9 +499,9 @@ class Ajax extends CI_Controller {
 					}
 
 					$rtntext['html'] = $html;
-					$your_ans        = $form_data_ans['ans_textbox'];
-					$correct_ans     = $form_data['selected_option'];
-					if ( $form_data_ans['ans_textbox'] == $form_data['selected_option'] ) {
+					$your_ans        = $form_data['selected_option'];
+					$correct_ans     = $form_data_ans['ans_textbox'];
+					if ( $correct_ans == $your_ans ) {
 						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
 						$this->session->set_userdata( 'score_smart', ( $form_data['score'] + $questions->q_score ) );
 						$rtntext['score_ans']   = $this->session->userdata( 'score_ans' );
@@ -470,9 +511,84 @@ class Ajax extends CI_Controller {
 					} else {
 						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
 						$rtntext['type']    = 'false';
-						$rtntext['content'] = 'Wrong: Correct answer is : ' . $form_data_ans['ans_textbox'];
+						$rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
 					}
-				}
+				} elseif ( $form_data['question_option'] == '28' ) {
+
+                    if ( ! empty( $questions_next ) ) {
+                        $question_form_data=unserialize($questions_next[0]->form_data);
+                        $qview_option = 'qView_option_' . $question_form_data['question_option'];
+                        $html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
+                    }
+                    if ( empty( $html ) ) {
+                        $html = '';
+                    }
+                    $rtntext['html'] = $html;
+                    //print_r($form_data_ans); exit();
+                    $your_ans     = $form_data['qAns_box1'] . 'and' .$form_data['qAns_box2'];
+                    $correct_ans     = $form_data_ans['ans_textbox1']. 'and' .$form_data_ans['ans_textbox2'];
+                    if ( strtolower( $correct_ans ) == strtolower( $your_ans) ) {
+                        $this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
+                        $this->session->set_userdata( 'score_smart', ( $form_data['score'] + $questions->q_score ) );
+                        $rtntext['score_ans']   = $this->session->userdata( 'score_ans' );
+                        $rtntext['score_smart'] = $this->session->userdata( 'score_smart' );
+                        $rtntext['type']        = 'true';
+                        $rtntext['content']     = 'Correct';
+
+                    } else {
+                        $this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
+                        $rtntext['type']    = 'false';
+                        $rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
+                    }
+                } elseif ( $form_data['question_option'] == '31' ) {
+
+                    if ( ! empty( $questions_next ) ) {
+                        $question_form_data=unserialize($questions_next[0]->form_data);
+                        $qview_option = 'qView_option_' . $question_form_data['question_option'];
+                        $html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
+                    }
+                    if ( empty( $html ) ) {
+                        $html = '';
+                    }
+                    $rtntext['html'] = $html;
+                    //print_r($form_data_ans); exit();
+                    $ans='';
+                    $counter_ans=0;
+                    $yans='';
+                    $ycounter_ans=0;
+                    foreach ($form_data_ans['option_1'] as $option_1){
+                        if($counter_ans==0){
+                            $ans.=$option_1;
+                        } else{
+                            $ans.='|'.$option_1;
+                        }
+                        $counter_ans++;
+                    }
+                    foreach ($form_data['qAns_box'] as $option_1){
+                        if($ycounter_ans==0){
+                            $yans.=$option_1;
+                        } else{
+                            $yans.='|'.$option_1;
+                        }
+                        $ycounter_ans++;
+                    }
+                    $your_ans     = $yans;
+                    $correct_ans     = $ans;
+                    if ( strtolower( $correct_ans ) == strtolower( $your_ans) ) {
+                        $this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
+                        $this->session->set_userdata( 'score_smart', ( $form_data['score'] + $questions->q_score ) );
+                        $rtntext['score_ans']   = $this->session->userdata( 'score_ans' );
+                        $rtntext['score_smart'] = $this->session->userdata( 'score_smart' );
+                        $rtntext['type']        = 'true';
+                        $rtntext['content']     = 'Correct';
+
+                    } else {
+                        $this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
+                        $rtntext['type']    = 'false';
+                        $rtntext['content'] = 'Wrong: Correct answer is : ' . $ans;
+                    }
+                }
+
 
 
 
@@ -528,6 +644,22 @@ class Ajax extends CI_Controller {
 		}
 		echo json_encode($rtntext);
 	}
+
+	function upload_multiple_img_path(){
+        $img_array = array();
+        $files = $_FILES;
+        $filesCount = count($_FILES['imageQ_uploads']['name']);
+        for($i = 0; $i < $filesCount; $i++){
+            $_FILES['imageQ_uploads']['name']     = $files['imageQ_uploads']['name'][$i];
+            $_FILES['imageQ_uploads']['type']     = $files['imageQ_uploads']['type'][$i];
+            $_FILES['imageQ_uploads']['tmp_name'] = $files['imageQ_uploads']['tmp_name'][$i];
+            $_FILES['imageQ_uploads']['error']     = $files['imageQ_uploads']['error'][$i];
+            $_FILES['imageQ_uploads']['size']     = $files['imageQ_uploads']['size'][$i];
+            $img_path = image_upload( $_FILES, 'imageQ_uploads', 'uploads/images' );
+            array_push($img_array, $img_path);
+        }
+        return $img_array;
+    }
 
 	function upload_images_and_options(){
 		$img_array = array();
@@ -974,6 +1106,36 @@ class Ajax extends CI_Controller {
 		return $rtntext;
 	}
 
+    function qView_option_18($data,$grade_id,$subject_id,$topic_id,$start){
+        $rtntext='';
+        $start=$start+1;
+        $rtntext.='<input type="hidden" name="start" value="'.$start.'" />
+                            <input type="hidden" name="grade_id" value="'.$grade_id.'" />
+                            <input type="hidden" name="subject_id" value="'.$subject_id.'" />
+                            <input type="hidden" name="topic_id" value="'.$topic_id.'" />';
+        $rtntext.='<div class="row">';
+        $rtntext.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
+                                <div class="col-lg-5">
+                                    <div class="question_count">Question <a href="javacript:void(0);" id="play_question" data-question="<?php echo ($data->question_name); ?>"><i class="fas fa-volume-up"></i></a></div>
+                                            <div class="question_display">'.$data->question_name.'</div>
+                                </div>';
+        $rtntext.='<div class="col-lg-7">';
+        $form_serializedata=unserialize($data->form_data);
+        //print_r($form_serializedata);
+        $rtntext.='<input type="hidden" name="question_option" value="'.$form_serializedata['question_option'].'">';
+        $rtntext.='<div class="question_image">
+                                            
+                                        </div>
+                                        <div class="qAns_box">
+                                            <p>Answer1: </p><span><input type="text" name="qAns_box1" class="form-control"></span><br>
+                                            <p>Answer2: </p><span><input type="text" name="qAns_box2" class="form-control"></span>
+                                        </div>';
+        $rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
+        $rtntext.='</div>';
+        $rtntext.='</div>';
+
+        return $rtntext;
+    }
 
 	function qView_option_20($data,$grade_id,$subject_id,$topic_id,$start){
 		$rtntext='';
@@ -1047,6 +1209,79 @@ class Ajax extends CI_Controller {
 
 		return $rtntext;
 	}
+
+    function qView_option_28($data,$grade_id,$subject_id,$topic_id,$start){
+        $rtntext='';
+        $start=$start+1;
+        $rtntext.='<input type="hidden" name="start" value="'.$start.'" />
+                            <input type="hidden" name="grade_id" value="'.$grade_id.'" />
+                            <input type="hidden" name="subject_id" value="'.$subject_id.'" />
+                            <input type="hidden" name="topic_id" value="'.$topic_id.'" />';
+        $rtntext.='<div class="row">';
+        $rtntext.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
+                                <div class="col-lg-5">
+                                    <div class="question_count">Question <a href="javacript:void(0);" id="play_question" data-question="<?php echo ($data->question_name); ?>"><i class="fas fa-volume-up"></i></a></div>
+                                            <div class="question_display">'.$data->question_name.'</div>
+                                </div>';
+        $rtntext.='<div class="col-lg-7">';
+        $form_serializedata=unserialize($data->form_data);
+        //print_r($form_serializedata);
+        $rtntext.='<input type="hidden" name="question_option" value="'.$form_serializedata['question_option'].'">';
+        $rtntext.='<div class="question_image">
+                                            <img src="'.$form_serializedata['img'].'" alt="">
+                                        </div>
+                                        <div class="qAns_box">
+                                            <p>Answer1: </p><span><input type="text" name="qAns_box" class="form-control"></span><br>
+                                            <p>Answer2: </p><span><input type="text" name="qAns_box" class="form-control"></span>
+                                        </div>';
+        $rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
+        $rtntext.='</div>';
+        $rtntext.='</div>';
+
+        return $rtntext;
+    }
+    function qView_option_31($data,$grade_id,$subject_id,$topic_id,$start){
+        $rtntext='';
+        $start=$start+1;
+        $rtntext.='<input type="hidden" name="start" value="'.$start.'" />
+                            <input type="hidden" name="grade_id" value="'.$grade_id.'" />
+                            <input type="hidden" name="subject_id" value="'.$subject_id.'" />
+                            <input type="hidden" name="topic_id" value="'.$topic_id.'" />';
+        $rtntext.='<div class="row">';
+        $rtntext.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
+                                <div class="col-lg-5">
+                                    <div class="question_count">Question <a href="javacript:void(0);" id="play_question" data-question="<?php echo ($data->question_name); ?>"><i class="fas fa-volume-up"></i></a></div>
+                                            <div class="question_display">'.$data->question_name.'</div>
+                                </div>';
+        $rtntext.='<div class="col-lg-7">';
+        $form_serializedata=unserialize($data->form_data);
+        //print_r($form_serializedata);
+        $rtntext.='<input type="hidden" name="question_option" value="'.$form_serializedata['question_option'].'">';
+        $rtntext.='<div class="multiple_text_image">
+        <div class="pre_text">'
+            .$form_serializedata['ans_check_with'].'
+        </div>
+        <div class="question_box">';
+            $option_counter=0;
+            foreach ($form_serializedata['imgs'] as $imgs){
+                if($option_counter==0){
+                    $rtntext.='            <div class="ans_text"><input type="text" name="qAns_box[]" class="form-control"></div>
+                    <div class="ans_img"><img src="'.$imgs.'" alt="" class=""></div>';
+                } else {
+                    $rtntext.='<div class="ans_operator">+</div>
+                    <div class="ans_text"><input type="text" name="qAns_box[]" class="form-control"></div>
+                    <div class="ans_img"><img src="'.$imgs.'" alt="" class=""></div>';
+                }
+                $option_counter++;
+            }
+        $rtntext.='</div>
+    </div>';
+        $rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
+        $rtntext.='</div>';
+        $rtntext.='</div>';
+
+        return $rtntext;
+    }
 
 	public function save_ans_certificate(){
 		//print_r($this->session->userdata('logged_in')); exit();

@@ -471,6 +471,7 @@ class Admin extends CI_Controller {
 			'title' => 'Category',
 			'category' => $category
 		);
+		$data['category']=$category;
 		$this->load->view( 'admin/category', $data );
 
 	}

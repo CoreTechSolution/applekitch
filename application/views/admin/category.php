@@ -17,7 +17,7 @@ require_once 'templates/header.php';
 							</div>
 							<div class="col-lg-6">
 								<div style="text-align: right;">
-									<a class="btn btn-primary btn-primary-green" href="<?= base_url('/admin/add_category'); ?>">Add New</a>
+									<a class="btn btn-primary btn-primary-green" href="<?= base_url('admin/add_category'); ?>">Add New</a>
 								</div>
 							</div>
 						</div>

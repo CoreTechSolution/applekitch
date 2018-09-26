@@ -174,8 +174,8 @@
 <?php } elseif($question_option=='18'){ ?>
 	<?php //print_r($form_data); ?>
 	<div class="qAns_box">
-		<p>Answer 1: </p><span><input type="text" name="qAns_box" class="form-control"></span><br>
-		<p>Answer 1: </p><span><input type="text" name="qAns_box" class="form-control"></span>
+		<p>Answer 1: </p><span><input type="text" name="qAns_box1" class="form-control"></span><br>
+		<p>Answer 1: </p><span><input type="text" name="qAns_box2" class="form-control"></span>
 
 	</div>
 <?php } elseif($question_option=='19'){ ?>
@@ -214,5 +214,38 @@
         <?php } ?>
         </ul>
     </div>
-<?php }  ?>
+<?php }  elseif($question_option=='28'){ ?>
+	<?php //print_r($form_data); ?>
+    <div class="question_image">
+        <img src="<?php echo $form_data['img']; ?>" alt="" class="img-thumbnail">
+    </div>
+	<div class="qAns_box">
+		<p>Answer 1: </p><span><input type="text" name="qAns_box1" class="form-control"></span><br>
+		<p>Answer 2: </p><span><input type="text" name="qAns_box2" class="form-control"></span>
+
+	</div>
+<?php } elseif($question_option=='31'){ ?>
+    <?php //print_r($form_data); ?>
+    <div class="multiple_text_image">
+        <div class="pre_text">
+            <?php echo $form_data['ans_check_with']; ?>
+        </div>
+        <div class="question_box">
+            <?php $option_counter=0; ?>
+            <?php foreach ($form_data['imgs'] as $imgs){ ?>
+                <?php if($option_counter==0){ ?>
+
+                    <div class="ans_text"><input type="text" name="qAns_box[]" class="form-control"></div>
+                    <div class="ans_img"><img src="<?php echo $imgs; ?>" alt="" class=""></div>
+                <?php } else { ?>
+                    <div class="ans_operator">+</div>
+                    <div class="ans_text"><input type="text" name="qAns_box[]" class="form-control"></div>
+                    <div class="ans_img"><img src="<?php echo $imgs; ?>" alt="" class=""></div>
+                <?php } ?>
+                <?php $option_counter++; ?>
+            <?php } ?>
+        </div>
+    </div>
+
+<?php } ?>
 </div>

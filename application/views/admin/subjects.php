@@ -41,7 +41,7 @@ require_once 'templates/header.php';
 								<td><?= $subject['name']; ?></td>
 								<!--<td><?/*= $subject['gname']; */?></td>
 								<td><?/*= $subject['cname']; */?></td>-->
-								<td><a class="edit_link" href="<?= base_url('/admin/edit_subject'); ?>/?subject_id=<?= $subject['id']; ?>"><span data-feather="edit"></span> Edit</a> | <a class="delete_link" onclick="delete_data(<?php echo $subject['id']; ?>,'id','subject');" href="javascript:void(0)"><span data-feather="delete"></span> Delete</a></td>
+								<td><!--<a class="edit_link" href="<?php /*echo base_url('admin/edit_subject'); */?>/?subject_id=<?php /*echo $subject['id']; */?>"><span data-feather="edit"></span> Edit</a> | --><a class="delete_link" onclick="delete_data(<?php echo $subject['id']; ?>,'id','subject');" href="javascript:void(0)"><span data-feather="delete"></span> Delete</a></td>
 							</tr>
 							<?php
 						}

@@ -16,7 +16,7 @@
  */
 
 
-$.widget("ntx.fsortable", $.ui.sortable, {
+jQuery.widget("ntx.fsortable", jQuery.ui.sortable, {
 	options: {
 		emptyClass: "fsortable-empty",
 		existingSortable: false
@@ -28,8 +28,8 @@ $.widget("ntx.fsortable", $.ui.sortable, {
 		 * and free slots.
 		 */
 
-		var freeSlots = $("." + this.options.emptyClass, this.element),
-				items = $(this.options.items, this.element).not(freeSlots);
+		var freeSlots = jQuery("." + this.options.emptyClass, this.element),
+				items = jQuery(this.options.items, this.element).not(freeSlots);
 
 		this._occupied = items.length;
 		this._capacity = freeSlots.length;
@@ -56,7 +56,7 @@ $.widget("ntx.fsortable", $.ui.sortable, {
 
 		if (!ui || !ui.placeholder[0]) {
 			// If we have no placeholder, get the last empty slot.
-			closest = $("." + this.options.emptyClass + ":last", this.element);
+			closest = jQuery("." + this.options.emptyClass + ":last", this.element);
 		} else {
 			// Get the empty slot closest to the placeholder.
 			closest = ui.placeholder.nextAll("." + this.options.emptyClass + ":first");
@@ -186,7 +186,7 @@ $.widget("ntx.fsortable", $.ui.sortable, {
 					// TODO: if _spot is null, bad stuff has happened, throw an error?
 					// or figure out how to gracefully cancel a sort
 
-				$(this).one("sortchange.fs", function() {
+				jQuery(this).one("sortchange.fs", function() {
 					that._spot.hide();
 				});
 			}
@@ -206,7 +206,7 @@ $.widget("ntx.fsortable", $.ui.sortable, {
 			 */
 			// Deactivate some listeners because they're not needed anymore.
 			// Use namespaces so we don't unbind every listener.
-			$(this).off("sortchange.fs");
+			jQuery(this).off("sortchange.fs");
 
 			that.previous = ui.placeholder.next();
 			if (!that.previous.length) {
@@ -214,7 +214,7 @@ $.widget("ntx.fsortable", $.ui.sortable, {
 			}
 		});
 
-		$(document).on("sortover", ".ui-sortable", function(e, ui) {
+		jQuery(document).on("sortover", ".ui-sortable", function(e, ui) {
 			/**
 			 * We need to know when an item leaves our list and enters another so we
 			 * can replace it with an empty slot. To do this we listen for the
@@ -236,7 +236,7 @@ $.widget("ntx.fsortable", $.ui.sortable, {
 			if (!ui.sender || ui.sender[0] !== that.element[0]) return;
 
 			var inst = ui.sender.data(that.widgetFullName),
-					o = $("<div></div>").addClass(that.options.emptyClass);
+					o = jQuery("<div></div>").addClass(that.options.emptyClass);
 
 			if (!inst.previous) {
 				o.appendTo(inst.element);
