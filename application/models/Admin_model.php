@@ -264,7 +264,10 @@ INNER JOIN country ON subject.country = country.id INNER JOIN grade ON subject.g
 	}
 
 	function get_category() {
-		$query = $this->db->query('SELECT category.id, category.name, category.grade, category.country, category.subject, category.parent, country.name AS cname, grade.name AS gname, subject.name AS sname FROM category INNER JOIN country ON category.country = country.id INNER JOIN grade ON category.grade = grade.id INNER JOIN subject ON category.subject = subject.id');
+	    $this->db->select('*');
+	    $this->db->from('category');
+	    $query=$this->db->get();
+		//$query = $this->db->query('SELECT category.id, category.name, category.grade, category.country, category.subject, category.parent, country.name AS cname, grade.name AS gname, subject.name AS sname FROM category INNER JOIN country ON category.country = country.id INNER JOIN grade ON category.grade = grade.id INNER JOIN subject ON category.subject = subject.id');
 
 		if($query)
 		{
