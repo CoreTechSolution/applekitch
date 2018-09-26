@@ -37,7 +37,7 @@ require_once 'templates/header.php';
 							?>
 							<tr>
 								<td><?php echo $topic->topic_name; ?></td>
-								<td><a class="edit_link" href="<?php base_url('/admin/edit_question_type'); ?>/<?php $topic->topic_id; ?>"><span data-feather="edit"></span> Edit</a> | <a class="delete_link" onclick="delete_question_type(<?php echo $topic->topic_id; ?>);" href="javascript:void(0)"><span data-feather="delete"></span> Delete</a></td>
+								<td><a class="edit_link" href="<?php base_url('admin/edit_question_type'); ?>/<?php $topic->topic_id; ?>"><span data-feather="edit"></span> Edit</a> | <a class="delete_link" onclick="delete_data(<?php echo $topic->topic_id; ?>,'topic_id','topics');" href="javascript:void(0)"><span data-feather="delete"></span> Delete</a></td>
 							</tr>
 							<?php
 						}
