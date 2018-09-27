@@ -36,6 +36,18 @@ class Ajax extends CI_Controller {
 	}
 	function save_question(){
 		$form_data=$_POST;
+		if(!empty($form_data)) {
+			$i = 0;
+			foreach ( $form_data as $key => $value ) {
+				if(empty($value) && $key != 'question_id') {
+					$i++;
+				}
+			}
+			if($i > 0) {
+				echo 'error';
+				exit();
+			}
+		}
 		$data['country_id']=$form_data['country_id'];
 		$data['subject_id']=$form_data['subject_id'];
 		$data['grade_id']=$form_data['grade_id'];

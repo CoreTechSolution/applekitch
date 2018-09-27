@@ -179,6 +179,8 @@ jQuery(document).ready(function() {
                 jQuery('#loading').show();
                 var this_element = jQuery(this);
 
+                tinymce.triggerSave();
+
                 var country_id = jQuery('#country_id').val();
                 var subject_id = jQuery('#subject_id').val();
                 var grade_id = jQuery('#grade_id').val();
@@ -201,13 +203,18 @@ jQuery(document).ready(function() {
                     data: form_data,
                     success: function (data) {
                         //console.log(data);
-                        if (data != '0') {
+                        if(data == 'error') {
                             jQuery('#loading').hide();
-                            parent.find('.question_id').val(data);
+                            alert('Please fill all the fields.')
+                        } else {
+                            if (data != '0') {
+                                jQuery('#loading').hide();
+                                parent.find('.question_id').val(data);
+                            }
+                            jQuery('#loading').hide();
+                            jQuery('#add_row').show();
+                            this_element.hide();
                         }
-                        jQuery('#loading').hide();
-                        jQuery('#add_row').show();
-                        this_element.hide();
                     }
                 });
             } else {
