@@ -1,35 +1,46 @@
 <?php
 $this->load->view('templates/header');
 ?>
-<script>
-    jQuery(document).ready(function() {
-        jQuery("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {
-            e.preventDefault();
-            jQuery(this).siblings('a.active').removeClass("active");
-            jQuery(this).addClass("active");
-            var index = jQuery(this).index();
-            jQuery("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
-            jQuery("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
-        });
+    <script>
+        jQuery(document).ready(function() {
+            jQuery("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {
+                //e.preventDefault();
+                jQuery(this).siblings('a.active').removeClass("active");
+                jQuery(this).addClass("active");
 
-        var grade_id = <?php echo $grade_id; ?>;
-        //var tabid = jQuery("div.bhoechie-tab-menu>div.list-group>a").data('tabid');
-        jQuery("div.bhoechie-tab-menu>div.list-group>a").removeClass("active");
-        jQuery("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
-        jQuery("div.bhoechie-tab-menu>div.list-group>a").each(function(){
-            var tabid = jQuery(this).data('tabid');
-            console.log('grade_id: '+grade_id+'   tabid: '+tabid);
-            if(grade_id == tabid){
+                var tabid = jQuery(this).data('tabid');
+//console.log('tabid: '+tabid);
+                jQuery("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
+                jQuery("div.bhoechie-tab>div.bhoechie-tab-content").each(function(){
+                    var contentid = jQuery(this).data('contentid');
+                    if(tabid == contentid){
+                        console.log("contentid matched : ID = "+contentid);
+                        jQuery(this).addClass("active");
+                    }
+                });
+
                 var index = jQuery(this).index();
-                console.log(index);
-                jQuery("div.bhoechie-tab-menu>div.list-group>a").eq(index).addClass("active");
+                jQuery("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
                 jQuery("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
-                jQuery("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
-            }
-        });
+            });
 
-    });
-</script>
+            var grade_id = <?php echo $grade_id; ?>;
+            jQuery("div.bhoechie-tab-menu>div.list-group>a").removeClass("active");
+            jQuery("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
+            jQuery("div.bhoechie-tab-menu>div.list-group>a").each(function(){
+                var tabid = jQuery(this).data('tabid');
+//console.log('grade_id: '+grade_id+' tabid: '+tabid);
+                if(grade_id == tabid){
+                    var index = jQuery(this).index();
+//console.log(index);
+                    jQuery("div.bhoechie-tab-menu>div.list-group>a").eq(index).addClass("active");
+                    jQuery("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
+                    jQuery("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
+                }
+            });
+
+        });
+    </script>
     <div class="wrapper inner-pages">
         <div class="inner_page_banner">
             <div class="container">
@@ -72,7 +83,7 @@ $this->load->view('templates/header');
 							$cate_key = $topic->category_id;
 
 							if(array_key_exists($grade_key, $cate_arrays)){
-							    if(array_key_exists($cate_key,$cate_arrays)){
+							    if(array_key_exists($cate_key,$cate_arrays[$grade_key])){
 								    array_push($cate_arrays[$grade_key][$cate_key], $topic_key);
                                 } else{
 								    $cate_arrays[$grade_key][$cate_key] = array();
@@ -80,22 +91,25 @@ $this->load->view('templates/header');
                                 }
 
 							} else {
+								//$cate_arrays[$grade_key] = array();
 								$cate_arrays[$grade_key][$cate_key] = array();
 								array_push($cate_arrays[$grade_key][$cate_key], $topic_key);
 							}
-						}
-						//print_r($cate_array);
+                        }
+                        ksort($cate_arrays);
+						//print_r($cate_arrays); exit();
 					} ?>
 					<?php //print_r($topics); ?>
-					<?php if(!empty($topics)){ ?>
+					<?php if(!empty($cate_arrays)){ ?>
                         <div class="topic_list">
                             <div class="row">
                                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
                                     <div class="list-group">
                                         <?php
+                                        $subject_slug=$this->uri->segment(4);
                                             if(!empty($grades_lists)){
                                                 foreach ($grades_lists as $grades_list){ ?>
-                                                    <a href="#" class="list-group-item text-center" data-tabid="<?php echo $grades_list->id; ?>" ><?php echo $grades_list->name; ?></a>
+                                                    <a href="<?php echo base_url('frontend/topic/'.$grades_list->slug.'/'.$subject_slug) ?>" class="list-group-item text-center" data-tabid="<?php echo $grades_list->id; ?>" ><?php echo $grades_list->name; ?></a>
 
                                         <?php   }
                                             }
@@ -104,27 +118,29 @@ $this->load->view('templates/header');
                                     </div>
                                 </div>
                                 <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 bhoechie-tab">
-	                                <?php foreach ($cate_arrays as $cate_array1=>$values1){ ?>
-                                        <div class="bhoechie-tab-content">
-                                            <div class="row">
-				                                <?php foreach ($values1 as $cate_array=>$values){ ?>
 
+                                    <?php foreach ($cate_arrays as $cate_array1=>$values1){ // get grade_ids ?>
+                                        <?php $grades = array_keys($cate_arrays); ?>
+                                        <div class="bhoechie-tab-content" data-contentid="<?php echo $cate_array1; ?>">
+                                            <div class="row">
+                                                <?php foreach ($values1 as $cate_array=>$values){ // Get Categories ?>
                                                     <div class="col-lg-4">
-						                                <?php echo '<h4 class="listing_category">'.ucfirst(get_returnfield('category','id',$cate_array,'name')).'</h4>'; ?>
+                                                        <?php echo '<h4 class="listing_category">'.ucfirst(get_returnfield('category','id',$cate_array,'name')).'</h4>'; ?>
                                                         <ul>
-							                                <?php foreach ($values as $cate_arra){ ?>
+                                                            <?php foreach ($values as $cate_arra){ ?>
                                                                 <li>
                                                                     <a href="<?php echo base_url('frontend/questions/'.$grade.'/'.$subject.'/'.$cate_arra) ?>">
                                                                         <span data-feather="edit"></span> <?php echo get_returnfield('topics','topic_id',$cate_arra,'topic_name'); ?>
                                                                     </a>
                                                                 </li>
-							                                <?php } ?>
+                                                            <?php } ?>
                                                         </ul>
                                                     </div>
-				                                <?php } ?>
+                                                <?php } ?>
                                             </div>
                                         </div>
-	                                <?php } ?>
+
+                                    <?php } ?>
                                 </div>
 
 

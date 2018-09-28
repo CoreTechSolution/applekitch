@@ -270,7 +270,8 @@ class Dashboard extends CI_Controller {
 	public function generate_pdf($certificate_id){
 
 		$data['certificates']=$this->user_model->get_ans_certificates_by_id($certificate_id);
-		$data['certificate_details']=$this->user_model->get_certificates_by_id($certificate_id);
+		//print_r($data['certificates']); exit();
+		$data['certificate_details']=$this->user_model->get_certificates_by_id($data['certificates']->certificate_id);
 		$this->load->view('certificate_pdf_v',$data);
 		$html = $this->output->get_output();
 

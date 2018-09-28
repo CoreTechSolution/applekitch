@@ -85,7 +85,7 @@ require_once 'templates/header.php';
 								<td><?php echo get_returnfield('grade','id',$question->grade_id,'name'); ?></td>
 								<td><?php echo get_returnfield('category','id',$question->category_id,'name'); ?></td>
 								<td><?php echo get_returnfield('topics','topic_id',$question->topic_id,'topic_name'); ?></td>
-								<td><!--<a class="edit_link" href="<?php /*echo base_url('admin/edit_question/'.$question->question_id); */?>"><span data-feather="edit"></span> Edit</a> |-->
+								<td><a class="edit_link" href="<?php echo base_url('admin/edit_question/'.$question->question_id); ?>"><span data-feather="edit"></span> Edit</a> |
                                     <a class="delete_link fancybox" data-fancybox-type="iframe" style="color: green;" href="<?php echo
                                     base_url('/admin/preview'); ?>?qid=<?php echo $question->question_id; ?>"><span data-feather="eye"></span> Preview</a>
                                     <br/>

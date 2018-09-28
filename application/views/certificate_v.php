@@ -29,6 +29,10 @@ require_once 'templates/header.php';
 											<?php
 											if(!empty($certificates)) {
 											foreach($certificates as $certificate) {
+											    $name = get_returnfield('certificates','id',$certificate->id,'name');
+											    if(empty($name)) {
+												    $name = 'Certificate';
+                                                }
 												?>
 												<tr>
 													<td><?php echo get_returnfield('certificates','id',$certificate->id,'name'); ?></td>
