@@ -175,7 +175,7 @@
 	<?php //print_r($form_data); ?>
 	<div class="qAns_box">
 		<p>Answer 1: </p><span><input type="text" name="qAns_box1" class="form-control"></span><br>
-		<p>Answer 1: </p><span><input type="text" name="qAns_box2" class="form-control"></span>
+		<p>Answer 2: </p><span><input type="text" name="qAns_box2" class="form-control"></span>
 
 	</div>
 <?php } elseif($question_option=='19'){ ?>
@@ -186,11 +186,12 @@
 		</div>
 		<?php $option_counter=1; ?>
 		<?php foreach ($form_data['option_1'] as $option){ ?>
-
+            <?php if($option!=''){ ?>
 			<div class="inputGroup">
 				<input id="radio<?php echo $option_counter; ?>" name="option_1" value="<?php echo $option; ?>" type="radio"/>
 				<label for="radio<?php echo $option_counter; ?>"><?php echo $option; ?></label>
 			</div>
+            <?php } ?>
 			<?php $option_counter++; ?>
 		<?php } ?>
 	</div>
