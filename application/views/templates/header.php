@@ -50,6 +50,36 @@
     <script>
         var base_url='<?php echo base_url(); ?>';
     </script>
+    <script src="<?php echo base_url('/assets/js/jquery-fsortable.js'); ?>"></script>
+    <script>
+        function init(){
+            jQuery(".fs").fsortable({
+                connectWith: ".fs",
+                tolerance: "pointer",
+                size: 5
+            }).disableSelection();
+
+            jQuery("#content .item").draggable({
+                connectToSortable: ".fs:not(.full)",
+                revert: "invalid",
+                helper: "clone",
+                stop: function(e, ui) {
+                    jQuery("#img_order_student").val("");
+                    var file_name_array = [];
+                    jQuery(".fs .item img").each(function(){
+                        var this_element = jQuery(this);
+                        var src = jQuery(this_element).attr("src");
+                        var tarr = src.split("/");
+                        var file_name = tarr[tarr.length-1];
+                        console.log(file_name);
+                        file_name_array.push(file_name);
+                        var file_name_string = file_name_array.toString();
+                        jQuery("#img_order_student").val(file_name_string);
+                    });
+                }
+            });
+        }
+    </script>
 </head>
 <body>
 <div class="wrapper1">

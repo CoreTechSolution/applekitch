@@ -35,7 +35,7 @@ require_once 'templates/header.php';
                                                 }
 												?>
 												<tr>
-													<td><?php echo get_returnfield('certificates','id',$certificate->id,'name'); ?></td>
+													<td><?php echo $name; ?></td>
 													<td>
 														<a href="<?php echo base_url('dashboard/generate_pdf/'.$certificate->id); ?>">View Certificate</a>
 													</td>
