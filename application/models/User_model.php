@@ -228,6 +228,20 @@ class User_model extends CI_Model{
 			return false;
 		}
 	}
+	function get_certificates_default(){
+		//print_r($user_id); exit();
+		$this->db->select('*');
+		$this->db->where('default_status', 'true');
+		$this->db->from('student_ans_topic');
+		$query=$this->db->get();
+		//echo $this->db->last_query(); exit();
+		if($query->result()){
+			return $query->row();
+		}
+		else{
+			return false;
+		}
+	}
 	function get_certificates_by_id($id){
 		//print_r($user_id); exit();
 		$this->db->select('*');
