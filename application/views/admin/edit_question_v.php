@@ -2,6 +2,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 require_once 'templates/header.php';
 ?>
+<div id="edit_option_input_add" style="display: none;">
+    <input type="text" name="option_1[]" class="form-control option_1" >
+</div>
 	<div class="container-fluid">
 		<div class="row">
 			<nav class="col-md-2 d-none d-md-block bg-light sidebar">
@@ -72,7 +75,9 @@ require_once 'templates/header.php';
 						<div class="row_delete">
 							<a class="deletQ_row" href="#" title="Delete"><span data-feather="delete"></span></a>
 						</div>
-                        <iframe srcdoc='<div class="row">
+
+                            <h5>Preview</h5>
+                            <iframe name="edit_iframe" id="edit_iframe" srcdoc='<div class="row">
                                 <div class="col-lg-5 col-md-5  col-sm-5">
                                     <div class="question_display"><?php echo $questions->question_name; ?> <a href="javacript:void(0);" id="play_question" data-question="<?php echo ($questions->question_name); ?>"><i class="fas fa-volume-up"></i></a></div>
                                     <!--<div id="play_text_div" class="play_text_div"></div>-->
@@ -82,15 +87,16 @@ require_once 'templates/header.php';
                                     <?php $form_data_pv=unserialize($questions->form_data); ?>
                                     <input type="hidden" name="question_option" value="<?= $form_data_pv['question_option']; ?>">
                                     <?php
-                        $check_data['question_option']=$form_data_pv['question_option'];
-                        $check_data['form_data']=$form_data_pv;
-                        $this->load->view('frontend/template_part/frontend_answer_check',$check_data);
-                        ?>
+                            $check_data['question_option']=$form_data_pv['question_option'];
+                            $check_data['form_data']=$form_data_pv;
+                            $this->load->view('frontend/template_part/frontend_answer_check',$check_data);
+                            ?>
                                     <!--<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">-->
                                 </div>
                             </div>' frameborder="0" class="edit_iframe">
 
-                        </iframe>
+                            </iframe>
+
 						<form action="" class="addQ_form" enctype="multipart/form-data">
 							<div class="addQ_field_grp">
 								<div class="form-group">
@@ -117,13 +123,13 @@ require_once 'templates/header.php';
                                         <br>
                                         <br>
                                         <br>
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-12">
                                             <label for="qRight_feedback">If Answer Right</label>
                                             <input type="text" class="form-control" name="qRight_feedback" id="qRight_feedback" value="<?php echo !empty($form_data['qRight_feedback'])?$form_data['qRight_feedback']:''; ?>">
                                         </div>
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-12">
                                             <label for="qRight_feedback">If Answer Wrong (explanation)</label>
-                                            <textarea class="form-control" name="qWrong_feedback" id="qWrong_feedback"><?php echo !empty($form_data['qWrong_feedback'])?$form_data['qWrong_feedback']:''; ?></textarea>
+                                            <textarea class="form-control tynimce" name="qWrong_feedback" id="qWrong_feedback"><?php echo !empty($form_data['qWrong_feedback'])?$form_data['qWrong_feedback']:''; ?></textarea>
                                         </div>
 										<div class="col-lg-12">
 											<div class="add_dynamic_field">
@@ -141,8 +147,8 @@ require_once 'templates/header.php';
 								</div>
 								<div class="question_wrap"></div>
 							</div>
-							<a href="javascript:void(0)" class="btn add_row_save addQ_preview"><span data-feather="eye"></span> Preview</a>
-							<a href="javascript:void(0)" class="btn add_row_save addQ_save"><span data-feather="save"></span> Save</a>
+							<!--<a href="javascript:void(0)" class="btn add_row_save addQ_preview"><span data-feather="eye"></span> Preview</a>-->
+							<a href="javascript:void(0)" class="btn add_row_save addQ_edit"><span data-feather="arrow-right-circle"></span> Update</a>
 						</form>
 					</div>
 				</div>
@@ -202,3 +208,4 @@ require_once 'templates/header.php';
 <?php
 require_once 'templates/footer.php';
 ?>
+
