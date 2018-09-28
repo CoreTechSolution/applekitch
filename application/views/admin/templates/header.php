@@ -9,12 +9,11 @@
 
     <title><?php echo $title; ?></title>
     <link rel="stylesheet" media="all" href="<?php echo  base_url('/assets/css/bootstrap.min.css'); ?>" />
-    <link href="<?php echo  base_url('/assets/css/font-awesome.css'); ?>" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link href="<?php echo  base_url('/assets/css/dashboard.css'); ?>" rel="stylesheet">
     <link rel="stylesheet" media="all" href="<?php echo  base_url('/assets/css/footable.bootstrap.min.css'); ?>" />
     <link rel="stylesheet" href="<?php echo base_url('/assets/css/sweetalert2.min.css'); ?>">
     <link href="<?php echo  base_url('/assets/css/jquery.fancybox.css'); ?>" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
     <script src="<?php echo base_url('/assets/js/jquery.js'); ?>" type="text/javascript"></script>
     <script src="<?php echo base_url('/assets/tinymce/tinymce.min.js'); ?>" ></script>
