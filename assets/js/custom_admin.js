@@ -244,7 +244,24 @@ jQuery(document).ready(function() {
             }
         });
     });
-
+    jQuery('body').on('change', '.question_with_put_images', function(e){
+        e.preventDefault();
+        var this_element=jQuery(this);
+        var parent = this_element.closest('.add_question_row');
+        var form_data = new FormData(parent.find('.addQ_form')[0]);
+        jQuery.ajax({
+            type: "POST",
+            url: base_url + 'ajax/question_with_put_images',
+            processData: false,
+            contentType: false,
+            data: form_data,
+            success: function (data) {
+                jQuery('#upload_images_section').hide();
+                jQuery(this_element).closest('.addQ_field_grp').find('#uploaded_images').show();
+                jQuery(this_element).closest('.addQ_field_grp').find('#uploaded_images').append(data);
+            }
+        });
+    });
     jQuery('body').on('change', '.upload_select_multiple_images', function(e){
         e.preventDefault();
         var this_element=jQuery(this);

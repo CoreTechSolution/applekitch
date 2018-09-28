@@ -37,6 +37,7 @@ jQuery(function($){
 
 jQuery(document).ready(function(){
     jQuery.noConflict();
+    jQuery(init);
     var totalSeconds = 0;
    var my_time_interval= setInterval(setTime, 1000);
 
@@ -55,7 +56,7 @@ jQuery(document).ready(function(){
     function pad(val) {
         var valString = val + "";
         if (valString.length < 2) {
-            return "0" + valString;
+            return "0" + valString;init()
         } else {
             return valString;
         }
@@ -207,6 +208,7 @@ jQuery(document).ready(function(){
                             jQuery('.qAns_form').html(data['html']);
                             jQuery( "#sortable" ).sortable();
                             jQuery( "#sortable" ).disableSelection();
+                            jQuery(init);
                         }
 
                     });
@@ -287,6 +289,7 @@ jQuery(document).ready(function(){
                             jQuery('.qAns_form').html(data['html']);
                             jQuery( "#sortable" ).sortable();
                             jQuery( "#sortable" ).disableSelection();
+                            jQuery(init);
                         }
 
                     }, 2000);
