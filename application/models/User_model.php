@@ -217,7 +217,7 @@ class User_model extends CI_Model{
 	function get_ans_certificates_by_id($id){
 		//print_r($user_id); exit();
 		$this->db->select('*');
-		$this->db->where('certificate_id',$id);
+		$this->db->where('id',$id);
 		$this->db->from('student_ans_topic');
 		$query=$this->db->get();
 		//echo $this->db->last_query(); exit();
