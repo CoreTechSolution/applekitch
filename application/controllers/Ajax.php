@@ -38,13 +38,23 @@ class Ajax extends CI_Controller {
 		$form_data=$_POST;
 		if(!empty($form_data)) {
 			$i = 0;
+			$error_input_names = array();
 			foreach ( $form_data as $key => $value ) {
-				if(empty($value) && $key != 'question_id') {
+				if(empty($value) && $value == 0 && $key != 'question_id') {
 					$i++;
+					array_push($error_input_names, $key);
+				}
+			}
+			if(!empty($_FILES)) {
+				foreach ( $_FILES as $key => $value ) {
+					if(empty($_FILES[$key]['name'])) {
+						$i++;
+						array_push($error_input_names, $key);
+					}
 				}
 			}
 			if($i > 0) {
-				echo 'error';
+				echo json_encode($error_input_names);
 				exit();
 			}
 		}
