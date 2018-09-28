@@ -208,9 +208,9 @@ jQuery(document).ready(function() {
                 jQuery('select').css('border-width', '1px');
                 jQuery('select').css('border-color', '#ced4da');
 
-                if(data != 1 || data != 0) {
+                var json = JSON.parse(data);
+                if(typeof json =='object') {
                     jQuery('#loading').hide();
-                    var json = JSON.parse(data);
                     if(json.length != 0) {
                         jQuery.each( json, function( key, value ) {
                             jQuery('input[name="'+value+'"]').css('border-width', '2px');
