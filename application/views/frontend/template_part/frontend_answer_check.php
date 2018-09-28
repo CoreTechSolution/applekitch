@@ -214,7 +214,51 @@
         <?php } ?>
         </ul>
     </div>
-<?php }  elseif($question_option=='28'){ ?>
+<?php } elseif($question_option=='27'){ ?>
+    <div class="row">
+        <div class="col-lg-12">
+            <?php $img_order = explode(',',$form_data['img_order']); ?>
+            <?php if(!empty($img_order)){ ?>
+                <ul class="imgpattern">
+                    <?php foreach($img_order as $img){ ?>
+                        <li><img src="<?php echo base_url('uploads/images/'.$img); ?>"></li>
+                    <?php } ?>
+                </ul>
+            <?php } ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="multi_putimages">
+                <div class="bg">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="fs">
+                    <div class="fsortable-empty"></div>
+                    <div class="fsortable-empty"></div>
+                    <div class="fsortable-empty"></div>
+                    <div class="fsortable-empty"></div>
+                    <div class="fsortable-empty"></div>
+                    <div class="fsortable-empty"></div>
+                </div>
+                <div id="content">
+                    <?php $img_array = explode('|',$form_data['img_array']); ?>
+                    <?php if(!empty($img_array)){ ?>
+                        <?php foreach($img_array as $image){ ?>
+                            <div class="item"><img src="<?php echo $image; ?>" style="max-width: 40px;" /></div>
+                        <?php } ?>
+                    <?php } ?>
+                </div>
+            </div>
+            <input id="img_order_student" type="hidden" name="img_order_student" value="">
+        </div>
+    </div>
+    <?php } elseif($question_option=='28'){ ?>
 	<?php //print_r($form_data); ?>
     <div class="question_image">
         <img src="<?php echo $form_data['img']; ?>" alt="" class="img-thumbnail">
