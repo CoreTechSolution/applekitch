@@ -34,6 +34,82 @@ class Ajax extends CI_Controller {
 		echo json_encode($response);
 
 	}
+    function edit_question(){
+        $form_data=$_POST;
+        if(!empty($form_data)) {
+            $i = 0;
+            foreach ( $form_data as $key => $value ) {
+                if(empty($value) && $key != 'question_id') {
+                    $i++;
+                }
+            }
+            if($i > 0) {
+                echo 'error';
+                exit();
+            }
+        }
+        $data['country_id']=$form_data['country_id'];
+        $data['subject_id']=$form_data['subject_id'];
+        $data['grade_id']=$form_data['grade_id'];
+        $data['category_id']=$form_data['category_id'];
+        $data['topic_id']=$form_data['topic_id'];
+        $data['question_name']=$form_data['question'];
+        $data['q_score']=$form_data['q_score'];
+        $data['qWrong_feedback']=$form_data['qWrong_feedback'];
+        unset($form_data['country_id']);
+        unset($form_data['subject_id']);
+        unset($form_data['grade_id']);
+        unset($form_data['category_id']);
+        unset($form_data['topic_id']);
+        //print_r($_FILES);
+        //exit();
+        switch($form_data['question_option']){
+            case '1':
+                if ( ! empty( $_FILES['imageQ_upload']['name'] ) ) {
+                    $img_path = image_upload( $_FILES, 'imageQ_upload', 'uploads/images' );
+                    if ( $img_path ) {
+                        $image_upload = $img_path;
+                    } else {
+
+                        $image_upload = '';
+                    }
+                    $form_data['img'] = $image_upload;
+                } elseif (!empty($form_data['img'])){
+                    $form_data['img']=$form_data['img'];
+                }
+
+                break;
+            case '2':
+
+                break;
+
+            default:
+
+        }
+        if(!empty($form_data['question_id'])){
+            $question_id=$form_data['question_id'];
+            unset($form_data['question_id']);
+            $data['form_data']=serialize($form_data);
+            $res = $this->ajax_model->update_question(array('question_id'=>$question_id),$data);
+            if($res){
+                $res=$question_id;
+            } else{
+                $res=0;
+            }
+
+        } else{
+            $data['form_data']=serialize($form_data);
+            $res=$this->ajax_model->insert_question($data);
+
+        }
+
+
+        if($res){
+            echo $res;
+        } else {
+            echo false;
+        }
+    }
 	function save_question(){
 		$form_data=$_POST;
 		if(!empty($form_data)) {
