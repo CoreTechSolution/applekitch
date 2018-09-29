@@ -27,19 +27,22 @@
 			</div>
 			<div class="col-lg-6"></div>
 		</div>
-		<div id="uploaded_images" style="display: none;">
-			<?php $img_array = explode('|',$form_data['img_array']); ?>
+		<div id="uploaded_images" style="display: block;">
+			<?php $img_array = explode('|',$form_cdata['img_array']); ?>
 			<?php if(!empty($img_array)){ ?>
+                <br/><br/>
+            <div class="row">
 				<?php foreach($img_array as $img){ ?>
 					<div class="col-lg-3">
 						<div class="form-group">
 							<img src="<?php echo $img; ?> " style="max-width: 100%;width: 263px;height: 150px;" />
 							<div style="text-align: center; margin: 5px 0 10px 0;">
-								<input type="radio" name="answer" value="<?php echo $img_name; ?>">
+								<input type="radio" name="answer" value="<?php echo $img; ?>">
 							</div>
 						</div>
-					</div>;
+					</div>
 				<?php } ?>
+            </div>
 			<?php } ?>
 		</div>
 	</div>
@@ -67,10 +70,10 @@
 	</div>
 </div>
 <!---->
-<!-- Question with Arranging Option -->
 <?php } elseif($question_option=='4'){ ?>
 
 <?php } elseif($question_option=='5'){ ?>
+<!-- Question with Arranging Option -->
 <div id="qOption_5">
 	<div class="form-group">
 		<div class="row">
@@ -78,12 +81,13 @@
 				<div class="arrange1">
 					<label>Answers</label>
 					<div id="option_add_div">
-						<?php foreach ($form_cdata['option_arrange'] as $option_arrange){ ?>
-							<input type="text" name="option_arrange[]" class="form-control option_arrange" value="<?php echo $option_arrange ?>">
-						<?php } ?>
-
+                        <input type="text" name="option_arrange[]" class="form-control option_arrange" value="<?php echo $form_cdata['option_arrange'][0]; ?>">
 					</div>
-					<div id="option_add_div_app" class="option_add_div_app"></div>
+					<div id="option_add_div_app" class="option_add_div_app">
+						<?php for($i=1;$i<count($form_cdata['option_arrange']);$i++){ ?>
+                            <input type="text" name="option_arrange[]" class="form-control option_arrange" value="<?php echo $form_cdata['option_arrange'][$i]; ?>">
+						<?php } ?>
+                    </div>
 					<a style="float: right;" class="btn btn-primary option_add_q" href="#"><span data-feather="plus-circle" title="Add Option"></span></a>
 					<a style="float: right; margin-right: 20px;" class="btn btn-primary option_done" href="#">Done</a>
 				</div>

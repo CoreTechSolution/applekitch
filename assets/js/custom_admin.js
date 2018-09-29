@@ -299,7 +299,7 @@ jQuery(document).ready(function() {
                     }
                 } else {
                     if (data != '0') {
-                        jQuery('#loading').hide();
+                        //jQuery('#loading').hide();
                         //parent.find('.question_id').val(data);
                         location.reload();
                     }
@@ -326,7 +326,7 @@ jQuery(document).ready(function() {
             success: function (data) {
                 jQuery('#upload_images_section').hide();
                 jQuery(this_element).closest('.addQ_field_grp').find('#uploaded_images').show();
-                jQuery(this_element).closest('.addQ_field_grp').find('#uploaded_images').append(data);
+                jQuery(this_element).closest('.addQ_field_grp').find('#uploaded_images').html(data);
             }
         });
     });

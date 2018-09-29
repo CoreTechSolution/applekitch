@@ -100,7 +100,7 @@ require_once 'templates/header.php';
 										</div>
 										<div class="col-lg-6">
 											<label for="q_score">Question Marks</label>
-											<input class="form-control" name="q_score" id="q_score" value="<?php echo $questions->q_score; ?>" type="text" required>
+											<input class="form-control" name="q_score" id="q_score" value="<?php echo $questions->q_score; ?>" type="number" required>
 										</div>
                                         <br>
                                         <br>
@@ -116,11 +116,6 @@ require_once 'templates/header.php';
                                         </div>
 										<div class="col-lg-12">
 											<div class="add_dynamic_field">
-                                                <?php
-                                                $c_data['question_option']=$form_data['question_option'];
-                                                $c_data['form_cdata']=$form_data;
-                                                ?>
-                                                <?php $this->load->view('admin/templates/edit_combination',$c_data); ?>
 											</div>
 
 											<!--<label for="question">Question Type</label>
@@ -128,7 +123,12 @@ require_once 'templates/header.php';
 										</div>
 									</div>
 								</div>
-								<div class="question_wrap"></div>
+								<div class="question_wrap">
+									<?php                                                $c_data['question_option']=$form_data['question_option'];
+									$c_data['form_cdata']=$form_data;
+									?>
+									<?php $this->load->view('admin/templates/edit_combination',$c_data); ?>
+                                </div>
 							</div>
 							<!--<a href="javascript:void(0)" class="btn add_row_save addQ_preview"><span data-feather="eye"></span> Preview</a>-->
 							<a href="javascript:void(0)" class="btn add_row_save addQ_edit"><span data-feather="arrow-right-circle"></span> Update</a>
