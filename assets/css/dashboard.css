@@ -379,3 +379,10 @@ input[type='file']{
 .edit_option_input_add{
   display: none;
 }
+#edit_iframe {
+  width: 100%;
+  min-height: 310px;
+  max-height: 500px;
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+}

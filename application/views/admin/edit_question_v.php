@@ -77,25 +77,8 @@ require_once 'templates/header.php';
 						</div>
 
                             <h5>Preview</h5>
-                            <iframe name="edit_iframe" id="edit_iframe" srcdoc='<div class="row">
-                                <div class="col-lg-5 col-md-5  col-sm-5">
-                                    <div class="question_display"><?php echo $questions->question_name; ?> <a href="javacript:void(0);" id="play_question" data-question="<?php echo ($questions->question_name); ?>"><i class="fas fa-volume-up"></i></a></div>
-                                    <!--<div id="play_text_div" class="play_text_div"></div>-->
-                                </div>
-                                <div class="col-lg-7 col-md-7  col-sm-7">
-                                    <?php //echo $question->form_data; exit(); ?>
-                                    <?php $form_data_pv=unserialize($questions->form_data); ?>
-                                    <input type="hidden" name="question_option" value="<?= $form_data_pv['question_option']; ?>">
-                                    <?php
-                            $check_data['question_option']=$form_data_pv['question_option'];
-                            $check_data['form_data']=$form_data_pv;
-                            $this->load->view('frontend/template_part/frontend_answer_check',$check_data);
-                            ?>
-                                    <!--<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">-->
-                                </div>
-                            </div>' frameborder="0" class="edit_iframe">
-
-                            </iframe>
+                            <iframe name="edit_iframe" id="edit_iframe" src="<?php
+                            echo base_url('admin/preview?qid='.$questions->question_id); ?>"></iframe>
 
 						<form action="" class="addQ_form" enctype="multipart/form-data">
 							<div class="addQ_field_grp">
@@ -153,7 +136,7 @@ require_once 'templates/header.php';
 					</div>
 				</div>
 				<div id="add_row"></div>
-				<div class="form-group">
+				<!--<div class="form-group">
 					<div class="row">
 						<div class="col-md-12">
 							<div style="text-align: right;">
@@ -161,7 +144,7 @@ require_once 'templates/header.php';
 							</div>
 						</div>
 					</div>
-				</div>
+				</div>-->
 				<!--<div class="form-group">
 					<div class="row">
 						<div class="col-md-12">

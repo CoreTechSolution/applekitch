@@ -214,21 +214,23 @@ jQuery(document).ready(function() {
                 jQuery('select').css('border-width', '1px');
                 jQuery('select').css('border-color', '#ced4da');
 
-                if(data != 1 || data != 0) {
+                if(isNaN(data)) {
                     jQuery('#loading').hide();
                     var json = JSON.parse(data);
-                    if(json.length != 0) {
-                        jQuery.each( json, function( key, value ) {
-                            jQuery('input[name="'+value+'"]').css('border-width', '2px');
-                            jQuery('input[name="'+value+'"]').css('border-color', 'red');
+                    if(jQuery.isArray(json)) {
+                        if (json.length != 0) {
+                            jQuery.each(json, function (key, value) {
+                                jQuery('input[name="' + value + '"]').css('border-width', '2px');
+                                jQuery('input[name="' + value + '"]').css('border-color', 'red');
 
-                            jQuery('select[name="'+value+'"]').css('border-width', '2px');
-                            jQuery('select[name="'+value+'"]').css('border-color', 'red');
+                                jQuery('select[name="' + value + '"]').css('border-width', '2px');
+                                jQuery('select[name="' + value + '"]').css('border-color', 'red');
 
-                            jQuery('#'+value).css('border-width', '2px');
-                            jQuery('#'+value).css('border-color', 'red');
-                        });
-                        alert('Please fill all the fields.')
+                                jQuery('#' + value).css('border-width', '2px');
+                                jQuery('#' + value).css('border-color', 'red');
+                            });
+                            alert('Please fill all the fields.')
+                        }
                     }
                 } else {
                     if (data != '0') {
@@ -277,26 +279,29 @@ jQuery(document).ready(function() {
                 jQuery('select').css('border-width', '1px');
                 jQuery('select').css('border-color', '#ced4da');
 
-                if(data != 1 || data != 0) {
+                if(isNaN(data)) {
                     jQuery('#loading').hide();
                     var json = JSON.parse(data);
-                    if(json.length != 0) {
-                        jQuery.each( json, function( key, value ) {
-                            jQuery('input[name="'+value+'"]').css('border-width', '2px');
-                            jQuery('input[name="'+value+'"]').css('border-color', 'red');
+                    if(jQuery.isArray(json)) {
+                        if (json.length != 0) {
+                            jQuery.each(json, function (key, value) {
+                                jQuery('input[name="' + value + '"]').css('border-width', '2px');
+                                jQuery('input[name="' + value + '"]').css('border-color', 'red');
 
-                            jQuery('select[name="'+value+'"]').css('border-width', '2px');
-                            jQuery('select[name="'+value+'"]').css('border-color', 'red');
+                                jQuery('select[name="' + value + '"]').css('border-width', '2px');
+                                jQuery('select[name="' + value + '"]').css('border-color', 'red');
 
-                            jQuery('#'+value).css('border-width', '2px');
-                            jQuery('#'+value).css('border-color', 'red');
-                        });
-                        alert('Please fill all the fields.')
+                                jQuery('#' + value).css('border-width', '2px');
+                                jQuery('#' + value).css('border-color', 'red');
+                            });
+                            alert('Please fill all the fields.')
+                        }
                     }
                 } else {
                     if (data != '0') {
                         jQuery('#loading').hide();
-                        parent.find('.question_id').val(data);
+                        //parent.find('.question_id').val(data);
+                        location.reload();
                     }
                     jQuery('#loading').hide();
                     jQuery('#add_row').show();
