@@ -36,18 +36,28 @@ class Ajax extends CI_Controller {
 	}
     function edit_question(){
         $form_data=$_POST;
-        if(!empty($form_data)) {
-            $i = 0;
-            foreach ( $form_data as $key => $value ) {
-                if(empty($value) && $key != 'question_id') {
-                    $i++;
-                }
-            }
-            if($i > 0) {
-                echo 'error';
-                exit();
-            }
-        }
+	    if(!empty($form_data)) {
+		    $i = 0;
+		    $error_input_names = array();
+		    foreach ( $form_data as $key => $value ) {
+			    if(empty($value) && $value == 0 && $key != 'question_id') {
+				    $i++;
+				    array_push($error_input_names, $key);
+			    }
+		    }
+		    if(!empty($_FILES)) {
+			    foreach ( $_FILES as $key => $value ) {
+				    if(empty($_FILES[$key]['name'])) {
+					    $i++;
+					    array_push($error_input_names, $key);
+				    }
+			    }
+		    }
+		    if($i > 0) {
+			    echo json_encode($error_input_names);
+			    exit();
+		    }
+	    }
         $data['country_id']=$form_data['country_id'];
         $data['subject_id']=$form_data['subject_id'];
         $data['grade_id']=$form_data['grade_id'];
@@ -114,13 +124,23 @@ class Ajax extends CI_Controller {
 		$form_data=$_POST;
 		if(!empty($form_data)) {
 			$i = 0;
+			$error_input_names = array();
 			foreach ( $form_data as $key => $value ) {
-				if(empty($value) && $key != 'question_id') {
+				if(empty($value) && $value == 0 && $key != 'question_id') {
 					$i++;
+					array_push($error_input_names, $key);
+				}
+			}
+			if(!empty($_FILES)) {
+				foreach ( $_FILES as $key => $value ) {
+					if(empty($_FILES[$key]['name'])) {
+						$i++;
+						array_push($error_input_names, $key);
+					}
 				}
 			}
 			if($i > 0) {
-				echo 'error';
+				echo json_encode($error_input_names);
 				exit();
 			}
 		}
