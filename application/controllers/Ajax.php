@@ -92,6 +92,21 @@ class Ajax extends CI_Controller {
             case '2':
 
                 break;
+            case '20':
+                if ( ! empty( $_FILES['imageQ_upload']['name'] ) ) {
+                    $img_path = image_upload( $_FILES, 'imageQ_upload', 'uploads/images' );
+                    if ( $img_path ) {
+                        $image_upload = $img_path;
+                    } else {
+
+                        $image_upload = '';
+                    }
+                    $form_data['img'] = $image_upload;
+                } elseif (!empty($form_data['img'])){
+                    $form_data['img']=$form_data['img'];
+                }
+
+                break;
             case '26':
                 if ( ! empty( $_FILES['imageQ_upload']['name'] ) ) {
                     $img_path = image_upload( $_FILES, 'imageQ_upload', 'uploads/images' );
