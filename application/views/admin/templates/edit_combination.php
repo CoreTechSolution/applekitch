@@ -269,16 +269,21 @@
 		<div class="row" id="upload_images_section">
 			<div class="col-lg-6">
 				<label for="imageQ_upload">Image</label>
-				<input type="file" name="imageQ_upload" class="form-control imageQ_upload">
+                <input type="file" name="imageQ_upload" class="form-control imageQ_upload">
+                <img class="edit_question_img" src="<?php echo $form_cdata['img']; ?>" alt="">
+                <input type="hidden" name="img" id="img" value="<?php echo $form_cdata['img']; ?>">
 			</div>
 			<div class="col-lg-6">
 				<label for="ans_textbox">Answer</label>
-				<input type="text" name="ans_textbox" class="form-control ans_textbox">
+				<input type="text" name="ans_textbox" class="form-control ans_textbox" value="<?php echo $form_cdata['ans_textbox']; ?>">
 			</div>
 			<div class="col-lg-6">
 				<label for="imageQ_upload">Options</label>
 				<div id="option_add_div">
-					<input type="text" name="option_1[]" class="form-control option_1">
+                    <?php foreach ($form_cdata['option_1'] as $option_1){ ?>
+                        <input type="text" name="option_1[]" class="form-control option_1" value="<?php echo $option_1 ?>">
+                    <?php } ?>
+
 				</div>
 				<div id="option_add_div_app" class="option_add_div_app"></div>
 				<a class="option_edit_q" href="#"><span data-feather="plus-circle" title="Add Option"></span></a>
