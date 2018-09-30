@@ -121,21 +121,52 @@
 		</div>
 	</div>
 </div>
-<!-- SelectMultibleImages -->
 <?php } elseif($question_option=='7'){ ?>
 
 <?php } elseif($question_option=='8'){ ?>
+<!-- SelectMultibleImages -->
 <div id="qOption_8">
-	<div class="form-group">
-		<div class="row" id="upload_images_section">
-			<div class="col-lg-6">
-				<label for="upload_images">Upload Images</label>
-				<input type="file" multiple name="upload_images[]" class="form-control upload_select_multiple_images">
-			</div>
-			<div class="col-lg-6"></div>
-		</div>
-		<div id="uploaded_images" style="display: none;"></div>
-	</div>
+    <div class="form-group">
+        <div class="row" id="upload_images_section">
+            <div class="col-lg-6">
+                <label for="upload_images">Upload Images</label>
+                <input type="file" multiple name="upload_images[]" class="form-control upload_select_multiple_images">
+            </div>
+            <div class="col-lg-6"></div>
+        </div>
+        <div id="uploaded_images" style="display: block;">
+            <?php if(!empty($form_cdata['img_array'])) { ?>
+            <?php $img_array = explode('|', $form_cdata['img_array']); ?>
+            <div class="row">
+                <div class="col-lg-12">
+                    <label>Choose correct answers</label>
+                </div>
+            </div>
+            <div class="row">
+                <?php foreach($img_array as $img) { ?>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label>
+                                <img src="<?php echo $img; ?>" style="max-width: 100%;width: 263px;height: 150px;" />
+                                <?php
+                                $active = 0;
+                                $trim_text = base_url('uploads/images/');
+                                $img_trim = str_replace($trim_text, '', $img);
+                                if(!empty($form_cdata['answer'])) {
+                                    if(in_array($img_trim, $form_cdata['answer'])) {
+                                        $active = 1;
+                                    }
+                                }
+                                ?>
+                                <div style="text-align: center; margin: 5px 0 10px 0;"><input type="checkbox"<?php if($active == 1) { echo ' checked="checked"'; } ?> name="answer[]" value="<?php echo $img_trim; ?>"></div>
+                            </label>
+                        </div>
+                    </div>
+                <?php } ?>
+                <input type="hidden" name="img_array" value="<?php echo implode('|', $img_array); ?>"></div>
+        </div>
+        <?php } ?>
+    </div>
 </div>
 <?php } elseif($question_option=='9'){ ?>
 <div id="qOption_9">
@@ -234,7 +265,31 @@
 			</div>
 			<div class="col-lg-6"></div>
 		</div>
-		<div id="uploaded_images" style="display: none;"></div>
+		<div id="uploaded_images" style="display: block;">
+            <?php $img_array = explode('|', $form_cdata['img_array']); ?>
+            <?php if(!empty($img_array)) { ?>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <label>Choose correct answer</label>
+                    </div>
+                </div>
+                <div class="row">
+            <?php foreach($img_array as $img) { ?>
+                <?php
+	            $reversedParts = explode('/', strrev($img), 2);
+	            $img_name = strrev($reversedParts[0]);
+                ?>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <img src="<?php echo $img; ?>" style="max-width: 100%;width: 263px;height: 150px;" />
+                            <div style="text-align: center; margin: 5px 0 10px 0;"><input type="radio"<?php if($form_cdata['answer'] == $img_name) { echo ' checked="checked"'; }?> name="answer" value="<?php echo $img_name; ?>"></div>
+                        </div>
+                    </div>
+            <?php } ?>
+                    <input type="hidden" name="img_array" value="<?php echo implode('|',$img_array); ?>">
+                </div>
+            <?php } ?>
+        </div>
 	</div>
 </div>
 <?php } elseif($question_option=='16'){ ?>
