@@ -36,7 +36,7 @@ class Ajax extends CI_Controller {
 	}
     function edit_question(){
         $form_data=$_POST;
-	    if(!empty($form_data)) {
+	    /*if(!empty($form_data)) {
 		    $i = 0;
 		    $error_input_names = array();
 		    foreach ( $form_data as $key => $value ) {
@@ -57,7 +57,7 @@ class Ajax extends CI_Controller {
 			    echo json_encode($error_input_names);
 			    exit();
 		    }
-	    }
+	    }*/
         $data['country_id']=$form_data['country_id'];
         $data['subject_id']=$form_data['subject_id'];
         $data['grade_id']=$form_data['grade_id'];
@@ -90,6 +90,56 @@ class Ajax extends CI_Controller {
 
                 break;
             case '2':
+
+                break;
+            case '20':
+                if ( ! empty( $_FILES['imageQ_upload']['name'] ) ) {
+                    $img_path = image_upload( $_FILES, 'imageQ_upload', 'uploads/images' );
+                    if ( $img_path ) {
+                        $image_upload = $img_path;
+                    } else {
+
+                        $image_upload = '';
+                    }
+                    $form_data['img'] = $image_upload;
+                } elseif (!empty($form_data['img'])){
+                    $form_data['img']=$form_data['img'];
+                }
+
+                break;
+            case '26':
+                if ( ! empty( $_FILES['imageQ_upload']['name'] ) ) {
+                    $img_path = image_upload( $_FILES, 'imageQ_upload', 'uploads/images' );
+                    if ( $img_path ) {
+                        $image_upload = $img_path;
+                    } else {
+
+                        $image_upload = '';
+                    }
+                    $form_data['img'] = $image_upload;
+                } elseif (!empty($form_data['img'])){
+                    $form_data['img']=$form_data['img'];
+                }
+
+                break;
+
+            case '28':
+                if ( ! empty( $_FILES['imageQ_upload']['name'] ) ) {
+                    $img_path = image_upload( $_FILES, 'imageQ_upload', 'uploads/images' );
+                    if ( $img_path ) {
+                        $image_upload = $img_path;
+                    } else {
+
+                        $image_upload = '';
+                    }
+                    $form_data['img'] = $image_upload;
+                } elseif (!empty($form_data['img'])){
+                    $form_data['img']=$form_data['img'];
+                }
+
+                break;
+            case '31':
+                $form_data['imgs']=$this->upload_multiple_img_path();
 
                 break;
 
