@@ -335,7 +335,7 @@ jQuery(document).ready(function() {
             contentType: false,
             data: form_data,
             success: function (data) {
-                jQuery('#upload_images_section').hide();
+                //jQuery('#upload_images_section').hide();
                 jQuery(this_element).closest('.addQ_field_grp').find('#uploaded_images').show();
                 jQuery(this_element).closest('.addQ_field_grp').find('#uploaded_images').html(data);
             }

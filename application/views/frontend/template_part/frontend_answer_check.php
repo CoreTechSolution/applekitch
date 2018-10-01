@@ -264,6 +264,9 @@
     <div class="question_image">
         <img src="<?php echo $form_data['img']; ?>" alt="" class="img-thumbnail">
     </div>
+    <div class="second_q">
+        <p><?php echo $form_data['second_question']; ?></p>
+    </div>
 	<div class="qAns_box">
 		<p>Answer 1: </p><span><input type="text" name="qAns_box1" class="form-control"></span><br>
 		<p>Answer 2: </p><span><input type="text" name="qAns_box2" class="form-control"></span>
@@ -291,6 +294,35 @@
             <?php } ?>
         </div>
     </div>
-
+<?php } elseif($question_option=='34'){ ?>
+    <?php $img_array = explode('|',$form_data['img_array']); ?>
+    <?php if(!empty($img_array)){ ?>
+        <div class="row">
+            <div class="question_image">
+                <img src="<?php echo $form_data['img']; ?>" alt="" class="img-thumbnail">
+            </div>
+            <div class="second_q">
+                <p><?php echo $form_data['second_question']; ?></p>
+            </div>
+            <input id="img_answer" type="hidden" name="img_answer" value="">
+            <?php $i = 1; ?>
+            <?php foreach($img_array as $img){ ?>
+                <?php
+                $reversedParts = explode('/', strrev($img), 2);
+                $img_name = strrev($reversedParts[0]);
+                ?>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <div class="imgselector">
+                            <label for="img_<?php echo $i; ?>">
+                                <img data-img_name="<?php echo $img_name; ?>" src="<?php echo $img; ?>" class="img-thumbnail" style="max-width: 100%;width: auto;height: 150px;">
+                            </label>
+                            <!--<input id="img_<?php /*echo $i; */?>" type="radio" name="img_answer" value="<?php /*echo $img_name; */?>">-->
+                        </div>
+                    </div>
+                </div>
+                <?php $i++;  } ?>
+        </div>
+    <?php } ?>
 <?php } ?>
 </div>

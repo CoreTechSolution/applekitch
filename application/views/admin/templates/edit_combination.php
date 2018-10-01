@@ -390,7 +390,7 @@
                     <input type="hidden" name="img" id="img" value="<?php echo $form_cdata['img']; ?>">
                 </div>
                 <div class="col-lg-12">
-                    <label for="second_question">Question</label>
+                    <label for="second_question">Pre Text</label>
                     <input type="text" name="second_question" class="form-control" value="<?php echo $form_cdata['second_question']; ?>" required>
                 </div>
                 <div class="col-lg-6">
@@ -435,5 +435,31 @@
         </div>
 
     </div>
+<?php } elseif($question_option=='34'){ ?>
+<!---->
+<div id="qOption_34">
+	<div class="form-group">
+		<div class="row" id="upload_images_section">
+            <div class="col-lg-6">
+                <label for="imageQ_upload">Question Image</label>
+                <input type="file" name="imageQ_upload" class="form-control imageQ_upload">
+                <img class="edit_question_img" src="<?php echo $form_cdata['img']; ?>" alt="">
+                <input type="hidden" name="img" id="img" value="<?php echo $form_cdata['img']; ?>">
+            </div>
+            <div class="col-lg-12">
+                <label for="second_question">Question</label>
+                <input type="text" name="second_question" class="form-control" value="<?php echo $form_cdata['second_question']; ?>" required>
+            </div>
+			<div class="col-lg-6">
+				<label for="upload_images">Upload Images</label>
+				<input type="file" multiple name="upload_images[]" class="form-control upload_images">
+
+			</div>
+			<div class="col-lg-6"></div>
+		</div>
+		<div id="uploaded_images" style="display: none;"></div>
+	</div>
+</div>
+<!---->
 <?php } ?>
 <!---->

@@ -312,7 +312,38 @@
         <div id="uploaded_images" style="display: none;"></div>
     </div>
 </div>
+<!--- --->
+<div id="qOption_32">
+    <div class="form-group">
+        <div class="row" id="upload_images_section">
+            <div class="col-lg-12">
+                <textarea class="form-control tynimce" id="question_area" name="question_area"></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+<!--- --->
+<div id="qOption_34">
+    <div class="form-group">
 
+        <div id="uploaded_images" style="display: none;"></div>
+        <div class="row" id="upload_images_section">
+            <div class="col-lg-6">
+                <label for="imageQ_upload">Question Image</label>
+                <input type="file" name="imageQ_upload" class="form-control imageQ_upload" required>
+            </div>
+            <div class="col-lg-6">
+                <label for="second_question">Pre text</label>
+                <input type="text" name="second_question" class="form-control" required>
+            </div>
+            <div class="col-lg-12">
+                <label for="imageQ_upload">Answer Images(upload multiple at a time)</label>
+                <input type="file" multiple name="upload_images[]" class="form-control upload_images">
+            </div>
+        </div>
+        <div id="uploaded_images" style="display: none;"></div>
+    </div>
+</div>
 <!---->
 <div id="combination_add_row_demo">
     <div class="add_question_row">

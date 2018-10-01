@@ -36,7 +36,7 @@ class Ajax extends CI_Controller {
 	}
     function edit_question(){
         $form_data=$_POST;
-	    if(!empty($form_data)) {
+	    /*if(!empty($form_data)) {
 		    $i = 0;
 		    $error_input_names = array();
 		    foreach ( $form_data as $key => $value ) {
@@ -45,19 +45,19 @@ class Ajax extends CI_Controller {
 				    array_push($error_input_names, $key);
 			    }
 		    }
-		    /*if(!empty($_FILES)) {
+		    if(!empty($_FILES)) {
 			    foreach ( $_FILES as $key => $value ) {
 				    if(empty($_FILES[$key]['name'])) {
 					    $i++;
 					    array_push($error_input_names, $key);
 				    }
 			    }
-		    }*/
+		    }
 		    if($i > 0) {
 			    echo json_encode($error_input_names);
 			    exit();
 		    }
-	    }
+	    }*/
         $data['country_id']=$form_data['country_id'];
         $data['subject_id']=$form_data['subject_id'];
         $data['grade_id']=$form_data['grade_id'];
@@ -140,6 +140,21 @@ class Ajax extends CI_Controller {
                 break;
             case '31':
                 $form_data['imgs']=$this->upload_multiple_img_path();
+
+                break;
+            case '34':
+                if ( ! empty( $_FILES['imageQ_upload']['name'] ) ) {
+                    $img_path = image_upload( $_FILES, 'imageQ_upload', 'uploads/images' );
+                    if ( $img_path ) {
+                        $image_upload = $img_path;
+                    } else {
+
+                        $image_upload = '';
+                    }
+                    $form_data['img'] = $image_upload;
+                } elseif (!empty($form_data['img'])){
+                    $form_data['img']=$form_data['img'];
+                }
 
                 break;
 
@@ -747,6 +762,32 @@ class Ajax extends CI_Controller {
                         $this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
                         $rtntext['type']    = 'false';
                         $rtntext['content'] = 'Wrong: Correct answer is : ' . $ans;
+                    }
+                } elseif ( $form_data['question_option'] == '34' ) {
+
+                    //print_r($form_data_ans);
+                    if ( ! empty( $questions_next ) ) {
+                        $question_form_data=unserialize($questions_next[0]->form_data);
+                        $qview_option = 'qView_option_' . $question_form_data['question_option'];
+                        $html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
+                    } else {
+                        $html = '';
+                    }
+                    $rtntext['html'] = $html;
+                    $your_ans        = $form_data['img_answer'];
+                    $correct_ans     = $form_data_ans['answer'];
+                    if ( strtolower( $correct_ans  ) == strtolower( $your_ans ) ) {
+                        $this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
+                        $this->session->set_userdata( 'score_smart', ( $form_data['score'] + $questions->q_score ) );
+                        $rtntext['score_ans']   = $this->session->userdata( 'score_ans' );
+                        $rtntext['score_smart'] = $this->session->userdata( 'score_smart' );
+                        $rtntext['type']        = 'true';
+                        $rtntext['content']     = 'Correct';
+
+                    } else {
+                        $this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
+                        $rtntext['type']    = 'false';
+                        $rtntext['content'] = 'Wrong: Correct answer is : ' . $form_data_ans['answer'];
                     }
                 }
 
@@ -1472,4 +1513,63 @@ class Ajax extends CI_Controller {
 		}
 
 	}
+    public function email_notification(){
+        if($this->session->userdata('logged_in')=='1'){
+            $student_id = get_current_user_id();
+            $subject_name = $_POST['subject'];
+            $grade_name = $_POST['grade'];
+            $category_id = $_POST['category_id'];
+            $topic_id = $_POST['topic_id'];
+            $user_name = $_POST['user_name'];
+            $total_question_attended = $_POST['tQ_attend'];
+            $score_persentage = $_POST['score_persentage'];
+//$parent_name = get_current_user_parent_name($student_id);
+            $parent_email = get_current_user_parent_email($student_id);
+
+            $to = 'bhulbhal1981@gmail.com';
+            $subject = 'Sendgrid Testing';
+            $message = '';
+            $message .= '<table>';
+            $message .= '<tr>';
+            $message .= '<th style="width: 50px;">Grade</th>';
+            $message .= '<td>'.$grade_name.'</td>';
+            $message .= '</tr>';
+
+            $message .= '<tr>';
+            $message .= '<th style="width: 50px;">Subject</th>';
+            $message .= '<td>'.$subject_name.'</td>';
+            $message .= '</tr>';
+
+            $message .= '<tr>';
+            $message .= '<th style="width: 50px;">Category</th>';
+            $message .= '<td>'.$parent_email.'</td>';
+            $message .= '</tr>';
+
+            $message .= '<tr>';
+            $message .= '<th style="width: 50px;">Topic</th>';
+//$message .= '<td>'..'</td>';
+            $message .= '</tr>';
+
+            $message .= '<tr>';
+            $message .= '<th style="width: 50px;">User Name</th>';
+            $message .= '<td>'.$user_name.'</td>';
+            $message .= '</tr>';
+
+            $message .= '<tr>';
+            $message .= '<th style="width: 50px;">Total Question Attended</th>';
+            $message .= '<td>'.$total_question_attended.'</td>';
+            $message .= '</tr>';
+
+            $message .= '<tr>';
+            $message .= '<th style="width: 50px;">Score</th>';
+            $message .= '<td>'.$score_persentage.'%</td>';
+            $message .= '</tr>';
+            $message .= '</table>';
+            if(send_mail($to,$subject,$message)){
+                echo 'mail send';
+            } else {
+                echo 'mail not send';
+            }
+        }
+    }
 }
