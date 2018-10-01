@@ -2982,3 +2982,8 @@ ul.imgpattern li{
 ul.imgpattern li img{
     max-width: 45px;
 }
+.second_q{
+    font-size: 20px;
+    font-weight: 400;
+    padding: 30px 0;
+}

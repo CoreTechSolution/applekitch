@@ -96,6 +96,28 @@ jQuery(document).ready(function(){
         window.speechSynthesis.speak(msg);
 
     });
+    jQuery('body').on('click', '#play_question1', function(e) {
+        e.preventDefault();
+        var this_element=jQuery(this);
+        var text_speech=this_element.attr('data-question');
+
+        var voiceOptions = 'Microsoft Anna - English (United States)';
+        var volumeSlider = 1;
+        var rateSlider = 1;
+        var pitchSlider = 1;
+        var myText = text_speech;
+
+        var voiceMap = [];
+
+        var msg = new SpeechSynthesisUtterance();
+        msg.volume = volumeSlider;
+        msg.voice = voiceMap[voiceOptions];
+        msg.rate = rateSlider;
+        msg.Pitch = pitchSlider;
+        msg.text = myText;
+        window.speechSynthesis.speak(msg);
+
+    });
     ////////////////// Question submit AJAX ////////////////
     jQuery('body').on('click', '.qSubmit', function(e) {
         e.preventDefault();

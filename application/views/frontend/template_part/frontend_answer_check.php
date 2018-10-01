@@ -302,7 +302,7 @@
                 <img src="<?php echo $form_data['img']; ?>" alt="" class="img-thumbnail">
             </div>
             <div class="second_q">
-                <p><?php echo $form_data['second_question']; ?></p>
+                <a href="javacript:void(0);" id="play_question1" data-question="<?php echo ($form_data['second_question']); ?>"><i class="fas fa-volume-up"></i></a> <?php echo $form_data['second_question']; ?>
             </div>
             <input id="img_answer" type="hidden" name="img_answer" value="">
             <?php $i = 1; ?>
