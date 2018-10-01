@@ -252,6 +252,34 @@ class Dashboard extends CI_Controller {
 		$this->load->view( 'children_certificate_v', $data );
 
 	}
+    public function share() {
+        isLogin();
+        $user_id = $this->session->userdata('user_id');
+        $data['title']='Share with friends';
+        $data['method']='share';
+        $data['user_data']=$this->user_model->get_userdata();
+        if(!empty($this->input->post('send'))){
+            $this->form_validation->set_rules('message', 'Message', 'required');
+            $this->form_validation->set_rules('email', 'Email', 'required');
+			if ($this->form_validation->run() == FALSE){
+                $this->load->view( 'child_share_v', $data );
+            } else{
+                $value['message']=str_replace("{{url}}",'<a href='.base_url().' >Applekitch</a>',$this->input->post('message'));
+                $value['email']=$this->input->post('message');
+                $send_mail=send_mail($value['email'],'Invitation from Applekitch',$value['message']);
+                if($send_mail){
+                    $this->session->set_flashdata(array('msg_type'=>'success','msg'=>'One email send to your friends email address!'));
+                    $this->load->view( 'child_share_v', $data );
+                } else{
+                    $this->session->set_flashdata(array('msg_type'=>'error','msg'=>'Email not send. Please try again later!'));
+                    $this->load->view( 'child_share_v', $data );
+                }
+            }
+        }
+        //echo $this->db->last_query(); exit();
+        $this->load->view( 'child_share_v', $data );
+
+    }
 	public function certificates(){
 
 		isLogin();

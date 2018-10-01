@@ -36,7 +36,9 @@
                     <li><a href="<?php echo base_url('dashboard/progress'); ?>">Progress</a></li>
                 </ul>
             </li>
-
+        <?php if (isUserType('Student')) { ?>
+            <li><a href="<?php echo base_url('share'); ?>"><i class="fas fa-share-alt"></i> Share with friends</a></li>
+        <?php } ?>
 
 		<li><a href="<?php echo base_url('/login/user_logout'); ?>"><i class="fa fa-sign-out-alt fa-fw" aria-hidden="true"></i> Logout</a></li>
 	</ul>

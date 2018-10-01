@@ -2,7 +2,7 @@
 function send_mail($to,$subject,$message){
 	$CI = & get_instance();
 	$CI->load->library('email');
-	$config = Array(
+	/*$config = Array(
 		'protocol' => 'smtp',
 		'smtp_host' => 'gator4070.hostgator.com',
 		'smtp_port' => 465,
@@ -12,15 +12,27 @@ function send_mail($to,$subject,$message){
 		'mailtype' => 'html',
 		'charset' => 'iso-8859-1',
 		'wordwrap' => TRUE
-	);
+	);*/
+    $config = Array(
+        'protocol' => 'smtp',
+        'smtp_host' => 'smtp.sendgrid.net',
+        'smtp_port' => 465,
+        'smtp_crypto' => 'ssl',
+        'smtp_user' => 'apikey',
+        'smtp_pass' => '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',
+        'mailtype' => 'html',
+        'charset' => 'iso-8859-1',
+        'wordwrap' => TRUE
+    );
 	$CI->email->initialize($config);
 	$CI->email->set_mailtype("html");
 	$CI->email->set_newline("\r\n");
 	$htmlContent = $message;
 	$CI->email->to($to);
-	$CI->email->from('smtp@cgsthemes.com','AppleKitch');
+	$CI->email->from('smtp@coregensolution.com','AppleKitch');
 	$CI->email->subject($subject);
 	$CI->email->message($htmlContent);
+print_r($CI->email->send()); exit();
 	if($CI->email->send())
 		return true;
 	else

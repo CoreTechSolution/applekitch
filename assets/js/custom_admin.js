@@ -62,8 +62,9 @@ function SwalDelete(productId){
 }
 
 jQuery(document).ready(function() {
-
+    initializetinymce();
     // tynimce add
+    function initializetinymce(){
         tinymce.init({
             selector: ".tynimce:not(.textarea-no-styles)",
             height: 200,
@@ -80,6 +81,8 @@ jQuery(document).ready(function() {
                 '//www.tinymce.com/css/codepen.min.css'
             ]
         });
+    }
+
 
     /*var minutesLabel = document.getElementById("minutes");
     var secondsLabel = document.getElementById("seconds");*/
@@ -98,6 +101,10 @@ jQuery(document).ready(function() {
             }
             jQuery('#add_row').append(demo_html);
             jQuery('#add_row_counter').val('');
+            var ed = tinymce.get('content');
+            ed.render();
+            //tinymce.remove();
+            //initializetinymce();
         }
         //this_element.hide();
 
@@ -124,6 +131,10 @@ jQuery(document).ready(function() {
         //html=combinations(id);
         jQuery(this_element).closest('.addQ_field_grp').find('.question_wrap').html('');
         jQuery(this_element).closest('.addQ_field_grp').find('.question_wrap').html(html);
+        if(jQuery('#question_area').length){
+            tinymce.remove();
+            initializetinymce();
+        }
     });
     jQuery('body').on('click','.option_add_q',function (e) {
         e.preventDefault();
