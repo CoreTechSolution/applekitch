@@ -34,6 +34,142 @@ class Ajax extends CI_Controller {
 		echo json_encode($response);
 
 	}
+    function edit_question(){
+        $form_data=$_POST;
+	    if(!empty($form_data)) {
+		    $i = 0;
+		    $error_input_names = array();
+		    foreach ( $form_data as $key => $value ) {
+			    if(empty($value) && $value == 0 && $key != 'question_id') {
+				    $i++;
+				    array_push($error_input_names, $key);
+			    }
+		    }
+		    /*if(!empty($_FILES)) {
+			    foreach ( $_FILES as $key => $value ) {
+				    if(empty($_FILES[$key]['name'])) {
+					    $i++;
+					    array_push($error_input_names, $key);
+				    }
+			    }
+		    }*/
+		    if($i > 0) {
+			    echo json_encode($error_input_names);
+			    exit();
+		    }
+	    }
+        $data['country_id']=$form_data['country_id'];
+        $data['subject_id']=$form_data['subject_id'];
+        $data['grade_id']=$form_data['grade_id'];
+        $data['category_id']=$form_data['category_id'];
+        $data['topic_id']=$form_data['topic_id'];
+        $data['question_name']=$form_data['question'];
+        $data['q_score']=$form_data['q_score'];
+        $data['qWrong_feedback']=$form_data['qWrong_feedback'];
+        unset($form_data['country_id']);
+        unset($form_data['subject_id']);
+        unset($form_data['grade_id']);
+        unset($form_data['category_id']);
+        unset($form_data['topic_id']);
+        //print_r($_FILES);
+        //exit();
+        switch($form_data['question_option']){
+            case '1':
+                if ( ! empty( $_FILES['imageQ_upload']['name'] ) ) {
+                    $img_path = image_upload( $_FILES, 'imageQ_upload', 'uploads/images' );
+                    if ( $img_path ) {
+                        $image_upload = $img_path;
+                    } else {
+
+                        $image_upload = '';
+                    }
+                    $form_data['img'] = $image_upload;
+                } elseif (!empty($form_data['img'])){
+                    $form_data['img']=$form_data['img'];
+                }
+
+                break;
+            case '2':
+
+                break;
+            case '20':
+                if ( ! empty( $_FILES['imageQ_upload']['name'] ) ) {
+                    $img_path = image_upload( $_FILES, 'imageQ_upload', 'uploads/images' );
+                    if ( $img_path ) {
+                        $image_upload = $img_path;
+                    } else {
+
+                        $image_upload = '';
+                    }
+                    $form_data['img'] = $image_upload;
+                } elseif (!empty($form_data['img'])){
+                    $form_data['img']=$form_data['img'];
+                }
+
+                break;
+            case '26':
+                if ( ! empty( $_FILES['imageQ_upload']['name'] ) ) {
+                    $img_path = image_upload( $_FILES, 'imageQ_upload', 'uploads/images' );
+                    if ( $img_path ) {
+                        $image_upload = $img_path;
+                    } else {
+
+                        $image_upload = '';
+                    }
+                    $form_data['img'] = $image_upload;
+                } elseif (!empty($form_data['img'])){
+                    $form_data['img']=$form_data['img'];
+                }
+
+                break;
+
+            case '28':
+                if ( ! empty( $_FILES['imageQ_upload']['name'] ) ) {
+                    $img_path = image_upload( $_FILES, 'imageQ_upload', 'uploads/images' );
+                    if ( $img_path ) {
+                        $image_upload = $img_path;
+                    } else {
+
+                        $image_upload = '';
+                    }
+                    $form_data['img'] = $image_upload;
+                } elseif (!empty($form_data['img'])){
+                    $form_data['img']=$form_data['img'];
+                }
+
+                break;
+            case '31':
+                $form_data['imgs']=$this->upload_multiple_img_path();
+
+                break;
+
+            default:
+
+        }
+        if(!empty($form_data['question_id'])){
+            $question_id=$form_data['question_id'];
+            unset($form_data['question_id']);
+            $data['form_data']=serialize($form_data);
+            $res = $this->ajax_model->update_question(array('question_id'=>$question_id),$data);
+            if($res){
+                $res=$question_id;
+            } else{
+                $res=0;
+            }
+
+        } else{
+            $data['form_data']=serialize($form_data);
+            $res=$this->ajax_model->insert_question($data);
+
+        }
+
+
+        if($res){
+            echo $res;
+        } else {
+            echo false;
+        }
+    }
 	function save_question(){
 		$form_data=$_POST;
 		if(!empty($form_data)) {
@@ -165,6 +301,10 @@ class Ajax extends CI_Controller {
 			$your_ans='';
 			$correct_ans='';
 			$html='';
+
+			//print_r($question_form_data);exit);
+			//print_r($questions_next);
+
 
 				if ( $form_data['question_option'] == '1' ) {
 
@@ -534,33 +674,7 @@ class Ajax extends CI_Controller {
 						$rtntext['type']    = 'false';
 						$rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
 					}
-				} elseif ( $form_data['question_option'] == '27' ) {
-
-                    if ( ! empty( $questions_next ) ) {
-                        $question_form_data=unserialize($questions_next[0]->form_data);
-                        $qview_option = 'qView_option_' . $question_form_data['question_option'];
-                        $html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
-                    }
-                    if ( empty( $html ) ) {
-                        $html = '';
-                    }
-
-                    $rtntext['html'] = $html;
-                    $your_ans        = $form_data['img_order_student'];
-                    $correct_ans     = $form_data_ans['img_order'];
-                    if ( $correct_ans == $your_ans ) {
-                        $this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-                        $this->session->set_userdata( 'score_smart', ( $form_data['score'] + $questions->q_score ) );
-                        $rtntext['score_ans']   = $this->session->userdata( 'score_ans' );
-                        $rtntext['score_smart'] = $this->session->userdata( 'score_smart' );
-                        $rtntext['type']        = 'true';
-                        $rtntext['content']     = 'Correct';
-                    } else {
-                        $this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-                        $rtntext['type']    = 'false';
-                        $rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
-                    }
-                } elseif ( $form_data['question_option'] == '28' ) {
+				} elseif ( $form_data['question_option'] == '28' ) {
 
                     if ( ! empty( $questions_next ) ) {
                         $question_form_data=unserialize($questions_next[0]->form_data);
@@ -636,6 +750,14 @@ class Ajax extends CI_Controller {
                     }
                 }
 
+
+
+
+
+
+
+
+
 			/// premium user save data in database
 			if(loginCheck() && get_returnfield('user','id',get_current_user_id(),'membership_plan')=='1'){
 				$save_data['user_id']=get_current_user_id();
@@ -703,90 +825,7 @@ class Ajax extends CI_Controller {
         }
         return $img_array;
     }
-    function question_with_put_images(){
-        $img_array = array();
-        $files = $_FILES;
-        $filesCount = count($_FILES['upload_images']['name']);
-        for($i = 0; $i < $filesCount; $i++){
-            $_FILES['upload_images']['name']     = $files['upload_images']['name'][$i];
-            $_FILES['upload_images']['type']     = $files['upload_images']['type'][$i];
-            $_FILES['upload_images']['tmp_name'] = $files['upload_images']['tmp_name'][$i];
-            $_FILES['upload_images']['error']     = $files['upload_images']['error'][$i];
-            $_FILES['upload_images']['size']     = $files['upload_images']['size'][$i];
-            $img_path = image_upload( $_FILES, 'upload_images', 'uploads/images' );
-            array_push($img_array, $img_path);
-        }
-        //$img_array_json = json_encode($img_array);
-        $uploaded_images_forms = '';
-        $uploaded_images_forms .= '<div class="row"><div class="col-lg-12"><label>Please make pattern using uploaded images</label></div></div>';
-        $uploaded_images_forms .= '<div class="row">';
-        $uploaded_images_forms .= '<div class="col-lg-12">';
-        $uploaded_images_forms .= '<div class="multi_putimages">';
-        $uploaded_images_forms .= '<div class="bg">';
-        $uploaded_images_forms .= '<div></div>';
-        $uploaded_images_forms .= '<div></div>';
-        $uploaded_images_forms .= '<div></div>';
-        $uploaded_images_forms .= '<div></div>';
-        $uploaded_images_forms .= '<div></div>';
-        $uploaded_images_forms .= '<div></div>';
-        $uploaded_images_forms .= '</div>';
-        $uploaded_images_forms .= '<div class="fs">
-									<div class="fsortable-empty"></div>
-									<div class="fsortable-empty"></div>
-									<div class="fsortable-empty"></div>
-									<div class="fsortable-empty"></div>
-									<div class="fsortable-empty"></div>
-									<div class="fsortable-empty"></div>
-							      </div>';
-        $uploaded_images_forms .= '<div id="content">';
-        foreach($img_array as $img) {
-            $reversedParts = explode('/', strrev($img), 2);
-            $img_name = strrev($reversedParts[0]);
-            $uploaded_images_forms .= '<div class="item"><img src="' .$img.'" style="max-width: 40px;" /></div>';
-        }
-        $uploaded_images_forms .= '</div>';
 
-        $uploaded_images_forms .= '</div>';
-        $uploaded_images_forms .= '</div>';
-        $uploaded_images_forms .= '</div>';
-
-        $uploaded_images_forms .= '<input type="hidden" name="img_array" value="'.implode('|',$img_array).'"></div>';
-        $uploaded_images_forms .= '<input id="img_order" type="hidden" name="img_order" value="">';
-        //$uploaded_images_forms .= '<script src="'.base_url('/assets/js/jquery-1.10.2.min.js').'"></script>';
-        //$uploaded_images_forms .= '<script src="'.base_url('/assets/js/jquery-ui.min.js').'"></script>';
-        $uploaded_images_forms .= '<script src="'.base_url('/assets/js/jquery-fsortable.js').'"></script>';
-        $uploaded_images_forms .= '<script>
-        jQuery(document).ready(function() {
-            jQuery(".fs").fsortable({
-                connectWith: ".fs",
-                tolerance: "pointer",
-                size: 5
-            }).disableSelection();
-
-            jQuery("#content .item").draggable({
-                connectToSortable: ".fs:not(.full)",
-                revert: "invalid",
-                helper: "clone",
-                stop: function(e, ui) {
-                    jQuery("#img_order").val("");
-                    var file_name_array = [];
-                    jQuery(".fs .item img").each(function(){
-                        var this_element = jQuery(this);
-                        var src = jQuery(this_element).attr("src");
-                        var tarr = src.split("/");
-                        var file_name = tarr[tarr.length-1];
-                        console.log(file_name);
-                        file_name_array.push(file_name);
-                        var file_name_string = file_name_array.toString();
-                        jQuery("#img_order").val(file_name_string);
-                    });
-                }
-            });
-        });
-    </script>';
-        $uploaded_images_forms .= '<div style="clear: both; margin-bottom: 100px;"></div>';
-        echo $uploaded_images_forms;
-    }
 	function upload_images_and_options(){
 		$img_array = array();
 		$files = $_FILES;
@@ -1335,75 +1374,6 @@ class Ajax extends CI_Controller {
 
 		return $rtntext;
 	}
-
-    function qView_option_27($data,$grade_id,$subject_id,$topic_id,$start){
-        $rtntext='';
-        $start=$start+1;
-        $rtntext.='<input type="hidden" name="start" value="'.$start.'" />
-                            <input type="hidden" name="grade_id" value="'.$grade_id.'" />
-                            <input type="hidden" name="subject_id" value="'.$subject_id.'" />
-                            <input type="hidden" name="topic_id" value="'.$topic_id.'" />';
-        $rtntext.='<div class="row">';
-        $rtntext.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
-                                <div class="col-lg-5">
-                                    <div class="question_count">Question <a href="javacript:void(0);" id="play_question" data-question="'.$data->question_name.'"><i class="fas fa-volume-up"></i></a></div>
-                                            <div class="question_display">'.$data->question_name.'</div>
-                                </div>';
-        $rtntext.='<div class="col-lg-7">';
-        $form_serializedata=unserialize($data->form_data);
-        //$rtntext.='<input type="hidden" name="question_option" value="'.$form_serializedata['question_option'].'">';
-
-        $rtntext.='<div class="row">';
-        $rtntext.='<div class="col-lg-12">';
-        $img_order = explode(',',$form_serializedata['img_order']);
-        if(!empty($img_order)){
-            $rtntext.='<ul class="imgpattern">';
-                foreach($img_order as $img){
-                    $rtntext.='<li><img src="'.base_url('uploads/images/'.$img).'"></li>';
-                }
-            $rtntext.='</ul>';
-        }
-        $rtntext.='</div>';
-        $rtntext.='</div>';
-
-        $rtntext.='<div class="row">';
-        $rtntext.='<div class="col-lg-12">';
-        $rtntext.='<div class="multi_putimages">';
-
-        $rtntext.='<div class="bg">';
-        $rtntext.='<div></div>';
-        $rtntext.='<div></div>';
-        $rtntext.='<div></div>';
-        $rtntext.='<div></div>';
-        $rtntext.='<div></div>';
-        $rtntext.='<div></div>';
-        $rtntext.='</div>';
-
-        $rtntext.='<div class="fs">';
-        $rtntext.='<div class="fsortable-empty"></div>';
-        $rtntext.='<div class="fsortable-empty"></div>';
-        $rtntext.='<div class="fsortable-empty"></div>';
-        $rtntext.='<div class="fsortable-empty"></div>';
-        $rtntext.='<div class="fsortable-empty"></div>';
-        $rtntext.='<div class="fsortable-empty"></div>';
-        $rtntext.='</div>';
-
-        $rtntext.='<div id="content">';
-        $img_array = explode('|',$form_serializedata['img_array']);
-        if(!empty($img_array)){
-            foreach($img_array as $image){
-                $rtntext.='<div class="item"><img src="'.$image.'" style="max-width: 40px;" /></div>';
-            }
-        }
-        $rtntext.='</div></div></div></div>';
-        $rtntext.='<input id="img_order_student" type="hidden" name="img_order_student" value="">';
-        $rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
-        $rtntext.='</div>';
-        $rtntext.='</div>';
-
-
-        echo $rtntext;
-    }
 
     function qView_option_28($data,$grade_id,$subject_id,$topic_id,$start){
         $rtntext='';

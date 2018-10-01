@@ -81,7 +81,7 @@ $this->load->view('templates/header');
 							$grade_key = $topic->grade_id;
 							$topic_key = $topic->topic_id;
 							$cate_key = $topic->category_id;
-                            
+
 							if(array_key_exists($grade_key, $cate_arrays)){
 							    if(array_key_exists($cate_key,$cate_arrays[$grade_key])){
 								    array_push($cate_arrays[$grade_key][$cate_key], $topic_key);

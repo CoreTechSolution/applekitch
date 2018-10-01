@@ -132,6 +132,13 @@ jQuery(document).ready(function() {
         jQuery(this_element).prev('.option_add_div_app').append(demo_html);
 
     });
+    jQuery('body').on('click','.option_edit_q',function (e) {
+        e.preventDefault();
+        var this_element=jQuery(this);
+        var demo_html=jQuery('#edit_option_input_add').html();
+        jQuery(this_element).prev('.option_add_div_app').append(demo_html);
+
+    });
     jQuery('body').on('click','.option_done',function (e) {
         e.preventDefault();
         var this_element=jQuery(this);
@@ -201,28 +208,29 @@ jQuery(document).ready(function() {
             data: form_data,
             success: function (data) {
                 //console.log(data);
-
                 jQuery('input').css('border-width', '1px');
                 jQuery('input').css('border-color', '#ced4da');
 
                 jQuery('select').css('border-width', '1px');
                 jQuery('select').css('border-color', '#ced4da');
 
-                var json = JSON.parse(data);
-                if(typeof json =='object') {
+                if(isNaN(data)) {
                     jQuery('#loading').hide();
-                    if(json.length != 0) {
-                        jQuery.each( json, function( key, value ) {
-                            jQuery('input[name="'+value+'"]').css('border-width', '2px');
-                            jQuery('input[name="'+value+'"]').css('border-color', 'red');
+                    var json = JSON.parse(data);
+                    if(jQuery.isArray(json)) {
+                        if (json.length != 0) {
+                            jQuery.each(json, function (key, value) {
+                                jQuery('input[name="' + value + '"]').css('border-width', '2px');
+                                jQuery('input[name="' + value + '"]').css('border-color', 'red');
 
-                            jQuery('select[name="'+value+'"]').css('border-width', '2px');
-                            jQuery('select[name="'+value+'"]').css('border-color', 'red');
+                                jQuery('select[name="' + value + '"]').css('border-width', '2px');
+                                jQuery('select[name="' + value + '"]').css('border-color', 'red');
 
-                            jQuery('#'+value).css('border-width', '2px');
-                            jQuery('#'+value).css('border-color', 'red');
-                        });
-                        alert('Please fill all the fields.')
+                                jQuery('#' + value).css('border-width', '2px');
+                                jQuery('#' + value).css('border-color', 'red');
+                            });
+                            alert('Please fill all the fields.')
+                        }
                     }
                 } else {
                     if (data != '0') {
@@ -235,6 +243,73 @@ jQuery(document).ready(function() {
                 }
             }
         });
+    });
+    jQuery('body').on('click','.addQ_edit',function(e){
+        e.preventDefault();
+        jQuery('#loading').show();
+        var this_element = jQuery(this);
+
+        tinymce.triggerSave();
+
+        var country_id = jQuery('#country_id').val();
+        var subject_id = jQuery('#subject_id').val();
+        var grade_id = jQuery('#grade_id').val();
+        var category_id = jQuery('#category_id').val();
+        var topic_id = jQuery('#topic_id').val();
+        var parent = this_element.closest('.add_question_row');
+        var questions_option_drop = parent.find('.questions_option_drop').val();
+        var form_data = new FormData(parent.find('.addQ_form')[0]);
+        form_data.append('country_id', country_id);
+        form_data.append('subject_id', subject_id);
+        form_data.append('grade_id', grade_id);
+        form_data.append('category_id', category_id);
+        form_data.append('topic_id', topic_id);
+
+        jQuery.ajax({
+            type: "POST",
+            url: base_url + 'ajax/edit_question',
+            processData: false,
+            contentType: false,
+            data: form_data,
+            success: function (data) {
+                //console.log(data);
+                jQuery('input').css('border-width', '1px');
+                jQuery('input').css('border-color', '#ced4da');
+
+                jQuery('select').css('border-width', '1px');
+                jQuery('select').css('border-color', '#ced4da');
+
+                if(isNaN(data)) {
+                    jQuery('#loading').hide();
+                    var json = JSON.parse(data);
+                    if(jQuery.isArray(json)) {
+                        if (json.length != 0) {
+                            jQuery.each(json, function (key, value) {
+                                jQuery('input[name="' + value + '"]').css('border-width', '2px');
+                                jQuery('input[name="' + value + '"]').css('border-color', 'red');
+
+                                jQuery('select[name="' + value + '"]').css('border-width', '2px');
+                                jQuery('select[name="' + value + '"]').css('border-color', 'red');
+
+                                jQuery('#' + value).css('border-width', '2px');
+                                jQuery('#' + value).css('border-color', 'red');
+                            });
+                            alert('Please fill all the fields.')
+                        }
+                    }
+                } else {
+                    if (data != '0') {
+                        //jQuery('#loading').hide();
+                        //parent.find('.question_id').val(data);
+                        location.reload();
+                    }
+                    jQuery('#loading').hide();
+                    jQuery('#add_row').show();
+                    this_element.hide();
+                }
+            }
+        });
+
     });
 
     jQuery('body').on('change', '.upload_images', function(e){
@@ -251,28 +326,11 @@ jQuery(document).ready(function() {
             success: function (data) {
                 jQuery('#upload_images_section').hide();
                 jQuery(this_element).closest('.addQ_field_grp').find('#uploaded_images').show();
-                jQuery(this_element).closest('.addQ_field_grp').find('#uploaded_images').append(data);
+                jQuery(this_element).closest('.addQ_field_grp').find('#uploaded_images').html(data);
             }
         });
     });
-    jQuery('body').on('change', '.question_with_put_images', function(e){
-        e.preventDefault();
-        var this_element=jQuery(this);
-        var parent = this_element.closest('.add_question_row');
-        var form_data = new FormData(parent.find('.addQ_form')[0]);
-        jQuery.ajax({
-            type: "POST",
-            url: base_url + 'ajax/question_with_put_images',
-            processData: false,
-            contentType: false,
-            data: form_data,
-            success: function (data) {
-                jQuery('#upload_images_section').hide();
-                jQuery(this_element).closest('.addQ_field_grp').find('#uploaded_images').show();
-                jQuery(this_element).closest('.addQ_field_grp').find('#uploaded_images').append(data);
-            }
-        });
-    });
+
     jQuery('body').on('change', '.upload_select_multiple_images', function(e){
         e.preventDefault();
         var this_element=jQuery(this);
