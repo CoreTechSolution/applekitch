@@ -12,31 +12,30 @@ require_once 'templates/header.php';
             <div class="row">
                 <div class="col-lg-3"></div>
                 <div class="col-lg-6">
-                    <form method="post" action="">
+                    <form method="post" action="<?php echo base_url('frontend/topic'); ?>">
                         <div class="row row1">
                             <div class="col-lg-4">
-                                <label>I am in Year</label>
+                                <label>Select Your Grade</label>
                             </div>
                             <div class="col-lg-8">
-                                <select class="form-control" name="age">
-                                    <option value="">Select Your Age</option>
-                                </select>
+                                <?php echo form_dropdown('grade_id',form_dropdown_cr(array('id','name'),'grade'),'', array('class'=>'form-control','id'=>'home_grade_id')); ?>
+                                <!--<select class="form-control" name="age">
+                                    <option value="">Select Your Grade</option>
+                                </select>-->
                             </div>
                         </div>
                         <div class="row row1">
                             <div class="col-lg-4">
-                                <label>Want to Practice</label>
+                                <label>Subject</label>
                             </div>
                             <div class="col-lg-8">
-                                <select class="form-control" name="practice">
-                                    <option value="">Math</option>
-                                </select>
+                                <?php echo form_dropdown('subject_id',form_dropdown_cr(array('id','name'),'subject'), '',array('class'=>'form-control','id'=>'home_subject_id')); ?>
                             </div>
                         </div>
                         <div class="row row1">
                             <div class="col-lg-4"></div>
                             <div class="col-lg-8">
-                                <input type="submit" class="form-control" name="take_the_test" value="Take the Test">
+                                <input type="submit" class="form-control" name="take_the_test" value="Practice Now">
                             </div>
                         </div>
                     </form>

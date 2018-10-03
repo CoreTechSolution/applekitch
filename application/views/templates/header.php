@@ -24,6 +24,7 @@
 
     <link rel="stylesheet" media="all" href="<?php echo base_url('/assets/css/bootstrap.min.css'); ?>" />
     <link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700|Open+Sans:300,400,600,700|Raleway:300,400,500,600|Roboto:100,300,400,500,700|Lato:100,300,400,700|Fredoka+One|Istok+Web:400" />
+    <link href="https://fonts.googleapis.com/css?family=K2D:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
     <link rel="stylesheet" media="all" href="<?php echo base_url('/assets/css/jquery.fancybox.css'); ?>" />
     <link rel="stylesheet" media="all" href="<?php echo base_url('/assets/css/slicknav.css'); ?>" />
     <link rel="stylesheet" media="all" href="<?php echo base_url('/assets/css/jquery.bxslider.css'); ?>" />

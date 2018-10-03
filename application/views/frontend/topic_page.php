@@ -105,11 +105,12 @@ $this->load->view('templates/header');
                             <div class="row">
                                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
                                     <div class="list-group">
+
                                         <?php
                                         $subject_slug=$this->uri->segment(4);
                                             if(!empty($grades_lists)){
                                                 foreach ($grades_lists as $grades_list){ ?>
-                                                    <a href="<?php echo base_url('frontend/topic/'.$grades_list->slug.'/'.$subject_slug) ?>" class="list-group-item text-center" data-tabid="<?php echo $grades_list->id; ?>" ><?php echo $grades_list->name; ?></a>
+                                                    <a href="<?php echo base_url('frontend/topic/'.$grades_list->slug.'/'.$subject_slug) ?>" class="list-group-item text-center wow-listing"   data-tabid="<?php echo $grades_list->id; ?>" ><?php echo $grades_list->name; ?></a>
 
                                         <?php   }
                                             }
@@ -121,7 +122,7 @@ $this->load->view('templates/header');
 
                                     <?php foreach ($cate_arrays as $cate_array1=>$values1){ // get grade_ids ?>
                                         <?php $grades = array_keys($cate_arrays); ?>
-                                        <div class="bhoechie-tab-content" data-contentid="<?php echo $cate_array1; ?>">
+                                        <div class="bhoechie-tab-content wow lightSpeedIn" data-wow-delay="1s" data-contentid="<?php echo $cate_array1; ?>">
                                             <div class="row">
                                                 <?php foreach ($values1 as $cate_array=>$values){ // Get Categories ?>
                                                     <div class="col-lg-4">

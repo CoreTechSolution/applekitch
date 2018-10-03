@@ -26,21 +26,43 @@ class Frontend extends CI_Controller {
 		$data['title']='Grades';
 		$this->load->view('frontend/grade_page',$data);
 	}
-	public function topic($grade,$subject){
-		$data['banner_title']=ucfirst($subject);
-		$data['title']=ucfirst($grade.' '.$subject);
-		$grade_id=get_id_by_slug('id',$grade,'grade');
-		$subject_id=get_id_by_slug('id',$subject,'subject');
-		$data['grade']=get_returnfield('grade','id',$grade_id,'slug');
-		$data['subject']=get_returnfield('subject','id',$subject_id,'slug');
-		//$data['topic']=get_returnfield('topics','topic_id',$topic_id,'slug');
-		$data['topics']=get_topic_by(0,$subject_id);
-		//print_r($data['topics']); exit();
-		$data['grades_lists']=$this->frontend_model->get_grades(array(), false);
-		//print_r( $data['topics']); exit();
-		$data['grade_id']=$grade_id;
-		$data['questions']=$this->frontend_model->get_questions(array('grade_id'=>$grade_id,'subject_id'=>$subject_id),false);
-		$this->load->view('frontend/topic_page',$data);
+	public function topic($grade='',$subject=''){
+	    if($grade!='' && $subject!='') {
+            $data['banner_title'] = ucfirst($subject);
+            $data['title'] = ucfirst($grade . ' ' . $subject);
+            $grade_id = get_id_by_slug('id', $grade, 'grade');
+            $subject_id = get_id_by_slug('id', $subject, 'subject');
+            $data['grade'] = get_returnfield('grade', 'id', $grade_id, 'slug');
+            $data['subject'] = get_returnfield('subject', 'id', $subject_id, 'slug');
+            //$data['topic']=get_returnfield('topics','topic_id',$topic_id,'slug');
+            $data['topics'] = get_topic_by(0, $subject_id);
+            //print_r($data['topics']); exit();
+            $data['grades_lists'] = $this->frontend_model->get_grades(array(), false);
+            //print_r( $data['topics']); exit();
+            $data['grade_id'] = $grade_id;
+            $data['questions'] = $this->frontend_model->get_questions(array('grade_id' => $grade_id, 'subject_id' => $subject_id), false);
+            $this->load->view('frontend/topic_page', $data);
+        } elseif(!empty($_POST['grade_id']) && !empty($_POST['subject_id'])){
+            $data['banner_title'] = ucfirst(get_returnfield('subject','id',$_POST['subject_id'],'name'));
+            $data['title'] = ucfirst(get_returnfield('grade','id',$_POST['grade_id'],'name') . ' ' . get_returnfield('subject','id',$_POST['subject_id'],'name'));
+            $grade_id = $_POST['grade_id'];
+            $subject_id = $_POST['subject_id'];
+            $data['grade'] = get_returnfield('grade', 'id', $grade_id, 'slug');
+            $data['subject'] = get_returnfield('subject', 'id', $subject_id, 'slug');
+            //$data['topic']=get_returnfield('topics','topic_id',$topic_id,'slug');
+            $data['topics'] = get_topic_by(0, $subject_id);
+            //print_r($data['topics']); exit();
+            $data['grades_lists'] = $this->frontend_model->get_grades(array(), false);
+            //print_r( $data['topics']); exit();
+            $data['grade_id'] = $grade_id;
+            $data['questions'] = $this->frontend_model->get_questions(array('grade_id' => $grade_id, 'subject_id' => $subject_id), false);
+            $this->load->view('frontend/topic_page', $data);
+        } else{
+            $data = array(
+                'title' => 'AppleKitch',
+            );
+            $this->load->view('frontend/home', $data);
+        }
 	}
 	public function questions($grade,$subject,$topic,$start=0){
 		$data['banner_title']=ucfirst($subject);

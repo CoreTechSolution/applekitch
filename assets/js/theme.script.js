@@ -36,8 +36,15 @@ jQuery(function($){
 });
 
 jQuery(document).ready(function(){
-    jQuery.noConflict();
-    jQuery(init);
+    /*jQuery.noConflict();
+    jQuery(init);*/
+
+        jQuery(".wow-listing").delay(500).each(function(i) {
+            jQuery(this).delay(100 * i).queue(function() {
+                jQuery(this).addClass("show");
+            })
+        })
+
     var totalSeconds = 0;
    var my_time_interval= setInterval(setTime, 1000);
 
