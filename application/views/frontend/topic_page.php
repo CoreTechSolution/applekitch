@@ -107,7 +107,7 @@ $this->load->view('templates/header');
                                     <div class="list-group">
 
                                         <?php
-                                        $subject_slug=$this->uri->segment(4);
+                                        $subject_slug=$subject;
                                             if(!empty($grades_lists)){
                                                 foreach ($grades_lists as $grades_list){ ?>
                                                     <a href="<?php echo base_url('frontend/topic/'.$grades_list->slug.'/'.$subject_slug) ?>" class="list-group-item text-center wow-listing"   data-tabid="<?php echo $grades_list->id; ?>" ><?php echo $grades_list->name; ?></a>
