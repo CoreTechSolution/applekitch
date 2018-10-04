@@ -30,8 +30,8 @@ jQuery(function($){
         infiniteLoop: true,
         /*nextSelector: '#slider-next3',
         prevSelector: '#slider-prev3',*/
-        nextText: '<img src="/assets/images/right-arrow.png">',
-        prevText: '<img src="/assets/images/left-arrow.png">'
+        nextText: '<img src="'+base_url+'/assets/images/right-arrow.png">',
+        prevText: '<img src="'+base_url+'/assets/images/left-arrow.png">'
     });
 });
 
