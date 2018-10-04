@@ -10,7 +10,7 @@ class Admin extends CI_Controller {
 		//$this->load->library('image_crop_gd');
 		$this->load->model('images');
 
-		$config['upload_path'] = $_SERVER["DOCUMENT_ROOT"].'/files/';
+        $config['upload_path'] = ADS_IMAGE_PATH;
 		$config['allowed_types'] = 'gif|jpg|jpeg|png';
 		$this->load->library('upload', $config);
 	}
