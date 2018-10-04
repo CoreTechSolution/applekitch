@@ -13,7 +13,7 @@ require_once 'templates/header.php';
 					<h1 class="h2"><?= $title; ?></h1>
 				</div>
 				<?php $this->load->view('admin/templates/error_v.php'); ?>
-				<form method="post" action="<?= base_url('/admin/edit_category/'.$category->id); ?>">
+				<form method="post" action="<?= base_url('/admin/edit_category/'.$category->id); ?>" enctype="multipart/form-data">
 
 					<div class="form-group">
 						<div class="row">
@@ -22,6 +22,14 @@ require_once 'templates/header.php';
                                 <?php //print_r($category); ?>
 								<input required type="text" name="cat_name" class="form-control" value="<?php echo $category->name; ?>"/>
 							</div>
+                            <div class="col-md-6">
+                                <label>Name: </label>
+                                <input type="file" name="category_image" class="form-control" value=""/>
+                                <?php if(!empty($category->cat_img) && $category->cat_img!==''){ ?>
+                                    <img src="<?php echo $category->cat_img; ?>" alt="" class="admin_edit_img_preview">
+                                <?php } ?>
+                            </div>
+
 							<?php /*if(!empty($grades)) { */?><!--
 								<div class="col-md-6">
 									<label>Grade: </label>

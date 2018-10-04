@@ -484,7 +484,10 @@ class Admin extends CI_Controller {
 			'grades' => $this->admin_model->get_grades(),
 			'countries' => $this->admin_model->get_countries(),
 			'subjects' => $this->admin_model->get_subjects(),
+
 		);
+
+        //$this->session->set_flashdata(array('msg_type'=>'success','msg'=>'New category added!'));
 		$this->load->view( 'admin/add_category', $data );
 
 	}
@@ -522,7 +525,18 @@ class Admin extends CI_Controller {
 			'subject' => $subject,
 			'parent' => $parent,*/
 		);
+        if(!empty($_FILES['category_image']['name'])){
+            $img_path=image_upload($_FILES,'category_image','uploads');
+            if($img_path){
+                $category_array['cat_img']=$img_path;
+            } else{
+                $this->session->set_flashdata(array('msg_type'=>'success','msg'=>'Image not uploaded!'));
+                $this->load->view( 'admin/add_category', $data );
+                return false;
+            }
+        }
 		$this->admin_model->insert_category($category_array);
+        $this->session->set_flashdata(array('msg_type'=>'error','msg'=>'New category added!'));
 		redirect('admin/category');
 	}
 	public function edit_category($cat_id) {
@@ -535,6 +549,16 @@ class Admin extends CI_Controller {
 				$this->load->view( 'admin/edit_category', $data );
 			} else {
 				$value['name']=$this->input->post('cat_name');
+                if(!empty($_FILES['category_image']['name'])){
+                    $img_path=image_upload($_FILES,'category_image','uploads');
+                    if($img_path){
+                        $value['cat_img']=$img_path;
+                    } else{
+                        $this->session->set_flashdata(array('msg_type'=>'success','msg'=>'Image not uploaded!'));
+                        $this->load->view( 'admin/edit_category', $data );
+                        return false;
+                    }
+                }
 				$result=$this->admin_model->update_category(array('id'=>$cat_id),$value);
 				if($result){
 					$data['category'] = $this->admin_model->get_categories( array( 'id' => $cat_id ) );
