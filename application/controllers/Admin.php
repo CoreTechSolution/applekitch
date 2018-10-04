@@ -525,18 +525,28 @@ class Admin extends CI_Controller {
 			'subject' => $subject,
 			'parent' => $parent,*/
 		);
-        if(!empty($_FILES['category_image']['name'])){
-            $img_path=image_upload($_FILES,'category_image','uploads');
-            if($img_path){
-                $category_array['cat_img']=$img_path;
-            } else{
-                $this->session->set_flashdata(array('msg_type'=>'success','msg'=>'Image not uploaded!'));
-                $this->load->view( 'admin/add_category', $data );
-                return false;
+
+        if ( ! $this->upload->do_upload('category_image')) {
+            $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
+            $this->session->set_flashdata('error_msg', $this->upload->display_errors());
+
+            $this->admin_model->insert_category($category_array);
+
+        }else {
+            $data_img = array('upload_data' => $this->upload->data());
+
+            $return = $this->image_crop_gd->image_cropping($data_img);
+
+            $insert = $this->images->insert($data_img);
+
+            if($insert) {
+                $category_array['cat_img']=$insert;
+
+                $this->admin_model->insert_category($category_array);
             }
         }
-		$this->admin_model->insert_category($category_array);
-        $this->session->set_flashdata(array('msg_type'=>'error','msg'=>'New category added!'));
+
+        $this->session->set_flashdata(array('msg_type'=>'success','msg'=>'New category added!'));
 		redirect('admin/category');
 	}
 	public function edit_category($cat_id) {
@@ -549,17 +559,27 @@ class Admin extends CI_Controller {
 				$this->load->view( 'admin/edit_category', $data );
 			} else {
 				$value['name']=$this->input->post('cat_name');
-                if(!empty($_FILES['category_image']['name'])){
-                    $img_path=image_upload($_FILES,'category_image','uploads');
-                    if($img_path){
-                        $value['cat_img']=$img_path;
-                    } else{
-                        $this->session->set_flashdata(array('msg_type'=>'success','msg'=>'Image not uploaded!'));
-                        $this->load->view( 'admin/edit_category', $data );
-                        return false;
+
+                if ( ! $this->upload->do_upload('category_image')) {
+                    $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
+                    $this->session->set_flashdata('error_msg', $this->upload->display_errors());
+
+                    $result=$this->admin_model->update_category(array('id'=>$cat_id),$value);
+
+                }else {
+                    $data_img = array('upload_data' => $this->upload->data());
+
+                    $return = $this->image_crop_gd->image_cropping($data_img);
+
+                    $insert = $this->images->insert($data_img);
+
+                    if($insert) {
+                        $value['cat_img']=$insert;
+
+                        $result=$this->admin_model->update_category(array('id'=>$cat_id),$value);
                     }
                 }
-				$result=$this->admin_model->update_category(array('id'=>$cat_id),$value);
+
 				if($result){
 					$data['category'] = $this->admin_model->get_categories( array( 'id' => $cat_id ) );
 					$this->session->set_flashdata(array('msg_type'=>'success','msg'=>'Category edited!'));
