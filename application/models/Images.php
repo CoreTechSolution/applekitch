@@ -8,7 +8,6 @@ class Images extends CI_Model{
                 'root_path' => $data['upload_data']['file_path']
         );
 
-
         $this->load->database();
 
         $insert = $this->db->insert('attachment', $attData);
