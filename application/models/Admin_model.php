@@ -434,4 +434,20 @@ INNER JOIN country ON subject.country = country.id INNER JOIN grade ON subject.g
 		$query = $queries->row();
 		return $query;
 	}
+	function update_settings($data, $condition){
+        $this->db->set($data);  //Set the column name and which value to set..
+        $this->db->where($condition); //set column_name and value in which row need to update
+        if($this->db->update('settings')){
+            return true;
+        } else{
+            return false;
+        }
+    }
+    function get_settings(){
+        $this->db->select('*');
+        $this->db->from('settings');
+        $queries = $this->db->get();
+        $query = $queries->row();
+        return $query;
+    }
 }
