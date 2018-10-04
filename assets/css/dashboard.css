@@ -386,3 +386,6 @@ input[type='file']{
   border-radius: 5px;
   border: 1px solid #cccccc;
 }
+.footable img{
+  width: 85px;
+}

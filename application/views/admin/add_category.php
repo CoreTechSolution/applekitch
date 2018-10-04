@@ -12,13 +12,18 @@ require_once 'templates/header.php';
 				<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 					<h1 class="h2"><?= $title; ?></h1>
 				</div>
-				<form method="post" action="<?= base_url('/admin/save_category') ?>">
+                <?php $this->load->view('admin/templates/error_v.php'); ?>
+				<form method="post" action="<?= base_url('/admin/save_category') ?>" enctype="multipart/form-data">
 					<div class="form-group">
 						<div class="row">
 							<div class="col-md-6">
 								<label>Name: </label>
 								<input required type="text" name="name" class="form-control" value=""/>
 							</div>
+                            <div class="col-md-6">
+                                <label>Name: </label>
+                                <input type="file" name="category_image" class="form-control" value=""/>
+                            </div>
 							<?php /*if(!empty($grades)) { */?><!--
 								<div class="col-md-6">
 									<label>Grade: </label>
