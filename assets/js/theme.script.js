@@ -590,7 +590,64 @@ jQuery('.accordion').on('click', function (e) {
     this_element.toggleClass('active','');
     this_element.next('div.panel').slideToggle();
 });
+window.fbAsyncInit = function() {
+    // FB JavaScript SDK configuration and setup
+    FB.init({
+        appId      : fb_id, // FB App ID
+        cookie     : true,  // enable cookies to allow the server to access the session
+        xfbml      : true,  // parse social plugins on this page
+        version    : 'v2.9' // use graph api version 2.8
+    });
 
+};
+
+// Load the JavaScript SDK asynchronously
+(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+// Facebook login with JavaScript SDK
+function fbLogin() {
+    jQuery('#fbLogin').hide();
+    jQuery('.ajax_loader').show();
+    FB.login(function (response) {
+        if (response.authResponse) {
+            // Get and display the user profile data
+            getFbUserData();
+        } else {
+            document.getElementById('status').innerHTML = 'User cancelled login or did not fully authorize.';
+        }
+    }, {scope: 'email,public_profile'});
+}
+
+// Fetch the user profile data from facebook
+function getFbUserData(){
+    FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture,birthday'},
+        function (response) {
+            /*document.getElementById('userData').innerHTML = '<p><b>FB ID:</b> '+response.id+'</p><p><b>Name:</b> '+response.first_name+' '+response.last_name+'</p><p><b>Email:</b> '+response.email+'</p><p><b>Gender:</b> '+response.gender+'</p><p><b>Locale:</b> '+response.locale+'</p><p><b>Picture:</b> <img src="'+response.picture.data.url+'"/></p><p><b>FB Profile:</b> <a target="_blank" href="'+response.link+'">click to view profile</a></p>';*/
+            saveUserData(response);
+        });
+}
+
+// Save user data to the database
+function saveUserData(userData){
+    jQuery.ajax({
+        type : "post",
+        //dataType : "json",
+        url : base_url+'ajax/save_user_by_fb',
+        data : {action: "fbLogin", fbId : userData.id, firstname : userData.first_name, lastname : userData.last_name, email: userData.email, picUrl: userData.picture.data.url},
+        success: function(response) {
+            console.log(response);
+            if(response == 'success') {
+                window.location.href = base_url+'dashboard';
+            }
+        }
+    });
+}
 /*
 jQuery('.logged-in-usermenus ul li.dropdown > a').on('click', function(e) {
    var thisClass = jQuery(this);

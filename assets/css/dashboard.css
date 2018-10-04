@@ -389,3 +389,26 @@ input[type='file']{
 .footable img{
   width: 85px;
 }
+.settings_form:first-child fieldset {
+  padding: 20px 30px;
+  border: 1px solid #cccbcb;
+  margin: 10px 0;
+  position: relative;
+}
+.settings_form fieldset {
+  padding: 20px 30px;
+  border: 1px solid #cccbcb;
+  margin: 30px 0;
+  position: relative;
+}
+.settings_form fieldset h3 {
+  font-size: 20px;
+  color: #e84c24;
+  position: absolute;
+  top: -12px;
+  background: #fff;
+  padding: 0px 10px;
+}
+.submit-div {
+  text-align: right;
+}

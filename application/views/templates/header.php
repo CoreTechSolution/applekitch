@@ -50,6 +50,7 @@
     <!--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">-->
     <script>
         var base_url='<?php echo base_url(); ?>';
+        var fb_id='<?php echo FB_APP_ID; ?>';
     </script>
     <script src="<?php echo base_url('/assets/js/jquery-fsortable.js'); ?>"></script>
     <script>
