@@ -1,15 +1,13 @@
 <?php
+/*$CI = & get_instance();
+$db =$CI->db;
+$query = $db->get( 'settings' );
+foreach( $query->result() as $row ){
+    define('STRIPE_SECRETE_KEY',$row->secrete_key);
+    define('STRIPE_PUBLISHABLE_KEY',$row->publishable_key);
+    define('FB_APP_ID',$row->fb_app_id);
 
-    $CI = & get_instance();
-    $CI->load->database();
-    //print_r($CI); exit();
-    $query=$CI->db->get('settings');
-    foreach( $query->result() as $row ){
-        define('STRIPE_SECRETE_KEY',$row->secrete_key);
-        define('STRIPE_PUBLISHABLE_KEY',$row->publishable_key);
-        define('FB_APP_ID',$row->fb_app_id);
-
-    }
+    }*/
 
 
 function get_settings(){
@@ -344,4 +342,30 @@ function social_media_link($name){
     $field=$fields->row();
     $social_medias=json_decode($field->social_media);
     return $social_medias->$name;
+}
+
+function slugify($text){
+	// replace non letter or digits by -
+	$text = preg_replace('~[^\pL\d]+~u', '-', $text);
+
+	// transliterate
+	$text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+	// remove unwanted characters
+	$text = preg_replace('~[^-\w]+~', '', $text);
+
+	// trim
+	$text = trim($text, '-');
+
+	// remove duplicate -
+	$text = preg_replace('~-+~', '-', $text);
+
+	// lowercase
+	$text = strtolower($text);
+
+	if (empty($text)) {
+		return 'n-a';
+	}
+
+	return $text;
 }
