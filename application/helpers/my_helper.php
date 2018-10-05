@@ -22,13 +22,14 @@ function get_settings(){
 function send_mail($to,$subject,$message){
 	$CI = & get_instance();
 	$CI->load->library('email');
+	$settings=get_settings();
 	$config = Array(
-		'protocol' => 'smtp',
-		'smtp_host' => 'mail.coregensolution.com',
-		'smtp_port' => 465,
-		'smtp_crypto' => 'ssl',
-		'smtp_user' => 'smtp@coregensolution.com',
-		'smtp_pass' => 'qweQWE123!@#',
+		'protocol' => $settings->protocol,
+		'smtp_host' => $settings->smtp_host,
+		'smtp_port' => $settings->smtp_port,
+		'smtp_crypto' => $settings->smtp_crypto,
+		'smtp_user' => $settings->smtp_user,
+		'smtp_pass' => $settings->smtp_pass,
 		'mailtype' => 'html',
 		'charset' => 'iso-8859-1',
 		'wordwrap' => TRUE

@@ -49,7 +49,20 @@ require_once 'templates/header.php';
 									<input type="submit" name="login" value="Login" class="form-control btn btn-primary btn-primary-green"/>
 								</div>
 							</form>
+                            <div class="social-login">
+                                <label><span>Don't want to complete the form?</span></label>
+                                <ul>
+                                    <!--<li><a href="javascript:void(0);" onclick="fbLogin()" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                <li><a href="<?php /*echo $loginUrl; */?>"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>-->
+                                    <li><a href="javascript:void(0);" onclick="fbLogin()" class="facbook_login_btn"> Continue with Facebook</a></li>
+                                    <li><a href="#" class="google_login_btn"> Continue with Google</a></li>
+                                    <!--<li><a href="<?php /*echo filter_var($authUrl, FILTER_SANITIZE_URL); */?>"><i class="fab fa-google-plus-square"></i> Continue with Google</a></li>-->
+                                    <!--<li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>-->
+                                </ul>
+                            </div>
 						</div>
+
 					</div>
 					<div class="col-lg-3"></div>
 				</div>

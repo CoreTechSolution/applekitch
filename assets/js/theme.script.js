@@ -642,7 +642,7 @@ function saveUserData(userData){
         data : {action: "fbLogin", fbId : userData.id, firstname : userData.first_name, lastname : userData.last_name, email: userData.email, picUrl: userData.picture.data.url},
         success: function(response) {
             console.log(response);
-            if(response == 'success') {
+            if(response == 'true') {
                 window.location.href = base_url+'dashboard';
             }
         }

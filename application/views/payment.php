@@ -44,13 +44,16 @@ require_once(APPPATH.'third_party/stripe-php/config.php');
 	</div>
 <?php
 $price_array = explode('-', $price);
+$settings=get_settings();
+//print_r($settings->paypal_mode); exit();
 ?>
     <script src="https://www.paypalobjects.com/api/checkout.js"></script>
     <script src="https://checkout.stripe.com/checkout.js"></script>
     <script>
         jQuery(document).ready(function(){
             paypal.Button.render({
-                env: 'sandbox', // Or 'sandbox/production',
+
+                env: '<?php echo $settings->paypal_mode; ?>', // Or 'sandbox/production',
 
                 commit: true, // Show a 'Pay Now' button
 
@@ -62,8 +65,8 @@ $price_array = explode('-', $price);
                 },
 
                 client: {
-                    sandbox: 'ARlI6-HtIy-KKf1RhYPG5va5kJKBxgDMD6omN4KV7v79D65VWMUqxbHQ9Do2RVt-_75LeQV-JEoN-be5',
-                    production: 'AQSqeNRufiZyW8_zTI4oLXYE0_0kE8RantLzAX9Lsmuo3iHo4oHML-rF97naqBr7_Emyy6XVfghJFKxc'
+                    <?php echo $settings->paypal_mode; ?>:'<?php echo $settings->paypal_email; ?>',
+                    
                 },
 
                 payment: function(data, actions) {

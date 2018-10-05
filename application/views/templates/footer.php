@@ -49,7 +49,15 @@
 						<input type="submit" name="" value="">
 					</form>
 				</div>
-				<div class="social-connects"><a href="javascript:void(0)"><img src="<?php echo base_url('/assets/images/social-connects.png'); ?>"></a></div>
+				<div class="social-connects">
+                    <ul class="footer_social_link">
+                        <li><a href="<?php echo (social_media_link('facebook')!=''); ?>"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="<?php echo social_media_link('twitter'); ?>"><i class="fab fa-twitter"></i></a></li>
+                       <!-- <li><a href="<?php /*echo social_media_link('google_plus'); */?>"><i class="fab fa-google-plus-g"></i></a></li>-->
+                        <li><a href="<?php echo social_media_link('instragram'); ?>"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="<?php echo social_media_link('youtube'); ?>"><i class="fab fa-youtube"></i></a></li>
+                    </ul>
+                </div>
 			</div>
 		</div>
 		<div class="row">
