@@ -10,7 +10,7 @@ class Admin extends CI_Controller {
 		//$this->load->library('image_crop_gd');
 		$this->load->model('images');
 
-		$config['upload_path'] = $_SERVER["DOCUMENT_ROOT"].'/files/';
+        $config['upload_path'] = ADS_IMAGE_PATH;
 		$config['allowed_types'] = 'gif|jpg|jpeg|png';
 		$this->load->library('upload', $config);
 	}
@@ -484,7 +484,10 @@ class Admin extends CI_Controller {
 			'grades' => $this->admin_model->get_grades(),
 			'countries' => $this->admin_model->get_countries(),
 			'subjects' => $this->admin_model->get_subjects(),
+
 		);
+
+        //$this->session->set_flashdata(array('msg_type'=>'success','msg'=>'New category added!'));
 		$this->load->view( 'admin/add_category', $data );
 
 	}
@@ -522,7 +525,28 @@ class Admin extends CI_Controller {
 			'subject' => $subject,
 			'parent' => $parent,*/
 		);
-		$this->admin_model->insert_category($category_array);
+
+        if ( ! $this->upload->do_upload('category_image')) {
+            $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
+            $this->session->set_flashdata('error_msg', $this->upload->display_errors());
+
+            $this->admin_model->insert_category($category_array);
+
+        }else {
+            $data_img = array('upload_data' => $this->upload->data());
+
+            $return = $this->image_crop_gd->image_cropping($data_img);
+
+            $insert = $this->images->insert($data_img);
+
+            if($insert) {
+                $category_array['cat_img']=$insert;
+
+                $this->admin_model->insert_category($category_array);
+            }
+        }
+
+        $this->session->set_flashdata(array('msg_type'=>'success','msg'=>'New category added!'));
 		redirect('admin/category');
 	}
 	public function edit_category($cat_id) {
@@ -535,7 +559,27 @@ class Admin extends CI_Controller {
 				$this->load->view( 'admin/edit_category', $data );
 			} else {
 				$value['name']=$this->input->post('cat_name');
-				$result=$this->admin_model->update_category(array('id'=>$cat_id),$value);
+
+                if ( ! $this->upload->do_upload('category_image')) {
+                    $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
+                    $this->session->set_flashdata('error_msg', $this->upload->display_errors());
+
+                    $result=$this->admin_model->update_category(array('id'=>$cat_id),$value);
+
+                }else {
+                    $data_img = array('upload_data' => $this->upload->data());
+
+                    $return = $this->image_crop_gd->image_cropping($data_img);
+
+                    $insert = $this->images->insert($data_img);
+
+                    if($insert) {
+                        $value['cat_img']=$insert;
+
+                        $result=$this->admin_model->update_category(array('id'=>$cat_id),$value);
+                    }
+                }
+
 				if($result){
 					$data['category'] = $this->admin_model->get_categories( array( 'id' => $cat_id ) );
 					$this->session->set_flashdata(array('msg_type'=>'success','msg'=>'Category edited!'));
@@ -825,4 +869,166 @@ class Admin extends CI_Controller {
 			$this->load->view( 'admin/add_award_template_v', $data );
 		}
 	}
+	public function settings(){
+        isLogin('admin');
+        $data['title'] = 'Settings';
+        $data['method'] = 'admin/settings';
+        //$data['name']=$this->users->get_user_field($this->users->get_current_user_id(),'name');
+        $data['settings']=$this->admin_model->get_settings();
+        //print_r($data['settings']); exit();
+        //echo $this->db->last_query(); exit;
+        $data['content_v'] = 'admin/settings_v';
+
+        //stripe settings update
+        if(!empty($this->input->post('stripe_submit'))){
+            $this->form_validation->set_rules('secrete_key', 'Secrete Key', 'required');
+            $this->form_validation->set_rules('publishable_key', 'Publishable Key', 'required');
+            if ($this->form_validation->run() == false) {
+                $this->load->view( 'admin/settings_v', $data );
+            } else{
+                $value['secrete_key'] = $this->input->post('secrete_key');
+                $value['publishable_key'] = $this->input->post('publishable_key');
+                $value['client_id'] = $this->input->post('client_id');
+                $settings_id = $this->admin_model->update_settings($value, array('settings_id'=>$this->input->post('settings_id')));
+                if ($settings_id > 0) {
+                    $this->session->set_flashdata('msg', 'Settings successfully upadated!.');
+                    $this->session->set_flashdata('msg_type', 'Success');
+                    $data['settings']=$this->admin_model->get_settings();
+                    $this->load->view( 'admin/settings_v', $data );
+                } else {
+                    $this->session->set_flashdata('msg', 'Something wrong! Please try again later.');
+                    $this->session->set_flashdata('msg_type', 'Error');
+                    $data['settings']=$this->admin_model->get_settings();
+                    $this->load->view( 'admin/settings_v', $data );
+                }
+            }
+        }
+        elseif(!empty($this->input->post('paypal_submit'))){
+            $this->form_validation->set_rules('paypal_email', 'Client ID', 'required');
+            $this->form_validation->set_rules('paypal_mode', 'Paypal Mode', 'required');
+            if ($this->form_validation->run() == false) {
+                $this->load->view( 'admin/settings_v', $data );
+            } else{
+                $value['paypal_email'] = $this->input->post('paypal_email');
+                $value['paypal_mode'] = $this->input->post('paypal_mode');
+                $value['client_id'] = $this->input->post('client_id');
+                $settings_id = $this->admin_model->update_settings($value, array('settings_id'=>$this->input->post('settings_id')));
+                if ($settings_id > 0) {
+                    $this->session->set_flashdata('msg', 'Settings successfully upadated!.');
+                    $this->session->set_flashdata('msg_type', 'Success');
+                    $data['settings']=$this->admin_model->get_settings();
+                    $this->load->view( 'admin/settings_v', $data );
+                } else {
+                    $this->session->set_flashdata('msg', 'Something wrong! Please try again later.');
+                    $this->session->set_flashdata('msg_type', 'Error');
+                    $data['settings']=$this->admin_model->get_settings();
+                    $this->load->view( 'admin/settings_v', $data );
+                }
+            }
+        }
+        // General Settings updated
+        elseif(!empty($this->input->post('general_submit'))){
+            $this->form_validation->set_rules('admin_mail', 'Admin Email', 'required');
+            $this->form_validation->set_rules('contact_mail', 'Contact Email', 'required');
+            if ($this->form_validation->run() == false) {
+                $this->load->view( 'admin/settings_v', $data );
+            } else{
+                $value['admin_mail'] = $this->input->post('admin_mail');
+                $value['contact_mail'] = $this->input->post('contact_mail');
+                $settings_id = $this->admin_model->update_settings($value, array('settings_id'=>$this->input->post('settings_id')));
+                if ($settings_id > 0) {
+                    $this->session->set_flashdata('msg', 'Settings successfully upadated!.');
+                    $this->session->set_flashdata('msg_type', 'Success');
+                    $data['settings']=$this->admin_model->get_settings();
+                    $this->load->view( 'admin/settings_v', $data );
+                } else {
+                    $this->session->set_flashdata('msg', 'Something wrong! Please try again later.');
+                    $this->session->set_flashdata('msg_type', 'Error');
+                    $data['settings']=$this->admin_model->get_settings();
+                    $this->load->view( 'admin/settings_v', $data );
+                }
+            }
+        }
+        elseif(!empty($this->input->post('smtp_setting'))){
+            $this->form_validation->set_rules('protocol', 'Protocol', 'required');
+            $this->form_validation->set_rules('smtp_host', 'SMTP Host', 'required');
+            $this->form_validation->set_rules('smtp_port', 'SMTP Port', 'required');
+            $this->form_validation->set_rules('smtp_crypto', 'SMTP Crypto', 'required');
+            $this->form_validation->set_rules('smtp_user', 'SMTP User', 'required');
+            $this->form_validation->set_rules('smtp_pass', 'SMTP Password', 'required');
+            if ($this->form_validation->run() == false) {
+                $this->load->view( 'admin/settings_v', $data );
+            } else{
+                $value['protocol'] = $this->input->post('protocol');
+                $value['smtp_host'] = $this->input->post('smtp_host');
+                $value['smtp_port'] = $this->input->post('smtp_port');
+                $value['smtp_crypto'] = $this->input->post('smtp_crypto');
+                $value['smtp_user'] = $this->input->post('smtp_user');
+                $value['smtp_pass'] = $this->input->post('smtp_pass');
+                $settings_id = $this->admin_model->update_settings($value, array('settings_id'=>$this->input->post('settings_id')));
+                if ($settings_id > 0) {
+                    $this->session->set_flashdata('msg', 'Settings successfully upadated!.');
+                    $this->session->set_flashdata('msg_type', 'Success');
+                    $data['settings']=$this->admin_model->get_settings();
+                    $this->load->view( 'admin/settings_v', $data );
+                } else {
+                    $this->session->set_flashdata('msg', 'Something wrong! Please try again later.');
+                    $this->session->set_flashdata('msg_type', 'Error');
+                    $data['settings']=$this->admin_model->get_settings();
+                   $this->load->view( 'admin/settings_v', $data );
+                }
+            }
+        }
+        elseif(!empty($this->input->post('download_submit'))){
+            $this->form_validation->set_rules('commision_type', 'Commision Type', 'required');
+            $this->form_validation->set_rules('commision_rate', 'Commision Rate', 'required');
+            if ($this->form_validation->run() == false) {
+               $this->load->view( 'admin/settings_v', $data );
+            } else{
+                $value['commision_type'] = $this->input->post('commision_type');
+                $value['commision_rate'] = $this->input->post('commision_rate');
+                $settings_id = $this->admin_model->update_settings($value, array('settings_id'=>$this->input->post('settings_id')));
+                if ($settings_id > 0) {
+                    $this->session->set_flashdata('msg', 'Settings successfully upadated!.');
+                    $this->session->set_flashdata('msg_type', 'Success');
+                    $data['settings']=$this->admin_model->get_settings();
+                   $this->load->view( 'admin/settings_v', $data );
+                } else {
+                    $this->session->set_flashdata('msg', 'Something wrong! Please try again later.');
+                    $this->session->set_flashdata('msg_type', 'Error');
+                    $data['settings']=$this->admin_model->get_settings();
+                   $this->load->view( 'admin/settings_v', $data );
+                }
+            }
+        }
+        elseif(!empty($this->input->post('social_submit'))){
+
+            $value['facebook'] = $this->input->post('facebook');
+            $value['twitter'] = $this->input->post('twitter');
+            $value['google_plus'] = $this->input->post('google_plus');
+            $value['instragram'] = $this->input->post('instragram');
+            $value['youtube'] = $this->input->post('youtube');
+            $social_media['social_media']=json_encode($value);
+            $settings_id = $this->admin_model->update_settings($social_media, array('settings_id'=>$this->input->post('settings_id')));
+            if ($settings_id > 0) {
+                $this->session->set_flashdata('msg', 'Settings successfully upadated!.');
+                $this->session->set_flashdata('msg_type', 'Success');
+                $data['settings']=$this->admin_model->get_settings();
+               $this->load->view( 'admin/settings_v', $data );
+            } else {
+                $this->session->set_flashdata('msg', 'Something wrong! Please try again later.');
+                $this->session->set_flashdata('msg_type', 'Error');
+                $data['settings']=$this->admin_model->get_settings();
+               $this->load->view( 'admin/settings_v', $data );
+            }
+
+        }
+        else{
+            $this->load->view( 'admin/settings_v', $data );
+        }
+
+
+        //print_r($data);
+
+    }
 }

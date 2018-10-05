@@ -126,7 +126,16 @@ console.log(grade_id);
                                             <div class="row">
                                                 <?php foreach ($values1 as $cate_array=>$values){ // Get Categories ?>
                                                     <div class="col-lg-4">
-                                                        <?php echo '<h4 class="listing_category">'.ucfirst(get_returnfield('category','id',$cate_array,'name')).'</h4>'; ?>
+                                                        <?php
+                                                        $cat_image=get_returnfield('category','id',$cate_array,'cat_img');
+                                                        $cat_name=get_returnfield('category','id',$cate_array,'name');
+                                                        ?>
+                                                        <?php if($cat_image!=''){ ?>
+                                                            <div class="cat_lis"><span class="cat_img"><img src="<?php echo $cat_image ; ?>" alt=""></span><h4 class="listing_category"><?php echo ucfirst($cat_name); ?></h4></div>
+                                                        <?php } else{ ?>
+                                                            <div class="cat_lis"><span class="cat_img"><i class="fas fa-question-circle"></i></span><h4 class="listing_category"><?php echo ucfirst($cat_name); ?></h4></div>
+                                                        <?php } ?>
+                                                        <?php echo ''; ?>
                                                         <ul>
                                                             <?php foreach ($values as $cate_arra){ ?>
                                                                 <li>

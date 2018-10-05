@@ -58,37 +58,55 @@ class Image_crop_gd {
         }
    }
 
-   function show_images($image_id, $preset){
+   function show_images($image_id, $preset, $show_placeholder=true){
         $CI = &get_instance();
         $CI->load->database();
+       $sizes = $CI->config->item("image_sizes");
+
         $query = $CI->db->query("SELECT * FROM attachment WHERE id = '".$image_id."' ");
-
-            foreach ($query->result() as $row)
-            {
-                $image_name =  $row->name;
-                $image_path =  $row->file_path;
-                $root_path =  $row->root_path;
+        if($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $image_name = $row->name;
+                $image_path = $row->file_path;
+                $root_path = $row->root_path;
             }
-        
-        $sizes = $CI->config->item("image_sizes");
 
-        if($preset == 'full') {
-	        return $image_path;
-        } else {
-	        $s_name = $sizes[ $preset ];
+            if ($preset == 'full') {
+                return $image_path;
+            } else {
+                $s_name = $sizes[$preset];
 
-	        $full_img_path = str_replace( $image_name, "", $image_path );
+                $full_img_path = str_replace($image_name, "", $image_path);
 
-	        $temp = explode( ".", $image_name );
+                $temp = explode(".", $image_name);
 
-	        $new_image = $temp[0] . '-' . $s_name[0] . 'x' . $s_name[1] . '.' . $temp[1];
+                $new_image = $temp[0] . '-' . $s_name[0] . 'x' . $s_name[1] . '.' . $temp[1];
 
-	        if ( file_exists( $root_path . $new_image ) ) {
-		        return $full_img_path . $new_image;
-	        } else {
-		        return $image_path;
-	        }
+                if (file_exists($root_path . $new_image)) {
+                    return $full_img_path . $new_image;
+                } else {
+                    return $image_path;
+                }
+            }
+        }else{
+            if($show_placeholder == true){
+                $image_name = 'no-image-found.png';
+                $s_name = $sizes[$preset];
+                $temp = explode(".", $image_name);
+                $new_image = $temp[0] . '-' . $s_name[0] . 'x' . $s_name[1] . '.' . $temp[1];
+
+                if (file_exists(ADS_IMAGE_PATH . $new_image)) {
+                    return base_url().'files/'. $new_image;
+                } else {
+                    return base_url().'files/'. $image_name;
+                }
+
+            }else{
+                return false;
+
+            }
         }
-        
-  }
+   }
+
+
 }

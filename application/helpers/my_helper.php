@@ -1,10 +1,26 @@
 <?php
+$CI = & get_instance();
+$db =$CI->db;
+$query = $db->get( 'settings' );
+foreach( $query->result() as $row ){
+    define('STRIPE_SECRETE_KEY',$row->secrete_key);
+    define('STRIPE_PUBLISHABLE_KEY',$row->publishable_key);
+    define('FB_APP_ID',$row->fb_app_id);
+
+}
+function get_settings(){
+    $CI = & get_instance();
+    $db =$CI->db;
+    $query = $db->get( 'settings' );
+    return $query->result();
+}
+
 function send_mail($to,$subject,$message){
 	$CI = & get_instance();
 	$CI->load->library('email');
 	$config = Array(
 		'protocol' => 'smtp',
-		'smtp_host' => 'mail.coregensolution.com ',
+		'smtp_host' => 'mail.coregensolution.com',
 		'smtp_port' => 465,
 		'smtp_crypto' => 'ssl',
 		'smtp_user' => 'smtp@coregensolution.com',
