@@ -3083,6 +3083,7 @@ ul.svgButton li {
     list-style: none;
     display: inline-block;
     vertical-align: middle;
+    margin-right: 5px;
 }
 ul.svgButton li a {
     display: inline-block;

@@ -85,9 +85,9 @@ require_once 'templates/header.php';
 								<div class="form-group">
 									<div class="row">
 										<div class="col-lg-12">
-											<input type="hidden" name="question_id" class="question_id" value="<?php echo $questions->question_id ?>">
+											<input type="hidden" name="question_id" class="question_id" value="<?php echo $questions->question_id; ?>">
 											<label for="question">Question</label>
-											<input class="form-control question" name="question" id="question" value="<?php echo $form_data['question']; ?>" type="text" required>
+											<input class="form-control question" name="question" id="question" value="<?php echo $questions->question_name; ?>" type="text" required>
 										</div>
 
 									</div>

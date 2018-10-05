@@ -450,4 +450,28 @@ INNER JOIN country ON subject.country = country.id INNER JOIN grade ON subject.g
         $query = $queries->row();
         return $query;
     }
+    function copy_question($qid) {
+	    $this->db->where('question_id', $qid);
+	    $query = $this->db->get('questions');
+	    foreach ($query->result() as $row){
+		    foreach($row as $key=>$val){
+			    if($key != 'question_id'){
+				    if($key == 'question_name') {
+					    $val = 'Copy of '.$val;
+					    $this->db->set( $key, $val );
+				    } else {
+					    $this->db->set( $key, $val );
+				    }
+			    }
+		    }
+	    }
+
+	    $this->db->insert('questions');
+
+	    if($this->db->affected_rows() > 0) {
+	    	return true;
+	    } else {
+	    	return false;
+	    }
+    }
 }

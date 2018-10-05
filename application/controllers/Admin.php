@@ -869,6 +869,15 @@ class Admin extends CI_Controller {
 			$this->load->view( 'admin/add_award_template_v', $data );
 		}
 	}
+	public function copy_q() {
+		$qid = $_GET['qid'];
+		$result = $this->admin_model->copy_question($qid);
+		if($result) {
+			redirect( 'admin/questions' );
+		} else {
+			redirect( 'admin/questions' );
+		}
+	}
 	public function settings(){
         isLogin('admin');
         $data['title'] = 'Settings';

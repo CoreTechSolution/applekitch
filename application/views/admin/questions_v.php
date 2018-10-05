@@ -90,6 +90,9 @@ require_once 'templates/header.php';
                                     <a class="delete_link fancybox" data-fancybox-type="iframe" style="color: green;" href="<?php echo
                                     base_url('/admin/preview'); ?>?qid=<?php echo $question->question_id; ?>"><span data-feather="eye"></span> Preview</a>
                                     <br/>
+                                    <a class="edit_link" style="color: green;" href="<?php echo base_url('/admin/copy_q'); ?>?qid=<?php echo
+                                    $question->question_id; ?>"><span data-feather="copy"></span> Copy</a>
+                                    <br/>
                                     <a class="delete_link" onclick="delete_data(<?php echo $question->question_id; ?>,'question_id','questions');" href="javascript:void(0)"><span data-feather="delete"></span> Delete</a></td>
 							</tr>
 							<?php
