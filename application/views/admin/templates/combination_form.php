@@ -129,6 +129,36 @@
         </div>
     </div>
 </div>
+<!-- Question With SVGImageWithOption -->
+<div id="qOption_12">
+    <div class="form-group">
+        <div class="row">
+            <div class="col-lg-6">
+                <label for="num_box">Number of Box</label>
+                <input type="number" name="num_box" class="form-control num_box">
+                <br/>
+                <a href="javascript:void(0);" class="btn add_row_save num_box_done"><!--<span data-feather="plus-archive"></span>--> Done</a>
+            </div>
+            <div class="col-lg-3">
+                <div class="svg_box_wrap"></div>
+            </div>
+            <div class="col-lg-3">
+                <div class="svg_image_wrap"></div>
+            </div>
+        </div>
+        <br/>
+        <div class="svg_box_wrap_image"></div>
+        <br/>
+        <div class="svg_how_many" style="display: none;">
+            <div class="row">
+                <div class="col-lg-6">
+                    <label for="num_img">How many of the image do you want into the frame?</label>
+                    <input type="number" name="ans_textbox" class="form-control num_img">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Question With TextBox And Option -->
 <div id="qOption_13">
     <div class="form-group">

@@ -361,6 +361,44 @@ jQuery(document).ready(function() {
         });
     });
 
+    jQuery('body').on('click', '.num_box_done', function(e){
+        e.preventDefault();
+        var this_element = jQuery(this);
+        var parent = this_element.closest('.add_question_row');
+        var num_box = jQuery(parent).find('.num_box').val();
+        if(num_box > 0) {
+            var text = '<div class="svgBoxes">';
+            for (var i = 0; i < num_box; i++) {
+                text = text + '<div class="svgBox"></div>';
+            }
+            text = text+'</div>';
+
+            var textImg = '<div class="row"><div class="col-lg-12"><label for="svgBoximg">Upload image</label><input name="svgBoximg" type="file"' +
+                ' class="form-control svgBoximg" accept="image/svg" /></div></div>';
+        }
+        jQuery(parent).find('.svg_box_wrap').html(text);
+        jQuery(parent).find('.svg_box_wrap_image').html(textImg);
+    });
+
+    jQuery('body').on('change', '.svgBoximg', function(e){
+        e.preventDefault();
+        var this_element = jQuery(this);
+        var parent = this_element.closest('.add_question_row');
+        var form_data = new FormData(parent.find('.addQ_form')[0]);
+        jQuery.ajax({
+            type: "POST",
+            url: base_url + 'ajax/svgBoximg',
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+            data: form_data,
+            success: function (data) {
+                jQuery(parent).find('.svg_image_wrap').html('<div><img src="'+data[0].src+'" style="width: 50px; height: 50px;"/></div>');
+                jQuery('.svg_how_many').show();
+            }
+        });
+    });
+
     /*for GIGo Grid System*/
 
 });

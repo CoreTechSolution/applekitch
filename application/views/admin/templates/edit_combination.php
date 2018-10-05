@@ -206,7 +206,51 @@
 	</div>
 </div>
 <?php } elseif($question_option=='12'){ ?>
-
+    <!-- Question With SVGImageWithOption -->
+    <div id="qOption_12">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-lg-6">
+                    <label for="num_box">Number of Box</label>
+                    <input type="number" name="num_box" class="form-control num_box" value="<?php echo $form_cdata['num_box']; ?>">
+                    <br/>
+                    <a href="javascript:void(0);" class="btn add_row_save num_box_done"><!--<span data-feather="plus-archive"></span>--> Done</a>
+                </div>
+                <div class="col-lg-3">
+                    <div class="svg_box_wrap">
+	                    <?php
+	                    $count = $form_cdata['num_box'];
+	                    if(!empty($count)) {
+		                    echo '<div class="svgBoxes">';
+		                    for ( $i = 0; $i < $count; $i++ ) {
+			                    echo '<div class="svgBox"></div>';
+		                    }
+		                    echo '</div>';
+	                    }
+	                    ?>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="svg_image_wrap">
+                        <img src="<?php echo $form_cdata['img']; ?>" style="width: 50px; height: 50px;" />
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="svg_box_wrap_image">
+                <div class="row"><div class="col-lg-12"><label for="svgBoximg">Upload image</label><input name="svgBoximg" type="file" class="form-control svgBoximg" accept="image/svg" /></div></div>
+            </div>
+            <br/>
+            <div class="svg_how_many">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <label for="num_img">How many of the image do you want into the frame?</label>
+                        <input type="number" name="ans_textbox" class="form-control num_img" value="<?php echo $form_cdata['ans_textbox']; ?>">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 <?php } elseif($question_option=='13'){ ?>
 <!-- Question With TextBox And Option -->
 <div id="qOption_13">

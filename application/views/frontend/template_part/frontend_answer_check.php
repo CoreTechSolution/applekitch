@@ -116,6 +116,28 @@
 		<p>Answer: </p><span><input type="text" name="qAns_box" class="form-control"></span>
 	</div>
 <?php } elseif($question_option=='12'){ ?>
+	<?php
+        $count = $form_data['num_box'];
+        if(!empty($count)) {
+            echo '<div class="svgBoxes">';
+	        for ( $i = 0; $i < $count; $i++ ) {
+                echo '<div class="svgBox"></div>';
+	        }
+	        echo '</div>';
+        }
+    ?>
+    <div style="clear: both;"></div>
+    <input type="hidden" name="qAns_box" value="0"/>
+    <input type="hidden" name="svgNum" value="<?php echo $count; ?>"/>
+    <br/>
+    <br/>
+    <br/>
+    <ul class="svgButton">
+        <li><a href="#" class="svgAdd">1 <span><img src="<?php echo $form_data['img']; ?>" /></span></a></li>
+        <li><a href="#" class="svgDelete">1 <span><i class="fas fa-trash-alt"></i></span></a></li>
+    </ul>
+    <br/>
+    <br/>
 <?php } elseif($question_option=='13'){ ?>
 	<?php //print_r($form_data); ?>
 	<div class="option_list_d">

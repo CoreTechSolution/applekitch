@@ -3044,3 +3044,48 @@ ul.imgpattern li img{
     border: 1px solid #CCCCCC;
     border-radius: 10px;
 }
+.svgBoxes {
+    max-width: 800px;
+    clear: both;
+}
+.svgBox {
+    border: 1px solid #f1693c;
+    width: 80px;
+    height: 60px;
+    float: left;
+    margin: 2px;
+    text-align: center;
+}
+.svgBox img {
+    max-height: 55px;
+}
+ul.svgButton {
+    margin: 0;
+    padding: 0;
+}
+ul.svgButton li {
+    list-style: none;
+    display: inline-block;
+    vertical-align: middle;
+}
+ul.svgButton li a {
+    display: inline-block;
+    padding: 15px;
+    font-size: 25px;
+    border-radius: 6px;
+    background-color: #0bc1b6;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+ul.svgButton li a:hover {
+    color: #FFFFFF;
+}
+ul.svgButton li a.svgAdd {
+    background-color: #0bc1b6;
+}
+ul.svgButton li a.svgDelete {
+    background-color: #f1693c;
+}
+ul.svgButton li a img {
+    max-height: 25px;
+}

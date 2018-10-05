@@ -326,6 +326,7 @@ jQuery(document).ready(function(){
                 }
             }
         });
+        svgCount = 0;
 
     });
     ////////////////// Question submit AJAX End here ////////////////
@@ -598,3 +599,25 @@ jQuery('.logged-in-usermenus ul li.dropdown > a').on('click', function(e) {
    e.preventDefault();
    thisClass.parent().find('ul.dropdown_list').slideToggle();
 });*/
+var svgCount = 0;
+jQuery('body').on('click', '.svgAdd', function(e){
+    e.preventDefault();
+    if(jQuery('.svgBoxes .svgBox:empty').length != 0) {
+        svgCount++;
+        var thisElement = jQuery(this);
+        var img = thisElement.find('span').html();
+        jQuery('.svgBoxes .svgBox:nth-child('+svgCount+')').html(img);
+    }
+    jQuery('input[name="qAns_box"]').val(svgCount);
+});
+
+jQuery('body').on('click', '.svgDelete', function(e){
+    e.preventDefault();
+    var total = jQuery('input[name="svgNum"]').val();
+    if(jQuery('.svgBoxes .svgBox:empty').length != total) {
+        jQuery('.svgBoxes .svgBox:nth-child(' + svgCount + ')').html('');
+        console.log(svgCount);
+        svgCount--;
+    }
+    jQuery('input[name="qAns_box"]').val(svgCount);
+});

@@ -32,7 +32,7 @@ $this->load->view('templates/header');
 //console.log('grade_id: '+grade_id+' tabid: '+tabid);
                 if(grade_id == tabid){
                     var index = jQuery(this).index();
-//console.log(index);
+console.log(grade_id);
                     jQuery("div.bhoechie-tab-menu>div.list-group>a").eq(index).addClass("active");
                     jQuery("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
                     jQuery("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
