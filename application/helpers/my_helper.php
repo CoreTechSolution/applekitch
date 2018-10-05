@@ -1,18 +1,22 @@
 <?php
-$CI = & get_instance();
-$db =$CI->db;
-$query = $db->get( 'settings' );
-foreach( $query->result() as $row ){
-    define('STRIPE_SECRETE_KEY',$row->secrete_key);
-    define('STRIPE_PUBLISHABLE_KEY',$row->publishable_key);
-    define('FB_APP_ID',$row->fb_app_id);
 
-}
+    $CI = & get_instance();
+    $CI->load->database();
+    //print_r($CI); exit();
+    $query=$CI->db->get('settings');
+    foreach( $query->result() as $row ){
+        define('STRIPE_SECRETE_KEY',$row->secrete_key);
+        define('STRIPE_PUBLISHABLE_KEY',$row->publishable_key);
+        define('FB_APP_ID',$row->fb_app_id);
+
+    }
+
+
 function get_settings(){
     $CI = & get_instance();
     $db =$CI->db;
     $query = $db->get( 'settings' );
-    return $query->result();
+    return $query->row();
 }
 
 function send_mail($to,$subject,$message){
@@ -313,4 +317,31 @@ function secondsToTime($seconds, $format='default') {
 	}
 
 	return $timeString;
+}
+function admin_email(){
+    $CI = & get_instance();
+    $CI->db->select('admin_mail');
+    $CI->db->from("settings");
+    $fields = $CI->db->get();
+    $field=$fields->row();
+    //print_r($field); exit();
+    return $field->admin_mail;
+}
+function contact_email(){
+    $CI = & get_instance();
+    $CI->db->select('contact_mail');
+    $CI->db->from("settings");
+    $fields = $CI->db->get();
+    $field=$fields->row();
+    //print_r($field); exit();
+    return $field->contact_mail;
+}
+function social_media_link($name){
+    $CI = & get_instance();
+    $CI->db->select('social_media');
+    $CI->db->from("settings");
+    $fields = $CI->db->get();
+    $field=$fields->row();
+    $social_medias=json_decode($field->social_media);
+    return $social_medias->$name;
 }
