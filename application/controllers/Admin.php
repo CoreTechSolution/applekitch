@@ -784,6 +784,7 @@ class Admin extends CI_Controller {
 				$value['status']='active';
 				$value['create_dt']=date('Y-m-d H:i:s');
 				$value['modify_dt']=date('Y-m-d H:i:s');
+				$value['page_slug']=slugify($this->input->post('page_name'));
 				$insert=$this->admin_model->insert_page($value);
 				if($insert){
 					$this->session->set_flashdata(array('msg_type'=>'success','msg'=>'New page added!'));

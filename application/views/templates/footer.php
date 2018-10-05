@@ -23,7 +23,7 @@
 									<li><a href="javascript:void(0)">For Teacher</a></li>
 									<li><a href="javascript:void(0)">For School</a></li>
 									<li><a href="javascript:void(0)">Exercise Page</a></li>
-									<li><a href="javascript:void(0)">About Us</a></li>
+									<li><a href="<?php echo base_url('/pages/about-us'); ?>">About Us</a></li>
 								</ul>
 							</div>
 						</div>
@@ -31,9 +31,9 @@
 							<div class="col2">
 								<ul>
 									<li><a href="javascript:void(0)">Web Tour</a></li>
-									<li><a href="javascript:void(0)">Contact us</a></li>
-									<li><a href="javascript:void(0)">What We offer</a></li>
-									<li><a href="javascript:void(0)">Reviews/Testimonial</a></li>
+									<li><a href="<?php echo base_url('/pages/contact-us'); ?>">Contact us</a></li>
+									<li><a href="<?php echo base_url('/pages/what-we-offer'); ?>">What We offer</a></li>
+									<li><a href="<?php echo base_url('/pages/reviews-testimonials'); ?>">Reviews/Testimonial</a></li>
 									<li><a href="javascript:void(0)">Awards and Certificates</a></li>
 								</ul>
 							</div>
