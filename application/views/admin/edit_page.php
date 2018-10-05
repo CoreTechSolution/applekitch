@@ -33,7 +33,7 @@ require_once 'templates/header.php';
 							</div>
 							<div class="form-group">
 								<label>Content: </label>
-								<textarea name="page_content" class="form-control textarea-no-styles" rows="10"><?php echo $page_data->page_content; ?></textarea>
+								<textarea name="page_content" class="form-control tinymcetextarea" rows="10"><?php echo $page_data->page_content; ?></textarea>
 							</div>
 							<div class="form-group">
 								<label>Meta Keyword: </label>
@@ -52,6 +52,22 @@ require_once 'templates/header.php';
 			</main>
 		</div>
 	</div>
+<script>
+    tinymce.init({
+        selector: '.tinymcetextarea',
+        height: 300,
+        menubar: false,
+        plugins: [
+            'advlist autolink lists link image charmap print preview anchor textcolor',
+            'searchreplace visualblocks code fullscreen',
+            'insertdatetime media table contextmenu paste code help wordcount'
+        ],
+        toolbar: 'insert | undo redo |  formatselect | bold italic backcolor  | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
+        content_css: [
+            '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+            '//www.tinymce.com/css/codepen.min.css']
+    });
+</script>
 <?php
 require_once 'templates/footer.php';
 ?>
