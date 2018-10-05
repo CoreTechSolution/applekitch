@@ -27,6 +27,10 @@ require_once 'templates/header.php';
 								<label>Page: </label>
 								<input type="text" name="page_name" value="<?php echo $page_data->page; ?>" class="form-control">
 							</div>
+                            <div class="form-group">
+                                <label>URL: </label>
+                                <input type="text" name="page_url" value="<?php echo base_url('/pages/'.$page_data->page_slug); ?>" class="form-control" readonly>
+                            </div>
 							<div class="form-group">
 								<label>Title: </label>
 								<input type="text" name="page_title" value="<?php echo $page_data->page_title; ?>" class="form-control">
