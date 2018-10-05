@@ -1,47 +1,7 @@
 <?php
 $this->load->view('templates/header');
 ?>
-    <script>
-        jQuery(document).ready(function() {
-            jQuery("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {
-                //e.preventDefault();
-                jQuery(this).siblings('a.active').removeClass("active");
-                jQuery(this).addClass("active");
-
-                var tabid = jQuery(this).data('tabid');
-//console.log('tabid: '+tabid);
-                jQuery("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
-                jQuery("div.bhoechie-tab>div.bhoechie-tab-content").each(function(){
-                    var contentid = jQuery(this).data('contentid');
-                    if(tabid == contentid){
-                        console.log("contentid matched : ID = "+contentid);
-                        jQuery(this).addClass("active");
-                    }
-                });
-
-                var index = jQuery(this).index();
-                jQuery("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
-                jQuery("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
-            });
-
-            var grade_id = <?php echo $grade_id; ?>;
-            jQuery("div.bhoechie-tab-menu>div.list-group>a").removeClass("active");
-            jQuery("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
-            jQuery("div.bhoechie-tab-menu>div.list-group>a").each(function(){
-                var tabid = jQuery(this).data('tabid');
-//console.log('grade_id: '+grade_id+' tabid: '+tabid);
-                if(grade_id == tabid){
-                    var index = jQuery(this).index();
-console.log(grade_id);
-                    jQuery("div.bhoechie-tab-menu>div.list-group>a").eq(index).addClass("active");
-                    jQuery("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
-                    jQuery("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
-                }
-            });
-
-        });
-    </script>
-    <div class="wrapper inner-pages">
+        <div class="wrapper inner-pages">
         <div class="inner_page_banner">
             <div class="container">
                 <div class="row">
@@ -110,7 +70,15 @@ console.log(grade_id);
                                         $subject_slug=$subject;
                                             if(!empty($grades_lists)){
                                                 foreach ($grades_lists as $grades_list){ ?>
-                                                    <a href="<?php echo base_url('frontend/topic/'.$grades_list->slug.'/'.$subject_slug) ?>" class="list-group-item text-center wow-listing"   data-tabid="<?php echo $grades_list->id; ?>" ><?php echo $grades_list->name; ?></a>
+                                                    <a href="<?php echo base_url('frontend/topic/'.$grades_list->slug.'/'.$subject_slug)
+                                                    ?>" class="list-group-item text-center wow-listing<?php if($grades_list->slug == $grade) { echo ' active'; } ?>"
+                                                       data-tabid="<?php
+                                                    echo $grades_list->id; ?>" ><?php echo $grades_list->name; ?></a>
+                                                    <?php
+	                                                if($grades_list->slug == $grade) {
+	                                                    $active_grade_id = $grades_list->id;
+                                                    }
+                                                    ?>
 
                                         <?php   }
                                             }
@@ -119,10 +87,13 @@ console.log(grade_id);
                                     </div>
                                 </div>
                                 <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 bhoechie-tab">
+                                    <?php if(!empty($cate_arrays)) { ?>
 
                                     <?php foreach ($cate_arrays as $cate_array1=>$values1){ // get grade_ids ?>
+                                        <?php if($active_grade_id == $cate_array1) { ?>
                                         <?php $grades = array_keys($cate_arrays); ?>
-                                        <div class="bhoechie-tab-content wow lightSpeedIn" data-wow-delay="1s" data-contentid="<?php echo $cate_array1; ?>">
+                                        <div class="bhoechie-tab-content wow lightSpeedIn active" data-wow-delay="1s" data-contentid="<?php
+                                        echo $cate_array1; ?>">
                                             <div class="row">
                                                 <?php foreach ($values1 as $cate_array=>$values){ // Get Categories ?>
                                                     <div class="col-lg-4">
@@ -149,8 +120,10 @@ console.log(grade_id);
                                                 <?php } ?>
                                             </div>
                                         </div>
+                                        <?php } ?>
 
                                     <?php } ?>
+	                                <?php } ?>
                                 </div>
 
 
