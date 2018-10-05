@@ -936,6 +936,29 @@ class Admin extends CI_Controller {
                 }
             }
         }
+        elseif(!empty($this->input->post('login_submit'))){
+            $this->form_validation->set_rules('fb_app_id', 'Facebook App ID', 'required');
+            //$this->form_validation->set_rules('paypal_mode', 'Paypal Mode', 'required');
+            if ($this->form_validation->run() == false) {
+                $this->load->view( 'admin/settings_v', $data );
+            } else{
+                $value['fb_app_id'] = $this->input->post('fb_app_id');
+                //$value['paypal_mode'] = $this->input->post('paypal_mode');
+                //$value['client_id'] = $this->input->post('client_id');
+                $settings_id = $this->admin_model->update_settings($value, array('settings_id'=>$this->input->post('settings_id')));
+                if ($settings_id > 0) {
+                    $this->session->set_flashdata('msg', 'Settings successfully upadated!.');
+                    $this->session->set_flashdata('msg_type', 'Success');
+                    $data['settings']=$this->admin_model->get_settings();
+                    $this->load->view( 'admin/settings_v', $data );
+                } else {
+                    $this->session->set_flashdata('msg', 'Something wrong! Please try again later.');
+                    $this->session->set_flashdata('msg_type', 'Error');
+                    $data['settings']=$this->admin_model->get_settings();
+                    $this->load->view( 'admin/settings_v', $data );
+                }
+            }
+        }
         // General Settings updated
         elseif(!empty($this->input->post('general_submit'))){
             $this->form_validation->set_rules('admin_mail', 'Admin Email', 'required');

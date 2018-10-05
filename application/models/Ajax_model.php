@@ -22,6 +22,32 @@ class Ajax_model extends CI_Model{
 		}
 		return $insert_id;
 	}
+	function check_social_login_exits($data){
+        $this->db->select('*');
+        $this->db->from('user');
+        $this->db->where('email_address',$data['email_address']);
+        $this->db->where('social_action',$data['social_action']);
+        $this->db->where('activation',1);
+
+        if($query=$this->db->get())
+        {
+            return $query->row();
+        }
+        else{
+            return false;
+        }
+    }
+	function save_user_by_fb($data){
+        $this->db->insert('user',$data);
+		if($this->db->affected_rows()>0) {
+            $insert_id = $this->db->insert_id();
+        }
+        if($insert_id){
+            return true;
+        } else{
+            return false;
+        }
+    }
 	function update_question($conditions,$data){
 		$this->db->where($conditions);
 		$this->db->update('questions', $data);

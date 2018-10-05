@@ -6,6 +6,7 @@ class Login extends CI_Controller {
 
 		parent::__construct();
 		$this->load->model('user_model');
+		$this->load->model('ajax_model');
 
 	}
 	public function index()
@@ -44,6 +45,70 @@ class Login extends CI_Controller {
 
 
 	}
+	public function google_login(){
+        include_once APPPATH.'third_party/google_src/Google_Client.php';
+        include_once TEMPLATEPATH.'/google_src/contrib/Google_Oauth2Service.php';
+
+        /*
+         * Configuration and setup Google API
+         */
+        $clientId = '982406899327-j0d3vseki759bks0q8ejfgbkgamk9pe9.apps.googleusercontent.com';
+        $clientSecret = 'e9lYOWnS8ogMMmR2mTCVg2U7';
+        $redirectURL = get_bloginfo('url');
+
+        //Call Google API
+        $gClient = new Google_Client();
+        $gClient->setApplicationName('Login to MyBookNG');
+        $gClient->setClientId($clientId);
+        $gClient->setClientSecret($clientSecret);
+        $gClient->setRedirectUri($redirectURL);
+
+        $google_oauthV2 = new Google_Oauth2Service($gClient);
+
+        $authUrl = $gClient->createAuthUrl();
+
+        if(isset($_GET['code'])){
+            $gClient->authenticate($_GET['code']);
+            $_SESSION['token'] = $gClient->getAccessToken();
+            header('Location: ' . filter_var($redirectURL, FILTER_SANITIZE_URL));
+        }
+
+        if (isset($_SESSION['token'])) {
+            $gClient->setAccessToken($_SESSION['token']);
+        }
+
+        if ($gClient->getAccessToken()) {
+            $gpUserProfile = $google_oauthV2->userinfo->get();
+            $values['social_action']='google';
+            $values['fname']=$gpUserProfile['given_name'];
+            $values['lname']=$gpUserProfile['family_name'];
+            $values['email_address']=$gpUserProfile['email'];
+            $check_user=$this->ajax_model->check_social_login_exits($values);
+            if($check_user){
+                $this->session->set_userdata('user_id',$check_user->id);
+                $this->session->set_userdata('logged_in','1');
+                $this->session->set_userdata('email',$check_user->email_address);
+                $this->session->set_userdata('user_type',get_returnfield('user_roles','id',$check_user->role,'name'));
+                redirect('dashboard');
+            } else{
+                $save=$this->ajax_model->save_user_by_fb($values);
+                if($save){
+                    $check_user=$this->ajax_model->check_social_login_exits($values);
+                    $this->session->set_userdata('user_id',$check_user->id);
+                    $this->session->set_userdata('logged_in','1');
+                    $this->session->set_userdata('email',$check_user->email_address);
+                    $this->session->set_userdata('user_type',get_returnfield('user_roles','id',$check_user->role,'name'));
+                    redirect('dashboard');
+
+                } else{
+                    $data = array(
+                        'title' => 'Login',
+                    );
+                    $this->load->view('login_page', $data);
+                }
+            }
+        }
+    }
 	public function user_logout(){
 
 		$this->session->sess_destroy();

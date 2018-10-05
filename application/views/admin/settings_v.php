@@ -52,11 +52,29 @@ require_once 'templates/header.php';
                     </div>
                     <div class="form-group">
                         <label for="publishable_key">Mode: </label>
-                        <?php echo form_dropdown('paypal_mode',array('test'=>'Test','live'=>'Live'),!empty($settings->publishable_key)? $settings->publishable_key:'',array('id'=>'paypal_mode','class'=>'form-control')); ?>
+                        <?php echo form_dropdown('paypal_mode',array('sandbox'=>'Sandbox','production'=>'Production'),!empty($settings->publishable_key)? $settings->publishable_key:'',array('id'=>'paypal_mode','class'=>'form-control')); ?>
 
                     </div>
                     <div class="form-group submit-div">
                         <button type="submit" name="paypal_submit" value="Update" class="btn btn-primary">Update</button>
+                    </div>
+                </fieldset>
+                <?php echo form_close(); ?>
+                <?php echo form_open_multipart(base_url($method), array('class'=>'form settings_form')); ?>
+                <fieldset>
+                    <h3>Login with settings</h3>
+                    <input type="hidden" name="settings_id" value="<?php echo $settings->settings_id; ?>">
+                    <div class="form-group">
+                        <label for="secrete_key">Facebook App ID: </label>
+                        <?php echo form_input(array('name'=>'fb_app_id','id'=>'fb_app_id','class'=>'form-control'),!empty($settings->fb_app_id)? $settings->fb_app_id:''); ?>
+                    </div>
+                    <div class="form-group">
+                        <label for="publishable_key">Google+ App ID: </label>
+                        <?php echo form_dropdown('paypal_mode',array('sandbox'=>'Sandbox','production'=>'Production'),!empty($settings->publishable_key)? $settings->publishable_key:'',array('id'=>'paypal_mode','class'=>'form-control')); ?>
+
+                    </div>
+                    <div class="form-group submit-div">
+                        <button type="submit" name="login_submit" value="Update" class="btn btn-primary">Update</button>
                     </div>
                 </fieldset>
                 <?php echo form_close(); ?>

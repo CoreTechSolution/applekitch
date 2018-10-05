@@ -3,6 +3,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*
 |--------------------------------------------------------------------------
+ * Personal contanstants veriable create from database
+|--------------------------------------------------------------------------
+*/
+/*require_once( BASEPATH .'database/DB.php' );
+$db =& DB();
+$query = $db->get( 'settings' );
+foreach( $query->result() as $row ){
+    define('STRIPE_SECRETE_KEY',$row->secrete_key);
+    define('STRIPE_PUBLISHABLE_KEY',$row->publishable_key);
+    define('FB_APP_ID',$row->fb_app_id);
+
+}*/
+/*
+|--------------------------------------------------------------------------
 | Display Debug backtrace
 |--------------------------------------------------------------------------
 |

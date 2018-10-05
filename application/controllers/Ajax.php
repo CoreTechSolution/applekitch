@@ -1706,4 +1706,40 @@ class Ajax extends CI_Controller {
             }
         }
     }
+    public function save_user_by_fb(){
+        $action = $_POST['action'];
+        $firstname = $_POST['firstname'];
+        $lastname = $_POST['lastname'];
+        $email = $_POST['email'];
+        /*$picUrl = $_POST['picUrl'];*/
+
+        $values['social_action']=$action;
+        $values['fname']=$firstname;
+        $values['lname']=$lastname;
+        $values['email_address']=$email;
+        $check_user=$this->ajax_model->check_social_login_exits($values);
+        if($check_user){
+            $this->session->set_userdata('user_id',$check_user->id);
+            $this->session->set_userdata('logged_in','1');
+            $this->session->set_userdata('email',$check_user->email_address);
+            $this->session->set_userdata('user_type',get_returnfield('user_roles','id',$check_user->role,'name'));
+            echo 'true';
+            exit();
+        } else{
+            $save=$this->ajax_model->save_user_by_fb($values);
+        }
+       /* $values['picUrl']=$picUrl;*/
+
+        if($save){
+            $check_user=$this->ajax_model->check_social_login_exits($values);
+            $this->session->set_userdata('user_id',$check_user->id);
+            $this->session->set_userdata('logged_in','1');
+            $this->session->set_userdata('email',$check_user->email_address);
+            $this->session->set_userdata('user_type',get_returnfield('user_roles','id',$check_user->role,'name'));
+            echo 'true';
+        } else{
+            echo 'false';
+        }
+
+    }
 }
