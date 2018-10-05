@@ -3060,3 +3060,19 @@ ul.imgpattern li img{
     border: 1px solid #CCCCCC;
     border-radius: 10px;
 }
+.pageBannerWrapper{
+    background: url(../images/wrapper2-bg.jpg) no-repeat;
+    background-size: cover;
+    padding: 60px 0;
+}
+.pageWrapper{
+    background: #FFFFFF;
+    padding: 20px 0;
+}
+.pageWrapper h1{
+    font-family: 'K2D', cursive;
+    font-size: 40px;
+    color: #064a6a;
+    text-align: center;
+    margin: 0 0 12px 0;
+}
