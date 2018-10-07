@@ -75,5 +75,5 @@ $route['awards/(:any)/(:any)'] = 'dashboard/awards/$1/$2';
 /*Pages*/
 $route['pages/(:any)'] = 'pages/view/$1';
 $route['pages'] = 'pages';
-$route['(:any)'] = 'pages/view/$1';
+//$route['(:any)'] = 'pages/view/$1';
 //$route['default_controller'] = 'pages/view';

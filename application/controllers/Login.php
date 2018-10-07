@@ -54,7 +54,7 @@ class Login extends CI_Controller {
          */
         $clientId = '982406899327-j0d3vseki759bks0q8ejfgbkgamk9pe9.apps.googleusercontent.com';
         $clientSecret = 'e9lYOWnS8ogMMmR2mTCVg2U7';
-        $redirectURL = get_bloginfo('url');
+        $redirectURL = base_url('/login');
 
         //Call Google API
         $gClient = new Google_Client();
@@ -103,6 +103,7 @@ class Login extends CI_Controller {
                 } else{
                     $data = array(
                         'title' => 'Login',
+	                    'authUrl' => $authUrl
                     );
                     $this->load->view('login_page', $data);
                 }

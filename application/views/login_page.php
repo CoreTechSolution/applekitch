@@ -55,7 +55,7 @@ require_once 'templates/header.php';
                                     <!--<li><a href="javascript:void(0);" onclick="fbLogin()" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                 <li><a href="<?php /*echo $loginUrl; */?>"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>-->
                                     <li><a href="javascript:void(0);" onclick="fbLogin()" class="facbook_login_btn"> Continue with Facebook</a></li>
-                                    <li><a href="#" class="google_login_btn"> Continue with Google</a></li>
+                                    <li><a href="<?php echo filter_var($authUrl, FILTER_SANITIZE_URL); ?>" class="google_login_btn"> Continue with Google</a></li>
                                     <!--<li><a href="<?php /*echo filter_var($authUrl, FILTER_SANITIZE_URL); */?>"><i class="fab fa-google-plus-square"></i> Continue with Google</a></li>-->
                                     <!--<li><a href="#"><i class="fab fa-twitter"></i></a></li>
                                     <li><a href="#"><i class="fab fa-instagram"></i></a></li>-->
