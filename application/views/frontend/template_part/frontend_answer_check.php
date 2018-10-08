@@ -281,7 +281,7 @@
             <input id="img_order_student" type="hidden" name="img_order_student" value="">
         </div>
     </div>
-    <?php } elseif($question_option=='28'){ ?>
+<?php } elseif($question_option=='28'){ ?>
 	<?php //print_r($form_data); ?>
     <div class="question_image">
         <img src="<?php echo $form_data['img']; ?>" alt="" class="img-thumbnail">
@@ -294,6 +294,18 @@
 		<p>Answer 2: </p><span><input type="text" name="qAns_box2" class="form-control"></span>
 
 	</div>
+<?php } elseif($question_option=='29'){ ?>
+	<div id="DragDropImg"><img src="<?php echo $form_data['base_image']; ?>" /></div>
+    <ul class="DragDropExtra">
+        <?php
+            $total = $form_data['ans_textbox'];
+            $rand = rand($total, ($total+5));
+            for($i=0; $i<=$rand; $i++) {
+        ?>
+        <li><img src="<?php echo $form_data['extra_image']; ?>" /></li>
+        <?php } ?>
+    </ul>
+    <input type="hidden" name="qAns_box" value="0" class="qAns_box_dragDrop" />
 <?php } elseif($question_option=='31'){ ?>
     <?php //print_r($form_data); ?>
     <div class="multiple_text_image">

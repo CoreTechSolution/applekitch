@@ -450,6 +450,39 @@
         </div>
 
     </div>
+<?php } elseif($question_option=='29'){ ?>
+    <div id="qOption_29">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-lg-6">
+                    <label for="base_image">Base Image</label>
+                    <input type="file" name="base_image" class="form-control base_image ans_textbox">
+                </div>
+                <div class="col-lg-6">
+                    <div class="drag_drop_img">
+                        <img src="<?php echo $form_cdata['base_image']; ?>" style="width: 200px; height: auto;" />
+                    </div>
+                </div>
+            </div>
+            <div class="row extra_img">
+                <div class="col-lg-6">
+                    <label for="extra_image">Extra Image</label>
+                    <input type="file" name="extra_image" class="form-control extra_image ans_textbox">
+                </div>
+                <div class="col-lg-6">
+                    <div class="drag_drop_extra_image">
+                        <img src="<?php echo $form_cdata['extra_image']; ?>" style="width: 100px; height: auto;" />
+                    </div>
+                </div>
+            </div>
+            <div class="row extra_img_num">
+                <div class="col-lg-6">
+                    <label for="extra_image">Number of extra Images on the Base Image</label>
+                    <input type="number" value="<?php echo $form_cdata['ans_textbox']; ?>" name="ans_textbox" class="form-control ans_textbox">
+                </div>
+            </div>
+        </div>
+    </div>
 <?php } elseif($question_option=='31'){ ?>
     <div id="qOption_28">
         <div class="form-group">
