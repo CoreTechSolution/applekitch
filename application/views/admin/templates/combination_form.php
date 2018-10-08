@@ -402,6 +402,44 @@
     </div>
 </div>
 <!--- --->
+<div id="qOption_33">
+    <div class="form-group">
+        <div class="row" id="upload_images_section">
+
+            <div id="option_add_div">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <label for="qst_layout">Question Layout</label>
+                        <select name="qst_layout" id="qst_layout" class="form-control" required>
+                            <option value="0">-----Choose-----</option>
+                            <option value="1">Layout 1</option>
+                            <option value="2">Layout 2</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-6 pre_text_remove">
+                        <label for="second_question">Pre text</label>
+                        <input type="text" name="second_question" class="form-control" required>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <label for="imageQ_upload">Images(upload multiple at a time)</label>
+                        <input type="file" multiple name="imageQ_uploads[]" class="form-control imageQ_upload" required>
+                    </div>
+                    <div class="col-lg-6">
+                        <label for="ans_textbox">Answer</label>
+                        <input type="text" name="ans_textbox" class="form-control" required>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <div id="uploaded_images" style="display: none;"></div>
+    </div>
+</div>
+<!--- --->
+<!--- --->
 <div id="qOption_34">
     <div class="form-group">
 

@@ -351,6 +351,33 @@
             </p>
         </div>
     </div>
+<?php } elseif($question_option=='33'){ ?>
+    <?php //print_r($form_data); ?>
+    <div class="multiple_text_image">
+        <?php if( $form_data['qst_layout']== '1'){ ?>
+        <div class="question_box">
+            <?php $option_counter=0; ?>
+            <?php foreach ($form_data['imgs'] as $imgs){ ?>
+                <?php if($option_counter==0){ ?>
+                    <?php echo $form_data['second_question']; ?> <div class="ans_img"><img src="<?php echo $imgs; ?>" alt="" class=""></div>
+                <?php } else { ?>
+                    <div class="ans_operator">=</div>
+                    <div class="ans_text"><input type="text" name="qAns_box" class="form-control"></div>
+                    <div class="ans_img"><img src="<?php echo $imgs; ?>" alt="" class=""></div>
+                <?php } ?>
+                <?php $option_counter++; ?>
+            <?php } ?>
+            <?php } else{ ?>
+            <?php foreach ($form_data['imgs'] as $imgs){ ?>
+                <?php  $rimg=$imgs; ?>
+            <?php } ?>
+            <?php for ($i=0;$i<$form_data['second_question'];$i++){ ?>
+                    <div class="ans_img"><img src="<?php echo $rimg; ?>" alt="" class=""></div>
+                <?php } ?>
+                <br><div class="ans_text"><input type="text" name="qAns_box" class="form-control"></div>
+            <?php } ?>
+        </div>
+    </div>
 <?php } elseif($question_option=='34'){ ?>
     <?php $img_array = explode('|',$form_data['img_array']); ?>
     <?php if(!empty($img_array)){ ?>
