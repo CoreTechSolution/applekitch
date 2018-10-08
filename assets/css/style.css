@@ -3232,3 +3232,7 @@ ul.DragDropExtra li img {
     color: green;
 
 }
+.multiple_textbox .form-control {
+    display: inline-block;
+    max-width: 70px;
+}

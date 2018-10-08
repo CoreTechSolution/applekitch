@@ -328,6 +328,29 @@
             <?php } ?>
         </div>
     </div>
+<?php } elseif($question_option=='32'){ ?>
+    <div class="row multiple_textbox">
+        <div class="col-lg-12">
+            <p>
+            <?php
+            $ans_textbox = $form_data['ans_textbox1'];
+            $s = explode('[', $ans_textbox);
+            if(!empty($s)) {
+	            foreach ( $s as $sa ) {
+		            if ( stripos( $sa, ']' ) ) {
+		                //echo $sa;
+			            $saa = explode( ']', $sa );
+			            echo '<input class="form-control" name="qAns_box[]"/>';
+			            echo $saa[1];
+		            } else {
+		                echo $sa;
+                    }
+	            }
+            }
+            ?>
+            </p>
+        </div>
+    </div>
 <?php } elseif($question_option=='33'){ ?>
     <?php //print_r($form_data); ?>
     <div class="multiple_text_image">

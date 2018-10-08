@@ -512,6 +512,18 @@
         </div>
 
     </div>
+<?php } elseif($question_option=='32'){ ?>
+    <div id="qOption_32">
+        <div class="form-group">
+            <div class="row" id="upload_images_section">
+                <div class="col-lg-12">
+                    <label for="question_area">Answer <span style="color: red;">(Denote the textboxes by wrapping the element in [ ])
+                    </span></label>
+                    <textarea rows="8" class="form-control textarea-no-styles" id="question_area" name="ans_textbox1"><?php echo $form_cdata['ans_textbox1']; ?></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
 <?php } elseif($question_option=='33'){ ?>
     <div id="qOption_33">
         <div class="form-group">
