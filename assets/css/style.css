@@ -3227,3 +3227,8 @@ ul.DragDropExtra li {
 ul.DragDropExtra li img {
     max-width: 40px;
 }
+.dash_tick{
+    font-size: 18px;
+    color: green;
+
+}

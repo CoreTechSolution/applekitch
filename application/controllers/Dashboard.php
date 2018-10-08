@@ -16,6 +16,7 @@ class Dashboard extends CI_Controller {
 				'title'     => 'Dashboard',
 				'user_data' => $this->user_model->get_userdata(),
 			);
+			$data['topics']=$this->user_model->get_log_in_user_topic($user_id);
 			$this->load->view( 'dashboard', $data );
 		} else {
 			$this->session->set_flashdata('error_msg', 'Please login first');

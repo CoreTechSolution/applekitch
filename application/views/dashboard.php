@@ -21,6 +21,30 @@ require_once 'templates/header.php';
                                             <div style="clear: both;"></div>
                                         </div>
                                     <?php } ?>
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Topic Name</th>
+                                            <th>Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php
+                                        if(!empty($topics)) {
+                                            foreach($topics as $topic) {
+                                                ?>
+                                                <tr>
+                                                    <td><span class="dash_tick"><i class="far fa-check-square"></i></span></td>
+                                                    <td><?= get_returnfield('topics','topic_id',$topic->topic_id,'topic_name'); ?></td>
+                                                    <td>Completed</td>
+                                                </tr>
+                                                <?php
+                                            }
+                                        }
+                                        ?>
+                                        </tbody>
+                                    </table>
 								</div>
 							</div>
 						</div>

@@ -20,7 +20,18 @@ class User_model extends CI_Model{
 		$this->db->where('email_address',$email);
 		$this->db->update('user');
 	}
-
+    function get_log_in_user_topic($user_id){
+        $this->db->distinct();
+	    $this->db->select('topic_id');
+	    $this->db->where(array('user_id'=>$user_id));
+	    $this->db->from('student_ans_topic');
+        $query=$this->db->get();
+	    if($query){
+           return $query->result();
+        } else{
+	        return false;
+        }
+    }
 	public function login_user($email,$pass){
 
 		$this->db->select('*');
