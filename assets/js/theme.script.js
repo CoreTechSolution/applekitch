@@ -327,7 +327,24 @@ jQuery(document).ready(function(){
             }
         });
         svgCount = 0;
+        setTimeout(function() {
+            var itm = [];
+            jQuery("ul.DragDropExtra li img").draggable();
+            jQuery("#DragDropImg").droppable({
+                drop: function (event, ui) {
+                    var zz = ui.draggable.text()
+                    jQuery(this).find(".placeholder").remove();
+                    jQuery("<li></li>").text(ui.draggable.text())
+                        .addClass('dropClass')
+                        .appendTo(this);
 
+                    itm.push(zz);
+                    jQuery('.ui-droppable').find("li.ui-draggable:contains('" + zz + "')").addClass('bred');
+                    var n = jQuery(".dropClass").length;
+                    jQuery('.qAns_box_dragDrop').val(n);
+                }
+            });
+        }, 3000);
     });
     ////////////////// Question submit AJAX End here ////////////////
 
@@ -678,3 +695,23 @@ jQuery('body').on('click', '.svgDelete', function(e){
     }
     jQuery('input[name="qAns_box"]').val(svgCount);
 });
+
+
+jQuery(document).ready(function() {
+    var itm = [];
+    jQuery( "ul.DragDropExtra li img" ).draggable();
+    jQuery( "#DragDropImg" ).droppable({
+        drop: function( event, ui ) {
+            var zz = ui.draggable.text()
+            jQuery(this).find(".placeholder").remove();
+            jQuery("<li></li>").text(ui.draggable.text())
+                .addClass('dropClass')
+                .appendTo(this);
+
+            itm.push(zz);
+            jQuery('.ui-droppable').find("li.ui-draggable:contains('" + zz + "')").addClass('bred');
+            var n = jQuery( ".dropClass" ).length;
+            jQuery('.qAns_box_dragDrop').val(n);
+        }
+    });
+})

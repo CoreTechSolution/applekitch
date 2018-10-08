@@ -166,6 +166,28 @@ class Ajax extends CI_Controller {
                 }
 
                 break;
+            case '29':
+	            if ( ! empty( $_FILES['base_image']['name'] ) ) {
+		            $img_path = image_upload( $_FILES, 'base_image', 'uploads/images' );
+		            if ( $img_path ) {
+			            $image_upload = $img_path;
+		            } else {
+
+			            $image_upload = '';
+		            }
+		            $form_data['base_image'] = $image_upload;
+	            }
+	            if ( ! empty( $_FILES['extra_image']['name'] ) ) {
+		            $img_path = image_upload( $_FILES, 'extra_image', 'uploads/images' );
+		            if ( $img_path ) {
+			            $image_upload = $img_path;
+		            } else {
+
+			            $image_upload = '';
+		            }
+		            $form_data['extra_image'] = $image_upload;
+	            }
+            	break;
             case '31':
                 $form_data['imgs']=$this->upload_multiple_img_path();
 
@@ -320,6 +342,28 @@ class Ajax extends CI_Controller {
 				}
 			}
 			$form_data['img'] = $image_upload;
+		}
+		if($form_data['question_option']=='29') {
+			if ( ! empty( $_FILES['base_image']['name'] ) ) {
+				$img_path = image_upload( $_FILES, 'base_image', 'uploads/images' );
+				if ( $img_path ) {
+					$image_upload = $img_path;
+				} else {
+
+					$image_upload = '';
+				}
+				$form_data['base_image'] = $image_upload;
+			}
+			if ( ! empty( $_FILES['extra_image']['name'] ) ) {
+				$img_path = image_upload( $_FILES, 'extra_image', 'uploads/images' );
+				if ( $img_path ) {
+					$image_upload = $img_path;
+				} else {
+
+					$image_upload = '';
+				}
+				$form_data['extra_image'] = $image_upload;
+			}
 		}
 
 		if(!empty($form_data['question_id'])){
@@ -789,6 +833,31 @@ class Ajax extends CI_Controller {
                         $rtntext['type']    = 'false';
                         $rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
                     }
+				} elseif ( $form_data['question_option'] == '29' ) {
+					if ( ! empty( $questions_next ) ) {
+						$question_form_data=unserialize($questions_next[0]->form_data);
+						$qview_option = 'qView_option_' . $question_form_data['question_option'];
+						$html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
+					}
+					if ( empty( $html ) ) {
+						$html = '';
+					}
+					//echo $html; exit();
+					$rtntext['html'] = $html;
+					$your_ans        = $form_data['qAns_box'];
+					$correct_ans     = $form_data_ans['ans_textbox'];
+					if ( $correct_ans == $your_ans ) {
+						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
+						$this->session->set_userdata( 'score_smart', ( $form_data['score'] + $questions->q_score ) );
+						$rtntext['score_ans']   = $this->session->userdata( 'score_ans' );
+						$rtntext['score_smart'] = $this->session->userdata( 'score_smart' );
+						$rtntext['type']        = 'true';
+						$rtntext['content']     = 'Correct';
+					} else {
+						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
+						$rtntext['type']    = 'false';
+						$rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
+					}
                 } elseif ( $form_data['question_option'] == '31' ) {
 
                     if ( ! empty( $questions_next ) ) {
@@ -1045,6 +1114,38 @@ class Ajax extends CI_Controller {
 				);
 				// we can also add code to save images in database here.
 				array_push($resultArray,$result);
+			}
+			echo json_encode($resultArray);
+		}
+	}
+
+	function DragDropimg() {
+		if($_FILES)
+		{
+			$resultArray = array();
+			foreach ( $_FILES as $key => $file){
+				if(!empty($file['name'])) {
+					$fileName = $file['name'];
+					$tmpName  = $file['tmp_name'];
+					$fileSize = $file['size'];
+					$fileType = $file['type'];
+					if ( $file['error'] != UPLOAD_ERR_OK ) {
+						error_log( $file['error'] );
+						echo JSON_encode( null );
+					}
+					$fp      = fopen( $tmpName, 'r' );
+					$content = fread( $fp, filesize( $tmpName ) );
+					fclose( $fp );
+					$result = array(
+						'name'   => $file['name'],
+						'type'   => 'image',
+						'src'    => "data:" . $fileType . ";base64," . base64_encode( $content ),
+						'height' => 350,
+						'width'  => 250
+					);
+					// we can also add code to save images in database here.
+					$resultArray[ $key ] = $result;
+				}
 			}
 			echo json_encode($resultArray);
 		}
@@ -1608,6 +1709,39 @@ class Ajax extends CI_Controller {
 
         return $rtntext;
     }
+
+    function qView_option_29($data,$grade_id,$subject_id,$topic_id,$start){
+        $rtntext='';
+        $start=$start+1;
+        $rtntext.='<input type="hidden" name="start" value="'.$start.'" />
+                            <input type="hidden" name="grade_id" value="'.$grade_id.'" />
+                            <input type="hidden" name="subject_id" value="'.$subject_id.'" />
+                            <input type="hidden" name="topic_id" value="'.$topic_id.'" />';
+        $rtntext.='<div class="row">';
+        $rtntext.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
+                                <div class="col-lg-5">
+                                    <div class="question_count">Question <a href="javacript:void(0);" id="play_question" data-question="<?php echo ($data->question_name); ?>"><i class="fas fa-volume-up"></i></a></div>
+                                            <div class="question_display">'.$data->question_name.'</div>
+                                </div>';
+        $rtntext.='<div class="col-lg-7">';
+        $form_serializedata=unserialize($data->form_data);
+        //print_r($form_serializedata);
+        $rtntext.='<input type="hidden" name="question_option" value="'.$form_serializedata['question_option'].'">';
+        $rtntext.='<div id="DragDropImg"><img src="'.$form_serializedata['base_image'].'" /></div>';
+	    $rtntext.='<ul class="DragDropExtra">';
+	    $total = $form_serializedata['ans_textbox'];
+	    $rand = rand($total, ($total+5));
+	    for($i=0; $i<=$rand; $i++) {
+	    	$rtntext .= '<li><img src="'.$form_serializedata['extra_image'].'" /></li>';
+	    }
+	    $rtntext.='</ul>';
+	    $rtntext.='<input type="hidden" name="qAns_box" value="0" class="qAns_box_dragDrop" />';
+	    $rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
+	    $rtntext.='</div>';
+	    $rtntext.='</div>';
+
+        return $rtntext;
+    }
     function qView_option_31($data,$grade_id,$subject_id,$topic_id,$start){
         $rtntext='';
         $start=$start+1;
@@ -1821,4 +1955,29 @@ class Ajax extends CI_Controller {
         }
 
     }
+	function question_with_put_images(){
+		$img_array = array();
+		$files = $_FILES;
+		$filesCount = count($_FILES['upload_images']['name']);
+		for($i = 0; $i < $filesCount; $i++){
+			$_FILES['upload_images']['name']     = $files['upload_images']['name'][$i];
+			$_FILES['upload_images']['type']     = $files['upload_images']['type'][$i];
+			$_FILES['upload_images']['tmp_name'] = $files['upload_images']['tmp_name'][$i];
+			$_FILES['upload_images']['error']     = $files['upload_images']['error'][$i];
+			$_FILES['upload_images']['size']     = $files['upload_images']['size'][$i];
+			$img_path = image_upload( $_FILES, 'upload_images', 'uploads/images' );
+			array_push($img_array, $img_path);
+		}
+		//$img_array_json = json_encode($img_array);
+		$uploaded_images_forms = '';
+		if(!empty($img_array)) {
+			foreach ( $img_array as $img ) {
+				$reversedParts         = explode( '/', strrev( $img ), 2 );
+				$img_name              = strrev( $reversedParts[0] );
+				$uploaded_images_forms .= '<div class="item"><img src="' . $img . '" style="max-width: 40px;" /></div>';
+			}
+			$uploaded_images_forms .= '<div style="clear: both; margin-bottom: 100px;"></div>';
+			echo $uploaded_images_forms;
+		}
+	}
 }

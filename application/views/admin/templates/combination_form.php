@@ -209,6 +209,7 @@
     </div>
 </div>
 <!---->
+<!---->
 <div id="qOption_18">
     <div class="form-group">
         <div class="row">
@@ -278,14 +279,31 @@
 <!---->
 <div id="qOption_27">
     <div class="form-group">
+        <div class="row">
+            <div class="col-lg-6">
+                <label for="num_box">Number of Box</label>
+                <input type="number" name="num_box" class="form-control num_box">
+                <br/>
+                <a href="javascript:void(0);" class="btn add_row_save num_box_done"><!--<span data-feather="plus-archive"></span>--> Done</a>
+            </div>
+            <div class="col-lg-3">
+                <div class="svg_box_wrap"></div>
+            </div>
+            <div class="col-lg-3">
+                <div class="svg_image_wrap"></div>
+            </div>
+        </div>
+        <br/>
+        <br/>
         <div class="row" id="upload_images_section">
             <div class="col-lg-6">
                 <label for="upload_images">Upload Pattern Images</label>
-                <input type="file" multiple name="upload_images[]" class="form-control question_with_put_images">
+                <input type="file" multiple name="upload_images" class="form-control question_with_put_images">
             </div>
-            <div class="col-lg-6"></div>
+            <div class="col-lg-6">
+                <div id="uploaded_images" style="display: none;"></div>
+            </div>
         </div>
-        <div id="uploaded_images" style="display: none;"></div>
     </div>
 </div>
 <!---->
@@ -314,6 +332,35 @@
     </div>
 </div>
 <!---->
+<div id="qOption_29">
+    <div class="form-group">
+        <div class="row">
+            <div class="col-lg-6">
+                <label for="base_image">Base Image</label>
+                <input type="file" name="base_image" class="form-control base_image ans_textbox">
+            </div>
+            <div class="col-lg-6">
+                <div class="drag_drop_img"></div>
+            </div>
+        </div>
+        <div class="row extra_img" style="display: none;">
+            <div class="col-lg-6">
+                <label for="extra_image">Extra Image</label>
+                <input type="file" name="extra_image" class="form-control extra_image ans_textbox">
+            </div>
+            <div class="col-lg-6">
+                <div class="drag_drop_extra_image"></div>
+            </div>
+        </div>
+        <div class="row extra_img_num" style="display: none;">
+            <div class="col-lg-6">
+                <label for="extra_image">Number of extra Images on the Base Image</label>
+                <input type="number" name="ans_textbox" class="form-control ans_textbox">
+            </div>
+        </div>
+    </div>
+</div>
+<!--- --->
 <!--- --->
 <div id="qOption_31">
     <div class="form-group">

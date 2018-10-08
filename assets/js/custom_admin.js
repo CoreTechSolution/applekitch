@@ -419,6 +419,44 @@ jQuery(document).ready(function() {
         });
     });
 
+    jQuery('body').on('change', '.base_image', function(e){
+        e.preventDefault();
+        var this_element = jQuery(this);
+        var parent = this_element.closest('.add_question_row');
+        var form_data = new FormData(parent.find('.addQ_form')[0]);
+        jQuery.ajax({
+            type: "POST",
+            url: base_url + 'ajax/DragDropimg',
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+            data: form_data,
+            success: function (data) {
+                jQuery(parent).find('.drag_drop_img').html('<div><img src="'+data['base_image'].src+'" style="width: 200px; height:' + ' auto;"/></div>');
+                jQuery('.extra_img').show();
+            }
+        });
+    });
+
+    jQuery('body').on('change', '.extra_image', function(e){
+        e.preventDefault();
+        var this_element = jQuery(this);
+        var parent = this_element.closest('.add_question_row');
+        var form_data = new FormData(parent.find('.addQ_form')[0]);
+        jQuery.ajax({
+            type: "POST",
+            url: base_url + 'ajax/DragDropimg',
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+            data: form_data,
+            success: function (data) {
+                jQuery(parent).find('.drag_drop_extra_image').html('<div><img src="'+data['extra_image'].src+'" style="width: 100px;' + ' height:' + ' auto;"/></div>');
+                jQuery('.extra_img_num').show();
+            }
+        });
+    });
+
     /*for GIGo Grid System*/
 
 });
