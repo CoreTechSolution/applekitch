@@ -190,6 +190,20 @@ jQuery(document).ready(function() {
         jQuery('#myModal_body').html(html_c);
 
     });
+    jQuery('body').on('change','#qst_layout',function(e){
+        var this_element = jQuery(this);
+        var parent = this_element.closest('.add_question_row');
+        if(this_element.val()=='2'){
+
+            jQuery(parent).find('.pre_text_remove').html('<label for="second_question">Number of Image</label>\n' +
+                '                        <input type="text" name="second_question" class="form-control" required>');
+        } else{
+            jQuery(parent).find('.pre_text_remove').html('<label for="second_question">Pre text</label>\n' +
+                '                        <input type="text" name="second_question" class="form-control" required>');
+        }
+
+        //jQuery('.pre_text_remove')
+    });
     jQuery('body').on('click','.addQ_save',function(e){
         e.preventDefault();
         jQuery('#loading').show();
@@ -210,7 +224,13 @@ jQuery(document).ready(function() {
         form_data.append('grade_id', grade_id);
         form_data.append('category_id', category_id);
         form_data.append('topic_id', topic_id);
-
+        if(questions_option_drop=='33' && form_data['qst_layout']=='1'){
+            var fileUpload = jQuery("#qst_layout");
+            if (parseInt(fileUpload.get(0).files.length) > 2){
+                alert("You are only allowed to upload a maximum of 2 files");
+                exit();
+            }
+        }
         jQuery.ajax({
             type: "POST",
             url: base_url + 'ajax/save_question',
