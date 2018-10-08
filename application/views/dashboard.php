@@ -21,6 +21,29 @@ require_once 'templates/header.php';
                                             <div style="clear: both;"></div>
                                         </div>
                                     <?php } ?>
+                                    <?php if(!(isUserType('student'))){ ?>
+                                    <div class="child_search_div">
+                                        <form action="<?php echo base_url('dashboard') ?>" method="post" class="child_search_drop">
+                                            <div class="row">
+                                                <div class="col-lg-2">
+                                                    <h5>Select Child</h5>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <?php echo form_dropdown('child_id',form_dropdown_child(get_current_user_id()),'',array('class'=>'form-control')); ?>
+                                                </div>
+
+                                                <div class="col-lg-2" >
+                                                    <input type="submit" class="btn btn-small btn-primary" value="Show">
+
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+    <?php  } ?>
+                                    <h4>Completed Topics</h4>
+                                    <form action="<?php echo base_url('dashboard'); ?>">
+                                        form
+                                    </form>
                                     <table class="table">
                                         <thead>
                                         <tr>

@@ -10,18 +10,27 @@ class Dashboard extends CI_Controller {
 	}
 	public function index()
 	{
-		$user_id = $this->session->userdata('user_id');
-		if(isset($user_id) && !empty($user_id)) {
-			$data = array(
-				'title'     => 'Dashboard',
-				'user_data' => $this->user_model->get_userdata(),
-			);
-			$data['topics']=$this->user_model->get_log_in_user_topic($user_id);
-			$this->load->view( 'dashboard', $data );
-		} else {
-			$this->session->set_flashdata('error_msg', 'Please login first');
-			redirect('login');
-		}
+        if(!empty($_POST['child_id'])){
+            $user_id=$_POST['child_id'];
+            $this->session->set_userdata('child_id',$user_id);
+        } else{
+            $user_id = $this->session->userdata('user_id');
+            $this->session->set_userdata('child_id',$user_id);
+        }
+        $data['child_id']=$user_id;
+
+        //$user_id = $this->session->userdata('user_id');
+        if(isset($user_id) && !empty($user_id)) {
+            $data = array(
+                'title'     => 'Dashboard',
+                'user_data' => $this->user_model->get_userdata(),
+            );
+            $data['topics']=$this->user_model->get_log_in_user_topic($user_id);
+            $this->load->view( 'dashboard', $data );
+        } else {
+            $this->session->set_flashdata('error_msg', 'Please login first');
+            redirect('login');
+        }
 	}
 	public function manage_profile() {
 		$user_id = $this->session->userdata('user_id');
