@@ -3227,3 +3227,7 @@ ul.DragDropExtra li {
 ul.DragDropExtra li img {
     max-width: 40px;
 }
+.multiple_textbox .form-control {
+    display: inline-block;
+    max-width: 70px;
+}

@@ -61,27 +61,28 @@ function SwalDelete(productId){
 
 }
 
+// tynimce add
+function initializetinymce(){
+    tinymce.init({
+        selector: ".tynimce:not(.textarea-no-styles)",
+        height: 200,
+        theme: 'modern',
+        plugins: 'print preview fullpage searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount imagetools  contextmenu colorpicker textpattern help code',
+        toolbar1: 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat | code',
+        image_advtab: true,
+        templates: [
+            { title: 'Test template 1', content: 'Test 1' },
+            { title: 'Test template 2', content: 'Test 2' }
+        ],
+        content_css: [
+            '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+            '//www.tinymce.com/css/codepen.min.css'
+        ]
+    });
+}
+
 jQuery(document).ready(function() {
     initializetinymce();
-    // tynimce add
-    function initializetinymce(){
-        tinymce.init({
-            selector: ".tynimce:not(.textarea-no-styles)",
-            height: 200,
-            theme: 'modern',
-            plugins: 'print preview fullpage searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount imagetools  contextmenu colorpicker textpattern help code',
-            toolbar1: 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat | code',
-            image_advtab: true,
-            templates: [
-                { title: 'Test template 1', content: 'Test 1' },
-                { title: 'Test template 2', content: 'Test 2' }
-            ],
-            content_css: [
-                '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
-                '//www.tinymce.com/css/codepen.min.css'
-            ]
-        });
-    }
 
 
     /*var minutesLabel = document.getElementById("minutes");
@@ -394,7 +395,7 @@ jQuery(document).ready(function() {
             data: form_data,
             success: function (data) {
                 jQuery(parent).find('.svg_image_wrap').html('<div><img src="'+data[0].src+'" style="width: 50px; height: 50px;"/></div>');
-                jQuery('.svg_how_many').show();
+                jQuery(parent).find('.svg_how_many').show();
             }
         });
     });
@@ -413,7 +414,7 @@ jQuery(document).ready(function() {
             data: form_data,
             success: function (data) {
                 jQuery(parent).find('.drag_drop_img').html('<div><img src="'+data['base_image'].src+'" style="width: 200px; height:' + ' auto;"/></div>');
-                jQuery('.extra_img').show();
+                jQuery(parent).find('.extra_img').show();
             }
         });
     });
@@ -432,7 +433,7 @@ jQuery(document).ready(function() {
             data: form_data,
             success: function (data) {
                 jQuery(parent).find('.drag_drop_extra_image').html('<div><img src="'+data['extra_image'].src+'" style="width: 100px;' + ' height:' + ' auto;"/></div>');
-                jQuery('.extra_img_num').show();
+                jQuery(parent).find('.extra_img_num').show();
             }
         });
     });

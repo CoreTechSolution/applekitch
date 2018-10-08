@@ -394,7 +394,9 @@
     <div class="form-group">
         <div class="row" id="upload_images_section">
             <div class="col-lg-12">
-                <textarea class="form-control tynimce" id="question_area" name="question_area"></textarea>
+                <label for="question_area">Answer <span style="color: red;">(Denote the textboxes by wrapping the element in [ ])
+                    </span></label>
+                <textarea rows="8" class="form-control textarea-no-styles" id="question_area" name="ans_textbox1"></textarea>
             </div>
         </div>
     </div>
