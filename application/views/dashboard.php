@@ -29,7 +29,7 @@ require_once 'templates/header.php';
                                                     <h5>Select Child</h5>
                                                 </div>
                                                 <div class="col-lg-3">
-                                                    <?php echo form_dropdown('child_id',form_dropdown_child(get_current_user_id()),'',array('class'=>'form-control')); ?>
+                                                    <?php echo form_dropdown('child_id',form_dropdown_child(get_current_user_id()), $child_id, array('class'=>'form-control')); ?>
                                                 </div>
 
                                                 <div class="col-lg-2" >
@@ -42,7 +42,6 @@ require_once 'templates/header.php';
     <?php  } ?>
                                     <h4>Completed Topics</h4>
                                     <form action="<?php echo base_url('dashboard'); ?>">
-                                        form
                                     </form>
                                     <table class="table">
                                         <thead>

@@ -17,13 +17,14 @@ class Dashboard extends CI_Controller {
             $user_id = $this->session->userdata('user_id');
             $this->session->set_userdata('child_id',$user_id);
         }
-        $data['child_id']=$user_id;
+        //$data['child_id']=$user_id;
 
         //$user_id = $this->session->userdata('user_id');
         if(isset($user_id) && !empty($user_id)) {
             $data = array(
                 'title'     => 'Dashboard',
                 'user_data' => $this->user_model->get_userdata(),
+	            'child_id'  => $user_id
             );
             $data['topics']=$this->user_model->get_log_in_user_topic($user_id);
             $this->load->view( 'dashboard', $data );
