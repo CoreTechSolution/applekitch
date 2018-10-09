@@ -443,11 +443,39 @@ INNER JOIN country ON subject.country = country.id INNER JOIN grade ON subject.g
             return false;
         }
     }
+    function update_home_settings($data, $condition){
+        $this->db->set($data);  //Set the column name and which value to set..
+        $this->db->where($condition); //set column_name and value in which row need to update
+        if($this->db->update('home_settings')){
+            return true;
+        } else{
+            return false;
+        }
+    }
     function get_settings(){
         $this->db->select('*');
         $this->db->from('settings');
         $queries = $this->db->get();
         $query = $queries->row();
+        return $query;
+    }
+    function get_home_settings($conditions='', $rows=false){
+        $this->db->select('*');
+        if(!empty($conditions))
+            $this->db->where($conditions);
+        $this->db->from('home_settings');
+        $queries = $this->db->get();
+        if($queries){
+            if($rows==true){
+                $query = $queries->row();
+            }else{
+                $query = $queries->result();
+            }
+
+        } else{
+            $query=false;
+        }
+
         return $query;
     }
     function copy_question($qid) {

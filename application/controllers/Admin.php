@@ -885,9 +885,7 @@ class Admin extends CI_Controller {
         $data['method'] = 'admin/settings';
         //$data['name']=$this->users->get_user_field($this->users->get_current_user_id(),'name');
         $data['settings']=$this->admin_model->get_settings();
-        //print_r($data['settings']); exit();
-        //echo $this->db->last_query(); exit;
-        $data['content_v'] = 'admin/settings_v';
+
 
         //stripe settings update
         if(!empty($this->input->post('stripe_submit'))){
@@ -1062,6 +1060,112 @@ class Admin extends CI_Controller {
 
 
         //print_r($data);
+
+    }
+    public function home_settings(){
+        isLogin('admin');
+        $data['title'] = 'Home Page Settings';
+        $data['method'] = 'admin/home_settings';
+        //$data['name']=$this->users->get_user_field($this->users->get_current_user_id(),'name');
+        //$data['home_settings']=$this->admin_model->get_home_settings();
+
+        if(!empty($this->input->post('section_1_submit'))){
+
+            $value['heading'] = $this->input->post('heading');
+            $value['subheading'] = $this->input->post('subheading');
+            $value['content'] = $this->input->post('content');
+
+            if(!empty($_FILES['content_image']['name'])){
+                $img_path=image_upload($_FILES,'content_image','uploads');
+                if($img_path){
+                    $value['content_image']=$img_path;
+                } else{
+                    //$this->load->view( 'admin/add_certificate_v', $data );
+                    return false;
+                }
+            }
+            $data_save['page_content']=serialize($value);
+            //print_r($data_save); exit();
+            $conditions=array('id'=>$this->input->post('id'));
+            $home_settings=$this->admin_model->update_home_settings($data_save,$conditions);
+
+            if ($home_settings) {
+                $this->session->set_flashdata('msg', 'Settings successfully upadated!.');
+                $this->session->set_flashdata('msg_type', 'Success');
+                $this->load->view( 'admin/home_settings_v', $data );
+            } else {
+                $this->session->set_flashdata('msg', 'Something wrong! Please try again later.');
+                $this->session->set_flashdata('msg_type', 'Error');
+                $this->load->view( 'admin/home_settings_v', $data );
+            }
+
+        }
+        elseif(!empty($this->input->post('section_2_submit'))){
+
+            $value['heading'] = $this->input->post('heading');
+            $value['button_text'] = $this->input->post('button_text');
+            $value['button_link'] = $this->input->post('button_link');
+            $value['content'] = $this->input->post('content');
+            $data_save['page_content']=serialize($value);
+            //print_r($data_save); exit();
+            $conditions=array('id'=>$this->input->post('id'));
+            $home_settings=$this->admin_model->update_home_settings($data_save,$conditions);
+
+            if ($home_settings) {
+                $this->session->set_flashdata('msg', 'Settings successfully upadated!.');
+                $this->session->set_flashdata('msg_type', 'Success');
+                $this->load->view( 'admin/home_settings_v', $data );
+            } else {
+                $this->session->set_flashdata('msg', 'Something wrong! Please try again later.');
+                $this->session->set_flashdata('msg_type', 'Error');
+                $this->load->view( 'admin/home_settings_v', $data );
+            }
+
+        }
+        elseif(!empty($this->input->post('section_3_submit'))){
+
+            $value['heading'] = $this->input->post('heading');
+            $value['subheading'] = $this->input->post('subheading');
+            $data_save['page_content']=serialize($value);
+
+            $conditions=array('id'=>$this->input->post('id'));
+            $home_settings=$this->admin_model->update_home_settings($data_save,$conditions);
+
+            if ($home_settings) {
+                $this->session->set_flashdata('msg', 'Settings successfully upadated!.');
+                $this->session->set_flashdata('msg_type', 'Success');
+                $this->load->view( 'admin/home_settings_v', $data );
+            } else {
+                $this->session->set_flashdata('msg', 'Something wrong! Please try again later.');
+                $this->session->set_flashdata('msg_type', 'Error');
+                $this->load->view( 'admin/home_settings_v', $data );
+            }
+
+        }
+        elseif(!empty($this->input->post('section_4_submit'))){
+
+            $value['heading'] = $this->input->post('heading');
+            $value['subheading'] = $this->input->post('subheading');
+            $data_save['page_content']=serialize($value);
+
+            $conditions=array('id'=>$this->input->post('id'));
+            $home_settings=$this->admin_model->update_home_settings($data_save,$conditions);
+
+            if ($home_settings) {
+                $this->session->set_flashdata('msg', 'Settings successfully upadated!.');
+                $this->session->set_flashdata('msg_type', 'Success');
+                $this->load->view( 'admin/home_settings_v', $data );
+            } else {
+                $this->session->set_flashdata('msg', 'Something wrong! Please try again later.');
+                $this->session->set_flashdata('msg_type', 'Error');
+                $this->load->view( 'admin/home_settings_v', $data );
+            }
+
+        }
+        else{
+            $this->load->view( 'admin/home_settings_v', $data );
+        }
+
 
     }
 }

@@ -72,10 +72,17 @@
                 Pages
             </a>
         </li>
+
         <li class="nav-item">
             <a class="nav-link<?php if($title == 'Settings') { ?> active<?php } ?>" href="<?php echo base_url('/admin/settings'); ?>">
                 <span data-feather="settings"></span>
                 Settings
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link<?php if($title == 'Home Page Settings') { ?> active<?php } ?>" href="<?php echo base_url('/admin/home_settings'); ?>">
+                <span data-feather="home"></span>
+                Home Page Settings
             </a>
         </li>
     </ul>

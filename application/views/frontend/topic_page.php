@@ -109,10 +109,22 @@ $this->load->view('templates/header');
                                                         <?php echo ''; ?>
                                                         <ul>
                                                             <?php foreach ($values as $cate_arra){ ?>
+                                                                <?php  $sufix=''; ?>
+                                                                <?php if(!empty($completed_topics)){
+
+                                                                    foreach ($completed_topics as $completed_topic){
+                                                                        if($cate_arra==$completed_topic->topic_id){
+                                                                            $sufix='<span class="front_check"><i class="fas fa-check"></i></span>';
+                                                                            break;
+                                                                        }
+                                                                    }
+                                                                }
+                                                                ?>
                                                                 <li>
                                                                     <a href="<?php echo base_url('frontend/questions/'.$grade.'/'.$subject.'/'.$cate_arra) ?>">
                                                                         <span data-feather="edit"></span> <?php echo get_returnfield('topics','topic_id',$cate_arra,'topic_name'); ?>
                                                                     </a>
+                                                                    <?php echo $sufix; ?>
                                                                 </li>
                                                             <?php } ?>
                                                         </ul>

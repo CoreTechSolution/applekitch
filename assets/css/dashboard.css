@@ -331,6 +331,18 @@ input[type='file']{
   display: block;
   padding: 3px;
 }
+.admin_home_image_preview{
+  width: 100%;
+  overflow: hidden;
+  vertical-align: middle;
+  border: 1px solid #ccc;
+  display: block;
+  padding: 3px;
+  margin-bottom: 20px;
+}
+.admin_home_image_preview img{
+  width: 100%;
+}
 .add_row_counter{
   border: 1px solid #ced4da;
   border-radius: .25rem;

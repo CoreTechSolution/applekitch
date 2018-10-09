@@ -187,46 +187,51 @@ require_once 'templates/header.php';
         </div>
     </div>
     <!---->
+<?php $settings=$this->admin_model->get_home_settings(array('slug'=>'section-1'),true); ?>
+<?php $serialize_settings=unserialize($settings->page_content); ?>
     <div class="wrapper4">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
                     <div class="wrapper4-content-wrap">
-                        <h1>Academy for Kitch</h1>
-                        <h2>Adding and subtracting, telling time, measurement, categories, nouns, verb tense, time order and more.</h2>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                        <h1><?=!empty($serialize_settings['heading'])? $serialize_settings['heading']:''; ?></h1>
+                        <h2><?=!empty($serialize_settings['subheading'])? $serialize_settings['subheading']:''; ?></h2>
+                        <p><?=!empty($serialize_settings['content'])? $serialize_settings['content']:''; ?></p>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="video-wrap">
-                        <div class="video"><img src="<?php echo base_url('/assets/images/video.jpg'); ?>"></div>
-                        <div class="play-btn"><a href="javascript:void(0);"><img src="<?php echo base_url('/assets/images/play-btn.png'); ?>"></a></div>
+                        <div class="video"><img src="<?=!empty($serialize_settings['content_image'])? $serialize_settings['content_image']:''; ?>"></div>
+                        <!--<div class="play-btn"><a href="javascript:void(0);"><img src="<?php /*echo base_url('/assets/images/play-btn.png'); */?>"></a></div>-->
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!---->
+<?php $settings=$this->admin_model->get_home_settings(array('slug'=>'section-2'),true); ?>
+<?php $serialize_settings=unserialize($settings->page_content); ?>
     <div class="wrapper5">
         <div class="container">
             <div class="row">
                 <div class="col-lg-1"></div>
                 <div class="col-lg-10">
-                    <h1>Give your child a positive early <br>introduction to the world of Maths</h1>
-                    <h2>Adding and subtracting, telling time, measurement, categories, nouns, verb tense, time order and more.</h2>
-                    <p class="get-started"><a href="javascript:void(0);">Get Started Now</a></p>
+                    <h1><?=!empty($serialize_settings['heading'])? $serialize_settings['heading']:''; ?></h1>
+                    <h2><?=!empty($serialize_settings['content'])? $serialize_settings['content']:''; ?></h2>
+                    <p class="get-started"><a href="<?=!empty($serialize_settings['button_link'])? base_url($serialize_settings['button_link']):''; ?>"><?=!empty($serialize_settings['button_text'])? $serialize_settings['button_text']:''; ?></a></p>
                 </div>
                 <div class="col-lg-1"></div>
             </div>
         </div>
     </div>
-    <!---->
+<?php $settings=$this->admin_model->get_home_settings(array('slug'=>'section-3'),true); ?>
+<?php $serialize_settings=unserialize($settings->page_content); ?>
     <div class="wrapper6">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>Membership Plans</h1>
-                    <h2>Explore the benefits of becoming an IXL member!</h2>
+                    <h1><?=!empty($serialize_settings['heading'])? $serialize_settings['heading']:''; ?></h1>
+                    <h2><?=!empty($serialize_settings['subheading'])? $serialize_settings['subheading']:''; ?></h2>
                 </div>
             </div>
         </div>
@@ -263,12 +268,14 @@ require_once 'templates/header.php';
         </div>
     </div>
     <!---->
+<?php $settings=$this->admin_model->get_home_settings(array('slug'=>'section-4'),true); ?>
+<?php $serialize_settings=unserialize($settings->page_content); ?>
     <div class="wrapper8">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>Our Happy clients</h1>
-                    <h2>What they say about us</h2>
+                    <h1><?=!empty($serialize_settings['heading'])? $serialize_settings['heading']:''; ?></h1>
+                    <h2><?=!empty($serialize_settings['subheading'])? $serialize_settings['subheading']:''; ?></h2>
                 </div>
             </div>
             <div class="row testimonials-row">
@@ -315,20 +322,6 @@ require_once 'templates/header.php';
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <!---->
-    <div class="wrapper9">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-1"></div>
-                <div class="col-lg-10">
-                    <h1>Give your child a positive early <br>introduction to the world of Maths</h1>
-                    <h2>Adding and subtracting, telling time, measurement, categories, nouns, verb tense, time order and more.</h2>
-                    <p class="get-started"><a href="javascript:void(0);">Get Started Now</a></p>
-                </div>
-                <div class="col-lg-1"></div>
             </div>
         </div>
     </div>

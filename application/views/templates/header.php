@@ -95,8 +95,8 @@
             <div class="col-lg-6">
                 <div class="subjects">
                     <ul>
-                        <li><a href="javascript:void(0)">Maths</a></li>
-                        <li><a href="javascript:void(0)">English</a></li>
+                        <li><a href="<?php echo base_url('frontend/topic/reception/math') ?>">Maths</a></li>
+                        <li><a href="<?php echo base_url('frontend/topic/reception/english') ?>">English</a></li>
                     </ul>
                 </div>
             </div>
