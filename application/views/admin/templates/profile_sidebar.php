@@ -72,6 +72,12 @@
                 Pages
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link<?php if($title == 'Testimonials' || $title == 'Add New Testimonial') { ?> active<?php } ?>" href="<?php echo base_url('/admin/testimonials'); ?>">
+                <span data-feather="file-text"></span>
+                Testimonials
+            </a>
+        </li>
 
         <li class="nav-item">
             <a class="nav-link<?php if($title == 'Settings') { ?> active<?php } ?>" href="<?php echo base_url('/admin/settings'); ?>">

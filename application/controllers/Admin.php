@@ -1168,4 +1168,76 @@ class Admin extends CI_Controller {
 
 
     }
+    public function testimonials(){
+        isLogin('admin');
+        $data['title']='Testimonials';
+        $data['testimonials']=$this->admin_model->get_testimonials();
+        $this->load->view( 'admin/testimonials_v', $data );
+    }
+    public function add_testimonial() {
+        isLogin('admin');
+        $data['method']='add_testimonial';
+        $data['title']='Add New Testimonial';
+        if(!empty($this->input->post('save'))){
+            $this->form_validation->set_rules('name', 'Name', 'required');
+            if ($this->form_validation->run() == FALSE){
+                $this->load->view( 'admin/add_testimonials_v', $data );
+            } else{
+                $value['name']=$this->input->post('name');
+                $value['content']=$this->input->post('content');
+                if(!empty($_FILES['testimonial_img']['name'])){
+                    $img_path=image_upload($_FILES,'testimonial_img','uploads');
+                    if($img_path){
+                        $value['testimonial_img']=$img_path;
+                    } else{
+                        //$this->load->view( 'admin/add_certificate_v', $data );
+                        return false;
+                    }
+                }
+                $insert=$this->admin_model->insert_testimonial($value);
+                if($insert){
+                    $this->session->set_flashdata(array('msg_type'=>'success','msg'=>'New testimonial added!'));
+                    $this->load->view( 'admin/add_testimonials_v', $data );
+                }
+            }
+        } else {
+            $this->load->view( 'admin/add_testimonials_v', $data );
+        }
+    }
+    public function edit_testimonial($id) {
+        isLogin('admin');
+        $data['method']='edit_testimonial';
+        $data['title']='Edit Testimonial';
+        $data['testimonials']=$this->admin_model->get_testimonials(array('id'=>$id),true);
+        //print_r($data['testimonials']); exit();
+        if(!empty($this->input->post('save'))){
+            $this->form_validation->set_rules('name', 'Name', 'required');
+            if ($this->form_validation->run() == FALSE){
+                $this->load->view( 'admin/edit_testimonial_v', $data );
+            } else{
+                $value['name']=$this->input->post('name');
+                $value['content']=$this->input->post('content');
+                if(!empty($_FILES['testimonial_img']['name'])){
+                    $img_path=image_upload($_FILES,'testimonial_img','uploads');
+                    if($img_path){
+                        $value['testimonial_img']=$img_path;
+                    } else{
+                        //$this->load->view( 'admin/add_certificate_v', $data );
+                        return false;
+                    }
+                }
+                $conditions=array('id'=>$id);
+                $insert=$this->admin_model->update_testimonial($value,$conditions);
+                if($insert){
+                    $this->session->set_flashdata(array('msg_type'=>'success','msg'=>'New testimonial added!'));
+                    $this->load->view( 'admin/edit_testimonial_v', $data );
+                } else{
+                    $this->session->set_flashdata(array('msg_type'=>'error','msg'=>'Something wrong! try again later!'));
+                    $this->load->view( 'admin/edit_testimonial_v', $data );
+                }
+            }
+        } else {
+            $this->load->view( 'admin/edit_testimonial_v', $data );
+        }
+    }
 }

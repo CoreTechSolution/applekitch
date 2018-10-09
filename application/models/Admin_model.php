@@ -126,11 +126,29 @@ class Admin_model extends CI_Model {
 			return false;
 		}
 	}
+    function get_testimonials() {
+        $this->db->select('*');
+        $this->db->from('testimonials');
+        $this->db->order_by("id", "desc");
+
+        if($query = $this->db->get())
+        {
+            return $query->result();
+        }
+        else{
+            return false;
+        }
+    }
 	function insert_topic($data){
 		$this->db->insert('topics', $data);
 		$insert_id = $this->db->insert_id();
 		return $insert_id;
 	}
+    function insert_testimonial($data){
+        $this->db->insert('testimonials', $data);
+        $insert_id = $this->db->insert_id();
+        return $insert_id;
+    }
 	function insert_qst_type($data){
 		$this->db->insert('question_option', $data);
 		$insert_id = $this->db->insert_id();
@@ -501,5 +519,14 @@ INNER JOIN country ON subject.country = country.id INNER JOIN grade ON subject.g
 	    } else {
 	    	return false;
 	    }
+    }
+    function update_testimonial($data,$conditions){
+        $this->db->set($data);  //Set the column name and which value to set..
+        $this->db->where($conditions); //set column_name and value in which row need to update
+        if($this->db->update('testimonials')){
+            return true;
+        } else{
+            return false;
+        }
     }
 }

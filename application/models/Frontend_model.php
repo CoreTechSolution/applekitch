@@ -21,6 +21,19 @@ class Frontend_model extends CI_Model {
 		return $query;
 
 	}
+    function get_testimonials() {
+        $this->db->select('*');
+        $this->db->from('testimonials');
+        $this->db->order_by("id", "desc");
+
+        if($query = $this->db->get())
+        {
+            return $query->result();
+        }
+        else{
+            return false;
+        }
+    }
 	function get_grades($conditions=array(),$row=true){
 		$this->db->select('*');
 		if(!empty($conditions)){

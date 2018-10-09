@@ -268,6 +268,7 @@ require_once 'templates/header.php';
         </div>
     </div>
     <!---->
+
 <?php $settings=$this->admin_model->get_home_settings(array('slug'=>'section-4'),true); ?>
 <?php $serialize_settings=unserialize($settings->page_content); ?>
     <div class="wrapper8">
@@ -281,50 +282,30 @@ require_once 'templates/header.php';
             <div class="row testimonials-row">
                 <div class="col-lg-12">
                     <div class="testimonials">
-                        <div>
-                            <div class="testimonials-wrapper">
-                                <div class="row">
-                                    <div class="col-lg-3">
-                                        <div class="client-profile"><img src="<?php echo base_url('/assets/images/client-profile.png'); ?>"></div>
-                                    </div>
-                                    <div class="col-lg-9">
-                                        <p class="client-comment">Pri quas audiam virtute ut, case utamur fuisset eam ut, iisque accommodare an eam. Reque blandit qui eu, cu vix nonumy volumus. Legendos intellegam id usu, vide oporteat vix eu, id illud principes has. Nam tempor utamur gubergren no.</p>
-                                        <p class="client-name">Luisa Extnsa</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="testimonials-wrapper">
-                                <div class="row">
-                                    <div class="col-lg-3">
-                                        <div class="client-profile"><img src="<?php echo base_url('/assets/images/client-profile.png'); ?>"></div>
-                                    </div>
-                                    <div class="col-lg-9">
-                                        <p class="client-comment">Pri quas audiam virtute ut, case utamur fuisset eam ut, iisque accommodare an eam. Reque blandit qui eu, cu vix nonumy volumus. Legendos intellegam id usu, vide oporteat vix eu, id illud principes has. Nam tempor utamur gubergren no.</p>
-                                        <p class="client-name">Luisa Extnsa</p>
+
+                        <?php foreach ($testimonials as $testimonial){ ?>
+                            <div>
+                                <div class="testimonials-wrapper">
+                                    <div class="row">
+                                        <div class="col-lg-3">
+                                            <div class="client-profile"><img src="<?= $testimonial->testimonial_img; ?>"></div>
+                                        </div>
+                                        <div class="col-lg-9">
+                                            <p class="client-comment"><?= $testimonial->content; ?></p>
+                                            <p class="client-name"><?= $testimonial->name; ?></p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div>
-                            <div class="testimonials-wrapper">
-                                <div class="row">
-                                    <div class="col-lg-3">
-                                        <div class="client-profile"><img src="<?php echo base_url('/assets/images/client-profile.png'); ?>"></div>
-                                    </div>
-                                    <div class="col-lg-9">
-                                        <p class="client-comment">Pri quas audiam virtute ut, case utamur fuisset eam ut, iisque accommodare an eam. Reque blandit qui eu, cu vix nonumy volumus. Legendos intellegam id usu, vide oporteat vix eu, id illud principes has. Nam tempor utamur gubergren no.</p>
-                                        <p class="client-name">Luisa Extnsa</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+
 <?php
 require_once 'templates/footer.php';
 ?>

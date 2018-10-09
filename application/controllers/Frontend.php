@@ -13,6 +13,8 @@ class Frontend extends CI_Controller {
 		$data = array(
 			'title' => 'AppleKitch',
 		);
+		$data['testimonials']=$this->frontend_model->get_testimonials(array(),false);
+
 		$this->load->view('home_page', $data);
 	}
 	public function home()
@@ -20,6 +22,8 @@ class Frontend extends CI_Controller {
 		$data = array(
 			'title' => 'AppleKitch',
 		);
+        $data['testimonials']=$this->frontend_model->get_testimonials(array(),false);
+        print_r($data['testimonials']); exit();
 		$this->load->view('home_page', $data);
 	}
 	public function grades(){
