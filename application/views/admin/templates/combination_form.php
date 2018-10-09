@@ -282,28 +282,29 @@
         <div class="row">
             <div class="col-lg-6">
                 <label for="num_box">Number of Box</label>
-                <input type="number" name="num_box" class="form-control num_box">
+                <input type="number" name="put_num_box" class="form-control put_num_box">
                 <br/>
-                <a href="javascript:void(0);" class="btn add_row_save num_box_done"><!--<span data-feather="plus-archive"></span>--> Done</a>
+                <a href="javascript:void(0);" class="btn add_row_save put_num_box_done"><!--<span data-feather="plus-archive"></span>-->Done</a>
             </div>
-            <div class="col-lg-3">
-                <div class="svg_box_wrap"></div>
-            </div>
-            <div class="col-lg-3">
-                <div class="svg_image_wrap"></div>
+            <div class="col-lg-6">
+                <div class="put_num_boxes_wrap"></div>
             </div>
         </div>
         <br/>
         <br/>
-        <div class="row" id="upload_images_section">
+        <div class="row upload_images_section" style="display: none;">
             <div class="col-lg-6">
                 <label for="upload_images">Upload Pattern Images</label>
-                <input type="file" multiple name="upload_images" class="form-control question_with_put_images">
+                <input type="file" multiple name="upload_images[]" class="form-control question_with_put_images">
+                <br/>
+                <a href="javascript:void(0);" class="btn add_row_save question_with_put_images_done"><!--<span data-feather="plus-archive"></span>-->Done</a>
             </div>
             <div class="col-lg-6">
-                <div id="uploaded_images" style="display: none;"></div>
+                <div class="Put_uploaded_images" style="display: none;"></div>
             </div>
         </div>
+        <input class="question_textbox" type="hidden" name="question_textbox" value=""/>
+        <input class="ans_textbox" type="hidden" name="ans_textbox" value=""/>
     </div>
 </div>
 <!---->

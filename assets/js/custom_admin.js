@@ -458,6 +458,91 @@ jQuery(document).ready(function() {
         });
     });
 
+    jQuery('body').on('click', '.put_num_box_done', function(e){
+        e.preventDefault();
+        var this_element = jQuery(this);
+        var parent = this_element.closest('.add_question_row');
+        var num_box = jQuery(parent).find('.put_num_box').val();
+        if(num_box > 0) {
+            var text = '<div class="putBoxes">';
+            for (var i = 0; i < num_box; i++) {
+                text = text + '<div class="putBox" data-id="'+i+'"></div>';
+            }
+            text = text+'</div>';
+        }
+        jQuery(parent).find('.put_num_boxes_wrap').html(text);
+        jQuery(parent).find('.upload_images_section').show();
+    });
+
+    jQuery('body').on('click', '.question_with_put_images_done', function(e) {
+        e.preventDefault();
+        var this_element = jQuery(this);
+        var parent = this_element.closest('.add_question_row');
+        var form_data = new FormData(parent.find('.addQ_form')[0]);
+        jQuery.ajax({
+            type: "POST",
+            url: base_url + 'ajax/Putimg',
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+            data: form_data,
+            success: function (data) {
+                var text1 = '<ul>';
+                var img_ar = '';
+                jQuery.each(data, function( index, value ) {
+                    text1 = text1+'<li data-title="'+value.name+'"><img src="'+value.src+'" style="width: 50px;' + ' height:' + ' auto;"/></li>';
+                    img_ar = img_ar+value.name+'|'+value.src+']';
+                });
+
+                text1 = text1+'</ul>';
+                jQuery(parent).find('.Put_uploaded_images').html(text1);
+                jQuery(parent).find('.Put_uploaded_images').show();
+
+                jQuery(parent).find('.question_textbox').val(img_ar);
+
+                jQuery(parent).find(".Put_uploaded_images ul li").draggable({
+                    helper: "clone",
+                    cursor: 'move',
+                    revert: function(valid) {
+                        if(!valid) {
+                            this.remove();
+                        }
+                    }
+                });
+                jQuery(parent).find(".putBoxes .putBox").droppable({
+                    accept: ".Put_uploaded_images ul li",
+                    classes: {
+                        "ui-droppable-active": "ui-state-active",
+                        "ui-droppable-hover": "ui-state-hover"
+                    },
+                    drop: function (event, ui) {
+                        var $canvas = jQuery(this);
+                        $canvas.addClass( "ui-state-highlight" )
+                        if (!ui.draggable.hasClass('canvas-element')) {
+                            var $canvasElement = ui.draggable.clone();
+                            $canvasElement.addClass('canvas-element');
+                            $canvasElement.draggable({
+                                containment: '#container'
+                            });
+                            $canvas.append($canvasElement);
+                            var id = $canvas.attr('data-id');
+                            var title = $canvasElement.attr('data-title');
+                            var text = 'id:'+id+'|title:'+title+']';
+                            jQuery(parent).find(".ans_textbox").val(function() {
+                                return this.value + text;
+                            });
+                            $canvasElement.css({
+                                /*left: (ui.position.left),
+                                top: (ui.position.top),*/
+                                position: 'absolute'
+                            });
+                        }
+                    }
+                });
+            }
+        });
+    });
+
     /*for GIGo Grid System*/
 
 });

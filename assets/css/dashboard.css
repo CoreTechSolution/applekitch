@@ -422,3 +422,40 @@ input[type='file']{
   height: 30px;
   float: left;
 }
+.putBoxes {
+  clear: both;
+}
+.putBoxes1 {
+  clear: both;
+}
+.putBox {
+  border: 1px solid blue;
+  width: 63px;
+  height: 63px;
+  float: left;
+  margin: 10px;
+  background-color: #dbf7ff;
+  text-align: center;
+  position: relative;
+}
+.putBox:empty:first-child {
+  border: 1px solid blue;
+}
+.putBox li {
+  list-style: none;
+  position: absolute;
+  top: 9%;
+  left: 9%;
+}
+.Put_uploaded_images ul {
+  margin: 0;
+  padding: 0;
+}
+.Put_uploaded_images ul li {
+  list-style: none;
+  display: inline-block;
+  max-width: 50px;
+  height: auto;
+  cursor: move;
+  margin: 0 10px;
+}
