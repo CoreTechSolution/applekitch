@@ -238,49 +238,64 @@
         </ul>
     </div>
 <?php } elseif($question_option=='27'){ ?>
-    <div class="row">
-        <div class="col-lg-12">
-            <?php $img_order = explode(',',$form_data['img_order']); ?>
-            <?php if(!empty($img_order)){ ?>
-                <ul class="imgpattern">
-                    <?php foreach($img_order as $img){ ?>
-                        <li><img src="<?php echo base_url('uploads/images/'.$img); ?>"></li>
-                    <?php } ?>
-                </ul>
-            <?php } ?>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="multi_putimages">
-                <div class="bg">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div class="fs">
-                    <div class="fsortable-empty"></div>
-                    <div class="fsortable-empty"></div>
-                    <div class="fsortable-empty"></div>
-                    <div class="fsortable-empty"></div>
-                    <div class="fsortable-empty"></div>
-                    <div class="fsortable-empty"></div>
-                </div>
-                <div id="content">
-                    <?php $img_array = explode('|',$form_data['img_array']); ?>
-                    <?php if(!empty($img_array)){ ?>
-                        <?php foreach($img_array as $image){ ?>
-                            <div class="item"><img src="<?php echo $image; ?>" style="max-width: 40px;" /></div>
-                        <?php } ?>
-                    <?php } ?>
-                </div>
-            </div>
-            <input id="img_order_student" type="hidden" name="img_order_student" value="">
-        </div>
-    </div>
+	<?php //print_r($form_data); ?>
+    <?php
+        if($form_data['put_num_box'] > 0) {
+
+	        if(!empty($form_data['question_textbox'])) {
+	            $question_textbox_ar = array();
+		        $question_textbox = explode(']', $form_data['question_textbox']);
+		        foreach ($question_textbox as $question_text) {
+			        if(!empty($question_text)) {
+				        $question_text_ar = explode( '|', $question_text );
+				        $question_textbox_ar[$question_text_ar[0]] = $question_text_ar[1];
+			        }
+		        }
+	        }
+
+            echo '<div class="putBoxes1">';
+            $ans_textbox = $form_data['ans_textbox'];
+            if(!empty($ans_textbox)) {
+	            $ans_textbox_ar = array();
+	            $ans_textbox1 = explode(']', $ans_textbox);
+	            foreach($ans_textbox1 as $ans1) {
+	                if(!empty($ans1)) {
+		                $ans_textbox2 = explode( '|', $ans1 );
+		                $ans_textbox3 = explode( ':', $ans_textbox2[0] );
+		                $ans_textbox4 = explode( ':', $ans_textbox2[1] );
+		                $ans_textbox_ar[$ans_textbox3[1]] = $ans_textbox4[1];
+	                }
+                }
+            }
+            for ( $i = 0; $i < $form_data['put_num_box']; $i++ ) {
+                echo '<div class="putBox"><li><img src="'.$question_textbox_ar[$ans_textbox_ar[$i]].'" style="width: 50px; height: auto;" /></li></div>';
+            }
+            echo '</div>';
+        }
+        echo '<div style="clear: both;"></div>';
+        if($form_data['put_num_box'] > 0) {
+            echo '<div class="putBoxes">';
+	        for ( $i = 0; $i < $form_data['put_num_box']; $i++ ) {
+		        echo '<div class="putBox" data-id="'.$i.'"></div>';
+	        }
+	        echo '</div>';
+        }
+        echo '<div style="clear: both;"></div>';
+        echo '<div class="Put_uploaded_images">';
+        if(!empty($form_data['question_textbox'])) {
+            echo '<ul>';
+            $question_textbox = explode(']', $form_data['question_textbox']);
+            foreach ($question_textbox as $question_text) {
+                if(!empty($question_text)) {
+	                $question_text_ar = explode( '|', $question_text );
+	                echo '<li data-title="' . $question_text_ar[0] . '"><img src="' . $question_text_ar[1] . '" style="width: 50px; height: auto;"/></li>';
+                }
+            }
+	        echo '</ul>';
+        }
+        echo '</div>';
+        echo '<input class="ans_textbox" type="hidden" name="qAns_box" value=""/>';
+    ?>
 <?php } elseif($question_option=='28'){ ?>
 	<?php //print_r($form_data); ?>
     <div class="question_image">

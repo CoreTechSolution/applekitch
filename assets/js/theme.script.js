@@ -344,6 +344,46 @@ jQuery(document).ready(function(){
                     jQuery('.qAns_box_dragDrop').val(n);
                 }
             });
+
+            jQuery(".Put_uploaded_images ul li").draggable({
+                helper: "clone",
+                cursor: 'move',
+                revert: function(valid) {
+                    if(!valid) {
+                        this.remove();
+                    }
+                }
+            });
+            jQuery(".putBoxes .putBox").droppable({
+                accept: ".Put_uploaded_images ul li",
+                classes: {
+                    "ui-droppable-active": "ui-state-active",
+                    "ui-droppable-hover": "ui-state-hover"
+                },
+                drop: function (event, ui) {
+                    var $canvas = jQuery(this);
+                    $canvas.addClass( "ui-state-highlight" )
+                    if (!ui.draggable.hasClass('canvas-element')) {
+                        var $canvasElement = ui.draggable.clone();
+                        $canvasElement.addClass('canvas-element');
+                        $canvasElement.draggable({
+                            containment: '#container'
+                        });
+                        $canvas.append($canvasElement);
+                        var id = $canvas.attr('data-id');
+                        var title = $canvasElement.attr('data-title');
+                        var text = 'id:'+id+'|title:'+title+']';
+                        jQuery(".ans_textbox").val(function() {
+                            return this.value + text;
+                        });
+                        $canvasElement.css({
+                            /*left: (ui.position.left),
+                            top: (ui.position.top),*/
+                            position: 'absolute'
+                        });
+                    }
+                }
+            });
         }, 3000);
     });
     ////////////////// Question submit AJAX End here ////////////////
@@ -712,6 +752,46 @@ jQuery(document).ready(function() {
             jQuery('.ui-droppable').find("li.ui-draggable:contains('" + zz + "')").addClass('bred');
             var n = jQuery( ".dropClass" ).length;
             jQuery('.qAns_box_dragDrop').val(n);
+        }
+    });
+
+    jQuery(".Put_uploaded_images ul li").draggable({
+        helper: "clone",
+        cursor: 'move',
+        revert: function(valid) {
+            if(!valid) {
+                this.remove();
+            }
+        }
+    });
+    jQuery(".putBoxes .putBox").droppable({
+        accept: ".Put_uploaded_images ul li",
+        classes: {
+            "ui-droppable-active": "ui-state-active",
+            "ui-droppable-hover": "ui-state-hover"
+        },
+        drop: function (event, ui) {
+            var $canvas = jQuery(this);
+            $canvas.addClass( "ui-state-highlight" )
+            if (!ui.draggable.hasClass('canvas-element')) {
+                var $canvasElement = ui.draggable.clone();
+                $canvasElement.addClass('canvas-element');
+                $canvasElement.draggable({
+                    containment: '#container'
+                });
+                $canvas.append($canvasElement);
+                var id = $canvas.attr('data-id');
+                var title = $canvasElement.attr('data-title');
+                var text = 'id:'+id+'|title:'+title+']';
+                jQuery(".ans_textbox").val(function() {
+                    return this.value + text;
+                });
+                $canvasElement.css({
+                    /*left: (ui.position.left),
+                    top: (ui.position.top),*/
+                    position: 'absolute'
+                });
+            }
         }
     });
 })

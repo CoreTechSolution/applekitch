@@ -834,6 +834,33 @@ class Ajax extends CI_Controller {
 						$rtntext['type']    = 'false';
 						$rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
 					}
+				} elseif ( $form_data['question_option'] == '27' ) {
+
+					if ( ! empty( $questions_next ) ) {
+						$question_form_data=unserialize($questions_next[0]->form_data);
+						$qview_option = 'qView_option_' . $question_form_data['question_option'];
+						$html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
+					}
+					if ( empty( $html ) ) {
+						$html = '';
+					}
+					$rtntext['html'] = $html;
+					//print_r($form_data_ans); exit();
+					$your_ans     = $form_data['qAns_box'];
+					$correct_ans     = $form_data_ans['ans_textbox'];
+					if ( $correct_ans == $your_ans ) {
+						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
+						$this->session->set_userdata( 'score_smart', ( $form_data['score'] + $questions->q_score ) );
+						$rtntext['score_ans']   = $this->session->userdata( 'score_ans' );
+						$rtntext['score_smart'] = $this->session->userdata( 'score_smart' );
+						$rtntext['type']        = 'true';
+						$rtntext['content']     = 'Correct';
+
+					} else {
+						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
+						$rtntext['type']    = 'false';
+						$rtntext['content'] = 'Wrong: Correct answer is : ';
+					}
 				} elseif ( $form_data['question_option'] == '28' ) {
 
                     if ( ! empty( $questions_next ) ) {
@@ -1198,6 +1225,40 @@ class Ajax extends CI_Controller {
 					);
 					// we can also add code to save images in database here.
 					$resultArray[ $key ] = $result;
+				}
+			}
+			echo json_encode($resultArray);
+		}
+	}
+
+	function Putimg() {
+		if($_FILES)
+		{
+			$resultArray = array();
+			$file = $_FILES['upload_images'];
+			if(!empty($file['name'])) {
+				$fileName = $file['name'];
+				//print_r($file['tmp_name']); exit();
+				foreach($fileName as $key => $filename) {
+					$tmpName  = $file['tmp_name'][$key];
+					$fileSize = $file['size'][$key];
+					$fileType = $file['type'][$key];
+					if ( $file['error'][$key] != UPLOAD_ERR_OK ) {
+						error_log( $file['error'][$key] );
+						echo JSON_encode( null );
+					}
+					$fp      = fopen( $tmpName, 'r' );
+					$content = fread( $fp, filesize( $tmpName ) );
+					fclose( $fp );
+					$result = array(
+						'name'   => $filename,
+						'type'   => 'image',
+						'src'    => "data:" . $fileType . ";base64," . base64_encode( $content ),
+						'height' => 50,
+						'width'  => 50
+					);
+					// we can also add code to save images in database here.
+					array_push( $resultArray, $result );
 				}
 			}
 			echo json_encode($resultArray);
@@ -1731,6 +1792,86 @@ class Ajax extends CI_Controller {
 
 		return $rtntext;
 	}
+
+    function qView_option_27($data,$grade_id,$subject_id,$topic_id,$start){
+        $rtntext='';
+        $start=$start+1;
+        $rtntext.='<input type="hidden" name="start" value="'.$start.'" />
+                            <input type="hidden" name="grade_id" value="'.$grade_id.'" />
+                            <input type="hidden" name="subject_id" value="'.$subject_id.'" />
+                            <input type="hidden" name="topic_id" value="'.$topic_id.'" />';
+        $rtntext.='<div class="row">';
+        $rtntext.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
+                                <div class="col-lg-5">
+                                    <div class="question_count">Question <a href="javacript:void(0);" id="play_question" data-question="<?php echo ($data->question_name); ?>"><i class="fas fa-volume-up"></i></a></div>
+                                            <div class="question_display">'.$data->question_name.'</div>
+                                </div>';
+        $rtntext.='<div class="col-lg-7">';
+        $form_serializedata=unserialize($data->form_data);
+        //print_r($form_serializedata);
+        $rtntext.='<input type="hidden" name="question_option" value="'.$form_serializedata['question_option'].'">';
+
+	    if($form_serializedata['put_num_box'] > 0) {
+
+		    if(!empty($form_serializedata['question_textbox'])) {
+			    $question_textbox_ar = array();
+			    $question_textbox = explode(']', $form_serializedata['question_textbox']);
+			    foreach ($question_textbox as $question_text) {
+				    if(!empty($question_text)) {
+					    $question_text_ar = explode( '|', $question_text );
+					    $question_textbox_ar[$question_text_ar[0]] = $question_text_ar[1];
+				    }
+			    }
+		    }
+
+		    $rtntext .= '<div class="putBoxes1">';
+		    $ans_textbox = $form_serializedata['ans_textbox'];
+		    if(!empty($ans_textbox)) {
+			    $ans_textbox_ar = array();
+			    $ans_textbox1 = explode(']', $ans_textbox);
+			    foreach($ans_textbox1 as $ans1) {
+				    if(!empty($ans1)) {
+					    $ans_textbox2 = explode( '|', $ans1 );
+					    $ans_textbox3 = explode( ':', $ans_textbox2[0] );
+					    $ans_textbox4 = explode( ':', $ans_textbox2[1] );
+					    $ans_textbox_ar[$ans_textbox3[1]] = $ans_textbox4[1];
+				    }
+			    }
+		    }
+		    for ( $i = 0; $i < $form_serializedata['put_num_box']; $i++ ) {
+			    $rtntext .= '<div class="putBox"><li><img src="'.$question_textbox_ar[$ans_textbox_ar[$i]].'" style="width: 50px; height: auto;" /></li></div>';
+		    }
+		    $rtntext .= '</div>';
+	    }
+	    $rtntext .= '<div style="clear: both;"></div>';
+	    if($form_serializedata['put_num_box'] > 0) {
+		    $rtntext .= '<div class="putBoxes">';
+		    for ( $i = 0; $i < $form_serializedata['put_num_box']; $i++ ) {
+			    $rtntext .= '<div class="putBox" data-id="'.$i.'"></div>';
+		    }
+		    $rtntext .= '</div>';
+	    }
+	    $rtntext .= '<div style="clear: both;"></div>';
+	    $rtntext .= '<div class="Put_uploaded_images">';
+	    if(!empty($form_serializedata['question_textbox'])) {
+		    $rtntext .= '<ul>';
+		    $question_textbox = explode(']', $form_serializedata['question_textbox']);
+		    foreach ($question_textbox as $question_text) {
+			    if(!empty($question_text)) {
+				    $question_text_ar = explode( '|', $question_text );
+				    $rtntext .= '<li data-title="' . $question_text_ar[0] . '"><img src="' . $question_text_ar[1] . '" style="width: 50px; height: auto;"/></li>';
+			    }
+		    }
+		    $rtntext .= '</ul>';
+	    }
+	    $rtntext .= '</div>';
+	    $rtntext .= '<input class="ans_textbox" type="hidden" name="qAns_box" value=""/>';
+        $rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
+        $rtntext.='</div>';
+        $rtntext.='</div>';
+
+        return $rtntext;
+    }
 
     function qView_option_28($data,$grade_id,$subject_id,$topic_id,$start){
         $rtntext='';
