@@ -11,10 +11,15 @@ class Login extends CI_Controller {
 	}
 	public function index()
 	{
-		$data = array(
-			'title' => 'Login',
-		);
-		$this->load->view('login_page', $data);
+		$user_id = $this->session->userdata('user_id');
+		if(empty($user_id)) {
+			$data = array(
+				'title' => 'Login',
+			);
+			$this->load->view( 'login_page', $data );
+		} else {
+			redirect('dashboard');
+		}
 	}
 	public function login_user() {
 		$user_login=array(

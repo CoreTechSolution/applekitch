@@ -19,10 +19,12 @@ require_once 'templates/header.php';
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <label>Message: </label>
-                                                    <textarea required name="message" class="form-control tinymce">Hello Friends,
+                                                    <textarea rows="7" required name="message" class="form-control tinymce">Hello Friends,
 
 Please Check this site : {{url}}</textarea>
                                                 </div>
+                                            </div>
+                                            <div class="row">
                                                 <div class="col-md-12">
                                                     <label>Email: </label>
                                                     <input required type="email" name="email" class="form-control" />

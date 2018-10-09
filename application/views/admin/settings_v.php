@@ -156,10 +156,10 @@ require_once 'templates/header.php';
                         <label for="twitter">twitter Link: </label>
                         <?php echo form_input(array('name'=>'twitter','id'=>'twitter','class'=>'form-control'),!empty($social_medias->twitter)? $social_medias->twitter:''); ?>
                     </div>
-                    <div class="form-group">
+                    <!--<div class="form-group">
                         <label for="google_plus">Google+ Link: </label>
-                        <?php echo form_input(array('name'=>'google_plus','id'=>'google_plus','class'=>'form-control'),!empty($social_medias->google_plus)? $social_medias->google_plus:''); ?>
-                    </div>
+                        <?php /*echo form_input(array('name'=>'google_plus','id'=>'google_plus','class'=>'form-control'),!empty($social_medias->google_plus)? $social_medias->google_plus:''); */?>
+                    </div>-->
                     <div class="form-group">
                         <label for="instragram">Instragram Link: </label>
                         <?php echo form_input(array('name'=>'instragram','id'=>'instragram','class'=>'form-control'),!empty($social_medias->instragram)? $social_medias->instragram:''); ?>
