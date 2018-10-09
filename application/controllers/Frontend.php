@@ -23,7 +23,7 @@ class Frontend extends CI_Controller {
 			'title' => 'AppleKitch',
 		);
         $data['testimonials']=$this->frontend_model->get_testimonials(array(),false);
-        print_r($data['testimonials']); exit();
+        //print_r($data['testimonials']); exit();
 		$this->load->view('home_page', $data);
 	}
 	public function grades(){
