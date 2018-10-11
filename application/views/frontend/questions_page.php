@@ -55,9 +55,10 @@ $this->load->view('templates/header');
                                 <input type="hidden" name="grade_id" value="<?php echo $grade_id; ?>" />
                                 <input type="hidden" name="subject_id" value="<?php echo $subject_id; ?>" />
                                 <input type="hidden" name="topic_id" value="<?php echo $topic_id; ?>" />
+
                                 <div class="row">
 									<?php foreach ($questions as $question){ ?>
-
+                                        <input type="hidden" name="id_not_in" value="<?php echo $question->question_id; ?>" />
                                         <input type="hidden" class="question_id" name="question_id" value="<?php echo $question->question_id; ?>">
                                         <div class="col-lg-5">
                                             <div class="question_count">Question <a href="javacript:void(0);" id="play_question" data-question="<?php echo ($question->question_name); ?>"><i class="fas fa-volume-up"></i></a></div>
