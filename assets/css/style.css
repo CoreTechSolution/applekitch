@@ -3052,6 +3052,9 @@ ul.imgpattern li img{
     font-size: 20px;
     font-weight: 400;
     padding: 30px 0;
+    display: block;
+    clear: both;
+    width: 100%;
 }
 .bhoechie-tab-content{
    /* -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
