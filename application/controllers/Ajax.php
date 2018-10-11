@@ -1892,7 +1892,7 @@ class Ajax extends CI_Controller {
 
         $form_serializedata=unserialize($data->form_data);
         //print_r($form_serializedata);
-
+        $rtntext.='<input type="hidden" name="question_option" value="'.$form_serializedata['question_option'].'">';
         $img_array = explode('|',$form_serializedata['img_array']);
         if(!empty($img_array)){
             $rtntext.='<div class="row">';
@@ -1922,8 +1922,7 @@ class Ajax extends CI_Controller {
             }
             $rtntext.='</div>';
         }
-        $rtntext.='</div>';
-        $rtntext.='</div>';
+
 
         $rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
         $rtntext.='</div>';
