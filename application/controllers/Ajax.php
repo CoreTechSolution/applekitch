@@ -1394,7 +1394,7 @@ class Ajax extends CI_Controller {
     function qView_option_6($data,$grade_id,$subject_id,$topic_id,$start,$id_not_in){
         $rtntext='';
         $start=$start+1;
-        $rtntext.=qView_common_part($data,$start,$grade_id,$subject_id,$id_not_in,$topic_id );
+        $rtntext.=$this->qView_common_part($data,$start,$grade_id,$subject_id,$id_not_in,$topic_id );
         $form_serializedata=unserialize($data->form_data);
         $rtntext.='<input type="hidden" name="question_option" value="'.$form_serializedata['question_option'].'">';
         $rtntext.='<div class="option_list_d onlyclickable">';
