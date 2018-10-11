@@ -2,8 +2,8 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="fb2f24d3-b74b-4b12-9d44-a81400532870" name="applekitch.cgsthemes.com" url="http://applekitch.cgsthemes.com">
-        <fileTransfer host="ftp.coregensolution.com" port="21" rootFolder="/public_html/applekitch">
+      <webServer id="fb2f24d3-b74b-4b12-9d44-a81400532870" name="applekitch.coregensolution.com" url="http://applekitch.coregensolution.com">
+        <fileTransfer host="coregensolution.com" port="21" rootFolder="/applekitch">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" />
           </advancedOptions>

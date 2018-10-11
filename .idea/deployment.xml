@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="applekitch.cgsthemes.com">
+  <component name="PublishConfigData" serverName="applekitch.coregensolution.com">
     <serverData>
-      <paths name="applekitch.cgsthemes.com">
+      <paths name="applekitch.coregensolution.com">
         <serverdata>
           <mappings>
             <mapping deploy="/" local="$PROJECT_DIR$" web="/" />

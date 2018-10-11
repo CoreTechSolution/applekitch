@@ -438,607 +438,608 @@ class Ajax extends CI_Controller {
 
 			//print_r($question_form_data);exit);
 			//print_r($questions_next);
+                if(!empty($form_data)) {
 
+                    if ($form_data['question_option'] == '1') {
 
-				if ( $form_data['question_option'] == '1' ) {
+                        if (!empty($questions_next)) {
+                            $question_form_data = unserialize($questions_next[0]->form_data);
+                            $qview_option = 'qView_option_' . $question_form_data['question_option'];
+                            $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start);
+                        }
+                        if (empty($html)) {
+                            $html = '';
+                        }
+                        $rtntext['html'] = $html;
+                        $your_ans = $form_data['qAns_box'];
+                        $correct_ans = $form_data_ans['ans_textbox'];
+                        if (strtolower($correct_ans) == strtolower($your_ans)) {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $this->session->set_userdata('score_smart', ($form_data['score'] + $questions->q_score));
+                            $rtntext['score_ans'] = $this->session->userdata('score_ans');
+                            $rtntext['score_smart'] = $this->session->userdata('score_smart');
+                            $rtntext['type'] = 'true';
+                            $rtntext['content'] = 'Correct';
 
-					if ( ! empty( $questions_next ) ) {
-						$question_form_data=unserialize($questions_next[0]->form_data);
-						$qview_option = 'qView_option_' . $question_form_data['question_option'];
-						$html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
-					}
-					if ( empty( $html ) ) {
-						$html = '';
-					}
-					$rtntext['html'] = $html;
-					$your_ans        = $form_data['qAns_box'];
-					$correct_ans     = $form_data_ans['ans_textbox'];
-					if ( strtolower( $correct_ans ) == strtolower( $your_ans ) ) {
-						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-						$this->session->set_userdata( 'score_smart', ( $form_data['score'] + $questions->q_score ) );
-						$rtntext['score_ans']   = $this->session->userdata( 'score_ans' );
-						$rtntext['score_smart'] = $this->session->userdata( 'score_smart' );
-						$rtntext['type']        = 'true';
-						$rtntext['content']     = 'Correct';
-
-					} else {
-						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-						$rtntext['type']    = 'false';
-						$rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
-					}
-				} elseif ( $form_data['question_option'] == '2' ) {
-
-					//print_r($form_data_ans);
-					if ( ! empty( $questions_next ) ) {
-						$question_form_data=unserialize($questions_next[0]->form_data);
-						$qview_option = 'qView_option_' . $question_form_data['question_option'];
-						$html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
-					} else {
-						$html = '';
-					}
-					$rtntext['html'] = $html;
-					$your_ans        = $form_data['img_answer'];
-					$correct_ans     = $form_data_ans['answer'];
-					if ( strtolower( $correct_ans  ) == strtolower( $your_ans ) ) {
-						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-						$this->session->set_userdata( 'score_smart', ( $form_data['score'] + $questions->q_score ) );
-						$rtntext['score_ans']   = $this->session->userdata( 'score_ans' );
-						$rtntext['score_smart'] = $this->session->userdata( 'score_smart' );
-						$rtntext['type']        = 'true';
-						$rtntext['content']     = 'Correct';
-
-					} else {
-						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-						$rtntext['type']    = 'false';
-						$rtntext['content'] = 'Wrong: Correct answer is : ' . $form_data_ans['answer'];
-					}
-				} elseif ( $form_data['question_option'] == '3' ) {
-
-					if ( ! empty( $questions_next ) ) {
-						$question_form_data=unserialize($questions_next[0]->form_data);
-						$qview_option = 'qView_option_' . $question_form_data['question_option'];
-						$html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
-					}
-					if ( empty( $html ) ) {
-						$html = '';
-					}
-					//echo $html; exit();
-					$rtntext['html'] = $html;
-					$your_ans        = $form_data['option_1'];
-					$correct_ans     = $form_data_ans['ans_textbox'];
-					if ( strtolower( $correct_ans ) == strtolower( $your_ans ) ) {
-						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-						$this->session->set_userdata( 'score_smart', ( $form_data['score'] + $questions->q_score ) );
-						$rtntext['score_ans']   = $this->session->userdata( 'score_ans' );
-						$rtntext['score_smart'] = $this->session->userdata( 'score_smart' );
-						$rtntext['type']        = 'true';
-						$rtntext['content']     = 'Correct';
-					} else {
-						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-						$rtntext['type']    = 'false';
-						$rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
-					}
-				} elseif ( $form_data['question_option'] == '6' ) {
-
-					if ( ! empty( $questions_next ) ) {
-						$question_form_data=unserialize($questions_next[0]->form_data);
-						$qview_option = 'qView_option_' . $question_form_data['question_option'];
-						$html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
-					}
-					if ( empty( $html ) ) {
-						$html = '';
-					}
-					//echo $html; exit();
-					$rtntext['html'] = $html;
-					$your_ans        = $form_data['option_1'];
-					$correct_ans     = $form_data_ans['ans_textbox'];
-					if ( strtolower( $correct_ans ) == strtolower( $your_ans ) ) {
-						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-						$this->session->set_userdata( 'score_smart', ( $form_data['score'] + $questions->q_score ) );
-						$rtntext['score_ans']   = $this->session->userdata( 'score_ans' );
-						$rtntext['score_smart'] = $this->session->userdata( 'score_smart' );
-						$rtntext['type']        = 'true';
-						$rtntext['content']     = 'Correct';
-					} else {
-						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-						$rtntext['type']    = 'false';
-						$rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
-					}
-				} elseif ( $form_data['question_option'] == '8' ) {
-
-					//print_r($questions_next);
-					if ( ! empty( $questions_next ) ) {
-						$question_form_data=unserialize($questions_next[0]->form_data);
-						$qview_option = 'qView_option_' . $question_form_data['question_option'];
-						$html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
-					} else {
-						$html = '';
-					}
-					$rtntext['html'] = $html;
-					$img_answer      = explode( ',', $form_data['img_answer'] );
-					$your_ans        = $img_answer;
-					$correct_ans     = $form_data_ans['answer'];
-					if ( $correct_ans == $your_ans ) {
-						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-						$this->session->set_userdata( 'score_smart', ( $form_data['score'] + $questions->q_score ) );
-						$rtntext['score_ans']   = $this->session->userdata( 'score_ans' );
-						$rtntext['score_smart'] = $this->session->userdata( 'score_smart' );
-						$rtntext['type']        = 'true';
-						$rtntext['content']     = 'Correct';
-					} else {
-						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-						$rtntext['type']    = 'false';
-						$rtntext['content'] = 'Wrong';
-					}
-				} elseif ( $form_data['question_option'] == '9' ) {
-
-					if ( ! empty( $questions_next ) ) {
-						$question_form_data=unserialize($questions_next[0]->form_data);
-						$qview_option = 'qView_option_' . $question_form_data['question_option'];
-						$html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
-					}
-					if ( empty( $html ) ) {
-						$html = '';
-					}
-					//echo $html; exit();
-					$rtntext['html'] = $html;
-					$your_ans        = $form_data['option_1'];
-					$correct_ans     = $form_data_ans['ans_textbox'];
-					if ( strtolower( $correct_ans ) == strtolower( $your_ans ) ) {
-						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-						$this->session->set_userdata( 'score_smart', ( $form_data['score'] + $questions->q_score ) );
-						$rtntext['score_ans']   = $this->session->userdata( 'score_ans' );
-						$rtntext['score_smart'] = $this->session->userdata( 'score_smart' );
-						$rtntext['type']        = 'true';
-						$rtntext['content']     = 'Correct';
-					} else {
-						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-						$rtntext['type']    = 'false';
-						$rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
-					}
-				} elseif ( $form_data['question_option'] == '11' ) {
-
-					if ( ! empty( $questions_next ) ) {
-						$question_form_data=unserialize($questions_next[0]->form_data);
-						$qview_option = 'qView_option_' . $question_form_data['question_option'];
-						$html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
-					}
-					if ( empty( $html ) ) {
-						$html = '';
-					}
-					$rtntext['html'] = $html;
-					$your_ans        = $form_data['qAns_box'];
-					$correct_ans     = $form_data_ans['ans_textbox'];
-					if ( strtolower( $correct_ans ) == strtolower( $your_ans ) ) {
-						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-						$this->session->set_userdata( 'score_smart', ( $form_data['score'] + $questions->q_score ) );
-						$rtntext['score_ans']   = $this->session->userdata( 'score_ans' );
-						$rtntext['score_smart'] = $this->session->userdata( 'score_smart' );
-						$rtntext['type']        = 'true';
-						$rtntext['content']     = 'Correct';
-
-					} else {
-						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-						$rtntext['type']    = 'false';
-						$rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
-					}
-				} elseif ( $form_data['question_option'] == '12' ) {
-
-					if ( ! empty( $questions_next ) ) {
-						$question_form_data=unserialize($questions_next[0]->form_data);
-						$qview_option = 'qView_option_' . $question_form_data['question_option'];
-						$html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
-					}
-					if ( empty( $html ) ) {
-						$html = '';
-					}
-					$rtntext['html'] = $html;
-					$your_ans        = $form_data['qAns_box'];
-					$correct_ans     = $form_data_ans['ans_textbox'];
-					if ( $correct_ans == $your_ans ) {
-						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-						$this->session->set_userdata( 'score_smart', ( $form_data['score'] + $questions->q_score ) );
-						$rtntext['score_ans']   = $this->session->userdata( 'score_ans' );
-						$rtntext['score_smart'] = $this->session->userdata( 'score_smart' );
-						$rtntext['type']        = 'true';
-						$rtntext['content']     = 'Correct';
-
-					} else {
-						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-						$rtntext['type']    = 'false';
-						$rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
-					}
-				} elseif ( $form_data['question_option'] == '14' ) {
-
-					if ( ! empty( $questions_next ) ) {
-						$question_form_data=unserialize($questions_next[0]->form_data);
-						$qview_option = 'qView_option_' . $question_form_data['question_option'];
-						$html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
-					}
-					if ( empty( $html ) ) {
-						$html = '';
-					}
-					//echo $html; exit();
-					$rtntext['html'] = $html;
-					$your_ans        = $form_data['option_1'];
-					$correct_ans     = $form_data_ans['ans_textbox'];
-					if ( strtolower( $correct_ans ) == strtolower( $your_ans ) ) {
-						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-						$this->session->set_userdata( 'score_smart', ( $form_data['score'] + $questions->q_score ) );
-						$rtntext['score_ans']   = $this->session->userdata( 'score_ans' );
-						$rtntext['score_smart'] = $this->session->userdata( 'score_smart' );
-						$rtntext['type']        = 'true';
-						$rtntext['content']     = 'Correct';
-					} else {
-						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-						$rtntext['type']    = 'false';
-						$rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
-					}
-				} elseif ( $form_data['question_option'] == '15' ) {
-
-					//print_r($questions_next);
-					if ( ! empty( $questions_next ) ) {
-						$question_form_data=unserialize($questions_next[0]->form_data);
-						$qview_option = 'qView_option_' . $question_form_data['question_option'];
-						$html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
-					} else {
-						$html = '';
-					}
-					$rtntext['html'] = $html;
-					$your_ans        = $form_data['img_answer'];
-					$correct_ans     = $form_data_ans['answer'];
-					if ( strtolower( $correct_ans ) == strtolower( $your_ans ) ) {
-						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-						$this->session->set_userdata( 'score_smart', ( $form_data['score'] + $questions->q_score ) );
-						$rtntext['score_ans']   = $this->session->userdata( 'score_ans' );
-						$rtntext['score_smart'] = $this->session->userdata( 'score_smart' );
-						$rtntext['type']        = 'true';
-						$rtntext['content']     = 'Correct';
-
-					} else {
-						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-						$rtntext['type']    = 'false';
-						$rtntext['content'] = 'Wrong: Correct answer is : ' . $form_data_ans['answer'];
-					}
-				} elseif ( $form_data['question_option'] == '5' ) {
-
-					if ( ! empty( $questions_next ) ) {
-						$question_form_data=unserialize($questions_next[0]->form_data);
-						$qview_option = 'qView_option_' . $question_form_data['question_option'];
-						$html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
-					}
-					if ( empty( $html ) ) {
-						$html = '';
-					}
-					//echo $html; exit();
-					$rtntext['html'] = $html;
-					$your_ans        = $form_data['option_arrange'];
-					$correct_ans     = $form_data_ans['option_arrange'];
-					if ( $correct_ans == $your_ans ) {
-						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-						$this->session->set_userdata( 'score_smart', ( $form_data['score'] + $questions->q_score ) );
-						$rtntext['score_ans']   = $this->session->userdata( 'score_ans' );
-						$rtntext['score_smart'] = $this->session->userdata( 'score_smart' );
-						$rtntext['type']        = 'true';
-						$rtntext['content']     = 'Correct';
-					} else {
-						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-						$rtntext['type']    = 'false';
-						if(is_array($correct_ans))
-						    $rtntext['content'] = 'Wrong: Correct answer is : ' . serialize($correct_ans);
-						else
+                        } else {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $rtntext['type'] = 'false';
                             $rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
-					}
-				} elseif ( $form_data['question_option'] == '13' ) {
-
-					if ( ! empty( $questions_next ) ) {
-						$question_form_data=unserialize($questions_next[0]->form_data);
-						$qview_option = 'qView_option_' . $question_form_data['question_option'];
-						$html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
-					}
-					if ( empty( $html ) ) {
-						$html = '';
-					}
-					//echo $html; exit();
-					$rtntext['html'] = $html;
-					$your_ans        = $form_data['option_1'];
-					$correct_ans     = $form_data_ans['ans_textbox'];
-					if ( strtolower( $correct_ans ) == strtolower( $your_ans ) ) {
-						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-						$this->session->set_userdata( 'score_smart', ( $form_data['score'] + $questions->q_score ) );
-						$rtntext['score_ans']   = $this->session->userdata( 'score_ans' );
-						$rtntext['score_smart'] = $this->session->userdata( 'score_smart' );
-						$rtntext['type']        = 'true';
-						$rtntext['content']     = 'Correct';
-					} else {
-						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-						$rtntext['type']    = 'false';
-						$rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
-					}
-				} elseif ( $form_data['question_option'] == '18' ) {
-
-                    if ( ! empty( $questions_next ) ) {
-                        $question_form_data=unserialize($questions_next[0]->form_data);
-                        $qview_option = 'qView_option_' . $question_form_data['question_option'];
-                        $html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
-                    }
-                    if ( empty( $html ) ) {
-                        $html = '';
-                    }
-                    $rtntext['html'] = $html;
-                    $your_ans     = $form_data['qAns_box1'] . 'and' .$form_data['qAns_box2'];
-                    $correct_ans     = $form_data_ans['ans_textbox1']. 'and' .$form_data_ans['ans_textbox2'];
-                    if ( strtolower( $correct_ans ) == strtolower( $your_ans) ) {
-                        $this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-                        $this->session->set_userdata( 'score_smart', ( $form_data['score'] + $questions->q_score ) );
-                        $rtntext['score_ans']   = $this->session->userdata( 'score_ans' );
-                        $rtntext['score_smart'] = $this->session->userdata( 'score_smart' );
-                        $rtntext['type']        = 'true';
-                        $rtntext['content']     = 'Correct';
-
-                    } else {
-                        $this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-                        $rtntext['type']    = 'false';
-                        $rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
-                    }
-                } elseif ( $form_data['question_option'] == '20' ) {
-
-					if ( ! empty( $questions_next ) ) {
-						$question_form_data=unserialize($questions_next[0]->form_data);
-						$qview_option = 'qView_option_' . $question_form_data['question_option'];
-						$html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
-					}
-					if ( empty( $html ) ) {
-						$html = '';
-
-					}
-					//echo $html; exit();
-					$rtntext['html'] = $html;
-					$your_ans        = $form_data['option_1'];
-					$correct_ans     = $form_data_ans['ans_textbox'];
-					if ( strtolower( $correct_ans ) == strtolower( $your_ans ) ) {
-						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-						$this->session->set_userdata( 'score_smart', ( $form_data['score'] + $questions->q_score ) );
-						$rtntext['score_ans']   = $this->session->userdata( 'score_ans' );
-						$rtntext['score_smart'] = $this->session->userdata( 'score_smart' );
-						$rtntext['type']        = 'true';
-						$rtntext['content']     = 'Correct';
-					} else {
-						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-						$rtntext['type']    = 'false';
-						$rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
-					}
-				} elseif ( $form_data['question_option'] == '26' ) {
-
-					if ( ! empty( $questions_next ) ) {
-						$question_form_data=unserialize($questions_next[0]->form_data);
-						$qview_option = 'qView_option_' . $question_form_data['question_option'];
-						$html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
-					}
-					if ( empty( $html ) ) {
-						$html = '';
-					}
-
-					$rtntext['html'] = $html;
-					$your_ans        = $form_data['selected_option'];
-					$correct_ans     = $form_data_ans['ans_textbox'];
-					if ( $correct_ans == $your_ans ) {
-						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-						$this->session->set_userdata( 'score_smart', ( $form_data['score'] + $questions->q_score ) );
-						$rtntext['score_ans']   = $this->session->userdata( 'score_ans' );
-						$rtntext['score_smart'] = $this->session->userdata( 'score_smart' );
-						$rtntext['type']        = 'true';
-						$rtntext['content']     = 'Correct';
-					} else {
-						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-						$rtntext['type']    = 'false';
-						$rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
-					}
-				} elseif ( $form_data['question_option'] == '27' ) {
-
-					if ( ! empty( $questions_next ) ) {
-						$question_form_data=unserialize($questions_next[0]->form_data);
-						$qview_option = 'qView_option_' . $question_form_data['question_option'];
-						$html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
-					}
-					if ( empty( $html ) ) {
-						$html = '';
-					}
-					$rtntext['html'] = $html;
-					//print_r($form_data_ans); exit();
-					$your_ans     = $form_data['qAns_box'];
-					$correct_ans     = $form_data_ans['ans_textbox'];
-					if ( $correct_ans == $your_ans ) {
-						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-						$this->session->set_userdata( 'score_smart', ( $form_data['score'] + $questions->q_score ) );
-						$rtntext['score_ans']   = $this->session->userdata( 'score_ans' );
-						$rtntext['score_smart'] = $this->session->userdata( 'score_smart' );
-						$rtntext['type']        = 'true';
-						$rtntext['content']     = 'Correct';
-
-					} else {
-						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-						$rtntext['type']    = 'false';
-						$rtntext['content'] = 'Wrong: Correct answer is : ';
-					}
-				} elseif ( $form_data['question_option'] == '28' ) {
-
-                    if ( ! empty( $questions_next ) ) {
-                        $question_form_data=unserialize($questions_next[0]->form_data);
-                        $qview_option = 'qView_option_' . $question_form_data['question_option'];
-                        $html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
-                    }
-                    if ( empty( $html ) ) {
-                        $html = '';
-                    }
-                    $rtntext['html'] = $html;
-                    //print_r($form_data_ans); exit();
-                    $your_ans     = $form_data['qAns_box1'] . 'and' .$form_data['qAns_box2'];
-                    $correct_ans     = $form_data_ans['ans_textbox1']. 'and' .$form_data_ans['ans_textbox2'];
-                    if ( strtolower( $correct_ans ) == strtolower( $your_ans) ) {
-                        $this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-                        $this->session->set_userdata( 'score_smart', ( $form_data['score'] + $questions->q_score ) );
-                        $rtntext['score_ans']   = $this->session->userdata( 'score_ans' );
-                        $rtntext['score_smart'] = $this->session->userdata( 'score_smart' );
-                        $rtntext['type']        = 'true';
-                        $rtntext['content']     = 'Correct';
-
-                    } else {
-                        $this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-                        $rtntext['type']    = 'false';
-                        $rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
-                    }
-				} elseif ( $form_data['question_option'] == '29' ) {
-					if ( ! empty( $questions_next ) ) {
-						$question_form_data=unserialize($questions_next[0]->form_data);
-						$qview_option = 'qView_option_' . $question_form_data['question_option'];
-						$html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
-					}
-					if ( empty( $html ) ) {
-						$html = '';
-					}
-					//echo $html; exit();
-					$rtntext['html'] = $html;
-					$your_ans        = $form_data['qAns_box'];
-					$correct_ans     = $form_data_ans['ans_textbox'];
-					if ( $correct_ans == $your_ans ) {
-						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-						$this->session->set_userdata( 'score_smart', ( $form_data['score'] + $questions->q_score ) );
-						$rtntext['score_ans']   = $this->session->userdata( 'score_ans' );
-						$rtntext['score_smart'] = $this->session->userdata( 'score_smart' );
-						$rtntext['type']        = 'true';
-						$rtntext['content']     = 'Correct';
-					} else {
-						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-						$rtntext['type']    = 'false';
-						$rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
-					}
-                } elseif ( $form_data['question_option'] == '31' ) {
-
-                    if ( ! empty( $questions_next ) ) {
-                        $question_form_data=unserialize($questions_next[0]->form_data);
-                        $qview_option = 'qView_option_' . $question_form_data['question_option'];
-                        $html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
-                    }
-                    if ( empty( $html ) ) {
-                        $html = '';
-                    }
-                    $rtntext['html'] = $html;
-                    //print_r($form_data_ans); exit();
-                    $ans='';
-                    $counter_ans=0;
-                    $yans='';
-                    $ycounter_ans=0;
-                    foreach ($form_data_ans['option_1'] as $option_1){
-                        if($counter_ans==0){
-                            $ans.=$option_1;
-                        } else{
-                            $ans.='|'.$option_1;
                         }
-                        $counter_ans++;
-                    }
-                    foreach ($form_data['qAns_box'] as $option_1){
-                        if($ycounter_ans==0){
-                            $yans.=$option_1;
-                        } else{
-                            $yans.='|'.$option_1;
+                    } elseif ($form_data['question_option'] == '2') {
+
+                        //print_r($form_data_ans);
+                        if (!empty($questions_next)) {
+                            $question_form_data = unserialize($questions_next[0]->form_data);
+                            $qview_option = 'qView_option_' . $question_form_data['question_option'];
+                            $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start);
+                        } else {
+                            $html = '';
                         }
-                        $ycounter_ans++;
-                    }
-                    $your_ans     = $yans;
-                    $correct_ans     = $ans;
-                    if ( strtolower( $correct_ans ) == strtolower( $your_ans) ) {
-                        $this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-                        $this->session->set_userdata( 'score_smart', ( $form_data['score'] + $questions->q_score ) );
-                        $rtntext['score_ans']   = $this->session->userdata( 'score_ans' );
-                        $rtntext['score_smart'] = $this->session->userdata( 'score_smart' );
-                        $rtntext['type']        = 'true';
-                        $rtntext['content']     = 'Correct';
+                        $rtntext['html'] = $html;
+                        $your_ans = $form_data['img_answer'];
+                        $correct_ans = $form_data_ans['answer'];
+                        if (strtolower($correct_ans) == strtolower($your_ans)) {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $this->session->set_userdata('score_smart', ($form_data['score'] + $questions->q_score));
+                            $rtntext['score_ans'] = $this->session->userdata('score_ans');
+                            $rtntext['score_smart'] = $this->session->userdata('score_smart');
+                            $rtntext['type'] = 'true';
+                            $rtntext['content'] = 'Correct';
 
-                    } else {
-                        $this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-                        $rtntext['type']    = 'false';
-                        $rtntext['content'] = 'Wrong: Correct answer is : ' . $ans;
-                    }
-				} elseif ( $form_data['question_option'] == '32' ) {
-					if ( ! empty( $questions_next ) ) {
-						$question_form_data=unserialize($questions_next[0]->form_data);
-						$qview_option = 'qView_option_' . $question_form_data['question_option'];
-						$html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
-					}
-					if ( empty( $html ) ) {
-						$html = '';
-					}
-					//echo $html; exit();
-					$rtntext['html'] = $html;
-					$your_ans        = $form_data['qAns_box'];
-					$correct_ans     = $form_data_ans['ans_textbox'];
-					if ( json_encode($correct_ans) == json_encode($your_ans) ) {
-						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-						$this->session->set_userdata( 'score_smart', ( $form_data['score'] + $questions->q_score ) );
-						$rtntext['score_ans']   = $this->session->userdata( 'score_ans' );
-						$rtntext['score_smart'] = $this->session->userdata( 'score_smart' );
-						$rtntext['type']        = 'true';
-						$rtntext['content']     = 'Correct';
-					} else {
-						$this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-						$rtntext['type']    = 'false';
-						$rtntext['content'] = 'Wrong: Correct answer is : ' . $form_data_ans['ans_textbox1'];
-					}
-                } elseif ( $form_data['question_option'] == '33' ) {
+                        } else {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $rtntext['type'] = 'false';
+                            $rtntext['content'] = 'Wrong: Correct answer is : ' . $form_data_ans['answer'];
+                        }
+                    } elseif ($form_data['question_option'] == '3') {
 
-                    if ( ! empty( $questions_next ) ) {
-                        $question_form_data=unserialize($questions_next[0]->form_data);
-                        $qview_option = 'qView_option_' . $question_form_data['question_option'];
-                        $html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
-                    }
-                    if ( empty( $html ) ) {
-                        $html = '';
-                    }
-                    //echo $html; exit();
-                    $rtntext['html'] = $html;
-                    $your_ans        = $form_data['qAns_box'];
-                    $correct_ans     = $form_data_ans['ans_textbox'];
-                    if ( strtolower( $correct_ans ) == strtolower( $your_ans ) ) {
-                        $this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-                        $this->session->set_userdata( 'score_smart', ( $form_data['score'] + $questions->q_score ) );
-                        $rtntext['score_ans']   = $this->session->userdata( 'score_ans' );
-                        $rtntext['score_smart'] = $this->session->userdata( 'score_smart' );
-                        $rtntext['type']        = 'true';
-                        $rtntext['content']     = 'Correct';
-                    } else {
-                        $this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-                        $rtntext['type']    = 'false';
-                        $rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
-                    }
-                } elseif ( $form_data['question_option'] == '34' ) {
+                        if (!empty($questions_next)) {
+                            $question_form_data = unserialize($questions_next[0]->form_data);
+                            $qview_option = 'qView_option_' . $question_form_data['question_option'];
+                            $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start);
+                        }
+                        if (empty($html)) {
+                            $html = '';
+                        }
+                        //echo $html; exit();
+                        $rtntext['html'] = $html;
+                        $your_ans = $form_data['option_1'];
+                        $correct_ans = $form_data_ans['ans_textbox'];
+                        if (strtolower($correct_ans) == strtolower($your_ans)) {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $this->session->set_userdata('score_smart', ($form_data['score'] + $questions->q_score));
+                            $rtntext['score_ans'] = $this->session->userdata('score_ans');
+                            $rtntext['score_smart'] = $this->session->userdata('score_smart');
+                            $rtntext['type'] = 'true';
+                            $rtntext['content'] = 'Correct';
+                        } else {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $rtntext['type'] = 'false';
+                            $rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
+                        }
+                    } elseif ($form_data['question_option'] == '6') {
 
-                    //print_r($form_data_ans);
-                    if ( ! empty( $questions_next ) ) {
-                        $question_form_data=unserialize($questions_next[0]->form_data);
-                        $qview_option = 'qView_option_' . $question_form_data['question_option'];
-                        $html = $this->$qview_option( $questions_next[0], $grade_id, $subject_id, $topic_id, $start );
-                    } else {
-                        $html = '';
-                    }
-                    $rtntext['html'] = $html;
-                    $your_ans        = $form_data['img_answer'];
-                    $correct_ans     = $form_data_ans['answer'];
-                    if ( strtolower( $correct_ans  ) == strtolower( $your_ans ) ) {
-                        $this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-                        $this->session->set_userdata( 'score_smart', ( $form_data['score'] + $questions->q_score ) );
-                        $rtntext['score_ans']   = $this->session->userdata( 'score_ans' );
-                        $rtntext['score_smart'] = $this->session->userdata( 'score_smart' );
-                        $rtntext['type']        = 'true';
-                        $rtntext['content']     = 'Correct';
+                        if (!empty($questions_next)) {
+                            $question_form_data = unserialize($questions_next[0]->form_data);
+                            $qview_option = 'qView_option_' . $question_form_data['question_option'];
+                            $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start);
+                        }
+                        if (empty($html)) {
+                            $html = '';
+                        }
+                        //echo $html; exit();
+                        $rtntext['html'] = $html;
+                        $your_ans = $form_data['option_1'];
+                        $correct_ans = $form_data_ans['ans_textbox'];
+                        if (strtolower($correct_ans) == strtolower($your_ans)) {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $this->session->set_userdata('score_smart', ($form_data['score'] + $questions->q_score));
+                            $rtntext['score_ans'] = $this->session->userdata('score_ans');
+                            $rtntext['score_smart'] = $this->session->userdata('score_smart');
+                            $rtntext['type'] = 'true';
+                            $rtntext['content'] = 'Correct';
+                        } else {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $rtntext['type'] = 'false';
+                            $rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
+                        }
+                    } elseif ($form_data['question_option'] == '8') {
 
-                    } else {
-                        $this->session->set_userdata( 'score_ans', ( $form_data['answred'] + 1 ) );
-                        $rtntext['type']    = 'false';
-                        $rtntext['content'] = 'Wrong: Correct answer is : ' . $form_data_ans['answer'];
+                        //print_r($questions_next);
+                        if (!empty($questions_next)) {
+                            $question_form_data = unserialize($questions_next[0]->form_data);
+                            $qview_option = 'qView_option_' . $question_form_data['question_option'];
+                            $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start);
+                        } else {
+                            $html = '';
+                        }
+                        $rtntext['html'] = $html;
+                        $img_answer = explode(',', $form_data['img_answer']);
+                        $your_ans = $img_answer;
+                        $correct_ans = $form_data_ans['answer'];
+                        if ($correct_ans == $your_ans) {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $this->session->set_userdata('score_smart', ($form_data['score'] + $questions->q_score));
+                            $rtntext['score_ans'] = $this->session->userdata('score_ans');
+                            $rtntext['score_smart'] = $this->session->userdata('score_smart');
+                            $rtntext['type'] = 'true';
+                            $rtntext['content'] = 'Correct';
+                        } else {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $rtntext['type'] = 'false';
+                            $rtntext['content'] = 'Wrong';
+                        }
+                    } elseif ($form_data['question_option'] == '9') {
+
+                        if (!empty($questions_next)) {
+                            $question_form_data = unserialize($questions_next[0]->form_data);
+                            $qview_option = 'qView_option_' . $question_form_data['question_option'];
+                            $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start);
+                        }
+                        if (empty($html)) {
+                            $html = '';
+                        }
+                        //echo $html; exit();
+                        $rtntext['html'] = $html;
+                        $your_ans = $form_data['option_1'];
+                        $correct_ans = $form_data_ans['ans_textbox'];
+                        if (strtolower($correct_ans) == strtolower($your_ans)) {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $this->session->set_userdata('score_smart', ($form_data['score'] + $questions->q_score));
+                            $rtntext['score_ans'] = $this->session->userdata('score_ans');
+                            $rtntext['score_smart'] = $this->session->userdata('score_smart');
+                            $rtntext['type'] = 'true';
+                            $rtntext['content'] = 'Correct';
+                        } else {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $rtntext['type'] = 'false';
+                            $rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
+                        }
+                    } elseif ($form_data['question_option'] == '11') {
+
+                        if (!empty($questions_next)) {
+                            $question_form_data = unserialize($questions_next[0]->form_data);
+                            $qview_option = 'qView_option_' . $question_form_data['question_option'];
+                            $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start);
+                        }
+                        if (empty($html)) {
+                            $html = '';
+                        }
+                        $rtntext['html'] = $html;
+                        $your_ans = $form_data['qAns_box'];
+                        $correct_ans = $form_data_ans['ans_textbox'];
+                        if (strtolower($correct_ans) == strtolower($your_ans)) {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $this->session->set_userdata('score_smart', ($form_data['score'] + $questions->q_score));
+                            $rtntext['score_ans'] = $this->session->userdata('score_ans');
+                            $rtntext['score_smart'] = $this->session->userdata('score_smart');
+                            $rtntext['type'] = 'true';
+                            $rtntext['content'] = 'Correct';
+
+                        } else {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $rtntext['type'] = 'false';
+                            $rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
+                        }
+                    } elseif ($form_data['question_option'] == '12') {
+
+                        if (!empty($questions_next)) {
+                            $question_form_data = unserialize($questions_next[0]->form_data);
+                            $qview_option = 'qView_option_' . $question_form_data['question_option'];
+                            $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start);
+                        }
+                        if (empty($html)) {
+                            $html = '';
+                        }
+                        $rtntext['html'] = $html;
+                        $your_ans = $form_data['qAns_box'];
+                        $correct_ans = $form_data_ans['ans_textbox'];
+                        if ($correct_ans == $your_ans) {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $this->session->set_userdata('score_smart', ($form_data['score'] + $questions->q_score));
+                            $rtntext['score_ans'] = $this->session->userdata('score_ans');
+                            $rtntext['score_smart'] = $this->session->userdata('score_smart');
+                            $rtntext['type'] = 'true';
+                            $rtntext['content'] = 'Correct';
+
+                        } else {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $rtntext['type'] = 'false';
+                            $rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
+                        }
+                    } elseif ($form_data['question_option'] == '14') {
+
+                        if (!empty($questions_next)) {
+                            $question_form_data = unserialize($questions_next[0]->form_data);
+                            $qview_option = 'qView_option_' . $question_form_data['question_option'];
+                            $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start);
+                        }
+                        if (empty($html)) {
+                            $html = '';
+                        }
+                        //echo $html; exit();
+                        $rtntext['html'] = $html;
+                        $your_ans = $form_data['option_1'];
+                        $correct_ans = $form_data_ans['ans_textbox'];
+                        if (strtolower($correct_ans) == strtolower($your_ans)) {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $this->session->set_userdata('score_smart', ($form_data['score'] + $questions->q_score));
+                            $rtntext['score_ans'] = $this->session->userdata('score_ans');
+                            $rtntext['score_smart'] = $this->session->userdata('score_smart');
+                            $rtntext['type'] = 'true';
+                            $rtntext['content'] = 'Correct';
+                        } else {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $rtntext['type'] = 'false';
+                            $rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
+                        }
+                    } elseif ($form_data['question_option'] == '15') {
+
+                        //print_r($questions_next);
+                        if (!empty($questions_next)) {
+                            $question_form_data = unserialize($questions_next[0]->form_data);
+                            $qview_option = 'qView_option_' . $question_form_data['question_option'];
+                            $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start);
+                        } else {
+                            $html = '';
+                        }
+                        $rtntext['html'] = $html;
+                        $your_ans = $form_data['img_answer'];
+                        $correct_ans = $form_data_ans['answer'];
+                        if (strtolower($correct_ans) == strtolower($your_ans)) {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $this->session->set_userdata('score_smart', ($form_data['score'] + $questions->q_score));
+                            $rtntext['score_ans'] = $this->session->userdata('score_ans');
+                            $rtntext['score_smart'] = $this->session->userdata('score_smart');
+                            $rtntext['type'] = 'true';
+                            $rtntext['content'] = 'Correct';
+
+                        } else {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $rtntext['type'] = 'false';
+                            $rtntext['content'] = 'Wrong: Correct answer is : ' . $form_data_ans['answer'];
+                        }
+                    } elseif ($form_data['question_option'] == '5') {
+
+                        if (!empty($questions_next)) {
+                            $question_form_data = unserialize($questions_next[0]->form_data);
+                            $qview_option = 'qView_option_' . $question_form_data['question_option'];
+                            $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start);
+                        }
+                        if (empty($html)) {
+                            $html = '';
+                        }
+                        //echo $html; exit();
+                        $rtntext['html'] = $html;
+                        $your_ans = $form_data['option_arrange'];
+                        $correct_ans = $form_data_ans['option_arrange'];
+                        if ($correct_ans == $your_ans) {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $this->session->set_userdata('score_smart', ($form_data['score'] + $questions->q_score));
+                            $rtntext['score_ans'] = $this->session->userdata('score_ans');
+                            $rtntext['score_smart'] = $this->session->userdata('score_smart');
+                            $rtntext['type'] = 'true';
+                            $rtntext['content'] = 'Correct';
+                        } else {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $rtntext['type'] = 'false';
+                            if (is_array($correct_ans))
+                                $rtntext['content'] = 'Wrong: Correct answer is : ' . serialize($correct_ans);
+                            else
+                                $rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
+                        }
+                    } elseif ($form_data['question_option'] == '13') {
+
+                        if (!empty($questions_next)) {
+                            $question_form_data = unserialize($questions_next[0]->form_data);
+                            $qview_option = 'qView_option_' . $question_form_data['question_option'];
+                            $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start);
+                        }
+                        if (empty($html)) {
+                            $html = '';
+                        }
+                        //echo $html; exit();
+                        $rtntext['html'] = $html;
+                        $your_ans = $form_data['option_1'];
+                        $correct_ans = $form_data_ans['ans_textbox'];
+                        if (strtolower($correct_ans) == strtolower($your_ans)) {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $this->session->set_userdata('score_smart', ($form_data['score'] + $questions->q_score));
+                            $rtntext['score_ans'] = $this->session->userdata('score_ans');
+                            $rtntext['score_smart'] = $this->session->userdata('score_smart');
+                            $rtntext['type'] = 'true';
+                            $rtntext['content'] = 'Correct';
+                        } else {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $rtntext['type'] = 'false';
+                            $rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
+                        }
+                    } elseif ($form_data['question_option'] == '18') {
+
+                        if (!empty($questions_next)) {
+                            $question_form_data = unserialize($questions_next[0]->form_data);
+                            $qview_option = 'qView_option_' . $question_form_data['question_option'];
+                            $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start);
+                        }
+                        if (empty($html)) {
+                            $html = '';
+                        }
+                        $rtntext['html'] = $html;
+                        $your_ans = $form_data['qAns_box1'] . 'and' . $form_data['qAns_box2'];
+                        $correct_ans = $form_data_ans['ans_textbox1'] . 'and' . $form_data_ans['ans_textbox2'];
+                        if (strtolower($correct_ans) == strtolower($your_ans)) {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $this->session->set_userdata('score_smart', ($form_data['score'] + $questions->q_score));
+                            $rtntext['score_ans'] = $this->session->userdata('score_ans');
+                            $rtntext['score_smart'] = $this->session->userdata('score_smart');
+                            $rtntext['type'] = 'true';
+                            $rtntext['content'] = 'Correct';
+
+                        } else {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $rtntext['type'] = 'false';
+                            $rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
+                        }
+                    } elseif ($form_data['question_option'] == '20') {
+
+                        if (!empty($questions_next)) {
+                            $question_form_data = unserialize($questions_next[0]->form_data);
+                            $qview_option = 'qView_option_' . $question_form_data['question_option'];
+                            $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start);
+                        }
+                        if (empty($html)) {
+                            $html = '';
+
+                        }
+                        //echo $html; exit();
+                        $rtntext['html'] = $html;
+                        $your_ans = $form_data['option_1'];
+                        $correct_ans = $form_data_ans['ans_textbox'];
+                        if (strtolower($correct_ans) == strtolower($your_ans)) {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $this->session->set_userdata('score_smart', ($form_data['score'] + $questions->q_score));
+                            $rtntext['score_ans'] = $this->session->userdata('score_ans');
+                            $rtntext['score_smart'] = $this->session->userdata('score_smart');
+                            $rtntext['type'] = 'true';
+                            $rtntext['content'] = 'Correct';
+                        } else {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $rtntext['type'] = 'false';
+                            $rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
+                        }
+                    } elseif ($form_data['question_option'] == '26') {
+
+                        if (!empty($questions_next)) {
+                            $question_form_data = unserialize($questions_next[0]->form_data);
+                            $qview_option = 'qView_option_' . $question_form_data['question_option'];
+                            $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start);
+                        }
+                        if (empty($html)) {
+                            $html = '';
+                        }
+
+                        $rtntext['html'] = $html;
+                        $your_ans = $form_data['selected_option'];
+                        $correct_ans = $form_data_ans['ans_textbox'];
+                        if ($correct_ans == $your_ans) {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $this->session->set_userdata('score_smart', ($form_data['score'] + $questions->q_score));
+                            $rtntext['score_ans'] = $this->session->userdata('score_ans');
+                            $rtntext['score_smart'] = $this->session->userdata('score_smart');
+                            $rtntext['type'] = 'true';
+                            $rtntext['content'] = 'Correct';
+                        } else {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $rtntext['type'] = 'false';
+                            $rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
+                        }
+                    } elseif ($form_data['question_option'] == '27') {
+
+                        if (!empty($questions_next)) {
+                            $question_form_data = unserialize($questions_next[0]->form_data);
+                            $qview_option = 'qView_option_' . $question_form_data['question_option'];
+                            $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start);
+                        }
+                        if (empty($html)) {
+                            $html = '';
+                        }
+                        $rtntext['html'] = $html;
+                        //print_r($form_data_ans); exit();
+                        $your_ans = $form_data['qAns_box'];
+                        $correct_ans = $form_data_ans['ans_textbox'];
+                        if ($correct_ans == $your_ans) {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $this->session->set_userdata('score_smart', ($form_data['score'] + $questions->q_score));
+                            $rtntext['score_ans'] = $this->session->userdata('score_ans');
+                            $rtntext['score_smart'] = $this->session->userdata('score_smart');
+                            $rtntext['type'] = 'true';
+                            $rtntext['content'] = 'Correct';
+
+                        } else {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $rtntext['type'] = 'false';
+                            $rtntext['content'] = 'Wrong: Correct answer is : ';
+                        }
+                    } elseif ($form_data['question_option'] == '28') {
+
+                        if (!empty($questions_next)) {
+                            $question_form_data = unserialize($questions_next[0]->form_data);
+                            $qview_option = 'qView_option_' . $question_form_data['question_option'];
+                            $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start);
+                        }
+                        if (empty($html)) {
+                            $html = '';
+                        }
+                        $rtntext['html'] = $html;
+                        //print_r($form_data_ans); exit();
+                        $your_ans = $form_data['qAns_box1'] . 'and' . $form_data['qAns_box2'];
+                        $correct_ans = $form_data_ans['ans_textbox1'] . 'and' . $form_data_ans['ans_textbox2'];
+                        if (strtolower($correct_ans) == strtolower($your_ans)) {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $this->session->set_userdata('score_smart', ($form_data['score'] + $questions->q_score));
+                            $rtntext['score_ans'] = $this->session->userdata('score_ans');
+                            $rtntext['score_smart'] = $this->session->userdata('score_smart');
+                            $rtntext['type'] = 'true';
+                            $rtntext['content'] = 'Correct';
+
+                        } else {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $rtntext['type'] = 'false';
+                            $rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
+                        }
+                    } elseif ($form_data['question_option'] == '29') {
+                        if (!empty($questions_next)) {
+                            $question_form_data = unserialize($questions_next[0]->form_data);
+                            $qview_option = 'qView_option_' . $question_form_data['question_option'];
+                            $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start);
+                        }
+                        if (empty($html)) {
+                            $html = '';
+                        }
+                        //echo $html; exit();
+                        $rtntext['html'] = $html;
+                        $your_ans = $form_data['qAns_box'];
+                        $correct_ans = $form_data_ans['ans_textbox'];
+                        if ($correct_ans == $your_ans) {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $this->session->set_userdata('score_smart', ($form_data['score'] + $questions->q_score));
+                            $rtntext['score_ans'] = $this->session->userdata('score_ans');
+                            $rtntext['score_smart'] = $this->session->userdata('score_smart');
+                            $rtntext['type'] = 'true';
+                            $rtntext['content'] = 'Correct';
+                        } else {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $rtntext['type'] = 'false';
+                            $rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
+                        }
+                    } elseif ($form_data['question_option'] == '31') {
+
+                        if (!empty($questions_next)) {
+                            $question_form_data = unserialize($questions_next[0]->form_data);
+                            $qview_option = 'qView_option_' . $question_form_data['question_option'];
+                            $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start);
+                        }
+                        if (empty($html)) {
+                            $html = '';
+                        }
+                        $rtntext['html'] = $html;
+                        //print_r($form_data_ans); exit();
+                        $ans = '';
+                        $counter_ans = 0;
+                        $yans = '';
+                        $ycounter_ans = 0;
+                        foreach ($form_data_ans['option_1'] as $option_1) {
+                            if ($counter_ans == 0) {
+                                $ans .= $option_1;
+                            } else {
+                                $ans .= '|' . $option_1;
+                            }
+                            $counter_ans++;
+                        }
+                        foreach ($form_data['qAns_box'] as $option_1) {
+                            if ($ycounter_ans == 0) {
+                                $yans .= $option_1;
+                            } else {
+                                $yans .= '|' . $option_1;
+                            }
+                            $ycounter_ans++;
+                        }
+                        $your_ans = $yans;
+                        $correct_ans = $ans;
+                        if (strtolower($correct_ans) == strtolower($your_ans)) {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $this->session->set_userdata('score_smart', ($form_data['score'] + $questions->q_score));
+                            $rtntext['score_ans'] = $this->session->userdata('score_ans');
+                            $rtntext['score_smart'] = $this->session->userdata('score_smart');
+                            $rtntext['type'] = 'true';
+                            $rtntext['content'] = 'Correct';
+
+                        } else {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $rtntext['type'] = 'false';
+                            $rtntext['content'] = 'Wrong: Correct answer is : ' . $ans;
+                        }
+                    } elseif ($form_data['question_option'] == '32') {
+                        if (!empty($questions_next)) {
+                            $question_form_data = unserialize($questions_next[0]->form_data);
+                            $qview_option = 'qView_option_' . $question_form_data['question_option'];
+                            $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start);
+                        }
+                        if (empty($html)) {
+                            $html = '';
+                        }
+                        //echo $html; exit();
+                        $rtntext['html'] = $html;
+                        $your_ans = $form_data['qAns_box'];
+                        $correct_ans = $form_data_ans['ans_textbox'];
+                        if (json_encode($correct_ans) == json_encode($your_ans)) {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $this->session->set_userdata('score_smart', ($form_data['score'] + $questions->q_score));
+                            $rtntext['score_ans'] = $this->session->userdata('score_ans');
+                            $rtntext['score_smart'] = $this->session->userdata('score_smart');
+                            $rtntext['type'] = 'true';
+                            $rtntext['content'] = 'Correct';
+                        } else {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $rtntext['type'] = 'false';
+                            $rtntext['content'] = 'Wrong: Correct answer is : ' . $form_data_ans['ans_textbox1'];
+                        }
+                    } elseif ($form_data['question_option'] == '33') {
+
+                        if (!empty($questions_next)) {
+                            $question_form_data = unserialize($questions_next[0]->form_data);
+                            $qview_option = 'qView_option_' . $question_form_data['question_option'];
+                            $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start);
+                        }
+                        if (empty($html)) {
+                            $html = '';
+                        }
+                        //echo $html; exit();
+                        $rtntext['html'] = $html;
+                        $your_ans = $form_data['qAns_box'];
+                        $correct_ans = $form_data_ans['ans_textbox'];
+                        if (strtolower($correct_ans) == strtolower($your_ans)) {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $this->session->set_userdata('score_smart', ($form_data['score'] + $questions->q_score));
+                            $rtntext['score_ans'] = $this->session->userdata('score_ans');
+                            $rtntext['score_smart'] = $this->session->userdata('score_smart');
+                            $rtntext['type'] = 'true';
+                            $rtntext['content'] = 'Correct';
+                        } else {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $rtntext['type'] = 'false';
+                            $rtntext['content'] = 'Wrong: Correct answer is : ' . $correct_ans;
+                        }
+                    } elseif ($form_data['question_option'] == '34') {
+
+                        if (!empty($questions_next)) {
+                            $question_form_data = unserialize($questions_next[0]->form_data);
+                            $qview_option = 'qView_option_' . $question_form_data['question_option'];
+                            $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start);
+                        } else {
+                            $html = '';
+                        }
+                        $rtntext['html'] = $html;
+                        $your_ans = $form_data['img_answer'];
+                        $correct_ans = $form_data_ans['answer'];
+                        if (strtolower($correct_ans) == strtolower($your_ans)) {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $this->session->set_userdata('score_smart', ($form_data['score'] + $questions->q_score));
+                            $rtntext['score_ans'] = $this->session->userdata('score_ans');
+                            $rtntext['score_smart'] = $this->session->userdata('score_smart');
+                            $rtntext['type'] = 'true';
+                            $rtntext['content'] = 'Correct';
+
+                        } else {
+                            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+                            $rtntext['type'] = 'false';
+                            $rtntext['content'] = 'Wrong: Correct answer is : ' . $form_data_ans['answer'];
+                        }
                     }
+                } else{
+                    $html='';
                 }
-
 
 
 
@@ -2069,6 +2070,61 @@ class Ajax extends CI_Controller {
 
 		return $rtntext;
 	}
+    function qView_option_34($data,$grade_id,$subject_id,$topic_id,$start){
+        $rtntext='';
+        $start=$start+1;
+        $rtntext.='<input type="hidden" name="start" value="'.$start.'" />
+                            <input type="hidden" name="grade_id" value="'.$grade_id.'" />
+                            <input type="hidden" name="subject_id" value="'.$subject_id.'" />
+                            <input type="hidden" name="topic_id" value="'.$topic_id.'" />';
+        $rtntext.='<div class="row">';
+        $rtntext.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
+                                <div class="col-lg-5">
+                                    <div class="question_count">Question <a href="javacript:void(0);" id="play_question" data-question="<?php echo ($data->question_name); ?>"><i class="fas fa-volume-up"></i></a></div>
+                                            <div class="question_display">'.$data->question_name.'</div>
+                                </div>';
+        $rtntext.='<div class="col-lg-7">';
+        $form_serializedata=unserialize($data->form_data);
+        //print_r($form_serializedata);
+
+        $img_array = explode('|',$form_serializedata['img_array']);
+        if(!empty($img_array)){
+            $rtntext.='<div class="row">';
+            $rtntext.='   <div class="question_image">';
+            $rtntext.='<img src="'. $form_serializedata['img'].'" alt="" class="img-thumbnail">';
+            $rtntext.='</div>';
+            $rtntext.='<div class="second_q">';
+            $rtntext.='  <a href="javacript:void(0);" id="play_question1" data-question="'.($form_serializedata['second_question']).'"><i class="fas fa-volume-up"></i></a>'.$form_serializedata['second_question'];
+            $rtntext.='</div>';
+            $rtntext.='<input id="img_answer" type="hidden" name="img_answer" value="">';
+            $i = 1;
+            foreach($img_array as $img){
+
+                $reversedParts = explode('/', strrev($img), 2);
+                $img_name = strrev($reversedParts[0]);
+
+                $rtntext.='<div class="col-lg-6">';
+                    $rtntext.='<div class="form-group">';
+                        $rtntext.='<div class="imgselector">';
+                            $rtntext.='<label for="img_'.$i.'">';
+                                $rtntext.='<img data-img_name="'.$img_name.'" src="'.$img.'" class="img-thumbnail" style="max-width: 100%;width: auto;height: 150px;">';
+                            $rtntext.='</label>';
+                        $rtntext.='</div>';
+                    $rtntext.='</div>';
+                $rtntext.='</div>';
+                $i++;
+            }
+            $rtntext.='</div>';
+        }
+        $rtntext.='</div>';
+        $rtntext.='</div>';
+
+        $rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
+        $rtntext.='</div>';
+        $rtntext.='</div>';
+
+        return $rtntext;
+    }
 
 	public function save_ans_certificate(){
 		//print_r($this->session->userdata('logged_in')); exit();
