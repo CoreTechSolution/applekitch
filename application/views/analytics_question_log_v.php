@@ -41,7 +41,7 @@ require_once 'templates/header.php';
                                         </form>
                                     </div>
 									<?php if($get_child_id!=0){ ?>
-                                        <table class="table" data-paging="true" data-sorting="true" data-filtering="true" data-paging-size="20">
+                                        <table class="table small_table" data-paging="true" data-sorting="true" data-filtering="true" data-paging-size="100">
                                             <thead>
                                             <tr>
                                                 <th>Question</th>
@@ -49,7 +49,7 @@ require_once 'templates/header.php';
                                                 <th>Your Answer</th>
                                                 <th>Time</th>
                                                 <th>Marks</th>
-                                                <th>SmartScore</th>
+                                                <th>Score</th>
                                                 <th>Date</th>
                                             </tr>
                                             </thead>
@@ -57,12 +57,24 @@ require_once 'templates/header.php';
 											<?php
 											if(!empty($user_details)) {
 												foreach($user_details as $user_detail) {
+												    $str_y= @unserialize($user_detail->your_ans);
+												    if($str_y!=false){
+												        $your_ans=implode(',',$str_y);
+                                                    } else{
+                                                        $your_ans=$user_detail->your_ans;
+                                                    }
+                                                    $str_c= @unserialize($user_detail->correct_ans);
+                                                    if($str_c!=false){
+                                                        $correct_ans=implode(',',$str_c);
+                                                    } else{
+                                                        $correct_ans=$user_detail->correct_ans;
+                                                    }
 													//print_r($question);
 													?>
                                                     <tr>
                                                         <td><?php echo get_returnfield('questions','question_id',$user_detail->question_id,'question_name'); ?></td>
-                                                        <td><?php echo $user_detail->correct_ans; ?></td>
-                                                        <td><?php echo $user_detail->your_ans; ?></td>
+                                                        <td><?php echo $correct_ans; ?></td>
+                                                        <td><?php echo $your_ans; ?></td>
                                                         <td><?php echo $user_detail->ans_time; ?></td>
                                                         <td><?php echo $user_detail->marks; ?></td>
                                                         <td><?php echo ($user_detail->answer_type=='true')?$user_detail->marks:0; ?></td>
@@ -91,7 +103,11 @@ require_once 'templates/header.php';
                 <!--Certificate design-->
 
                 <!--end here-->
-
+                <script>
+                    jQuery(function(){
+                        jQuery('.table').footable();
+                    });
+                </script>
             </div>
         </div>
     </div>
@@ -100,3 +116,4 @@ require_once 'templates/header.php';
 <?php
 require_once 'templates/footer.php';
 ?>
+

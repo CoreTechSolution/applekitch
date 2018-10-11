@@ -200,10 +200,40 @@ class Admin extends CI_Controller {
 			$this->load->view( 'admin/add_topic_v', $data );
 		}
 	}
+    public function edit_topic($id) {
+        isLogin('admin');
+        $data['method']='edit_topic';
+        $data['title']='Edit Topic';
+        $data['topics']=$this->admin_model->get_topics(array('topic_id'=>$id),false);
+        //print_r($data['topics']); exit();
+        if(!empty($this->input->post('save'))){
+            $this->form_validation->set_rules('topic_name', 'Topic Name', 'required');
+            if ($this->form_validation->run() == FALSE){
+                $this->load->view( 'admin/edit_topic_v', $data );
+            } else{
+                $value['topic_name']=$this->input->post('topic_name');
+                //$value['status']='active';
+                $con=array('topic_id'=>$id);
+                $insert=$this->admin_model->edit_topic($value,$con);
+                if($insert){
+                    $this->session->set_flashdata(array('msg_type'=>'success','msg'=>'topic updated!'));
+                    $data['topics']=$this->admin_model->get_topics(array('topic_id'=>$id),false);
+                    $this->load->view( 'admin/edit_topic_v', $data );
+                } else{
+                    $this->session->set_flashdata(array('msg_type'=>'error','msg'=>'tSomething wrong try again later!'));
+                    $data['topics']=$this->admin_model->get_topics(array('topic_id'=>$id),false);
+                    $this->load->view( 'admin/edit_topic_v', $data );
+                }
+            }
+        } else {
+            $this->load->view( 'admin/edit_topic_v', $data );
+        }
+    }
 	public function edit_question_option($id) {
 		isLogin('admin');
 		$data['method']='edit_question_option';
 		$data['title']='Edit question option';
+		//$data['options']=$this->admin_model->get_question_options(arra)
 		if(!empty($this->input->post('update'))){
 			$this->form_validation->set_rules('option_name', 'Type Name', 'required');
 			if ($this->form_validation->run() == FALSE){
@@ -710,6 +740,9 @@ class Admin extends CI_Controller {
 				$value['description']=$this->input->post('description');
 				if(!empty($this->input->post('default_status')))
 					$value['default_status']='true';
+				else{
+                    $value['default_status']='false';
+                }
 				//$value['create_dt']=date('Y-m-d H:i:s');
 				if(!empty($_FILES['cer_bg_img']['name'])){
 					$img_path=image_upload($_FILES,'cer_bg_img','uploads');

@@ -113,14 +113,22 @@ class Admin_model extends CI_Model {
 			return false;
 		}
 	}
-	function get_topics() {
+	function get_topics($condition=array(),$row=false) {
 		$this->db->select('*');
 		$this->db->from('topics');
+		if(!empty($condition)){
+		    $this->db->where($condition);
+        }
 		$this->db->order_by("topic_id", "desc");
 
 		if($query = $this->db->get())
 		{
-			return $query->result();
+		    if($row==true){
+                return $query->row();
+            } else{
+                return $query->result();
+            }
+
 		}
 		else{
 			return false;
@@ -382,6 +390,15 @@ INNER JOIN country ON subject.country = country.id INNER JOIN grade ON subject.g
 			return false;
 		}
 	}
+    function edit_topic($data,$conditions) {
+        $this->db->set($data);  //Set the column name and which value to set..
+        $this->db->where($conditions); //set column_name and value in which row need to update
+        if($this->db->update('topics')){
+            return true;
+        } else{
+            return false;
+        }
+    }
 
 	function get_pages() {
 		$this->db->select('*');

@@ -3280,3 +3280,6 @@ ul.DragDropExtra li img {
     cursor: move;
     margin: 0 10px;
 }
+.small_table{
+    font-size: 12px;
+}

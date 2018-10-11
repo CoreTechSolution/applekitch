@@ -40,7 +40,7 @@ require_once 'templates/header.php';
 							<tr>
 								<td><?php echo $count; ?></td>
 								<td><?php echo $question_option->option_name; ?></td>
-								<td><a class="edit_link" href="<?php echo base_url('/admin/edit_question_option'); ?>/<?php echo $question_option->option_id; ?>"><span data-feather="edit"></span> Edit</a> | <a class="delete_link" onclick="delete_data(<?php echo $question_option->option_id; ?>,'option_id','question_option');" href="javascript:void(0)"><span data-feather="delete"></span> Delete</a></td>
+								<td><!--<a class="edit_link" href="<?php /*echo base_url('/admin/edit_question_option'); */?>/<?php /*echo $question_option->option_id; */?>"><span data-feather="edit"></span> Edit</a> |--> <a class="delete_link" onclick="delete_data(<?php echo $question_option->option_id; ?>,'option_id','question_option');" href="javascript:void(0)"><span data-feather="delete"></span> Delete</a></td>
 							</tr>
 							<?php
                             $count++;

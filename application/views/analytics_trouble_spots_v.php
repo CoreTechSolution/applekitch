@@ -71,7 +71,7 @@ require_once 'templates/header.php';
                                                                 <div class="col-lg-2"><div class="table_body_text"><?php echo (!empty($value_top['total_time']))?$value_top['total_time']:'0'; ?> min</div></div>
                                                                 <div class="col-lg-2"><div class="table_body_text"><?php echo (!empty($value_top['total_marks']))?$value_top['total_marks']:'0'; ?></div></div>
                                                                 <div class="col-lg-2"><div class="table_body_text"><?php echo (!empty($value_top['total_ans_wrong']))?$value_top['total_ans_wrong']:0; ?></div></div>
-                                                                <div class="col-lg-2"><div class="table_body_text"><a href="#">View All</a></div></div>
+                                                                <div class="col-lg-2"><div class="table_body_text"><a href="<?= base_url('dashboard/questionlog'); ?>">View All</a></div></div>
                                                             </div>
 														<?php } ?>
                                                     </div>

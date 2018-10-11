@@ -154,7 +154,7 @@ function form_dropdown_child($user_id){
 	}
 	return $query;
 }
-function image_upload($file,$input_name, $path='uploads',$allowed_types='jpg|png|svg',$max_size='5242880'){
+function image_upload($file,$input_name, $path='uploads',$allowed_types='jpg|png|svg|jpeg',$max_size='5242880'){
 	$rtntext='';
 	//print_r(FCPATH); exit();
 	$CI = & get_instance();
