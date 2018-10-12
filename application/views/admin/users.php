@@ -61,7 +61,7 @@ require_once 'templates/header.php';
 					</tbody>
                     <tfoot>
                     <tr>
-                        <td colspan="4">
+                        <td colspan="5">
                             <div class="pagination"></div>
                         </td>
                     </tr>
