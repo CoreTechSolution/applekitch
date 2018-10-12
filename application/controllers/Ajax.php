@@ -1088,6 +1088,11 @@ class Ajax extends CI_Controller {
                 $save_data['your_ans']=$your_ans;
                 $save_data['correct_ans']=$correct_ans;
                 $save_question=$this->ajax_model->save_student_qns_ans($save_data);
+            } else{
+                if($this->session->userdata('score_ans')>=10){
+                    $rtntext['html']='';
+                }
+
             }
             if(!empty($this->session->userdata('total_qScore'))){
                 $this->session->set_userdata('total_qScore',($this->session->userdata('total_qScore')+$questions->q_score));
@@ -1964,8 +1969,20 @@ class Ajax extends CI_Controller {
 			$values['user_id']=get_current_user_id();
 			$values['topic_id']=$topic_id;
 			$values['submit_dt']=date('Y-m-d H:i:s');
+			$userfullname=get_returnfield('user','id',get_current_user_id(),'fname').' '.get_returnfield('user','id',get_current_user_id(),'lname');
+			$parent_id=get_returnfield('user','id',get_current_user_id(),'parent');
+			if($parent_id!='0'){
+                $parent_email=get_returnfield('user','id',get_current_user_id(),'email_address');
+            }
+
 			$insert=$this->ajax_model->insert_ans_certificate($values);
 			if($insert){
+			    if(!empty($parent_email)){
+                    $subject='Certificate Issued Date: '. date('M d, Y');
+                    $msg='Hello ,<br> One Certificate issued For this child: '.$userfullname.'.<br>Please Download this certificate from this link: '.base_url('dashboard/generate_pdf/'.$insert);
+                    $to=$parent_email;
+                    send_mail($to,$subject,$msg);
+                }
 				echo true;
 			} else{
 				echo false;
