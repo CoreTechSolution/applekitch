@@ -24,7 +24,7 @@ require_once 'templates/header.php';
                     </div>
                 </div>
                 <?php $this->load->view('admin/templates/error_v.php'); ?>
-                <table class="table">
+                <table class="table" data-paging="true" data-sorting="true" data-filtering="true" data-paging-size="20">
                     <thead>
                     <tr>
                         <th>SL No</th>

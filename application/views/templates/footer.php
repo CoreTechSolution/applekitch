@@ -84,6 +84,8 @@
 <script src="<?php echo base_url('/assets/js/tooltipster.bundle.min.js'); ?>" type="text/javascript"></script>
 <script src="<?php echo base_url('/assets/js/theme.script.js'); ?>" type="text/javascript"></script>
 <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+
+<script src="<?php echo base_url('assets/js/combinations.js'); ?>"></script>
 <script>
     function printDiv(divName) {
         var printContents = document.getElementById(divName).innerHTML;
@@ -98,7 +100,7 @@
 </script>
 <script>
     jQuery(function(){
-        jQuery('.table').footable();
+        //jQuery('.table').footable();
     });
     wow = new WOW(
         {

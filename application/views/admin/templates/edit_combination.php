@@ -33,15 +33,32 @@
                 <br/><br/>
             <div class="row">
 				<?php foreach($img_array as $img){ ?>
-					<div class="col-lg-3">
-						<div class="form-group">
-							<img src="<?php echo $img; ?> " style="max-width: 100%;width: 263px;height: 150px;" />
-							<div style="text-align: center; margin: 5px 0 10px 0;">
-								<input type="radio" name="answer" value="<?php echo $img; ?>">
-							</div>
-						</div>
-					</div>
+                    <?php
+                    $reversedParts = explode('/', strrev($img), 2);
+                    $img_name = strrev($reversedParts[0]);
+                    ?>
+                    <?php if($form_cdata['answer']==$img_name){ ?>
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <img src="<?php echo $img; ?> " style="max-width: 100%;width: 263px;height: 150px;" />
+                                <div style="text-align: center; margin: 5px 0 10px 0;">
+                                    <input type="radio" name="answer" value="<?php echo $img_name; ?>" checked="true">
+                                </div>
+                            </div>
+                        </div>
+                    <?php } else { ?>
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <img src="<?php echo $img; ?> " style="max-width: 100%;width: 263px;height: 150px;" />
+                                <div style="text-align: center; margin: 5px 0 10px 0;">
+                                    <input type="radio" name="answer" value="<?php echo $img_name; ?>">
+                                </div>
+                            </div>
+                        </div>
+                    <?php } ?>
+
 				<?php } ?>
+                <input type="hidden" name="img_array" value="<?= implode('|',$img_array); ?>">
             </div>
 			<?php } ?>
 		</div>

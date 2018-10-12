@@ -22,9 +22,10 @@
 	<link rel="icon" type="image/png" href="<?php echo base_url('/assets/images/favicon.png'); ?>">
 	<title><?php echo $title; ?></title>
 
-    <link rel="stylesheet" media="all" href="<?php echo base_url('/assets/css/bootstrap.min.css'); ?>" />
+    <link rel="stylesheet" media="all" href="<?php echo  base_url('/assets/css/bootstrap.min.css'); ?>" />
     <link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700|Open+Sans:300,400,600,700|Raleway:300,400,500,600|Roboto:100,300,400,500,700|Lato:100,300,400,700|Fredoka+One|Istok+Web:400" />
     <link href="https://fonts.googleapis.com/css?family=K2D:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" media="all" href="<?php echo base_url('/assets/css/jquery.fancybox.css'); ?>" />
     <link rel="stylesheet" media="all" href="<?php echo base_url('/assets/css/slicknav.css'); ?>" />
     <link rel="stylesheet" media="all" href="<?php echo base_url('/assets/css/jquery.bxslider.css'); ?>" />
@@ -34,6 +35,7 @@
     <link rel="stylesheet" media="all" href="<?php echo base_url('/assets/css/style.css'); ?>" />
     <link rel="stylesheet" media="all" href="<?php echo base_url('/assets/css/backend.css'); ?>" />
     <link rel="stylesheet" media="all" href="<?php echo base_url('/assets/css/tooltipster.bundle.min.css'); ?>" />
+    <link rel="stylesheet" href="<?php echo base_url('/assets/css/jquery-ui.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('/assets/css/font-awesome.css'); ?>" >
 
     <!--[if lt IE 9]>
@@ -46,7 +48,7 @@
     <link rel="stylesheet" media="only screen and (max-width: 768px) and (min-width: 481px)" href="<?php echo base_url('/assets/css/styleMax768.css'); ?>">
     <link rel="stylesheet" media="only screen and (max-width: 480px)" href="<?php echo base_url('/assets/css/styleMax480.css'); ?>">
     <script src="<?php echo base_url('/assets/js/jquery.js'); ?>" type="text/javascript"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="<?php echo base_url('/assets/js/jquery-ui.js'); ?>"></script>
     <!--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">-->
     <script>
         var base_url='<?php echo base_url(); ?>';

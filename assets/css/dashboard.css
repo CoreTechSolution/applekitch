@@ -376,6 +376,9 @@ input[type='file']{
 .edit_preview_iframe h5{
 
 }
+.footable img{
+  width: 62px;
+}
 .edit_iframe{
   width: 100%;
   display: block;

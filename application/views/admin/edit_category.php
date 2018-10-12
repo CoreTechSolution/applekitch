@@ -26,7 +26,7 @@ require_once 'templates/header.php';
                                 <label>Name: </label>
                                 <input type="file" name="category_image" class="form-control" value=""/>
                                 <?php if(!empty($category->cat_img) && $category->cat_img!==''){ ?>
-                                    <img src="<?php echo $this->image_crop_gd->show_images($category->cat_img, "large"); ?>" alt="" class="admin_edit_img_preview">
+                                    <img src="<?php echo $category->cat_img; ?>" alt="" class="admin_edit_img_preview">
                                 <?php } ?>
                             </div>
 

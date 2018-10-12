@@ -42,7 +42,7 @@ require_once 'templates/header.php';
 							?>
 							<tr>
 								<td><?= $counter; ?></td>
-								<td><img src="<?php echo $this->image_crop_gd->show_images($cat['cat_img'], "thumb"); ?>" alt=""></td>
+								<td><img src="<?php echo $cat['cat_img']; ?>" alt=""></td>
 								<td><?= $cat['name']; ?></td>
 								<td><a class="edit_link" href="<?= base_url('/admin/edit_category'); ?>/<?php echo $cat['id']; ?>"><span data-feather="edit"></span> Edit</a> | <a class="delete_link" onclick="delete_data(<?php echo $cat['id']; ?>,'id','category');" href="javascript:void(0)"><span data-feather="delete"></span> Delete</a></td>
 							</tr>

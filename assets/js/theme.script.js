@@ -14,7 +14,6 @@ jQuery(function($){
         }
     });
 
-
     $('.matchHeight1').matchHeight();
     $('.matchHeight2').matchHeight();
     $('.matchHeight3').matchHeight();
@@ -581,7 +580,7 @@ jQuery(document).ready(function(){
         });
         jQuery(this_element).addClass('active');
     });
-    jQuery('.table').footable();
+    //jQuery('.table').footable();
 
     jQuery('.tooltip').tooltipster({
         animation: 'fade',

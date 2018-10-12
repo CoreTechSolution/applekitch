@@ -27,27 +27,27 @@ require_once 'templates/header.php';
 				</div>
                 <div class="search_by_class">
                     <h4>Search By</h4>
-                    <form action="<?php echo base_url('admin/questions/search') ?>" method="post">
+                    <form action="<?php echo base_url('admin/questions/search') ?>" method="get">
                         <div class="row">
                             <div class="col-lg-2">
                                 <label>Country: </label>
-				                <?php echo form_dropdown('country_id',form_dropdown_cr(array('id','name'),'country'),'',array('class'=>'form-control')); ?>
+				                <?php echo form_dropdown('country_id',form_dropdown_cr(array('id','name'),'country'),(!empty($country_id))?$country_id:'',array('class'=>'form-control')); ?>
                             </div>
                             <div class="col-lg-2">
                                 <label>Subject: </label>
-				                <?php echo form_dropdown('subject_id',form_dropdown_cr(array('id','name'),'subject'),'',array('class'=>'form-control')); ?>
+				                <?php echo form_dropdown('subject_id',form_dropdown_cr(array('id','name'),'subject'),(!empty($subject_id))?$subject_id:'',array('class'=>'form-control')); ?>
                             </div>
                             <div class="col-lg-2">
                                 <label>Grade: </label>
-				                <?php echo form_dropdown('grade_id',form_dropdown_cr(array('id','name'),'grade'),'',array('class'=>'form-control')); ?>
+				                <?php echo form_dropdown('grade_id',form_dropdown_cr(array('id','name'),'grade'),(!empty($grade_id))?$grade_id:'',array('class'=>'form-control')); ?>
                             </div>
                             <div class="col-lg-2">
                                 <label>Category: </label>
-				                <?php echo form_dropdown('category_id',form_dropdown_cr(array('id','name'),'category'),'',array('class'=>'form-control')); ?>
+				                <?php echo form_dropdown('category_id',form_dropdown_cr(array('id','name'),'category'),(!empty($category_id))?$category_id:'',array('class'=>'form-control')); ?>
                             </div>
                             <div class="col-lg-2">
                                 <label>Topic: </label>
-				                <?php echo form_dropdown('topic_id',form_dropdown_cr(array('topic_id','topic_name'),'topics'),'',array('class'=>'form-control')); ?>
+				                <?php echo form_dropdown('topic_id',form_dropdown_cr(array('topic_id','topic_name'),'topics'),(!empty($topic_id))?$topic_id:'',array('class'=>'form-control')); ?>
                             </div>
                             <div class="col-lg-2" style="margin-top: 30px;">
                                 <input type="submit" class="btn btn-small btn-primary" value="Search">
@@ -57,7 +57,7 @@ require_once 'templates/header.php';
                     </form>
                 </div>
 
-				<table class="table" data-paging="true" data-sorting="true" data-filtering="true" data-paging-size="20">
+				<table class="table small_table" data-paging="true" data-sorting="true" data-filtering="true" data-paging-size="20">
 					<thead>
 					<tr>
 						<th>Sl. No</th>
@@ -93,7 +93,8 @@ require_once 'templates/header.php';
                                     <a class="edit_link" style="color: green;" href="<?php echo base_url('/admin/copy_q'); ?>?qid=<?php echo
                                     $question->question_id; ?>"><span data-feather="copy"></span> Copy</a>
                                     <br/>
-                                    <a class="delete_link" onclick="delete_data(<?php echo $question->question_id; ?>,'question_id','questions');" href="javascript:void(0)"><span data-feather="delete"></span> Delete</a></td>
+                                    <a class="delete_link" onclick="delete_data(<?php echo $question->question_id; ?>,'question_id','questions');" href="javascript:void(0)"><span data-feather="delete"></span> Delete</a>
+                                </td>
 							</tr>
 							<?php
                             $counter++;
@@ -103,7 +104,7 @@ require_once 'templates/header.php';
 					</tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="4">
+                            <td colspan="8">
                                 <div class="pagination"></div>
                             </td>
                         </tr>

@@ -103,17 +103,27 @@ class Admin extends CI_Controller {
 			$this->load->view( 'admin/questions_v', $data );
 		} else{
 			$conditions=array();
-			if(!empty($this->input->post('country_id')))
-				$conditions=array('country_id'=>$this->input->post('country_id'));
-			if(!empty($this->input->post('subject_id')))
-				$conditions=array('subject_id'=>$this->input->post('subject_id'));
-			if(!empty($this->input->post('grade_id')))
-				$conditions=array('grade_id'=>$this->input->post('grade_id'));
-			if(!empty($this->input->post('category_id')))
-				$conditions=array('category_id'=>$this->input->post('category_id'));
-			if(!empty($this->input->post('topic_id')))
-				$conditions=array('topic_id'=>$this->input->post('topic_id'));
-			if(!empty($conditions)){
+			if(($this->input->get('country_id'))!='0') {
+                $conditions = array('country_id' => $this->input->get('country_id'));
+                $data['country_id'] = $this->input->get('country_id');
+            }
+			if(($this->input->get('subject_id'))!='0') {
+                $conditions = array('subject_id' => $this->input->get('subject_id'));
+                $data['subject_id'] = $this->input->get('subject_id');
+            }
+			if(($this->input->get('grade_id'))!='0') {
+                $conditions = array('grade_id' => $this->input->get('grade_id'));
+                $data['grade_id'] = $this->input->get('grade_id');
+            }
+			if(($this->input->get('category_id'))!='0') {
+                $conditions = array('category_id' => $this->input->get('category_id'));
+                $data['category_id'] = $this->input->get('category_id');
+            }
+			if(($this->input->get('topic_id'))!='0') {
+                $conditions = array('topic_id' => $this->input->get('topic_id'));
+                $data['topic_id'] = $this->input->get('topic_id');
+            }
+			if(($conditions)){
 				$data['title']     = 'Search Result';
 				$data['questions'] = $this->admin_model->get_questions($conditions,false);
 				$this->load->view( 'admin/questions_v', $data );
@@ -556,7 +566,17 @@ class Admin extends CI_Controller {
 			'parent' => $parent,*/
 		);
 
-        if ( ! $this->upload->do_upload('category_image')) {
+        if(!empty($_FILES['category_image']['name'])){
+            $img_path=image_upload($_FILES,'category_image','uploads');
+            if($img_path){
+                $category_array['cat_img']=$img_path;
+            } else{
+                //$this->load->view( 'admin/add_certificate_v', $data );
+                return false;
+            }
+        }
+
+        /*if ( ! $this->upload->do_upload('category_image')) {
             $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
             $this->session->set_flashdata('error_msg', $this->upload->display_errors());
 
@@ -574,6 +594,13 @@ class Admin extends CI_Controller {
 
                 $this->admin_model->insert_category($category_array);
             }
+        }*/
+        $this->admin_model->insert_category($category_array);
+
+        if($insert) {
+            $category_array['cat_img']=$insert;
+
+            $this->admin_model->insert_category($category_array);
         }
 
         $this->session->set_flashdata(array('msg_type'=>'success','msg'=>'New category added!'));
@@ -589,7 +616,7 @@ class Admin extends CI_Controller {
 				$this->load->view( 'admin/edit_category', $data );
 			} else {
 				$value['name']=$this->input->post('cat_name');
-
+/*
                 if ( ! $this->upload->do_upload('category_image')) {
                     $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
                     $this->session->set_flashdata('error_msg', $this->upload->display_errors());
@@ -608,8 +635,18 @@ class Admin extends CI_Controller {
 
                         $result=$this->admin_model->update_category(array('id'=>$cat_id),$value);
                     }
-                }
+                }*/
 
+                if(!empty($_FILES['category_image']['name'])){
+                    $img_path=image_upload($_FILES,'category_image','uploads');
+                    if($img_path){
+                        $value['cat_img']=$img_path;
+                    } else{
+                        //$this->load->view( 'admin/add_certificate_v', $data );
+                        return false;
+                    }
+                }
+                $result=$this->admin_model->update_category(array('id'=>$cat_id),$value);
 				if($result){
 					$data['category'] = $this->admin_model->get_categories( array( 'id' => $cat_id ) );
 					$this->session->set_flashdata(array('msg_type'=>'success','msg'=>'Category edited!'));
@@ -1262,9 +1299,11 @@ class Admin extends CI_Controller {
                 $conditions=array('id'=>$id);
                 $insert=$this->admin_model->update_testimonial($value,$conditions);
                 if($insert){
-                    $this->session->set_flashdata(array('msg_type'=>'success','msg'=>'New testimonial added!'));
+                    $data['testimonials']=$this->admin_model->get_testimonials(array('id'=>$id),true);
+                    $this->session->set_flashdata(array('msg_type'=>'success','msg'=>'Testimonial Updated!'));
                     $this->load->view( 'admin/edit_testimonial_v', $data );
                 } else{
+                    $data['testimonials']=$this->admin_model->get_testimonials(array('id'=>$id),true);
                     $this->session->set_flashdata(array('msg_type'=>'error','msg'=>'Something wrong! try again later!'));
                     $this->load->view( 'admin/edit_testimonial_v', $data );
                 }
