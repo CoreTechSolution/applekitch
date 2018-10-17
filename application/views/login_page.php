@@ -7,7 +7,7 @@ require_once 'templates/header.php';
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12 registration">
-						<h1>Login</h1>
+						<h1><?php echo $title; ?></h1>
 					</div>
 				</div>
 				<div class="row">

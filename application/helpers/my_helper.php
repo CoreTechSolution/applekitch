@@ -125,6 +125,21 @@ function get_current_user_id(){
 	}
 }
 
+function get_userdata_by_id($user_id) {
+	$CI = & get_instance();
+	$CI->db->select('*');
+	$CI->db->from('user');
+	$CI->db->where('id', $user_id);
+
+	if($query=$CI->db->get())
+	{
+		return $query->row();
+	}
+	else{
+		return false;
+	}
+}
+
 function form_dropdown_cr($fields,$table_name){
 	$CI = & get_instance();
 	$CI->db->select($fields);

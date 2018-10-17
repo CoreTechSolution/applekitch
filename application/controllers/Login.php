@@ -37,7 +37,15 @@ class Login extends CI_Controller {
 			$this->session->set_userdata('email',$data['email_address']);
 			$this->session->set_userdata('user_type',get_returnfield('user_roles','id',$data['role'],'name'));
 
-			redirect('dashboard');
+			if(!isUserType('student')) {
+				/*$data = array(
+					'title' => 'Select User',
+				);
+				$this->load->view("select_user", $data);*/
+				redirect( '#wrapper3' );
+			} else {
+				redirect( '#wrapper3' );
+			}
 
 		} else{
 			$this->session->set_flashdata('error_msg', 'Email address or Password mismatch');

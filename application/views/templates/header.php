@@ -105,13 +105,24 @@
             <div class="col-lg-3">
                 <div class="reg-log-section">
                     <ul>
-						<?php if(isset($_SESSION['user_id'])){ ?>
-							<?php $user_id = $_SESSION['user_id']; ?>
+						<?php if(loginCheck()){ ?>
+							<?php
+                            //print_r($_SESSION);
+                            $user_id = get_current_user_id();
+							$userdata = get_userdata_by_id($user_id);
+							//print_r($userdata);
+                            ?>
                                 <li>
-                                    <a class="btn btn-primary" href="<?php echo base_url('dashboard'); ?>">Dashboard</a>
+                                    <a class="btn btn-primary" href="<?php echo base_url('dashboard'); ?>">Welcome <?php echo $userdata->fname; ?>
+                                        <?php
+                                            if(!empty($userdata->profile_img)) {
+                                                echo '<img class="head_pro_img" src="'.$userdata->profile_img.'" />';
+                                            }
+                                        ?>
+                                    </a>
                                 </li>
                                 <li>
-                                    <a class="btn btn-danger" href="<?php echo base_url('/login/user_logout'); ?>">Logout</a>
+                                    <a class="btn btn-danger"<?php if(!empty($userdata->profile_img)) { ?> style="padding-top: 9px; padding-bottom: 9px;"<?php } ?> href="<?php echo base_url('/login/user_logout'); ?>">Logout</a>
                                 </li>
 							<?php }else{ ?>
                                 <li>
