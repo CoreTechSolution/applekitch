@@ -38,7 +38,7 @@ class Frontend extends CI_Controller {
         }
 	    if($grade!='' && $subject!='') {
             $data['banner_title'] = ucfirst($subject);
-            $data['title'] = ucfirst($grade . ' ' . $subject);
+            $data['title'] = ucfirst($grade . ' ' . ucfirst($subject));
             $grade_id = get_id_by_slug('id', $grade, 'grade');
             $subject_id = get_id_by_slug('id', $subject, 'subject');
             $data['grade'] = get_returnfield('grade', 'id', $grade_id, 'slug');

@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+define('COLORCODE','#f1693c|#f39620|#46b01e|#00a1de|#00b971|#e9681b|#0b863c|#eabc00|#7027a5|#c83131|#147cc4|#0bc1b6');
 /*
 |--------------------------------------------------------------------------
  * Personal contanstants veriable create from database

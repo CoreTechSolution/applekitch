@@ -118,7 +118,7 @@
                                             if(!empty($userdata->profile_img)) {
                                                 echo '<img class="head_pro_img" src="'.$userdata->profile_img.'" />';
                                             } else {
-                                                echo '<img src="'.base_url('/assets/images/noimg.png').'">';
+                                                echo '<img class="head_pro_img" src="'.base_url('/assets/images/noimg.png').'">';
                                             }
                                         ?>
                                     </a>
