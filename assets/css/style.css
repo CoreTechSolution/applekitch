@@ -840,8 +840,8 @@ ul.dropdown_list li{
 .wrapper4 p{
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
-    color: #1b1b1b;
-    font-weight: 200;
+    color: #ffffff;
+    font-weight: 400;
     text-align: left;
     margin: 0 0 12px 0;
 }
@@ -1126,7 +1126,7 @@ ul.dropdown_list li{
     font-family: 'Montserrat', sans-serif;
     font-size: 18px;
     font-weight: 500;
-    color: #FFFFFF;
+    color: #222222;
     margin-bottom: 25px;
 }
 .wrapper10 .col1 ul{
@@ -3292,4 +3292,18 @@ img.head_pro_img {
     width: 30px;
     height: 30px;
     border: 1px solid #ffffff;
+}
+.login_form ul {
+    margin: 0;
+    padding: 0;
+}
+.login_form ul li {
+    list-style: none;
+    display: inline-block;
+    margin: 0 15px;
+    text-align: center;
+}
+.login_form ul li .profile-img img {
+    width: 100px;
+    height: 100px;
 }

@@ -38,11 +38,15 @@ class Login extends CI_Controller {
 			$this->session->set_userdata('user_type',get_returnfield('user_roles','id',$data['role'],'name'));
 
 			if(!isUserType('student')) {
-				/*$data = array(
-					'title' => 'Select User',
+				$user = $this->user_model->get_user_by_id($data['id']);
+				$childs = $this->user_model->get_child_data($data['id']);
+				$data = array(
+					'title' => 'Welcome, who are you?',
+					'user' => $user,
+					'childs' => $childs
 				);
-				$this->load->view("select_user", $data);*/
-				redirect( '#wrapper3' );
+				$this->load->view("select_user", $data);
+				//redirect( '#wrapper3' );
 			} else {
 				redirect( '#wrapper3' );
 			}
@@ -57,6 +61,18 @@ class Login extends CI_Controller {
 		}
 
 
+	}
+	public function select_user() {
+		if(!empty($_GET['user_id'])) {
+			$data = $this->user_model->get_user_by_id($_GET['user_id']);
+			if($data) {
+				$this->session->set_userdata( 'user_id', $data['id'] );
+				$this->session->set_userdata( 'logged_in', '1' );
+				$this->session->set_userdata( 'email', $data['email_address'] );
+				$this->session->set_userdata( 'user_type', get_returnfield( 'user_roles', 'id', $data['role'], 'name' ) );
+			}
+		}
+		redirect( '#wrapper3' );
 	}
 	public function google_login(){
         include_once APPPATH.'third_party/google_src/Google_Client.php';

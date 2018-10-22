@@ -299,6 +299,19 @@ class User_model extends CI_Model{
 		return $query;
 
 	}
+	function get_user_by_id($user_id) {
+		$this->db->select('*');
+		$this->db->from('user');
+		$this->db->where("id", $user_id);
+
+		if($query = $this->db->get())
+		{
+			return $query->row_array();
+		}
+		else{
+			return false;
+		}
+	}
 
 
 }

@@ -42,6 +42,7 @@
 				</div>
 			</div>
 			<div class="col-lg-3">
+                <?php if(!loginCheck()) { ?>
 				<p class="col1">Newsletter Signup</p>
 				<div class="newsletter-form">
 					<form method="post" action="">
@@ -49,6 +50,7 @@
 						<input type="submit" name="" value="">
 					</form>
 				</div>
+                <?php } ?>
 				<div class="social-connects">
                     <ul class="footer_social_link">
                         <li><a target="_blank" href="<?php echo social_media_link('facebook'); ?>"><i class="fab fa-facebook-f"></i></a></li>
