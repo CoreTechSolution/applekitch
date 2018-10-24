@@ -398,14 +398,22 @@ class Dashboard extends CI_Controller {
 		$total_time=0;
 		$jquery_day_text='';
 		$jquery_day_array=array();
+        $jquery_year_pie='';
+        $jquery_year_array=array();
 		foreach ($data['user_details'] as $userdetails){
 			$total_time=$total_time+$userdetails->ans_time;
-			 $rcv_date=dateFormat('Y-m-d',$userdetails->submit_date);
+			$rcv_date=dateFormat('Y-m-d',$userdetails->submit_date);
+			$rcv_year=$userdetails->grade_id;
 			if(!empty($jquery_day_array[$rcv_date])){
 				$jquery_day_array[$rcv_date]=1+$jquery_day_array[$rcv_date];
 			} else{
 				$jquery_day_array[$rcv_date]=1;
 			}
+            if(!empty($jquery_year_array[$rcv_year])){
+                $jquery_year_array[$rcv_year]=1+$jquery_year_array[$rcv_year];
+            } else{
+                $jquery_year_array[$rcv_year]=1;
+            }
 
 		}
 		//print_r($jquery_day_array); exit();
@@ -414,11 +422,23 @@ class Dashboard extends CI_Controller {
 		$data['total_time_spent']=secondsToTime($total_time, 'short');
 		$data['total_completed_topic']=count($data['user_skill_details']);
 		// count day wise question
+        ksort($jquery_day_array);
 		foreach ($jquery_day_array as $key=>$value){
 			$jquery_day_text.="['".dateFormat('d M',$key)."',  ".$value."],";
 		}
+        ksort($jquery_year_array);
+        foreach ($jquery_year_array as $key=>$value){
+            $grade_name=get_returnfield('grade','id',$key,'name');
+            if(!empty($grade_name) || $grade_name!=''){
+                $jquery_year_pie.="['".$grade_name."',  ".$value."],";
+            }
+
+        }
+
+
 		//print_r($jquery_day_text); exit();
 		$data['jquery_day_text']=$jquery_day_text;
+		$data['jquery_year_pie']=$jquery_year_pie;
 		$this->load->view('analytics_usage_v',$data);
 	}
 	public function scorechart($subject='2', $grade='1'){

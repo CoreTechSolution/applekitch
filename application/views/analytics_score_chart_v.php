@@ -23,6 +23,7 @@ require_once 'templates/header.php';
                         <div class="box-wrapper">
                             <div class="box-title"><?php echo $title; ?></div>
                             <div class="box-container">
+                                <?php if(isUserType('Student')!=true){ ?>
                                 <div class="child_search_div">
                                     <form action="<?php echo base_url('dashboard/scorechart') ?>" method="post" class="child_search_drop">
                                         <div class="row">
@@ -40,6 +41,7 @@ require_once 'templates/header.php';
                                         </div>
                                     </form>
                                 </div>
+                                <?php } ?>
 								<?php if($get_child_id!=0){ ?>
                                     <div class="filter_box">
 										<?php echo form_open(base_url('dashboard/'.$search_url),array('class'=>'form-control filter-form')); ?>
@@ -48,10 +50,10 @@ require_once 'templates/header.php';
 										<?php echo form_submit('search','Search',array('class'=>'btn btn-default btn-small')); ?>
 										<?php echo form_close(); ?>
                                     </div>
-                                    <div class="graphic_chart">
+                                    <!--<div class="graphic_chart">
                                         <h3>Overview of Rana's performance - All time</h3>
                                         <div id="score-chart" style="width: 750px; height: 450px; margin: 0;padding: 0; overflow: hidden" ></div>
-                                    </div>
+                                    </div>-->
                                     <div class="score_table">
                                         <h3>Scores</h3>
                                         <div class="table_head">

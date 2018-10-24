@@ -23,6 +23,7 @@ require_once 'templates/header.php';
                             <div class="box-wrapper">
                                 <div class="box-title"><?php echo $title; ?></div>
                                 <div class="box-container">
+                                    <?php if(isUserType('Student')!=true){ ?>
                                     <div class="child_search_div">
                                         <form action="<?php echo base_url('dashboard/questionlog') ?>" method="post" class="child_search_drop">
                                             <div class="row">
@@ -40,6 +41,7 @@ require_once 'templates/header.php';
                                             </div>
                                         </form>
                                     </div>
+                                    <?php } ?>
 									<?php if($get_child_id!=0){ ?>
                                         <table class="table small_table" data-paging="true" data-sorting="true" data-filtering="true" data-paging-size="20">
                                             <thead>

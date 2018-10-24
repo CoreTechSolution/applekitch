@@ -10,7 +10,7 @@
 </div>
 <div class="logged-in-usermenus">
 	<ul>
-        <li><a href="<?php echo base_url('dashboard'); ?>"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+        <li><a href="<?php echo base_url('dashboard'); ?>"><i class="fa fa-tachometer-alt"></i> Dashboard</a></li>
 		<li><a href="<?php echo base_url('manage-profile'); ?>"><i class="fa fa-user fa-fw" aria-hidden="true"></i> Manage Profile</a></li>
 		<?php if($user_data['role'] != 3) { ?>
 		<li><a href="<?php echo base_url('membership-plan'); ?>"><i class="fa fa-bookmark fa-fw" aria-hidden="true"></i> Membership Plans</a></li>
@@ -38,7 +38,7 @@
                 </ul>
             </li>
         <?php if (isUserType('Student')) { ?>
-            <li><a href="<?php echo base_url('share'); ?>"><i class="fas fa-share-alt"></i> Share with friends</a></li>
+            <li><a href="<?php echo base_url('share'); ?>"><i class="fa fa-share-alt"></i>  Share with friends</a></li>
         <?php } ?>
 
 		<li><a href="<?php echo base_url('/login/user_logout'); ?>"><i class="fa fa-sign-out-alt fa-fw" aria-hidden="true"></i> Logout</a></li>

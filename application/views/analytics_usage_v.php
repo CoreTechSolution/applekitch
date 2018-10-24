@@ -15,6 +15,7 @@ require_once 'templates/header.php';
 							<div class="box-wrapper">
 								<div class="box-title"><?php echo $title; ?></div>
 								<div class="box-container">
+                                    <?php if(isUserType('Student')!=true){ ?>
                                     <div class="child_search_div">
                                         <form action="<?php echo base_url('dashboard/usage') ?>" method="post" class="child_search_drop">
                                             <div class="row">
@@ -32,6 +33,7 @@ require_once 'templates/header.php';
                                             </div>
                                         </form>
                                     </div>
+                                    <?php } ?>
 									<?php if($get_child_id!=0){ ?>
                                         <h3>Today, <?php echo get_returnfield('user','id',$get_child_id,'fname') ; ?> has...</h3>
                                         <div class="total_usage_counter_div">
@@ -101,12 +103,8 @@ require_once 'templates/footer.php';
     google.charts.setOnLoadCallback(drawAnthonyChart);
     function drawChart() {
         var data = google.visualization.arrayToDataTable([
-            ['Task', 'Hours per Day'],
-            ['Time (Year 2)',     11],
-            ['Fractions (Year 2)',      2],
-            ['Counting and number patterns (Year 2)',  2],
-            ['Measurement (Year 2)', 2],
-            ['Sentences (Year 2)',    7]
+            ['Years', 'Total question attend'],
+            <?php echo $jquery_year_pie; ?>
         ]);
 
        /* var options = {
