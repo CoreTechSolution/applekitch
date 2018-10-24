@@ -6,31 +6,50 @@ $this->load->view('templates/header');
         <div id="ans_label" class="cAns"> Correct</div>
     </div>
 	<div class="wrapper inner-pages">
-		<div class="inner_page_banner">
+		<!--<div class="inner_page_banner">
 			<div class="container">
 				<div class="row">
-					<h1>Learning <?php echo $banner_title; ?></h1>
+                    <div class="col-lg-3">
+                        <div class="banner_subheading">
+                            <a href="<?php /*echo base_url('frontend/topic/reception/math') */?>">Math</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="banner_subheading">
+                            <a href="<?php /*echo base_url('frontend/topic/reception/english') */?>">English</a>
+                        </div>
+                    </div>
+                    <?php /*if(loginCheck()==true){ */?>
+                    <div class="col-lg-3">
+                        <div class="banner_subheading">
+                            <a href="<?php /*echo base_url('awards'); */?>">Awards</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="banner_subheading">
+                            <a href="<?php /*echo base_url('certificates'); */?>">Certificates</a>
+                        </div>
+                    </div>
+                    <?php /*} */?>
+
 				</div>
 			</div>
-		</div>
-		<div class="top_tap_sub">
+		</div>-->
+		<!--<div class="top_tap_sub">
 			<div class="container">
 				<div class="row">
 					<ul>
-
-                        <?php $subject=$this->uri->segment(4); ?>
-                        <?php if($subject=='english'){ ?>
-                            <li><a href="" ><i class="fas fa-calculator"></i>  Math</a></li>
-                            <li><a href="" class="active"><i class="fas fa-book"></i>  English</a></li>
-                        <?php } elseif($subject=='math'){ ?>
-                            <li><a href="" class="active"><i class="fas fa-calculator"></i>  Math</a></li>
-                            <li><a href="" ><i class="fas fa-book"></i>  English</a></li>
-                        <?php } ?>
+                        <li><a href="<?php /*echo base_url('frontend/topic/reception/math') */?>">Math</a></li>
+                        <li><a href="<?php /*echo base_url('frontend/topic/reception/english') */?>">English</a></li>
+                        <?php /*if(loginCheck()==true){ */?>
+                        <li><a href="<?php /*echo base_url('awards'); */?>">Awards</a></li>
+                        <li><a href="<?php /*echo base_url('certificates'); */?>">Certificates</a></li>
+                        <?php /*} */?>
 
 					</ul>
 				</div>
 			</div>
-		</div>
+		</div>-->
 		<div class="breadcrumbs_section">
 			<div class="container">
 				<div class="row">
@@ -39,6 +58,7 @@ $this->load->view('templates/header');
 						<li class="breadcrumbs__item"><a href="<?= base_url(); ?>" class="breadcrumbs__element">Home</a></li>
 						<li class="breadcrumbs__item"><a href="<?= base_url('frontend/grades/'); ?>" class="breadcrumbs__element">Grade</a></li>
 						<li class="breadcrumbs__item"><a href="<?= base_url('frontend/topic/'.$this->uri->segment(3).'/'.$this->uri->segment(4)); ?>" class="breadcrumbs__element"><?php echo ucfirst($this->uri->segment(3)) ?></a></li>
+                        <li class="breadcrumbs__item breadcrumbs__item_active"><span class="breadcrumbs__element"><?= get_returnfield('topics','topic_id',$this->uri->segment(5),'topic_name'); ?></span></li>
 						<!--<li class="breadcrumbs__item breadcrumbs__item_active"><span class="breadcrumbs__element"><?php /*echo $banner_title; */?></span></li>-->
 					</ul>
 				</div>
@@ -47,7 +67,7 @@ $this->load->view('templates/header');
 		<div class="inner_page_content">
 			<div class="container">
 				<div class="row">
-                    <div class="question_view col-lg-9">
+                    <div class="question_view col-lg-10">
                         <!--<div id="wrong_ans_label" class="wAns">Wrong Answer&#8230;</div>-->
 						<?php if(!empty($questions)){ ?>
                             <form class="form qAns_form" method="post" action="" enctype="multipart/form-data">
@@ -75,14 +95,14 @@ $this->load->view('templates/header');
 											$check_data['form_data']=$form_data;
 											$this->load->view('frontend/template_part/frontend_answer_check',$check_data);
 											?>
-                                            <input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">
+                                            <input type="submit" value="OK" class="btn btn-small btn-outline-default qSubmit">
                                         </div>
 									<?php } ?>
                                 </div>
                             </form>
 						<?php } ?>
                     </div>
-					<div class="col-lg-3">
+					<div class="col-lg-2">
 						<div class="score_time_div">
 							<div class="score_ans">
 								<div class="title">Progress</div>

@@ -11,7 +11,7 @@ class Frontend extends CI_Controller {
 	public function index()
 	{
 		$data = array(
-			'title' => 'AppleKitch',
+			'title' => 'Welcome',
 		);
 		$data['testimonials']=$this->frontend_model->get_testimonials(array(),false);
 
@@ -20,7 +20,7 @@ class Frontend extends CI_Controller {
 	public function home()
 	{
 		$data = array(
-			'title' => 'AppleKitch',
+			'title' => 'Welcome',
 		);
         $data['testimonials']=$this->frontend_model->get_testimonials(array(),false);
         //print_r($data['testimonials']); exit();

@@ -163,9 +163,9 @@ ul.dropdown_list li{
 .container{
     width: 1200px;
 }
-.wrapper{
+.wrapper {
     background: #FFFFFF;
-    padding: 10px 0;
+    padding: 0px 0 10px 0;
 }
 .wrapper h1{
     font-family: 'K2D', cursive;
@@ -986,7 +986,7 @@ label.error{color: #FF0000; }
     text-align: center;
 }
 .cat_lis h4 {
-    font-size: 19px;
+    font-size: 20px;
     font-weight: 500;
     color: #f1693c;
     display: inline;
@@ -1669,13 +1669,13 @@ label.error{color: #FF0000; }
 .footable .caret{
     display: none!important;
 }
-.score_time_div{
+.score_time_div {
     width: 100%;
-    margin: 0 0 25px 0;
+    margin: 35px 0 12px 0;
     /* padding: 22px; */
-    /*background: #f5f5f5;
-    text-align: center;
-    float: right;*/
+    /* background: #f5f5f5; */
+    /* text-align: center; */
+    /* float: right; */
 }
 .score_time_div .score_ans{
     width: 100%;
@@ -1686,20 +1686,20 @@ label.error{color: #FF0000; }
     margin: 0 45px 10px 0;
 }
 
-.score_time_div .score_ans .title{
+.score_time_div .score_ans .title {
     background: #f1693c;
     color: #fff;
     /* height: 59px; */
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 600;
-    padding: 19px 10px;
+    padding: 17px 10px;
     display: inline-block;
-    width: 46%;
-    line-height: 124%;
+    width: 62%;
+    line-height: 45%;
 }
 .score_time_div .score_ans .content{
-    padding: 10px 10px 10px 49px;
-    font-size: 30px;
+    padding: 8px 5px 8px 38px;
+    font-size: 20px;
     font-weight: bold;
     display: inline-block;
     vertical-align: sub;
@@ -1716,23 +1716,23 @@ label.error{color: #FF0000; }
     background: #f7bc01;
     color: #fff;
     /* height: 59px; */
-    font-size: 22px;
+    font-size: 16px;
     font-weight: 600;
     padding: 19px 10px;
     display: inline-block;
     width: 46%;
     line-height: 124%;
 }
-.score_time_div .score_time .content{
-    padding: 10px 6px 10px 9px;
-    font-size: 20px;
+.score_time_div .score_time .content {
+    padding: 1px 1px 6px 3px;
+    font-size: 14px;
     font-weight: bold;
     display: inline-block;
     vertical-align: bottom;
     text-align: center;
 }
 .score_time_div .score_time .time_text{
-    font-size: 14px;
+    font-size: 12px;
     color: #ababab;
 }
 
@@ -1744,30 +1744,30 @@ label.error{color: #FF0000; }
     overflow: hidden;
     margin: 0 45px 10px 0;
 }
-.score_time_div .score_smart .title{
+.score_time_div .score_smart .title {
     background: #0bc1b6;
     color: #fff;
     /* height: 59px; */
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 600;
-    padding: 8px 10px;
+    padding: 6px 10px;
     display: inline-block;
-    width: 46%;
-    line-height: 124%;
+    width: 63%;
+    line-height: 76%;
 }
 .active{
     color: #f1693c;
 }
 .time_dis_counter{
     display: inline-block;
-    margin: 0 10px 0 0;
+    margin: 0 1px 0 0;
 }
 .score_time_div .score_smart .title sup{
     top:0 !important;
 }
-.score_time_div .score_smart .content{
-    padding: 10px 10px 10px 49px;
-    font-size: 30px;
+.score_time_div .score_smart .content {
+    padding: 8px 1px 10px 35px;
+    font-size: 20px;
     font-weight: bold;
     display: inline-block;
     vertical-align: super;
@@ -1873,20 +1873,29 @@ only screen and (min-device-pixel-ratio: 1.5) {
     margin: 0!important;
     padding: 0 !important;
 }
-.top_tap_sub{
+.top_tap_sub {
     background: #064a6a;
     height: 40px;
     color: #fff;
     padding: 10px 0;
+    margin: 10px 0 -10px 0;
+    /* z-index: 999999999; */
 }
-.top_tap_sub ul{
+.top_tap_sub ul {
     list-style: none;
     float: left;
     padding: 0;
     margin: 0;
+    width: 100%;
 }
-.top_tap_sub ul li{
+.top_tap_sub ul li {
     display: inline-block;
+    /* width: 24%; */
+    border-right: 1px solid #ccc;
+    padding: 0 7% 0 7%;
+}
+.top_tap_sub ul li:last-child {
+    border-right: none;
 }
 .top_tap_sub ul li a{
     color: #fff;
@@ -2910,7 +2919,7 @@ img.head_pro_img {
     width: 100px;
     height: 100px;
 }
-.dropdown {
+.subject_top_nav .dropdown {
     border: 3px solid;
     border-radius: 84%;
     width: 80px;
@@ -2929,12 +2938,12 @@ img.head_pro_img {
      padding: 0 0 20px 0;
 }
 .subject_top_nav h1{
-    padding: 27px 0 0 0;
+    padding: 20px 0 0 0;
 }
 .dropdown-toggle::after {
     display: none;
 }
-.dropdown::after {
+.subject_top_nav .dropdown::after {
     display: inline-block;
     width: 0;
     height: 0;
@@ -2951,7 +2960,7 @@ img.head_pro_img {
     padding: 0px 0 0 0;
 }
 .dropdown-menu a {
-    font-size: 17px !important;
+    font-size: 15px !important;
     padding: 8px 0 !important;
 }
 .dropdown-menu {
@@ -2994,6 +3003,7 @@ img.head_pro_img {
 .category_box ul li{
     color: #000;
     padding: 2px 0;
+    font-size: 16px;
 }
 .category_box ul li a{
     color: #000;
@@ -3003,4 +3013,13 @@ img.head_pro_img {
 }
 .topic_count {
     margin-right: 5px;
+}
+.qSubmit {
+    background: #f7931d;
+    color: #fff;
+    border-radius: 25px;
+    padding: 5px 45px;
+    font-size: 20px;
+    margin-top: 10px;
+    border: 1px solid #f7931d;
 }

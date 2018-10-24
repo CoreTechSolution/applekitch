@@ -2,14 +2,29 @@
 $this->load->view('templates/header');
 ?>
     <div class="wrapper inner-pages">
-        <div class="inner_page_banner">
+        <!--<div class="inner_page_banner">
             <div class="container">
                 <div class="row">
-                    <h1>Learning <?php echo $banner_title; ?></h1>
+                    <h1>Learning <?php /*echo $banner_title; */?></h1>
                 </div>
             </div>
 
-        </div>
+        </div>-->
+       <!-- <div class="top_tap_sub">
+            <div class="container">
+                <div class="row">
+                    <ul>
+                        <li><a href="<?php /*echo base_url('frontend/topic/reception/math') */?>">Math</a></li>
+                        <li><a href="<?php /*echo base_url('frontend/topic/reception/english') */?>">English</a></li>
+                        <?php /*if(loginCheck()==true){ */?>
+                            <li><a href="<?php /*echo base_url('awards'); */?>">Awards</a></li>
+                            <li><a href="<?php /*echo base_url('certificates'); */?>">Certificates</a></li>
+                        <?php /*} */?>
+
+                    </ul>
+                </div>
+            </div>
+        </div>-->
         <div class="breadcrumbs_section">
             <div class="container">
                 <div class="row">

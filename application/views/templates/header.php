@@ -20,7 +20,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" type="image/png" href="<?php echo base_url('/assets/images/favicon.png'); ?>">
-	<title><?php echo $title; ?></title>
+	<title><?php echo $title; ?> | Applekitch</title>
 
     <link rel="stylesheet" media="all" href="<?php echo  base_url('/assets/css/bootstrap.min.css'); ?>" />
     <link rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700|Open+Sans:300,400,600,700|Raleway:300,400,500,600|Roboto:100,300,400,500,700|Lato:100,300,400,700|Fredoka+One|Istok+Web:400" />
@@ -139,4 +139,21 @@
             </div>
         </div>
     </div>
+    <?php if($title!='Welcome'){ ?>
+    <div class="top_tap_sub">
+        <div class="container">
+            <div class="row">
+                <ul>
+                    <li><a href="<?php echo base_url('frontend/topic/reception/math') ?>">Math</a></li>
+                    <li><a href="<?php echo base_url('frontend/topic/reception/english') ?>">English</a></li>
+                    <?php if(loginCheck()==true){ ?>
+                        <li><a href="<?php echo base_url('awards'); ?>">Awards</a></li>
+                        <li><a href="<?php echo base_url('certificates'); ?>">Certificates</a></li>
+                    <?php } ?>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <?php } ?>
 </div>

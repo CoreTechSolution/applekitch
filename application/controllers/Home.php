@@ -18,7 +18,7 @@ class Home extends CI_Controller {
 	public function index()
 	{
 		$data = array(
-			'title' => 'AppleKitch',
+			'title' => 'Welcome',
 		);
         $data['testimonials']=$this->frontend_model->get_testimonials(array(),false);
 		$this->load->view('home_page', $data);

@@ -157,6 +157,9 @@ jQuery(document).ready(function(){
                 jQuery('#overlay').slideToggle();
                 jQuery('.qAns_form').html('');
                 ////////////////////// IF answer is wrong ///////////////////////////////
+                var current_url = window.location.href;
+                var  urls=current_url.split('/');
+                var url_count=urls.length;
                 if (data['type'] != 'true') {
                     jQuery('#ans_label').removeClass();
                     jQuery('#ans_label').addClass('wAns');
@@ -213,7 +216,8 @@ jQuery(document).ready(function(){
                                 '</tr>';
                             html+='</table>';
                             html+='<div class="print_action_div">';
-                            html+='<a class="btn btn-small btn-outline-default" onclick="printDiv(\'printableArea\')">Print</a> <a href="'+ base_url +'frontend/topic/reception/english" class="btn btn-small btn-outline-default" >Back to Main Menu</a>';
+
+                            html+='<a class="btn btn-small btn-outline-default" onclick="printDiv(\'printableArea\')">Print</a> <a href="'+ base_url +'frontend/topic/'+urls[url_count-3]+'/'+urls[url_count-2]+'" class="btn btn-small btn-outline-default" >Continue</a>';
                             html+='</div>';
                             html+='</div>';
                             //////////////// save certificate after complete a topic /////////////////////////
@@ -294,7 +298,7 @@ jQuery(document).ready(function(){
                                 '</tr>';
                             html+='</table>';
                             html+='<div class="print_action_div">';
-                            html+='<a class="btn btn-small btn-outline-default" onclick="printDiv(\'printableArea\')">Print</a> <a href="'+ base_url +'frontend/topic/reception/english" class="btn btn-small btn-outline-default" >Back to Main Menu</a>';
+                            html+='<a class="btn btn-small btn-outline-default" onclick="printDiv(\'printableArea\')">Print</a> <a href="'+ base_url +'frontend/topic/'+urls[url_count-3]+'/'+urls[url_count-2]+'" class="btn btn-small btn-outline-default" >Continue</a>';
                             html+='</div>';
                             html+='</div>';
                             // save certificate
