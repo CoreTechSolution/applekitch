@@ -70,7 +70,7 @@ class Frontend extends CI_Controller {
             $data['questions'] = $this->frontend_model->get_questions(array('grade_id' => $grade_id, 'subject_id' => $subject_id), false);
             $this->load->view('frontend/topic_page', $data);
         } else{
-            $this->frontend->home();
+            $this->home();
         }
 	}
 	public function questions($grade,$subject,$topic,$start=0){
