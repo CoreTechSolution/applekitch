@@ -1684,6 +1684,7 @@ label.error{color: #FF0000; }
     border-radius: 10px;
     overflow: hidden;
     margin: 0 45px 10px 0;
+    line-height: 0;
 }
 
 .score_time_div .score_ans .title {
@@ -1710,7 +1711,7 @@ label.error{color: #FF0000; }
     border: 2px solid #f7bc01;
     display: inline-block;
     border-radius: 10px;
-    overflow    : hidden;
+    overflow: hidden;
 }
 .score_time_div .score_time .title{
     background: #f7bc01;
