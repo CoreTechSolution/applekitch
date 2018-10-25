@@ -49,15 +49,18 @@ class Frontend extends CI_Controller {
 
             //print_r($data['topics']); exit();
             $data['grades_lists'] = $this->frontend_model->get_grades(array(), false);
+            $data['grade_content']=$this->frontend_model->get_grade_content(array('subject_id'=>$subject_id,'grade_id'=>$grade_id),true);
             //print_r( $data['topics']); exit();
             $data['grade_id'] = $grade_id;
             $data['questions'] = $this->frontend_model->get_questions(array('grade_id' => $grade_id, 'subject_id' => $subject_id), false);
+
             $this->load->view('frontend/topic_page', $data);
         } elseif(!empty($_POST['grade_id']) && !empty($_POST['subject_id'])){
             $data['banner_title'] = ucfirst(get_returnfield('subject','id',$_POST['subject_id'],'name'));
             $data['title'] = ucfirst(get_returnfield('grade','id',$_POST['grade_id'],'name') . ' ' . get_returnfield('subject','id',$_POST['subject_id'],'name'));
             $grade_id = $_POST['grade_id'];
             $subject_id = $_POST['subject_id'];
+            $data['grade_content']=$this->frontend_model->get_grade_content(array('subject_id'=>$subject_id,'grade_id'=>$grade_id),true);
             $data['grade'] = get_returnfield('grade', 'id', $grade_id, 'slug');
             $data['subject'] = get_returnfield('subject', 'id', $subject_id, 'slug');
             //print_r($data);

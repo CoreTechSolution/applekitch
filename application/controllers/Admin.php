@@ -1238,6 +1238,88 @@ class Admin extends CI_Controller {
 
 
     }
+    public function grade_settings(){
+        isLogin('admin');
+        $data['title'] = 'Grade Page Settings';
+        $data['method'] = 'admin/grade_settings';
+        $data['grade_settings']=$this->admin_model->get_grade_settings();
+        $this->load->view( 'admin/grade_seetings_v', $data );
+
+    }
+    public function add_grade_setting() {
+        isLogin('admin');
+        $data['method']='add_grade_setting';
+        $data['title']='Add New Grade Content';
+        if(!empty($this->input->post('save'))){
+            $this->form_validation->set_rules('subject_id', 'Subject', 'required');
+            $this->form_validation->set_rules('grade_id', 'Grade', 'required');
+            if ($this->form_validation->run() == FALSE){
+                $this->load->view( 'admin/add_grade_settings_v', $data );
+            } else{
+                $value['subject_id']=$this->input->post('subject_id');
+                $value['grade_id']=$this->input->post('grade_id');
+                $value['content']=$this->input->post('content');
+                //$value['create_dt']=date();
+/*                if(!empty($_FILES['testimonial_img']['name'])){
+                    $img_path=image_upload($_FILES,'testimonial_img','uploads');
+                    if($img_path){
+                        $value['testimonial_img']=$img_path;
+                    } else{
+                        //$this->load->view( 'admin/add_certificate_v', $data );
+                        return false;
+                    }
+                }*/
+                $insert=$this->admin_model->insert_grade_setting($value);
+                if($insert){
+                    $this->session->set_flashdata(array('msg_type'=>'success','msg'=>'New Content added!'));
+                    redirect(base_url('admin/grade_settings'));
+                    //$this->load->view( 'admin/grade_seetings_v', $data );
+                }
+            }
+        } else {
+            $this->load->view( 'admin/add_grade_settings_v', $data );
+        }
+    }
+    public function edit_grade_setting($id) {
+        isLogin('admin');
+        $data['method']='edit_grade_setting';
+        $data['title']='Edit Grade Content';
+        $data['grade_settings']=$this->admin_model->get_grade_settings(array('id'=>$id),true);
+        if(!empty($this->input->post('save'))){
+            $this->form_validation->set_rules('subject_id', 'Subject', 'required');
+            $this->form_validation->set_rules('grade_id', 'Grade', 'required');
+            if ($this->form_validation->run() == FALSE){
+                $this->load->view( 'admin/edit_grade_setting_v', $data );
+            } else{
+                $value['subject_id']=$this->input->post('subject_id');
+                $value['grade_id']=$this->input->post('grade_id');
+                $value['content']=$this->input->post('content');
+                /*if(!empty($_FILES['testimonial_img']['name'])){
+                    $img_path=image_upload($_FILES,'testimonial_img','uploads');
+                    if($img_path){
+                        $value['testimonial_img']=$img_path;
+                    } else{
+                        //$this->load->view( 'admin/add_certificate_v', $data );
+                        return false;
+                    }
+                }*/
+                $conditions=array('id'=>$id);
+                $insert=$this->admin_model->update_grade_setting($conditions,$value);
+                //echo $this->db->last_query();  exit();
+                if($insert){
+                    //$data['testimonials']=$this->admin_model->get_testimonials(array('id'=>$id),true);
+                    $this->session->set_flashdata(array('msg_type'=>'success','msg'=>'Content Updated!'));
+                    redirect(base_url('admin/grade_settings'));
+                } else{
+                    $data['grade_settings']=$this->admin_model->get_grade_settings(array('id'=>$id),true);
+                    $this->session->set_flashdata(array('msg_type'=>'error','msg'=>'Something wrong! try again later!'));
+                    $this->load->view( 'admin/edit_grade_setting_v', $data );
+                }
+            }
+        } else {
+            $this->load->view( 'admin/edit_grade_setting_v', $data );
+        }
+    }
     public function testimonials(){
         isLogin('admin');
         $data['title']='Testimonials';

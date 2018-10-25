@@ -34,6 +34,22 @@ class Frontend_model extends CI_Model {
             return false;
         }
     }
+    function get_grade_content($conditions=array(),$row=true){
+        $this->db->select('*');
+        if (!empty($conditions))
+            $this->db->where($conditions);
+        $this->db->from('grade_settings');
+        $query=$this->db->get();
+        if($query) {
+            if ( $row == true ) {
+                return $query->row();
+            } else if ( $row == false ) {
+                return $query->result();
+            }
+        } else {
+            return false;
+        }
+    }
 	function get_grades($conditions=array(),$row=true){
 		$this->db->select('*');
 		if(!empty($conditions)){

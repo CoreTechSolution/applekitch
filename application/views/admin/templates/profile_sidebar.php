@@ -91,5 +91,11 @@
                 Home Page Settings
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link<?php if($title == 'Grade Page Settings') { ?> active<?php } ?>" href="<?php echo base_url('/admin/grade_settings'); ?>">
+                <span data-feather="bar-chart"></span>
+                Grade Page Settings
+            </a>
+        </li>
     </ul>
 </div>

@@ -399,6 +399,36 @@ INNER JOIN country ON subject.country = country.id INNER JOIN grade ON subject.g
             return false;
         }
     }
+    function get_grade_settings($conditions=array(),$row=false){
+        $this->db->select('*');
+        if (!empty($conditions))
+            $this->db->where($conditions);
+        $this->db->from('grade_settings');
+        $query=$this->db->get();
+        if($query) {
+            if ( $row == true ) {
+                return $query->row();
+            } else if ( $row == false ) {
+                return $query->result();
+            }
+        } else {
+            return false;
+        }
+    }
+    function insert_grade_setting($data) {
+        $this->db->insert('grade_settings', $data);
+        $insert_id = $this->db->insert_id();
+        return $insert_id;
+    }
+    function update_grade_setting($conditions,$data) {
+        $this->db->set($data);  //Set the column name and which value to set..
+        $this->db->where($conditions); //set column_name and value in which row need to update
+        if($this->db->update('grade_settings')){
+            return true;
+        } else{
+            return false;
+        }
+    }
 
 	function get_pages() {
 		$this->db->select('*');
