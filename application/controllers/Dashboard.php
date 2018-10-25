@@ -143,6 +143,16 @@ class Dashboard extends CI_Controller {
 				}
 			}
 			echo 'success';
+
+            $msg = 'Successfully activate the plan<br><br>
+                    <b>Membership Plan Details:</b>
+                    <b>Subscriber Name:  </b>'.get_returnfield('user','id',$user_id,'fname').'<br>
+                    <b>Membership:  </b>'.get_returnfield('membership','id',$membership_plan,'name').'<br>
+                    <b>Amount:  </b>$'.$amount.'
+                    <br><br>
+                    Regards,<br>AppleKitch';
+            send_mail(get_returnfield('user','id',$user_id,'email_address'), 'Subscription plan details', $msg);
+
 		} else {
 			echo 'failure';
 		}
