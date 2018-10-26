@@ -100,9 +100,6 @@ $this->load->view('templates/header');
                         </div>
                     </div>
 
-
-
-
                 <?php
                 $colorcode=explode('|',COLORCODE);
                // print_r($colorcode);
@@ -186,6 +183,13 @@ $this->load->view('templates/header');
                             </div>
                         </div>
                     <?php } ?>
+                <?php if(!empty($grade_content)){ ?>
+                <div class="topic_content_area">
+
+                    <?php echo $grade_content->content; ?>
+
+                </div>
+                <?php } ?>
 
             </div>
         </div>
