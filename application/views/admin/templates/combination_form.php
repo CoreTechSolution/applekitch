@@ -462,6 +462,29 @@
         <div id="uploaded_images" style="display: none;"></div>
     </div>
 </div>
+<!--- --->
+<div id="qOption_35">
+    <div class="form-group">
+        <div id="uploaded_images" style="display: none;"></div>
+        <div class="row" id="upload_images_section">
+            <div class="col-lg-6">
+                <label for="imageQ_upload">Question Background Image</label>
+                <input type="file" name="imageQ_bg_upload" class="form-control imageQ_bg_upload" required>
+            </div>
+        </div>
+        <div class="imageQ_bg_img_wrap" style="display: none; position: relative;"></div>
+        <br/>
+        <br/>
+        <div class="row imageQ_multiple_image_wrap" style="display: none">
+            <div class="col-lg-6">
+                <label for="imageQ_upload">Upload Images</label>
+                <input type="file" name="imageQ_multiple_image" class="form-control imageQ_multiple_image" required>
+            </div>
+        </div>
+        <!--<input type="hidden" name="ans_textbox" class="ans_textbox">-->
+        <div class="imageQ_multiple_image_show_wrap" style="display: none;"></div>
+    </div>
+</div>
 <!---->
 <div id="combination_add_row_demo">
     <div class="add_question_row">

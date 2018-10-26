@@ -1199,6 +1199,67 @@ class Ajax extends CI_Controller {
 		echo $uploaded_images_forms;
 	}
 
+	function imageQmultipleimg() {
+		if ( isset( $_FILES['imageQ_bg_upload'] ) ) {
+			$resultArray = array();
+			$file        = $_FILES['imageQ_bg_upload'];
+			$fileName    = $file['name'];
+			$tmpName     = $file['tmp_name'];
+			$fileSize    = $file['size'];
+			$fileType    = $file['type'];
+			if ( $file['error'] != UPLOAD_ERR_OK ) {
+				error_log( $file['error'] );
+				echo JSON_encode( null );
+			}
+			$fp      = fopen( $tmpName, 'r' );
+			$content = fread( $fp, filesize( $tmpName ) );
+			fclose( $fp );
+			$result = array(
+				'name'   => $file['name'],
+				'type'   => 'image',
+				'src'    => "data:" . $fileType . ";base64," . base64_encode( $content ),
+				'height' => 350,
+				'width'  => 250
+			);
+			// we can also add code to save images in database here.
+			array_push( $resultArray, $result );
+			echo json_encode( $resultArray );
+		}
+	}
+	function imageQuploadimg() {
+		if(isset($_FILES['upload_images']))
+		{
+			$resultArray = array();
+			$file = $_FILES['upload_images'];
+			if(!empty($file['name'])) {
+				$fileName = $file['name'];
+				//print_r($file['tmp_name']); exit();
+				foreach($fileName as $key => $filename) {
+					$tmpName  = $file['tmp_name'][$key];
+					$fileSize = $file['size'][$key];
+					$fileType = $file['type'][$key];
+					if ( $file['error'][$key] != UPLOAD_ERR_OK ) {
+						error_log( $file['error'][$key] );
+						echo JSON_encode( null );
+					}
+					$fp      = fopen( $tmpName, 'r' );
+					$content = fread( $fp, filesize( $tmpName ) );
+					fclose( $fp );
+					$result = array(
+						'name'   => $filename,
+						'type'   => 'image',
+						'src'    => "data:" . $fileType . ";base64," . base64_encode( $content ),
+						'height' => 50,
+						'width'  => 50
+					);
+					// we can also add code to save images in database here.
+					array_push( $resultArray, $result );
+				}
+			}
+			echo json_encode($resultArray);
+		}
+	}
+
 	function svgBoximg() {
 		if($_FILES)
 		{

@@ -423,6 +423,12 @@
                 <?php $i++;  } ?>
         </div>
     <?php } ?>
+<?php } elseif($question_option=='35'){ ?>
+    <?php echo $form_data; ?>
+    <div class="row">
+        <div class="question_image">
+        </div>
+    </div>
 <?php } ?>
 
 </div>

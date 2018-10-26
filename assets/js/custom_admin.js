@@ -178,7 +178,6 @@ jQuery(document).ready(function() {
         if(option!=0){
             if(option==1){
                 var question =(parent).find('.question').val();
-                html_c
                 html_c='<h4>'+question+'</h4>';
             }
 
@@ -534,6 +533,111 @@ jQuery(document).ready(function() {
                             $canvasElement.css({
                                 /*left: (ui.position.left),
                                 top: (ui.position.top),*/
+                                position: 'absolute'
+                            });
+                        }
+                    }
+                });
+            }
+        });
+    });
+
+    jQuery('body').on('change', '.imageQ_bg_upload', function(e){
+        e.preventDefault();
+        var this_element = jQuery(this);
+        var parent = this_element.closest('.add_question_row');
+        var form_data = new FormData(parent.find('.addQ_form')[0]);
+        jQuery.ajax({
+            type: "POST",
+            url: base_url + 'ajax/imageQmultipleimg',
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+            data: form_data,
+            success: function (data) {
+                jQuery(parent).find('#upload_images_section input[type="file"]').hide();
+                jQuery(parent).find('.imageQ_bg_img_wrap').html('<div><img src="'+data[0].src+'" style="margin-top: 10px; width: 100%;' +
+                    ' height: auto;"/></div>');
+                jQuery(parent).find('.imageQ_bg_img_wrap').show();
+                jQuery(parent).find('.imageQ_multiple_image_wrap').show();
+                jQuery(parent).find('.imageQ_multiple_image_wrap').html('<div class="col-lg-6"><label for="imageQ_upload">Upload Images</label><input type="file" name="upload_images[]" multiple class="form-control imageQ_multiple_image" required></div>');
+            }
+        });
+    });
+
+    jQuery('body').on('change', '.imageQ_multiple_image', function(e){
+        e.preventDefault();
+        var this_element = jQuery(this);
+        var parent = this_element.closest('.add_question_row');
+        var form_data = new FormData(parent.find('.addQ_form')[0]);
+        jQuery.ajax({
+            type: "POST",
+            url: base_url + 'ajax/imageQuploadimg',
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+            data: form_data,
+            success: function (data) {
+                jQuery(parent).find('.imageQ_multiple_image_wrap input[type="file"]').hide();
+                var text1 = '<ul>';
+                var img_ar = '';
+                jQuery.each(data, function( index, value ) {
+                    text1 = text1+'<li>' +
+                        '<img data-title="'+value.name+'" src="'+value.src+'" style="width: 50px;' + ' height:' + ' auto;"/>' +
+                        '<input type="hidden" name="'+value.name+'"/>'+
+                        '<br/>'+
+                        '<input type="checkbox" value="'+value.name+'" name="multiple_img[]"/>'+
+                        '</li>';
+                    img_ar = img_ar+value.name+'|'+value.src+']';
+                });
+
+                text1 = text1+'</ul>';
+                jQuery(parent).find('.imageQ_multiple_image_show_wrap').html(text1);
+                jQuery(parent).find('.imageQ_multiple_image_show_wrap').show();
+                //jQuery(parent).find('.imageQ_multiple_image_wrap').show();
+
+                jQuery(parent).find(".imageQ_multiple_image_show_wrap ul li img").draggable({
+                    helper: "clone",
+                    cursor: 'move',
+                    revert: function(valid) {
+                        if(!valid) {
+                            this.remove();
+                        }
+                    }
+                });
+                jQuery(parent).find(".imageQ_bg_img_wrap").droppable({
+                    accept: ".imageQ_multiple_image_show_wrap ul li img",
+                    classes: {
+                        "ui-droppable-active": "ui-state-active",
+                        "ui-droppable-hover": "ui-state-hover"
+                    },
+                    drop: function (event, ui) {
+                        var $canvas = jQuery(this);
+                        var pos = ui.draggable.offset()
+                        var dPos = jQuery(this).offset();
+                        //$canvas.addClass( "ui-state-highlight" )
+                        if (!ui.draggable.hasClass('canvas-element')) {
+                            var $canvasElement = ui.draggable.clone();
+                            //$canvasElement.addClass('canvas-element');
+                            $canvasElement.draggable({
+                                containment: '.imageQ_bg_img_wrap',
+                                /*stop:function(event,ui) {
+                                    var wrapper = jQuery(parent).find(".imageQ_bg_img_wrap").offset();
+                                    var pos = ui.helper.offset();
+                                    jQuery(parent).find('input[name="'+title+'"]').val(pos.top - wrapper.top+'|'+pos.left - wrapper.left);
+                                }*/
+                            });
+                            $canvas.append($canvasElement);
+                            //var id = $canvas.attr('data-id');
+                            var title = $canvasElement.attr('data-title');
+                            //var text = 'id:'+id+'|title:'+title+']';
+                            jQuery(parent).find('input[name="'+title+'"]').val(ui.position.top-dPos.top+'|'+ui.position.left);
+                            /*jQuery(parent).find(".ans_textbox").val(function() {
+                                return this.value + text;
+                            });*/
+                            $canvasElement.css({
+                                left: (ui.position.left),
+                                top: (ui.position.top-dPos.top),
                                 position: 'absolute'
                             });
                         }
