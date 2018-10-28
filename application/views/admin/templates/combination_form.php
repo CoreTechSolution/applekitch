@@ -478,10 +478,12 @@
         <div class="row imageQ_multiple_image_wrap" style="display: none">
             <div class="col-lg-6">
                 <label for="imageQ_upload">Upload Images</label>
-                <input type="file" name="imageQ_multiple_image" class="form-control imageQ_multiple_image" required>
+                <input type="file" name="upload_images[]" multiple class="form-control
+                imageQ_multiple_image" required>
             </div>
         </div>
         <!--<input type="hidden" name="ans_textbox" class="ans_textbox">-->
+        <input class="question_textbox" type="hidden" name="question_textbox" value=""/>
         <div class="imageQ_multiple_image_show_wrap" style="display: none;"></div>
     </div>
 </div>

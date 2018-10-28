@@ -394,6 +394,18 @@ class Ajax extends CI_Controller {
 				$form_data['ans_textbox'] = $ans_textbox;
 			}
 		}
+		if($form_data['question_option']=='35') {
+			if ( ! empty( $_FILES['imageQ_bg_upload']['name'] ) ) {
+				$img_path = image_upload( $_FILES, 'imageQ_bg_upload', 'uploads/images' );
+				if ( $img_path ) {
+					$image_upload = $img_path;
+				} else {
+
+					$image_upload = '';
+				}
+				$form_data['imageQ_bg_upload'] = $image_upload;
+			}
+		}
 
 		if(!empty($form_data['question_id'])){
 			$question_id=$form_data['question_id'];
@@ -1064,6 +1076,33 @@ class Ajax extends CI_Controller {
                     $rtntext['type'] = 'false';
                     $rtntext['content'] = 'Wrong: Correct answer is : ' . $form_data_ans['answer'];
                 }
+            } elseif ($form_data['question_option'] == '35') {
+
+	            if (!empty($questions_next)) {
+		            $question_form_data = unserialize($questions_next[0]->form_data);
+		            $qview_option = 'qView_option_' . $question_form_data['question_option'];
+		            $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions->question_id);
+	            }
+	            if (empty($html)) {
+		            $html = '';
+	            }
+	            $rtntext['html'] = $html;
+	            $your_ans = $form_data['multiple_img'];
+	            $correct_ans = $form_data_ans['multiple_img'];
+	            if ($correct_ans == $your_ans) {
+		            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+		            $this->session->set_userdata('score_smart', ($form_data['score'] + $questions->q_score));
+		            $rtntext['score_ans'] = $this->session->userdata('score_ans');
+		            $rtntext['score_smart'] = $this->session->userdata('score_smart');
+		            $rtntext['type'] = 'true';
+		            $rtntext['content'] = 'Correct';
+
+	            } else {
+		            $this->session->set_userdata('score_ans', ($form_data['answred'] + 1));
+		            $rtntext['score_ans'] = $this->session->userdata('score_ans');
+		            $rtntext['type'] = 'false';
+		            $rtntext['content'] = 'Wrong: ';
+	            }
             }
 
 
@@ -1988,6 +2027,40 @@ class Ajax extends CI_Controller {
             }
             $rtntext.='</div>';
         }
+
+
+        $rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
+        $rtntext.='</div>';
+        $rtntext.='</div>';
+
+        return $rtntext;
+    }
+    function qView_option_35($data,$grade_id,$subject_id,$topic_id,$start,$id_not_in){
+        $rtntext='';
+        $start=$start+1;
+        $rtntext.=$this->qView_common_part($data,$start,$grade_id,$subject_id,$id_not_in,$topic_id );
+
+        $form_serializedata=unserialize($data->form_data);
+        //print_r($form_serializedata);
+        $rtntext.='<input type="hidden" name="question_option" value="'.$form_serializedata['question_option'].'">';
+
+        $rtntext.= '<div class="imageQ_bg_img_wrap">';
+	    if(!empty($form_serializedata['imageQ_bg_upload'])) {
+	    	$rtntext.='<img src="'.$form_serializedata['imageQ_bg_upload'].'" />';
+	    }
+	    if(!empty($form_serializedata['question_textbox'])) {
+		    //$question_textbox_ar = array();
+		    $question_textbox = explode(']', $form_serializedata['question_textbox']);
+		    foreach ($question_textbox as $question_text) {
+			    if(!empty($question_text)) {
+				    $question_text_ar = explode( '|', $question_text );
+				    //$question_textbox_ar[$question_text_ar[0]] = $question_text_ar[1];
+				    $pos = explode('|', $form_serializedata[str_replace('.', '_', $question_text_ar[0])]);
+				    $rtntext.='<label style="top: '.$pos[0].'px; left: '.$pos[1].'px;" for="'.$question_text_ar[0].'"><img src="' .$question_text_ar[1].'" /></label>';
+				    $rtntext.='<input type="checkbox" name="multiple_img[]" value="'.$question_text_ar[0].'" id="'.$question_text_ar[0].'"/>';
+			    }
+		    }
+	    }
 
 
         $rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';

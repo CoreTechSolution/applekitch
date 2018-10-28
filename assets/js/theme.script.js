@@ -797,4 +797,12 @@ jQuery(document).ready(function() {
             }
         }
     });
+    jQuery('body').on('click', '.imageQ_bg_img_wrap label img', function() {
+        var thiselement = jQuery(this);
+        if(thiselement.hasClass('active')) {
+            thiselement.removeClass('active');
+        } else {
+            thiselement.addClass('active');
+        }
+    });
 })

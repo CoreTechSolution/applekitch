@@ -555,12 +555,13 @@ jQuery(document).ready(function() {
             dataType: 'json',
             data: form_data,
             success: function (data) {
-                jQuery(parent).find('#upload_images_section input[type="file"]').hide();
-                jQuery(parent).find('.imageQ_bg_img_wrap').html('<div><img src="'+data[0].src+'" style="margin-top: 10px; width: 100%;' +
+                //jQuery(parent).find('#upload_images_section input[type="file"]').hide();
+                jQuery(parent).find('.imageQ_bg_img_wrap').html('<div><img src="'+data[0].src+'" style="margin-top: 10px; width: 500px;' +
                     ' height: auto;"/></div>');
                 jQuery(parent).find('.imageQ_bg_img_wrap').show();
                 jQuery(parent).find('.imageQ_multiple_image_wrap').show();
-                jQuery(parent).find('.imageQ_multiple_image_wrap').html('<div class="col-lg-6"><label for="imageQ_upload">Upload Images</label><input type="file" name="upload_images[]" multiple class="form-control imageQ_multiple_image" required></div>');
+                //jQuery(parent).find('.imageQ_multiple_image_wrap').html('<div class="col-lg-6"><label for="imageQ_upload">Upload
+                // Images</label><input type="file" name="upload_images[]" multiple class="form-control imageQ_multiple_image" required></div>');
             }
         });
     });
@@ -578,7 +579,7 @@ jQuery(document).ready(function() {
             dataType: 'json',
             data: form_data,
             success: function (data) {
-                jQuery(parent).find('.imageQ_multiple_image_wrap input[type="file"]').hide();
+                //jQuery(parent).find('.imageQ_multiple_image_wrap input[type="file"]').hide();
                 var text1 = '<ul>';
                 var img_ar = '';
                 jQuery.each(data, function( index, value ) {
@@ -594,6 +595,7 @@ jQuery(document).ready(function() {
                 text1 = text1+'</ul>';
                 jQuery(parent).find('.imageQ_multiple_image_show_wrap').html(text1);
                 jQuery(parent).find('.imageQ_multiple_image_show_wrap').show();
+                jQuery(parent).find('.question_textbox').val(img_ar);
                 //jQuery(parent).find('.imageQ_multiple_image_wrap').show();
 
                 jQuery(parent).find(".imageQ_multiple_image_show_wrap ul li img").draggable({

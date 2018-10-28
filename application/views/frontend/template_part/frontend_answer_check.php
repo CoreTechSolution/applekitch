@@ -424,10 +424,30 @@
         </div>
     <?php } ?>
 <?php } elseif($question_option=='35'){ ?>
-    <?php echo $form_data; ?>
-    <div class="row">
-        <div class="question_image">
-        </div>
+    <?php //print_r($form_data); ?>
+    <div class="imageQ_bg_img_wrap">
+        <?php if(!empty($form_data['imageQ_bg_upload'])) { ?>
+            <img src="<?php echo $form_data['imageQ_bg_upload']; ?>" />
+        <?php } ?>
+        <?php
+        if(!empty($form_data['question_textbox'])) {
+            //$question_textbox_ar = array();
+            $question_textbox = explode(']', $form_data['question_textbox']);
+            foreach ($question_textbox as $question_text) {
+                if(!empty($question_text)) {
+                    $question_text_ar = explode( '|', $question_text );
+                    //$question_textbox_ar[$question_text_ar[0]] = $question_text_ar[1];
+                    $pos = explode('|', $form_data[str_replace('.', '_', $question_text_ar[0])]);
+                    ?>
+                    <label style="top: <?php echo $pos[0]; ?>px; left: <?php echo $pos[1]; ?>px;" for="<?php echo $question_text_ar[0];
+                    ?>"><img src="<?php echo
+                        $question_text_ar[1]; ?>" /></label>
+                    <input type="checkbox" name="multiple_img[]" value="<?php echo $question_text_ar[0]; ?>" id="<?php echo $question_text_ar[0]; ?>"/>
+                    <?php
+                }
+            }
+        }
+        ?>
     </div>
 <?php } ?>
 

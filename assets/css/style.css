@@ -3024,3 +3024,20 @@ img.head_pro_img {
     margin-top: 10px;
     border: 1px solid #f7931d;
 }
+.imageQ_bg_img_wrap {
+    position: relative;
+    width: 500px;
+}
+.imageQ_bg_img_wrap label {
+    position: absolute;
+}
+.imageQ_bg_img_wrap label img {
+    width: 50px;
+}
+.imageQ_bg_img_wrap label img.active {
+    -webkit-filter: drop-shadow(2px 2px 4px #d5f71b);
+    filter: drop-shadow(2px 2px 4px #d5f71b);
+}
+.imageQ_bg_img_wrap input[type="checkbox"] {
+    display: none;
+}
