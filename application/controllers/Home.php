@@ -23,4 +23,14 @@ class Home extends CI_Controller {
         $data['testimonials']=$this->frontend_model->get_testimonials(array(),false);
 		$this->load->view('home_page', $data);
 	}
+	public function newsletter()
+	{
+		$email_id = $this->input->post('email_id');
+		syncMailchimp($email_id);
+		$data = array(
+			'title' => 'Welcome',
+		);
+		$data['testimonials']=$this->frontend_model->get_testimonials(array(),false);
+		$this->load->view('home_page', $data);
+	}
 }

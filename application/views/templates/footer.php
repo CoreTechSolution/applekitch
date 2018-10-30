@@ -45,9 +45,9 @@
                 <?php if(!loginCheck()) { ?>
 				<p class="col1">Newsletter Signup</p>
 				<div class="newsletter-form">
-					<form method="post" action="">
-						<input type="email" name="" placeholder="Enter Your Email">
-						<input type="submit" name="" value="">
+					<form method="post" action="<?php echo base_url('/home/newsletter'); ?>">
+						<input type="email" name="email_id" placeholder="Enter Your Email">
+						<input type="submit" name="submit" value="">
 					</form>
 				</div>
                 <?php } ?>
