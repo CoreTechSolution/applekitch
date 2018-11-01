@@ -22,6 +22,7 @@ require_once 'templates/header.php';
                             <div class="alert alert-success">
 								<?php echo $success_msg; ?>
                             </div>
+
 							<?php
 						}
 						if($error_msg){
@@ -42,8 +43,20 @@ require_once 'templates/header.php';
 								<div class="from-group">
 									<input type="submit" name="forgot" value="Send Request" class="form-control btn btn-primary btn-primary-green"/>
 								</div>
+
 							</form>
+
 						</div>
+                        <div class="forget_message">
+                            <!--<h5>Your recovery email is on its way</h5>-->
+                            <ul>
+                                <li>If there is an account associated with your email address, we will send you an email containing your password recovery link.</li>
+                                <li>For security purposes, this link is valid only for the next 24 hours.</li>
+                                <li>If you do not receive an email within 10 minutes, check your spam folder first, then try again.</li>
+                                <li>If the issue persists, please <a href="<?= base_url('pages/contact-us'); ?>">contact us</a>.</li>
+                            </ul>
+                        </div>
+
 					</div>
 					<div class="col-lg-3"></div>
 				</div>

@@ -84,17 +84,37 @@
             });
         }
     </script>
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
+    <script>
+        window.addEventListener("load", function(){
+            window.cookieconsent.initialise({
+                "palette": {
+                    "popup": {
+                        "background": "#eb6c44",
+                        "text": "#ffffff"
+                    },
+                    "button": {
+                        "background": "#f5d948"
+                    }
+                },
+                "theme": "classic",
+                "content": {
+                    "href": "http://localhost/applekitch/"
+                }
+            })});
+    </script>
 </head>
 <body>
 <div class="wrapper1">
     <div class="container">
         <div class="row">
-            <div class="col-lg-3">
+            <div class="col-lg-3 col-md-3">
                 <div class="logo">
                     <a href="<?php echo base_url(); ?>"><img src="<?php echo base_url('/assets/images/logo.png'); ?>"></a>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-5 col-md-5">
                 <div class="subjects">
                     <ul>
                         <li><a href="<?php echo base_url('frontend/topic/reception/math') ?>">Maths</a></li>
@@ -102,7 +122,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-4 col-md-4">
                 <div class="reg-log-section">
                     <ul>
 						<?php if(loginCheck()){ ?>
@@ -139,7 +159,7 @@
             </div>
         </div>
     </div>
-    <?php if($title!='Welcome'){ ?>
+    <?php if($title!='Welcome' && $title!='Login'){ ?>
     <div class="top_tap_sub">
         <div class="container">
             <div class="row">

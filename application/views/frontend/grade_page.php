@@ -2,9 +2,9 @@
 $this->load->view('templates/header');
 ?>
 	<div class="wrapper inner-pages">
-		<div class="inner_page_banner">
+		<!--<div class="inner_page_banner">
 
-		</div>
+		</div>-->
         <!--<div class="top_tap_sub">
             <div class="container">
                 <div class="row">

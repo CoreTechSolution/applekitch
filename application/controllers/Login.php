@@ -36,6 +36,9 @@ class Login extends CI_Controller {
 			$this->session->set_userdata('logged_in','1');
 			$this->session->set_userdata('email',$data['email_address']);
 			$this->session->set_userdata('user_type',get_returnfield('user_roles','id',$data['role'],'name'));
+			if($this->input->post('remember_me')==true){
+                $this->session->set_userdata('remember_me', $this->input->post('remember_me'));
+            }
 
 			if(!isUserType('student')) {
 				$user = $this->user_model->get_user_by_id($data['id']);
@@ -48,7 +51,7 @@ class Login extends CI_Controller {
 				$this->load->view("select_user", $data);
 				//redirect( '#wrapper3' );
 			} else {
-				redirect( '#wrapper3' );
+				redirect( base_url('frontend/grades') );
 			}
 
 		} else{
@@ -72,7 +75,7 @@ class Login extends CI_Controller {
 				$this->session->set_userdata( 'user_type', get_returnfield( 'user_roles', 'id', $data['role'], 'name' ) );
 			}
 		}
-		redirect( '#wrapper3' );
+        redirect( base_url('frontend/grades') );
 	}
 	public function google_login(){
         include_once APPPATH.'third_party/google_src/Google_Client.php';

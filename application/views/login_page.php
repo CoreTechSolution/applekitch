@@ -44,6 +44,9 @@ require_once 'templates/header.php';
 									<input type="password" name="pwd" class="form-control">
 									<p style="text-align: right;"><a href="<?php echo base_url('/forgot-password') ?>">Forgot Password?</a></p>
 								</div>
+                                <div class="from-group">
+                                    <input type="checkbox" name="remember_me" id="remember_me"> Remember Me
+                                </div>
 								<br>
 								<div class="from-group">
 									<input type="submit" name="login" value="Login" class="form-control btn btn-primary btn-primary-green"/>

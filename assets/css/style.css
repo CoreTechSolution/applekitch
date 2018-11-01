@@ -711,6 +711,7 @@ ul.dropdown_list li{
 .wrapper10{
     background: #eaeaea;
     padding: 60px 0 0 0;
+    margin-top: 80px;
 }
 .wrapper10 .footer-logo{
     margin-bottom: 33px;
@@ -928,6 +929,25 @@ label.error{color: #FF0000; }
     background: #ffffff;
     padding: 20px;
     margin: 15px 0;
+
+}
+.forget_message {
+    border: 1px solid;
+    margin-top: 25px;
+    padding: 5px;
+    background: #fff;
+}
+.forget_message ul {
+    font-size: 15px;
+    line-height: 100%;
+    font-style: italic;
+    padding: 10px 30px;
+}
+.forget_message ul li {
+    padding: 5px 0;
+}
+.login_form ul{
+    text-align: center;
 }
 .wrapper2 .login_form label {
     color: #222222;
@@ -990,6 +1010,7 @@ label.error{color: #FF0000; }
     font-weight: 500;
     color: #f1693c;
     display: inline;
+    text-transform: uppercase;
     /* width: 97px; */
 }
 .cat_lis span{
@@ -1699,7 +1720,7 @@ label.error{color: #FF0000; }
     line-height: 45%;
 }
 .score_time_div .score_ans .content{
-    padding: 8px 5px 8px 38px;
+    padding: 8px 5px 8px 15px;
     font-size: 20px;
     font-weight: bold;
     display: inline-block;
@@ -1767,7 +1788,7 @@ label.error{color: #FF0000; }
     top:0 !important;
 }
 .score_time_div .score_smart .content {
-    padding: 8px 1px 10px 35px;
+    padding: 8px 1px 10px 15px;
     font-size: 20px;
     font-weight: bold;
     display: inline-block;
@@ -1875,7 +1896,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
     padding: 0 !important;
 }
 .top_tap_sub {
-    background: #064a6a;
+    background: #65b7f5;
     height: 40px;
     color: #fff;
     padding: 10px 0;
@@ -2859,6 +2880,7 @@ ul.DragDropExtra li img {
 .front_check {
     color: green;
     margin-right: 5px;
+    font-size: 18px;
 }
 .putBoxes {
     clear: both;
@@ -2915,6 +2937,7 @@ img.head_pro_img {
     display: inline-block;
     margin: 0 15px;
     text-align: center;
+    padding: 10px 0;
 }
 .login_form ul li .profile-img img {
     width: 100px;
@@ -2990,7 +3013,7 @@ img.head_pro_img {
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
-    border-top: 3px solid;
+    border-top: 6px solid;
     padding: 10px 0;
     margin: 0 0 27px 0;
     height: 92%;
@@ -3000,6 +3023,7 @@ img.head_pro_img {
     list-style: none;
     color: #000;
     font-size: 15px;
+    padding: 0 15px;
 }
 .category_box ul li{
     color: #000;

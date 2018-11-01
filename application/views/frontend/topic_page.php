@@ -126,7 +126,7 @@ $this->load->view('templates/header');
                                                             }
                                                             ?>
 
-                                                            <div class="category_box" style="border-top: 3px solid <?= $colorcode[$rand] ?>">
+                                                            <div class="category_box" style="border-top: 6px solid <?= $colorcode[$rand] ?>">
                                                                 <?php
                                                                 $cat_image=get_returnfield('category','id',$cate_array,'cat_img');
                                                                 $cat_name=get_returnfield('category','id',$cate_array,'name');
@@ -146,7 +146,7 @@ $this->load->view('templates/header');
 
                                                                             foreach ($completed_topics as $completed_topic){
                                                                                 if($cate_arra==$completed_topic->topic_id){
-                                                                                    $sufix='<span class="front_check"><i class="far fa-check-square"></i></span>';
+                                                                                    $sufix='<span class="front_check"><i class="fas fa-check-square"></i></span>';
                                                                                     break;
                                                                                 } else{
                                                                                     $sufix='<span class="front_check"><i class="far fa-square"></i></span>';
