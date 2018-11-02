@@ -35,7 +35,7 @@ require_once 'templates/header.php';
                                     </div>
                                     <?php } ?>
 									<?php if($get_child_id!=0){ ?>
-                                        <h3>Today, <?php echo get_returnfield('user','id',$get_child_id,'fname') ; ?> has...</h3>
+                                        <h3>All Time, <?php echo get_returnfield('user','id',$get_child_id,'fname') ; ?> has...</h3>
                                         <div class="total_usage_counter_div">
 
                                             <div class="row">
@@ -68,7 +68,7 @@ require_once 'templates/header.php';
                                         <div class="chart_area">
                                             <div class="row">
                                                 <div class="col-lg-12">
-                                                    <h3>Practice by Category</h3>
+                                                    <h3>Practice by Grade</h3>
                                                     <div id="donutchart" style="width: 800px; height: 400px;"></div>
                                                 </div>
                                                 <div class="col-lg-12">
