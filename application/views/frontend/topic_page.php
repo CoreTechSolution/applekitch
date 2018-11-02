@@ -70,8 +70,11 @@ $this->load->view('templates/header');
                         <div class="row">
                             <div class="col-lg-2">
                                 <ul class="nav navbar-nav">
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo get_returnfield('grade','slug',$grade,'name'); ?></a>
+                                    <?php  $colorcode=explode('|',COLORCODE); ?>
+                                    <?php $rand=rand(1,11); ?>
+                                    <li class="dropdown" style="background: <?= $colorcode[$rand] ?>; border: 3px solid <?= $colorcode[$rand] ?>;">
+
+                                        <a href="#" class="dropdown-toggle"  data-toggle="dropdown"><?php echo get_returnfield('grade','slug',$grade,'name'); ?></a>
                                         <ul class="dropdown-menu" role="menu">
                                             <?php
                                             $subject_slug=$subject;
