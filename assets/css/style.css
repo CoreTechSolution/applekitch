@@ -3065,3 +3065,62 @@ img.head_pro_img {
 .imageQ_bg_img_wrap input[type="checkbox"] {
     display: none;
 }
+
+.certificate_wrapper {
+    background: url('../images/certificate_bg_line.png') 70px 0 repeat-y;
+    padding-bottom: 60px;
+    /*width: 80%;*/
+    margin: 0 auto;
+}
+.certificate_icon {
+    border: 4px solid #f1693c;
+    width: 150px;
+    height: 150px;
+    padding: 33px 0;
+    background: #ffffff;
+    border-radius: 50%;
+    display: block;
+    text-align: center;
+    font-size: 90px;
+    color: #f1693c;
+}
+span.certficate_date {
+    color: #cccccc;
+    font-size: 14px;
+}
+a.custom_button {
+    display: inline-block;
+    background: #f1693c;
+    border: 1px solid #f1693c;
+    font-size: 16px;
+    color: #FFFFFF;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 8px 40px;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+.cerfificate_share ul {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+}
+.cerfificate_share ul li {
+    display: inline-block;
+    margin: 10px 4px;
+}
+.cerfificate_share ul li a {
+    color: #ffffff;
+    width: 35px;
+    height: 35px;
+    padding: 7px 8px;
+    border-radius: 50%;
+    display: block;
+    text-align: center;
+    font-size: 16px;
+    list-style: none;
+    background: #CCCCCC;
+}
+.cerfificate_share ul li a:hover {
+
+}

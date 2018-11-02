@@ -23,7 +23,7 @@
                 ?>
 
                 <div class="col-lg-3">
-                    <div class="circleWrap"  style="background: <?= $colorcode[$rand] ?>; border: 3px solid <?= $colorcode[$rand] ?>; color: <?= $colorcode[$rand] ?>;">
+                    <div class="circleWrap" style="background: <?= $colorcode[$rand] ?>; border: 3px solid <?= $colorcode[$rand] ?>; color: <?= $colorcode[$rand] ?>;">
                         <h3><?php echo $get_grade->name; ?></h3>
                         <!--<p class="circleWrap1-p">Here is a list of English and Math skills students learn in reception! These skills are organised into categories.</p>-->
                         <div class="circleWrap-div">

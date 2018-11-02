@@ -1409,7 +1409,7 @@ class Ajax extends CI_Controller {
                                         <div class="qAns_box">
                                             <p>Answer: </p><span><input type="text" name="qAns_box" class="form-control"></span>
                                         </div>';
-        $rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
+        $rtntext.='<input type="submit" value="OK" class="btn btn-small btn-outline-default qSubmit">';
         $rtntext.='</div>';
         $rtntext.='</div>';
 
@@ -1446,7 +1446,7 @@ class Ajax extends CI_Controller {
             }
             $rtntext.='</div>';
         }
-        $rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
+        $rtntext.='<input type="submit" value="OK" class="btn btn-small btn-outline-default qSubmit">';
         $rtntext.='</div>';
         $rtntext.='</div>';
 
@@ -1468,7 +1468,7 @@ class Ajax extends CI_Controller {
             $option_counter++;
         }
         $rtntext.='</div>';
-        $rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
+        $rtntext.='<input type="submit" value="OK" class="btn btn-small btn-outline-default qSubmit">';
         $rtntext.='</div>';
         $rtntext.='</div>';
 
@@ -1490,7 +1490,7 @@ class Ajax extends CI_Controller {
             $option_counter++;
         }
         $rtntext.='</div>';
-        $rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
+        $rtntext.='<input type="submit" value="OK" class="btn btn-small btn-outline-default qSubmit">';
         $rtntext.='</div>';
         $rtntext.='</div>';
 
@@ -1512,7 +1512,7 @@ class Ajax extends CI_Controller {
             $option_counter++;
         }
         $rtntext.='</div>';
-        $rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
+        $rtntext.='<input type="submit" value="OK" class="btn btn-small btn-outline-default qSubmit">';
         $rtntext.='</div>';
         $rtntext.='</div>';
 
@@ -1548,7 +1548,7 @@ class Ajax extends CI_Controller {
             }
             $rtntext.='</div>';
         }
-        $rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
+        $rtntext.='<input type="submit" value="OK" class="btn btn-small btn-outline-default qSubmit">';
         $rtntext.='</div>';
         $rtntext.='</div>';
 
@@ -1570,7 +1570,7 @@ class Ajax extends CI_Controller {
             $option_counter++;
         }
         $rtntext.='</div>';
-        $rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
+        $rtntext.='<input type="submit" value="OK" class="btn btn-small btn-outline-default qSubmit">';
         $rtntext.='</div>';
         $rtntext.='</div>';
 
@@ -1585,7 +1585,7 @@ class Ajax extends CI_Controller {
         $rtntext.='<div class="qAns_box">
                         <p>Answer: </p><span><input type="text" name="qAns_box" class="form-control"></span>
                     </div>';
-        $rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
+        $rtntext.='<input type="submit" value="OK" class="btn btn-small btn-outline-default qSubmit">';
         $rtntext.='</div>';
         $rtntext.='</div>';
 
@@ -1612,7 +1612,7 @@ class Ajax extends CI_Controller {
         $rtntext .= '<ul class="svgButton"><li><a href="#" class="svgAdd">1 <span><img src="'.$form_serializedata['img'].'" 
 /></span></a></li><li><a href="#" class="svgDelete">1 <span><i class="fas fa-trash-alt"></i></span></a></li></ul>';
         $rtntext .= '<br/><br/>';
-        $rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
+        $rtntext.='<input type="submit" value="OK" class="btn btn-small btn-outline-default qSubmit">';
         $rtntext.='</div>';
         $rtntext.='</div>';
 
@@ -1635,7 +1635,7 @@ class Ajax extends CI_Controller {
         }
         $rtntext.='<div class="form-group"><textarea class="form-control" style="width: 68%; height: 150px;" name="13_textbox"></textarea></div>';
         $rtntext.='</div>';
-        $rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
+        $rtntext.='<input type="submit" value="OK" class="btn btn-small btn-outline-default qSubmit">';
         $rtntext.='</div>';
         $rtntext.='</div>';
 
@@ -1657,7 +1657,7 @@ class Ajax extends CI_Controller {
             $option_counter++;
         }
         $rtntext.='</div>';
-        $rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
+        $rtntext.='<input type="submit" value="OK" class="btn btn-small btn-outline-default qSubmit">';
         $rtntext.='</div>';
         $rtntext.='</div>';
 
@@ -1693,7 +1693,7 @@ class Ajax extends CI_Controller {
             }
             $rtntext.='</div>';
         }
-        $rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
+        $rtntext.='<input type="submit" value="OK" class="btn btn-small btn-outline-default qSubmit">';
         $rtntext.='</div>';
         $rtntext.='</div>';
 
@@ -1714,7 +1714,7 @@ class Ajax extends CI_Controller {
                                             <p>Answer1: </p><span><input type="text" name="qAns_box1" class="form-control"></span><br>
                                             <p>Answer2: </p><span><input type="text" name="qAns_box2" class="form-control"></span>
                                         </div>';
-        $rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
+        $rtntext.='<input type="submit" value="OK" class="btn btn-small btn-outline-default qSubmit">';
         $rtntext.='</div>';
         $rtntext.='</div>';
 
@@ -1740,7 +1740,7 @@ class Ajax extends CI_Controller {
             $option_counter++;
         }
         $rtntext.='</div>';
-        $rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
+        $rtntext.='<input type="submit" value="OK" class="btn btn-small btn-outline-default qSubmit">';
         $rtntext.='</div>';
         $rtntext.='</div>';
 
@@ -1767,7 +1767,7 @@ class Ajax extends CI_Controller {
             $option_counter++;
         }
         $rtntext.='</ul></div>';
-        $rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
+        $rtntext.='<input type="submit" value="OK" class="btn btn-small btn-outline-default qSubmit">';
         $rtntext.='</div>';
         $rtntext.='</div>';
 
@@ -1837,7 +1837,7 @@ class Ajax extends CI_Controller {
         }
         $rtntext .= '</div>';
         $rtntext .= '<input class="ans_textbox" type="hidden" name="qAns_box" value=""/>';
-        $rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
+        $rtntext.='<input type="submit" value="OK" class="btn btn-small btn-outline-default qSubmit">';
         $rtntext.='</div>';
         $rtntext.='</div>';
 
@@ -1858,7 +1858,7 @@ class Ajax extends CI_Controller {
                                             <p>Answer1: </p><span><input type="text" name="qAns_box1" class="form-control"></span><br>
                                             <p>Answer2: </p><span><input type="text" name="qAns_box2" class="form-control"></span>
                                         </div>';
-        $rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
+        $rtntext.='<input type="submit" value="OK" class="btn btn-small btn-outline-default qSubmit">';
         $rtntext.='</div>';
         $rtntext.='</div>';
 
@@ -1881,7 +1881,7 @@ class Ajax extends CI_Controller {
         }
         $rtntext.='</ul>';
         $rtntext.='<input type="hidden" name="qAns_box" value="0" class="qAns_box_dragDrop" />';
-        $rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
+        $rtntext.='<input type="submit" value="OK" class="btn btn-small btn-outline-default qSubmit">';
         $rtntext.='</div>';
         $rtntext.='</div>';
 
@@ -1913,7 +1913,7 @@ class Ajax extends CI_Controller {
         }
         $rtntext.='</div>
     </div>';
-        $rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
+        $rtntext.='<input type="submit" value="OK" class="btn btn-small btn-outline-default qSubmit">';
         $rtntext.='</div>';
         $rtntext.='</div>';
 
@@ -1943,7 +1943,7 @@ class Ajax extends CI_Controller {
             }
         }
         $rtntext.='</p></div></div>';
-        $rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
+        $rtntext.='<input type="submit" value="OK" class="btn btn-small btn-outline-default qSubmit">';
         $rtntext.='</div>';
         $rtntext.='</div>';
 
@@ -1984,7 +1984,7 @@ class Ajax extends CI_Controller {
         $rtntext.='</div>';
         $rtntext.='</div>';
 
-        $rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
+        $rtntext.='<input type="submit" value="OK" class="btn btn-small btn-outline-default qSubmit">';
         $rtntext.='</div>';
         $rtntext.='</div>';
 
@@ -2029,7 +2029,7 @@ class Ajax extends CI_Controller {
         }
 
 
-        $rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
+        $rtntext.='<input type="submit" value="OK" class="btn btn-small btn-outline-default qSubmit">';
         $rtntext.='</div>';
         $rtntext.='</div>';
 
@@ -2063,7 +2063,7 @@ class Ajax extends CI_Controller {
 	    }
 
 
-        $rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
+        $rtntext.='<input type="submit" value="OK" class="btn btn-small btn-outline-default qSubmit">';
         $rtntext.='</div>';
         $rtntext.='</div>';
 
