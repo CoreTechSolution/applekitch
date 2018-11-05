@@ -130,7 +130,7 @@
                             //print_r($_SESSION);
                             $user_id = get_current_user_id();
 							$userdata = get_userdata_by_id($user_id);
-							//print_r($userdata);
+							$childs_data = get_childs($user_id);
                             ?>
                                 <li>
                                     <a class="btn btn-primary" href="<?php echo base_url('dashboard'); ?>">Welcome <?php echo $userdata->fname; ?>
@@ -142,6 +142,32 @@
                                             }
                                         ?>
                                     </a>
+                                    <?php
+                                    if(!empty($childs_data)) {
+                                        ?>
+                                        <ul>
+                                        <?php
+                                        foreach($childs_data as $child) {
+                                            ?>
+                                            <li>
+                                                <a class="btn btn-primary" href="<?php echo base_url('/login/select_user'); ?>?user_id=<?php echo $child['id']; ?>">
+	                                                <?php
+	                                                if(!empty($child['profile_img'])) {
+		                                                echo '<img class="head_pro_img" src="'.$child['profile_img'].'" />';
+	                                                } else {
+		                                                echo '<img class="head_pro_img" src="'.base_url('/assets/images/noimg.png').'">';
+	                                                }
+	                                                ?>
+	                                                <?php echo $child['fname']; ?>
+                                                </a>
+                                            </li>
+                                            <?php
+                                        }
+                                        ?>
+                                        </ul>
+                                        <?php
+                                    }
+                                    ?>
                                 </li>
                                 <li>
                                     <a class="btn btn-danger"<?php if(!empty($userdata->profile_img)) { ?> style="padding-top: 9px; padding-bottom: 9px;"<?php } ?> href="<?php echo base_url('/login/user_logout'); ?>">Logout</a>

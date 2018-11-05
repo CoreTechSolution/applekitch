@@ -169,6 +169,45 @@ function form_dropdown_child($user_id){
 	}
 	return $query;
 }
+function get_parent($user_id) {
+	$CI = &get_instance();
+	$CI->db->select( 'parent' );
+	$CI->db->from( 'user' );
+	$CI->db->where( 'id', $user_id );
+	$queries = $CI->db->get();
+	$values = $queries->row();
+	return $values->parent;
+}
+function get_childs($user_id){
+	$CI = &get_instance();
+	$values = array();
+
+	if(!isUserType('student')) {
+		$CI->db->select( '*' );
+		$CI->db->from( 'user' );
+		$CI->db->where( 'parent', $user_id );
+		$CI->db->order_by( 'id', 'asc' );
+		$queries = $CI->db->get();
+		$values  = $queries->result_array();
+	} else {
+		$parent = get_parent($user_id);
+		$CI->db->select( '*' );
+		$CI->db->from( 'user' );
+		$CI->db->where( array('parent' => $parent, 'id !=' => $user_id) );
+		$CI->db->order_by( 'id', 'asc' );
+		$queries1 = $CI->db->get();
+		$values1  = $queries1->result_array();
+
+		$CI->db->select( '*' );
+		$CI->db->from( 'user' );
+		$CI->db->where( 'id', $parent );
+		$queries2 = $CI->db->get();
+		$values2  = $queries2->result_array();
+
+		$values = array_merge($values2,$values1);
+	}
+	return $values;
+}
 function image_upload($file,$input_name, $path='uploads',$allowed_types='jpg|png|svg|jpeg',$max_size='5242880'){
 	$rtntext='';
 	//print_r(FCPATH); exit();

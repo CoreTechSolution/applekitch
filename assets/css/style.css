@@ -204,6 +204,28 @@ ul.dropdown_list li{
 }
 .reg-log-section ul li{
     display: inline-block;
+    position: relative;
+}
+.reg-log-section ul li > ul {
+    display: none;
+}
+.reg-log-section ul li:hover > ul {
+    display: block;
+    position: absolute;
+    top: 102%;
+    width: 100%;
+}
+.reg-log-section ul li:hover > ul li {
+    list-style: none;
+    display: block;
+    text-align: left;
+}
+.reg-log-section ul li:hover > ul li a {
+    display: block;
+    margin-bottom: 1%;
+    text-align: inherit;
+    background-color: #65b7f5 !important;
+    border-color: #FFFFFF !important;
 }
 .subjects{
     margin-top: 9px;

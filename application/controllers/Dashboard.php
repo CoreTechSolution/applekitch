@@ -191,7 +191,7 @@ class Dashboard extends CI_Controller {
 			'fname' => $this->input->post('fname'),
 			'lname' => $this->input->post('lname'),
 			'email_address' => $this->input->post('email'),
-			'password' => md5($this->input->post('password')),
+			//'password' => md5($this->input->post('password')),
 			'role' => 3,
 			'parent' => $user_id,
 			'activation' => 1
