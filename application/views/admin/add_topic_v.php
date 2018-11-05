@@ -29,11 +29,20 @@ require_once 'templates/header.php';
 						<div class="row">
 							<div class="col-md-6">
 								<label>Type Name: </label>
-								<input required type="text" name="topic_name" class="form-control" value=""/>
+								<input required type="text" name="topic_name" id="topic_name" class="form-control" value=""/>
 							</div>
 
 						</div>
 					</div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Slug: </label>
+                                <input required type="text" name="slug" id="slug" class="form-control" value="" readonly/>
+                            </div>
+
+                        </div>
+                    </div>
 					<!--<div class="form-group">
 						<div class="row">
 							<div class="col-lg-12">

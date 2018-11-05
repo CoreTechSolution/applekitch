@@ -13,6 +13,18 @@ class Ajax_model extends CI_Model{
 			return false;
 		}
 	}
+    function get_slug($data,$db="topics"){
+        $this->db->select('*');
+        $this->db->where($data);
+        $this->db->from($db);
+        $res=$this->db->get();
+        if(!empty($res) && $res != ''){
+            return true;
+        }else{
+            return false;
+        }
+        return false;
+    }
 	function insert_question($data){
 		$this->db->insert('questions',$data);
 		if($this->db->affected_rows()>0) {

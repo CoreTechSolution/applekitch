@@ -30,7 +30,7 @@ $this->load->view('templates/header');
 						</ul>-->
 					</div>
 
-                    <?php $this->load->view('templates/grade_listing_part'); ?>
+                    <?php $this->load->view('frontend/template_part/grade_listing_part'); ?>
 
 				</div>
 			</div>

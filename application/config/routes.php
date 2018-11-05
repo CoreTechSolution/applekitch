@@ -67,7 +67,13 @@ $route['awards'] = 'dashboard/awards';
 $route['childcertificate'] = 'dashboard/childcertificate';
 $route['childaward'] = 'dashboard/childaward';
 $route['share'] = 'dashboard/share';
+$route['math'] = 'frontend/math';
+$route['english'] = 'frontend/english';
 $route['awards/(:any)/(:any)'] = 'dashboard/awards/$1/$2';
+$route['exercise/(:any)/(:any)/(:any)'] = 'frontend/questions/$1/$2/$3';
+$route['exercise/(:any)/(:any)/(:any)'] = 'frontend/questions/$1/$2/$3';
+$route['grades'] = 'frontend/grades';
+$route['topic/(:any)/(:any)'] = 'frontend/topic/$1/$2';
 /*$route['usage'] = 'dashboard/usage';*/
 
 /*admin*/

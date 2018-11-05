@@ -49,7 +49,7 @@ require_once 'templates/header.php';
             </div>
         </div>
     </div>
-    <?php $this->load->view('templates/grade_listing_part'); ?>
+    <?php $this->load->view('frontend/template_part/grade_listing_part'); ?>
 <?php $settings=$this->admin_model->get_home_settings(array('slug'=>'section-1'),true); ?>
 <?php $serialize_settings=unserialize($settings->page_content); ?>
     <div class="wrapper4">

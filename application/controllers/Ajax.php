@@ -431,6 +431,25 @@ class Ajax extends CI_Controller {
 			echo false;
 		}
 	}
+    public function get_topic_slug_ajax(){
+        $slug_text=$_POST['slug'];
+        if(!empty($slug_text)){
+            $i=1;
+            while ($i==1) {
+                $slug=array('slug'=>$slug_text);
+                $rtn_slug=$this->ajax_model->get_slug($slug);
+                if($rtn_slug==true){
+                    $slug_text=$slug_text.'-1';
+                } else{
+                    echo $slug_text;
+                    break;
+                }
+            }
+
+        } else{
+            echo '';
+        }
+    }
 	public function question_submit(){
         $form_data=$_POST;
         $rtntext=array();

@@ -117,8 +117,8 @@
             <div class="col-lg-5 col-md-5">
                 <div class="subjects">
                     <ul>
-                        <li><a href="<?php echo base_url('frontend/topic/reception/math') ?>">Maths</a></li>
-                        <li><a href="<?php echo base_url('frontend/topic/reception/english') ?>">English</a></li>
+                        <li><a href="<?php echo base_url('math') ?>">Maths</a></li>
+                        <li><a href="<?php echo base_url('english') ?>">English</a></li>
                     </ul>
                 </div>
             </div>
@@ -164,8 +164,8 @@
         <div class="container">
             <div class="row">
                 <ul>
-                    <li><a href="<?php echo base_url('frontend/topic/reception/math') ?>">Math</a></li>
-                    <li><a href="<?php echo base_url('frontend/topic/reception/english') ?>">English</a></li>
+                    <li><a href="<?php echo base_url('math') ?>">Math</a></li>
+                    <li><a href="<?php echo base_url('english') ?>">English</a></li>
                     <?php if(loginCheck()==true){ ?>
                         <li><a href="<?php echo base_url('awards'); ?>">Awards</a></li>
                         <li><a href="<?php echo base_url('certificates'); ?>">Certificates</a></li>
