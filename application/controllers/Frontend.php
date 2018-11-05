@@ -30,7 +30,7 @@ class Frontend extends CI_Controller {
 		$data['title']='Grades';
 		$this->load->view('frontend/grade_page',$data);
 	}
-	public function topic($grade='',$subject=''){
+	public function topic($subject='',$grade=''){
         $user_id = get_current_user_id();
         if($user_id){
             $this->load->model('user_model');
@@ -76,7 +76,57 @@ class Frontend extends CI_Controller {
             $this->home();
         }
 	}
-	public function questions($grade,$subject,$topic,$start=0){
+    public function math($subject='math'){
+	    if($subject==''){
+	        $subject=$this->uri->segment(2);
+        }
+        //echo $subject;
+        $user_id = get_current_user_id();
+        if($user_id){
+            $this->load->model('user_model');
+            $data['completed_topics']=$this->user_model->get_log_in_user_topic($user_id);
+        }
+
+        $data['banner_title'] = ucfirst($subject);
+        $data['title'] = ucfirst($subject);
+        $subject_id= get_id_by_slug('id', $subject, 'subject');
+        //echo $this->db->last_query();
+        //echo $subject_id; exit();
+        $data['subject'] = get_returnfield('subject', 'id', $subject_id, 'slug');
+        $data['topics'] = get_topic_by(0, $subject_id);
+        $data['grades_lists'] = $this->frontend_model->get_grades(array(), false);
+        //print_r($data['topics']);
+
+        $this->load->view('frontend/maths_overview_v', $data);
+        ///////////////////////////////////////
+
+    }
+    public function english($subject='english'){
+        if($subject==''){
+            $subject=$this->uri->segment(2);
+        }
+        //echo $subject;
+        $user_id = get_current_user_id();
+        if($user_id){
+            $this->load->model('user_model');
+            $data['completed_topics']=$this->user_model->get_log_in_user_topic($user_id);
+        }
+
+        $data['banner_title'] = ucfirst($subject);
+        $data['title'] = ucfirst($subject);
+        $subject_id= get_id_by_slug('id', $subject, 'subject');
+        //echo $this->db->last_query();
+        //echo $subject_id; exit();
+        $data['subject'] = get_returnfield('subject', 'id', $subject_id, 'slug');
+        $data['topics'] = get_topic_by(0, $subject_id);
+        $data['grades_lists'] = $this->frontend_model->get_grades(array(), false);
+        //print_r($data['topics']);
+
+        $this->load->view('frontend/english_overview_v', $data);
+        ///////////////////////////////////////
+
+    }
+	public function questions($subject,$grade,$topic,$start=0){
 		$data['banner_title']=ucfirst($subject);
 		$data['title']=ucfirst($grade);
 		$grade_id=get_id_by_slug('id',$grade,'grade');

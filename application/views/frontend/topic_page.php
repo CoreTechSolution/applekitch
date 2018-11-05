@@ -31,7 +31,7 @@ $this->load->view('templates/header');
                     <ul class="breadcrumbs">
                         <?php //print_r($this->uri->segment(3)); ?>
                         <li class="breadcrumbs__item"><a href="<?= base_url(); ?>" class="breadcrumbs__element">Home</a></li>
-                        <li class="breadcrumbs__item"><a href="<?= base_url('frontend/grades/'); ?>" class="breadcrumbs__element">Grade</a></li>
+                        <li class="breadcrumbs__item"><a href="<?= base_url('grades'); ?>" class="breadcrumbs__element">Grade</a></li>
                         <li class="breadcrumbs__item breadcrumbs__item_active"><span class="breadcrumbs__element">Topic</span></li>
                     </ul>
                 </div>
@@ -80,7 +80,7 @@ $this->load->view('templates/header');
                                             $subject_slug=$subject;
                                             if(!empty($grades_lists)){
                                                 foreach ($grades_lists as $grades_list){ ?>
-                                                    <a href="<?php echo base_url('frontend/topic/'.$grades_list->slug.'/'.$subject_slug)
+                                                    <a href="<?php echo base_url('topic/'.$subject_slug.'/'.$grades_list->slug)
                                                     ?>" class="list-group-item text-center<?php if($grades_list->slug == $grade) { echo ' active'; } ?>"
                                                        data-tabid="<?php
                                                        echo $grades_list->id; ?>" ><?php echo $grades_list->name; ?></a>
@@ -115,6 +115,7 @@ $this->load->view('templates/header');
 
                                     <?php foreach ($cate_arrays as $cate_array1=>$values1){ // get grade_ids ?>
                                         <?php if($active_grade_id == $cate_array1) { ?>
+                                        <?php $grade_slug=get_returnfield('grade','id',$cate_array1,'slug'); ?>
                                             <?php $grades = array_keys($cate_arrays); ?>
                                             <div class="bhoechie-tab-content active" data-wow-delay="1s" data-contentid="<?php
                                             echo $cate_array1; ?>">
@@ -122,7 +123,7 @@ $this->load->view('templates/header');
                                                 <?php $rand=0; ?>
                                                 <div class="row">
                                                     <?php foreach ($values1 as $cate_array=>$values){ // Get Categories ?>
-                                                        <div class="col-lg-4 matchHeight1">
+                                                        <div class="col-lg-4 main_cat_box matchHeight1">
                                                             <?php
                                                             if($rand>=11){
                                                                 $rand=0;
@@ -164,7 +165,7 @@ $this->load->view('templates/header');
                                                                         <li>
                                                                             <?php echo $sufix; ?>
                                                                             <span class="topic_count"><?= $cat_count.'.'.$topic_count; ?></span>
-                                                                            <a href="<?php echo base_url('frontend/questions/'.$grade.'/'.$subject.'/'.$cate_arra) ?>">
+                                                                            <a href="<?php echo base_url('exercise/'.$subject.'/'.$grade_slug.'/'.$cate_arra) ?>">
                                                                                 <span data-feather="edit"></span> <?php echo get_returnfield('topics','topic_id',$cate_arra,'topic_name'); ?>
                                                                             </a>
 

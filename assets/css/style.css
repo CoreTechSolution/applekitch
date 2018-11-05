@@ -3038,8 +3038,11 @@ img.head_pro_img {
     border-top: 6px solid;
     padding: 10px 0;
     margin: 0 0 27px 0;
-    height: 92%;
+    height: 100%;
     position: relative;
+}
+.bhoechie-tab-content .main_cat_box{
+    margin: 0 0 25px 0;
 }
 .category_box ul {
     list-style: none;
