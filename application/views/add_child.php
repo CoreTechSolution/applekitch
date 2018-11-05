@@ -55,14 +55,14 @@ require_once 'templates/header.php';
 												</div>
 											</div>
 										</div>
-										<div class="form-group">
+										<!--<div class="form-group">
 											<div class="row">
 												<div class="col-lg-12">
 													<label for="password">Password <span class="required">*</span></label>
 													<input id="password" name="password" type="password" value="" class="form-control"/>
 												</div>
 											</div>
-										</div>
+										</div>-->
 										<div class="form-group">
 											<div class="row">
 												<div class="col-lg-12">

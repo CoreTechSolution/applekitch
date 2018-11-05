@@ -88,6 +88,8 @@ require_once 'templates/header.php';
                                             <?php $rand++; ?>
                                             <?php } ?>
                                         <?php } ?>
+                                    <?php } else { ?>
+                                        <h2>Nothing yet...</h2>
                                     <?php } ?>
 								</div>
 							</div>
