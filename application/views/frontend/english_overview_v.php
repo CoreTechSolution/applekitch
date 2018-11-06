@@ -40,7 +40,7 @@ $this->load->view('templates/header');
                 <div class="subject_top_nav">
                     <div class="row">
                         <div class="col-lg-2">
-                            <?php $this->load->view('template_part/grade_dropdown_sub_v'); ?>
+                            <?php $this->load->view('frontend/template_part/grade_dropdown_sub_v'); ?>
                         </div>
                         <div class="col-lg-10">
                             <h1><?php echo ucfirst($title); ?></h1>
