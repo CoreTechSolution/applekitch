@@ -131,7 +131,7 @@ class Frontend extends CI_Controller {
 		$data['title']=ucfirst($grade);
 		$grade_id=get_id_by_slug('id',$grade,'grade');
 		$subject_id=get_id_by_slug('id',$subject,'subject');
-		$topic_id=$topic;
+		$topic_id=get_returnfield('topics','slug',$topic,'topic_id');
 		$data['subjects']=get_table_data(array('id','name'),'subject');
 		$data['questions']=$this->frontend_model->get_questions_by_one(array('grade_id'=>$grade_id,'subject_id'=>$subject_id,'topic_id'=>$topic_id),false,$start);
 		$data['start']=1;

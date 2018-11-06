@@ -17,13 +17,14 @@ class Ajax_model extends CI_Model{
         $this->db->select('*');
         $this->db->where($data);
         $this->db->from($db);
-        $res=$this->db->get();
+        $query=$this->db->get();
+        $res=$query->result();
         if(!empty($res) && $res != ''){
             return true;
         }else{
             return false;
         }
-        return false;
+
     }
 	function insert_question($data){
 		$this->db->insert('questions',$data);

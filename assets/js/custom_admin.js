@@ -110,40 +110,40 @@ jQuery(document).ready(function() {
         //this_element.hide();
 
     });
-    jQuery('body').on('change','#cat_name', function (e) {
-        var slug_text=$(this).val().trim();
+    jQuery('body').on('change','#topic_name', function (e) {
+        var slug_text=jQuery(this).val().trim();
         if(slug_text.length>0){
             slug_text = slug_text.toLowerCase();
             slug_text=slug_text.replace(/[^a-zA-Z0-9 ]+/g,"");
             slug_text=slug_text.replace(/\s+/g, "-");
-            $.ajax({
+            jQuery.ajax({
                 url:base_url+'ajax/get_topic_slug_ajax',
                 data:{slug:slug_text},
                 type:'post',
                 success:function(res){
-                    $('#slug').val(res);
+                    jQuery('#slug').val(res);
                 }
             })
             //$('#slug').val(slug_text);
         }
     });
-    jQuery('body').on('keyup','#cat_name', function (e) {
-        var slug_text=$(this).val().trim();
+ /*   jQuery('body').on('keyup','#topic_name', function (e) {
+        var slug_text=jQuery(this).val().trim();
         if(slug_text.length>0){
             slug_text = slug_text.toLowerCase();
             slug_text=slug_text.replace(/[^a-zA-Z0-9 ]+/g,"");
             slug_text=slug_text.replace(/\s+/g, "-");
-            $.ajax({
+            jQuery.ajax({
                 url:base_url+'ajax/get_category_slug_ajax',
                 data:{slug:slug_text},
                 type:'post',
                 success:function(res){
-                    $('#slug').val(res);
+                    jQuery('#slug').val(res);
                 }
             })
             //$('#slug').val(slug_text);
         }
-    });
+    });*/
 
     jQuery('body').on('click','a.addQ_row', function (e) {
         e.preventDefault();
