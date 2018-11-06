@@ -208,6 +208,15 @@ function get_childs($user_id){
 	}
 	return $values;
 }
+function get_user_by_id($user_id) {
+	$CI = &get_instance();
+	$CI->db->select( '*' );
+	$CI->db->from( 'user' );
+	$CI->db->where( 'id', $user_id );
+	$queries = $CI->db->get();
+	$values = $queries->row();
+	return $values;
+}
 function image_upload($file,$input_name, $path='uploads',$allowed_types='jpg|png|svg|jpeg',$max_size='5242880'){
 	$rtntext='';
 	//print_r(FCPATH); exit();

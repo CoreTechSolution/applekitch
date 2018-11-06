@@ -62,9 +62,18 @@ require_once 'templates/header.php';
                                                     </div>
                                                     <div class="col-lg-8">
                                                         <div class="certificate_content">
+                                                            <?php
+                                                                if(isset($_GET['child_id'])) {
+                                                                    $child_id = $_GET['child_id'];
+                                                                } else {
+                                                                    $child_id = get_current_user_id();
+                                                                }
+                                                                $child_data = get_user_by_id($child_id);
+                                                            ?>
                                                             <?php $create_dt = get_returnfield('certificates','id',$certificate->id,'create_dt'); ?>
                                                             <span class="certficate_date"><?php echo date('j F Y', strtotime($create_dt)); ?></span>
-                                                            <h2><?php echo $name; ?></h2>
+                                                            <h2><?php echo $child_data->fname.' '.$child_data->lname; ?> was awarded <?php
+                                                                echo $name; ?></h2>
                                                             <div class="row">
                                                                 <div class="col-lg-6">
                                                                     <a style="background-color: <?= $colorcode[$rand] ?>;" href="<?php echo
