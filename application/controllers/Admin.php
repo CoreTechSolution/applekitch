@@ -199,6 +199,7 @@ class Admin extends CI_Controller {
 				$this->load->view( 'admin/add_topic_v', $data );
 			} else{
 				$value['topic_name']=$this->input->post('topic_name');
+				$value['slug']=$this->input->post('slug');
 				$value['status']='active';
 				$insert=$this->admin_model->insert_topic($value);
 				if($insert){

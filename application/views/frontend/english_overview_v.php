@@ -103,7 +103,7 @@ $this->load->view('templates/header');
                                                             <li>
                                                                 <?php echo $sufix; ?>
                                                                 <span class="topic_count"><?= $cat_count.'.'.$topic_count; ?></span>
-                                                                <a href="<?php echo base_url('exercise/'.$subject.'/'.$grade_slug.'/'.$cate_arra) ?>">
+                                                                <a href="<?php echo base_url('exercise/'.$subject.'/'.$grade_slug.'/'.get_returnfield('topics','topic_id',$cate_arra,'slug')) ?>">
                                                                     <span data-feather="edit"></span> <?php echo get_returnfield('topics','topic_id',$cate_arra,'topic_name'); ?>
                                                                 </a>
 

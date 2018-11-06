@@ -437,7 +437,7 @@ class Ajax extends CI_Controller {
             $i=1;
             while ($i==1) {
                 $slug=array('slug'=>$slug_text);
-                $rtn_slug=$this->ajax_model->get_slug($slug);
+                $rtn_slug=$this->ajax_model->get_slug($slug,'topics');
                 if($rtn_slug==true){
                     $slug_text=$slug_text.'-1';
                 } else{
