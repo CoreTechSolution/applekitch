@@ -54,12 +54,12 @@
                 Certificates
             </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link<?php if($title == 'Awards') { ?> active<?php } ?>" href="<?php echo base_url('/admin/awards'); ?>">
+        <!--<li class="nav-item">
+            <a class="nav-link<?php /*if($title == 'Awards') { */?> active<?php /*} */?>" href="<?php /*echo base_url('/admin/awards'); */?>">
                 <span data-feather="file"></span>
                 Awards
             </a>
-        </li>
+        </li>-->
         <li class="nav-item">
             <a class="nav-link<?php if($title == 'Questions' || $title == 'Add Question' || $title == 'Add Question Type') { ?> active<?php } ?>" href="<?php echo base_url('/admin/questions'); ?>">
                 <span data-feather="help-circle"></span>
