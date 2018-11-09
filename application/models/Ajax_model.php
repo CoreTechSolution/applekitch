@@ -155,4 +155,24 @@ class Ajax_model extends CI_Model{
 		$insert_id = $this->db->insert_id();
 		return $insert_id;
 	}
+	function award_click($conditions,$award_click1) {
+		$this->db->select('award_click');
+		$this->db->from('user');
+		$this->db->where('id', $conditions['id']);
+		$query = $this->db->get();
+		$value = $query->row();
+		if(empty($value->award_click)) {
+			$award_click = array();
+		} else {
+			$award_click = unserialize($value->award_click);
+		}
+		array_push($award_click, $award_click1);
+		$this->db->where( $conditions );
+		$this->db->update( 'user', array('award_click' => serialize($award_click)) );
+		if ($this->db->affected_rows()) {
+			return true;
+		} else{
+			return false;
+		}
+	}
 }

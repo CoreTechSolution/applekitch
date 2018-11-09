@@ -99,5 +99,24 @@ class Award_model extends CI_Model {
 			return false;
 		}
 	}
+
+	function award_click($user_id, $subject, $grade) {
+		$award_click1 = array();
+		$this->db->select('award_click');
+		$this->db->from('user');
+		$this->db->where('id', $user_id);
+		$query = $this->db->get();
+		$value = $query->row();
+		$award_click = unserialize($value->award_click);
+		if(!empty($award_click)) {
+			foreach ( $award_click as $val ) {
+				$val1 = unserialize( $val );
+				if ( $val1['subject'] == $subject && $val1['grade'] == $grade ) {
+					array_push($award_click1, $val1['id']);
+				}
+			}
+		}
+		return $award_click1;
+	}
 }
 ?>

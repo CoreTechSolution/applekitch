@@ -365,6 +365,7 @@ class Dashboard extends CI_Controller {
 		$data['grade_var'] = $this->award_model->get_grade_by_slug($grade);
 		$data['title'] = $data['grade_var']->name.' '.$data['subject_var']->name.' Awards';
 		$data['child_id'] = $user_id;
+		$data['award_click'] = $this->award_model->award_click($user_id, $data['subject_var']->id, $data['grade_var']->id);
 
 		$data['question_ans'] = $this->award_model->get_question_ans_by_sub_grade($data['subject_var']->id, $data['grade_var']->id, $user_id);
 		$data['ans_topic'] = $this->award_model->get_ans_topic_by_sub_grade($data['subject_var']->id, $data['grade_var']->id, $user_id);

@@ -2263,4 +2263,11 @@ class Ajax extends CI_Controller {
 			echo $uploaded_images_forms;
 		}
 	}
+	function award_click() {
+		$award_click1 = serialize($_POST);
+		$award_click = $this->ajax_model->award_click(array('id'=>$_POST['user_id']),$award_click1);
+		if($award_click) {
+			echo 1;
+		}
+	}
 }

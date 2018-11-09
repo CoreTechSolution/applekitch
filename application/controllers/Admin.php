@@ -1395,4 +1395,21 @@ class Admin extends CI_Controller {
             $this->load->view( 'admin/edit_testimonial_v', $data );
         }
     }
+    public function awards() {
+	    $submit = $this->input->post('submit');
+		if(isset($submit)) {
+			$subject = $this->input->post('subject');
+			$grade = $this->input->post('grade');
+			$data = array(
+				'title' => 'Awards',
+				'subject' => $subject,
+				'grade' => $grade
+			);
+		} else {
+			$data = array(
+				'title' => 'Awards',
+			);
+		}
+	    $this->load->view( 'admin/awards', $data );
+    }
 }
