@@ -59,7 +59,7 @@
 </style>
 <div id="printableArea">
     <?php //print_r($certificates); exit(); ?>
-    <div class="certificate_div" style="background: url('<?php echo $certificate_details->cer_bg_img; ?>')">
+    <div class="certificate_div" style="background: url('<?php echo $certificate_details->cer_bg_img; ?>') top left no-repeat; background-size: cover;">
         <div class="certificate_content">
             <div class="certificate_header">
                 <?php echo get_returnfield('certificates','id',$certificates->certificate_id,'name'); ?>

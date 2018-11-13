@@ -323,6 +323,7 @@ class Dashboard extends CI_Controller {
 		$data['certificate_details']=$this->user_model->get_certificates_by_id($data['certificates']->certificate_id);
 		$this->load->view('certificate_pdf_v',$data);
 		$html = $this->output->get_output();
+		//echo $html; exit;
 
 		$this->load->library('pdf');
 		// Load HTML content

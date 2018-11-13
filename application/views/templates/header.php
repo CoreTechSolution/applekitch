@@ -117,8 +117,10 @@
             <div class="col-lg-5 col-md-5">
                 <div class="subjects">
                     <ul>
-                        <li><a href="<?php echo base_url('math') ?>">Maths</a></li>
-                        <li><a href="<?php echo base_url('english') ?>">English</a></li>
+                        <!--<li><a href="<?php /*echo base_url('math') */?>">Worksheet</a></li>
+                        <li><a href="<?php /*echo base_url('english') */?>">English</a></li>-->
+                        <li><a href="<?php echo base_url('grades') ?>">Learning Exercises</a></li>
+                        <li><a href="javascript:void(0);">Worksheet</a></li>
                     </ul>
                 </div>
             </div>

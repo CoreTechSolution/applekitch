@@ -17,7 +17,7 @@ require_once 'templates/header.php';
 						<tr>
 							<th>First Name</th>
 							<th>Last Name</th>
-							<th>Email Address</th>
+							<th>Username</th>
                             <!--<th>Phone Number</th>-->
                             <th>Role</th>
 							<th>Activation Status</th>
