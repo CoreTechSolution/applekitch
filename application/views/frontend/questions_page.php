@@ -58,7 +58,7 @@ $this->load->view('templates/header');
 						<li class="breadcrumbs__item"><a href="<?= base_url(); ?>" class="breadcrumbs__element">Home</a></li>
 						<li class="breadcrumbs__item"><a href="<?= base_url('grades/'); ?>" class="breadcrumbs__element">Grade</a></li>
 						<li class="breadcrumbs__item"><a href="<?= base_url('topic/'.$this->uri->segment(2).'/'.$this->uri->segment(3)); ?>" class="breadcrumbs__element"><?php echo ucfirst($this->uri->segment(2)) ?></a></li>
-                        <li class="breadcrumbs__item breadcrumbs__item_active"><span class="breadcrumbs__element"><?= get_returnfield('topics','topic_id',$this->uri->segment(4),'topic_name'); ?></span></li>
+                        <li class="breadcrumbs__item breadcrumbs__item_active"><span class="breadcrumbs__element"><?= get_returnfield('topics','slug',$this->uri->segment(4),'topic_name'); ?></span></li>
 						<!--<li class="breadcrumbs__item breadcrumbs__item_active"><span class="breadcrumbs__element"><?php /*echo $banner_title; */?></span></li>-->
 					</ul>
 				</div>
