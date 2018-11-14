@@ -3228,3 +3228,10 @@ a.custom_button {
 .cerfificate_share ul li a:hover {
 
 }
+
+.list-group-item.active, .list-group-item:hover {
+    z-index: 2;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
