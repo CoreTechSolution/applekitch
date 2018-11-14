@@ -805,4 +805,13 @@ jQuery(document).ready(function() {
             thiselement.addClass('active');
         }
     });
+    /*jQuery('body').on('click', '.subject_top_nav .dropdown', function() {
+        var thisElement = jQuery(this);
+        console.log('aa');
+        if(thisElement.hasClass('SActive')) {
+            thisElement.removeClass('SActive');
+        } else {
+            thisElement.addClass('SActive');
+        }
+    });*/
 })

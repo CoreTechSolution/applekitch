@@ -197,6 +197,7 @@
                     <?php if(loginCheck()==true){ ?>
                         <li><a href="<?php echo base_url('awards'); ?>">Awards</a></li>
                         <li><a href="<?php echo base_url('certificates'); ?>">Certificates</a></li>
+                        <li><a href="<?php echo base_url('dashboard/usage'); ?>">Analytics</a></li>
                     <?php } ?>
 
                 </ul>

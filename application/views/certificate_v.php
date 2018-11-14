@@ -74,7 +74,10 @@ require_once 'templates/header.php';
                                                                 }
                                                                 $child_data = get_user_by_id($child_id);
                                                             ?>
-                                                            <?php $create_dt = get_returnfield('certificates','id',$certificate->id,'create_dt'); ?>
+                                                            <?php
+                                                            //$create_dt = get_returnfield('certificates','id',$certificate->id, 'create_dt');
+                                                            $create_dt = $certificate->submit_dt;
+                                                            ?>
                                                             <span class="certficate_date"><?php echo date('j F Y', strtotime($create_dt)); ?></span>
                                                             <h2><?php echo $child_data->fname.' '.$child_data->lname; ?> was awarded <?php
                                                                 echo $name; ?></h2>
