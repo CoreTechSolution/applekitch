@@ -46,7 +46,11 @@ require_once 'templates/header.php';
 	                                    <?php $rand=0; ?>
                                         <?php foreach($certificates as $certificate) { ?>
                                             <?php $name = get_returnfield('certificates','id',$certificate->id,'name'); ?>
-                                            <?php if(!empty($name)) { ?>
+                                            <?php
+                                            if(empty($name)) {
+	                                            $name = 'Certificate';
+                                            }
+                                            ?>
                                             <?php
                                                 if($rand>=11) {
                                                     $rand=0;
@@ -95,7 +99,6 @@ require_once 'templates/header.php';
                                                 </div>
                                             </div>
                                             <?php $rand++; ?>
-                                            <?php } ?>
                                         <?php } ?>
                                     <?php } else { ?>
                                         <h2>Nothing yet...</h2>
