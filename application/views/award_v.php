@@ -60,7 +60,7 @@ if (is_file(APPPATH.'views/awards/' . $subject_var->slug.'/'.$grade_var->slug. E
 <?php
 $colorcode = explode('|',COLORCODE);
 //$answered = array();
-$type = 'stuffed animal';
+$type = 'award';
 $days = array();
 $seconds = 0;
 $hours = 0;

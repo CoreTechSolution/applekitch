@@ -2121,6 +2121,8 @@ class Ajax extends CI_Controller {
 			$values['certificate_id']=$certificates->id;
 			$values['user_id']=get_current_user_id();
 			$values['topic_id']=$topic_id;
+			$values['subject_id']=$subject_id;
+			$values['grade_id']=$grade_id;
 			$values['submit_dt']=date('Y-m-d H:i:s');
 			$userfullname=get_returnfield('user','id',get_current_user_id(),'fname').' '.get_returnfield('user','id',get_current_user_id(),'lname');
 			$parent_id=get_returnfield('user','id',get_current_user_id(),'parent');

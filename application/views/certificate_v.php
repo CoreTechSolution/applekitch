@@ -44,9 +44,10 @@ require_once 'templates/header.php';
                                     </table>-->
                                     <?php if(!empty($certificates)) { ?>
 	                                    <?php $rand=0; ?>
-                                        <?php foreach($certificates as $certificate) { ?>
-                                            <?php $name = get_returnfield('certificates','id',$certificate->id,'name'); ?>
+                                        <?php foreach($certificates as $certificate) {  ?>
                                             <?php
+                                            $name = get_returnfield('certificates','id',$certificate->id,'name');
+
                                             if(empty($name)) {
 	                                            $name = 'Certificate';
                                             }
@@ -79,8 +80,18 @@ require_once 'templates/header.php';
                                                             $create_dt = $certificate->submit_dt;
                                                             ?>
                                                             <span class="certficate_date"><?php echo date('j F Y', strtotime($create_dt)); ?></span>
-                                                            <h2><?php echo $child_data->fname.' '.$child_data->lname; ?> was awarded <?php
-                                                                echo $name; ?></h2>
+                                                            <!--<h2><?php /*echo $child_data->fname.' '.$child_data->lname; */?> was awarded <?php /*echo $name; */?></h2>-->
+                                                            <h2><?php echo $child_data->fname.' '.$child_data->lname; ?> has successfully
+                                                                completed
+                                                                <?php
+                                                                echo get_returnfield('topics', 'topic_id', $certificate->topic_id,
+                                                                        'topic_name').' for '
+                                                                     .get_returnfield('grade', 'id', $certificate->grade_id,
+		                                                                'name')
+                                                                .' in '
+                                                                     .get_returnfield('subject', 'id', $certificate->subject_id,
+		                                                                'name');
+                                                                ?></h2>
                                                             <div class="row">
                                                                 <div class="col-lg-6">
                                                                     <a style="background-color: <?= $colorcode[$rand] ?>;" href="<?php echo

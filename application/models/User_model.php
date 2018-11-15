@@ -216,6 +216,7 @@ class User_model extends CI_Model{
 		$this->db->select('*');
 		$this->db->where('user_id',$user_id);
 		$this->db->from('student_ans_topic');
+		$this->db->order_by('id', 'DESC');
 		$query=$this->db->get();
 		//echo $this->db->last_query(); exit();
 		if($query->result()){
