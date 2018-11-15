@@ -96,7 +96,7 @@ $this->load->view('templates/header');
 											$check_data['form_data']=$form_data;
 											$this->load->view('frontend/template_part/frontend_answer_check',$check_data);
 											?>
-                                            <input type="submit" value="OK" class="btn btn-small btn-outline-default qSubmit">
+                                            <input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">
                                         </div>
 									<?php } ?>
                                 </div>
