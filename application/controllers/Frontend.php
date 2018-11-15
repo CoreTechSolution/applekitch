@@ -32,10 +32,12 @@ class Frontend extends CI_Controller {
 	}
 	public function topic($subject='',$grade=''){
         $user_id = get_current_user_id();
-        if($user_id){
-            $this->load->model('user_model');
-            $data['completed_topics']=$this->user_model->get_log_in_user_topic($user_id);
-        }
+		if(loginCheck() && get_returnfield('user','id',get_parent(get_current_user_id()),'membership_plan')=='1') {
+			if ( $user_id ) {
+				$this->load->model( 'user_model' );
+				$data['completed_topics'] = $this->user_model->get_log_in_user_topic( $user_id );
+			}
+		}
 	    if($grade!='' && $subject!='') {
             $data['banner_title'] = ucfirst($subject);
             $data['title'] = ucfirst(get_returnfield('grade', 'slug', $grade, 'name') . ' ' . ucfirst($subject));
@@ -82,10 +84,12 @@ class Frontend extends CI_Controller {
         }
         //echo $subject;
         $user_id = get_current_user_id();
-        if($user_id){
-            $this->load->model('user_model');
-            $data['completed_topics']=$this->user_model->get_log_in_user_topic($user_id);
-        }
+	    if(loginCheck() && get_returnfield('user','id',get_parent(get_current_user_id()),'membership_plan')=='1') {
+		    if ( $user_id ) {
+			    $this->load->model( 'user_model' );
+			    $data['completed_topics'] = $this->user_model->get_log_in_user_topic( $user_id );
+		    }
+	    }
 
         $data['banner_title'] = ucfirst($subject);
         $data['title'] = ucfirst($subject);
@@ -107,10 +111,12 @@ class Frontend extends CI_Controller {
         }
         //echo $subject;
         $user_id = get_current_user_id();
-        if($user_id){
-            $this->load->model('user_model');
-            $data['completed_topics']=$this->user_model->get_log_in_user_topic($user_id);
-        }
+	    if(loginCheck() && get_returnfield('user','id',get_parent(get_current_user_id()),'membership_plan')=='1') {
+		    if ( $user_id ) {
+			    $this->load->model( 'user_model' );
+			    $data['completed_topics'] = $this->user_model->get_log_in_user_topic( $user_id );
+		    }
+	    }
 
         $data['banner_title'] = ucfirst($subject);
         $data['title'] = ucfirst($subject);

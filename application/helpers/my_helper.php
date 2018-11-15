@@ -171,12 +171,16 @@ function form_dropdown_child($user_id){
 }
 function get_parent($user_id) {
 	$CI = &get_instance();
-	$CI->db->select( 'parent' );
+	$CI->db->select( '*' );
 	$CI->db->from( 'user' );
 	$CI->db->where( 'id', $user_id );
 	$queries = $CI->db->get();
 	$values = $queries->row();
-	return $values->parent;
+	if($values->role == 1) {
+		return $user_id;
+	} else {
+		return $values->parent;
+	}
 }
 function get_childs($user_id){
 	$CI = &get_instance();

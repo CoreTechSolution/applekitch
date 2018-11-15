@@ -1126,7 +1126,7 @@ class Ajax extends CI_Controller {
 
 
             /// premium user save data in database
-            if(loginCheck() && get_returnfield('user','id',get_current_user_id(),'membership_plan')=='1'){
+            if(loginCheck() && get_returnfield('user','id',get_parent(get_current_user_id()),'membership_plan')=='1'){
                 $save_data['user_id']=get_current_user_id();
                 $save_data['question_id']=$questions->question_id;
                 $save_data['country_id']=$questions->country_id;

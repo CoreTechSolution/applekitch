@@ -304,13 +304,19 @@ class Dashboard extends CI_Controller {
 	public function certificates(){
 
 		isLogin();
-		$user_id=(!empty($_GET['child_id']))?$_GET['child_id']:get_current_user_id();
-		$data['title']='Certificates';
-		$data['user_data'] = $this->user_model->get_userdata();
-		if(!empty($this->input->post('filter'))){
-			$conditions=array('user_id');
-		} else{
-			$data['certificates']=$this->user_model->get_ans_certificates_by_user($user_id);
+		if(loginCheck() && get_returnfield('user','id',get_parent(get_current_user_id()),'membership_plan')=='1') {
+			$user_id           = ( ! empty( $_GET['child_id'] ) ) ? $_GET['child_id'] : get_current_user_id();
+			$data['title']     = 'Certificates';
+			$data['user_data'] = $this->user_model->get_userdata();
+			if ( ! empty( $this->input->post( 'filter' ) ) ) {
+				$conditions = array( 'user_id' );
+			} else {
+				$data['certificates'] = $this->user_model->get_ans_certificates_by_user( $user_id );
+			}
+		} else {
+			$data['title']     = 'Certificates';
+			$data['user_data'] = $this->user_model->get_userdata();
+			$data['certificates'] = 0;
 		}
 
 
