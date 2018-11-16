@@ -68,7 +68,7 @@ $this->load->view('templates/header');
 		<div class="inner_page_content">
 			<div class="container">
 				<div class="row">
-                    <div class="question_view col-lg-10">
+                    <div id="change_col1" class="question_view col-lg-10">
                         <!--<div id="wrong_ans_label" class="wAns">Wrong Answer&#8230;</div>-->
 						<?php if(!empty($questions)){ ?>
                             <form class="form qAns_form" method="post" action="" enctype="multipart/form-data">
@@ -103,7 +103,7 @@ $this->load->view('templates/header');
                             </form>
 						<?php } ?>
                     </div>
-					<div class="col-lg-2">
+					<div class="col-lg-2" id="change_col2">
 						<div class="score_time_div">
 							<div class="score_ans">
 								<div class="title">Progress</div>

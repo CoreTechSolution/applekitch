@@ -168,6 +168,13 @@ jQuery(document).ready(function(){
                     jQuery('#ans_label').html('<i class="fa fa-times" aria-hidden="true"></i> '+data['qWrong_feedback']+gotIt);
                     jQuery('.score_ans').find('.content').html(data['score_ans']);
                     jQuery('.score_smart').find('.content').html(data['score_smart']);
+                    var topic = jQuery('.breadcrumbs .breadcrumbs__item_active').find('.breadcrumbs__element').html();
+
+                    var exercise_complete_text = new Array("Exercise Complete!", "Mission accomplished!", "Mission Complete!");
+                    var random_exercise_complete_text = exercise_complete_text[Math.floor( Math.random() * exercise_complete_text.length )];
+                    var awesome_text = new Array("You are great!", "You're a star", "You're awesome");
+                    var random_awesome_text = awesome_text[Math.floor( Math.random() * awesome_text.length )];
+
                     /// On Got it click next question
                     jQuery('body').on('click', '.got_it', function(e) {
                         e.preventDefault();
@@ -185,12 +192,18 @@ jQuery(document).ready(function(){
                             var subject=data['subject'];
                             var score_persentage=(100*(qScore/tQ_score)).toFixed(0);
 
+                            if(qScore >= 70){
+                                var prize = base_url+'assets/images/cup.png';
+                            } else {
+                                var prize = base_url+'assets/images/medal.png';
+                            }
+
                             //console.log(user_name);
                             //console.log(tQ_score);
 
                             var html='<div class="result_show">';
-                            html+='<table class="table table-bordered table-result">';
-                            html+='<tr>' +
+                            //html+='<table class="table table-bordered table-result">';
+                            /*html+='<tr>' +
                                 '<th>Name</th>' +
                                 '<td>'+ user_name +'</td>' +
                                 '</tr>' +
@@ -214,10 +227,44 @@ jQuery(document).ready(function(){
                                 '<th>Time Taken</th>' +
                                 '<td>'+score_time_count_hr+ ':' + score_time_count_min + ':'+ score_time_count_sec+'</td>' +
                                 '</tr>';
-                            html+='</table>';
+                            html+='</table>';*/
+                            html+='<div class="final_result">';
+                            html+='<div class="row">';
+                            html+='<div class="col-lg-9">';
+                            html+='<div class="subject_grade_topic">'+subject+' | '+grade+' | '+topic+'</div>';
+                            html+='<div class="exercise_complete_text">'+random_exercise_complete_text+'</div>';
+                            html+='<div class="awesome_text">'+random_awesome_text+'</div>';
+                            html+='</div>';
+                            html+='<div class="col-lg-3"><img src="'+prize+'">';
+                            html+='</div>';
+                            html+='</div>';
+                            html+='<div class="row">';
+                            html+='<div class="col-lg-4">';
+                            html+='<div class="blueclass">';
+                            html+='<div class="text1">You gained</div>';
+                            html+='<div class="text2">'+qScore+'</div>';
+                            html+='<div class="text3">Smart Points</div>';
+                            html+='</div>';
+                            html+='</div>';
+                            html+='<div class="col-lg-4">';
+                            html+='<div class="orangeclass">';
+                            html+='<div class="text1">You answered</div>';
+                            html+='<div class="text2">'+tQ_attend+'</div>';
+                            html+='<div class="text3">Questions</div>';
+                            html+='</div>';
+                            html+='</div>';
+                            html+='<div class="col-lg-4">';
+                            html+='<div class="greenclass">';
+                            html+='<div class="text1">You spend</div>';
+                            html+='<div class="text2">'+ score_time_count_min + ':'+ score_time_count_sec+'</div>';
+                            html+='<div class="text3">Time</div>';
+                            html+='</div>';
+                            html+='</div>';
+                            html+='</div>';
+                            html+='</div>';
                             html+='<div class="print_action_div">';
 
-                            html+='<a class="btn btn-small btn-outline-default" onclick="printDiv(\'printableArea\')">Print</a> <a href="'+ base_url +'frontend/topic/'+urls[url_count-3]+'/'+urls[url_count-2]+'" class="btn btn-small btn-outline-default" >Continue</a>';
+                            html+='<a class="btn btn-small btn-outline-default" onclick="printDiv(\'printableArea\')">Print</a> <a href="'+ base_url +'frontend/topic/'+urls[url_count-3]+'/'+urls[url_count-2]+'" class="btn btn-small btn-outline-default" >Back to Main Menu</a>';
                             html+='</div>';
                             html+='</div>';
                             //////////////// save certificate after complete a topic /////////////////////////
@@ -234,6 +281,9 @@ jQuery(document).ready(function(){
                                 }
                             });
                             /////////////////////////////////////////////
+                            jQuery('#change_col1').removeClass('col-lg-10');
+                            jQuery('#change_col1').addClass('col-lg-12');
+                            jQuery('#change_col2').hide();
                             jQuery('.qAns_form').html(html);
                             clearInterval(my_time_interval);
                         }else{
@@ -271,8 +321,8 @@ jQuery(document).ready(function(){
                             //console.log(tQ_score);
 
                             var html='<div class="result_show" id="printableArea">';
-                            html+='<table class="table table-bordered table-result">';
-                            html+='<tr>' +
+                            //html+='<table class="table table-bordered table-result">';
+                            /*html+='<tr>' +
                                 '<th>Name</th>' +
                                 '<td>'+ user_name +'</td>' +
                                 '</tr>' +
@@ -296,9 +346,44 @@ jQuery(document).ready(function(){
                                 '<th>Time Taken</th>' +
                                 '<td>'+score_time_count_hr+ ':' + score_time_count_min + ':'+ score_time_count_sec+'</td>' +
                                 '</tr>';
-                            html+='</table>';
+                            html+='</table>';*/
+                            html+='<div class="final_result">';
+                            html+='<div class="row">';
+                            html+='<div class="col-lg-9">';
+                            html+='<div class="subject_grade_topic">'+subject+' | '+grade+' | '+topic+'</div>';
+                            html+='<div class="exercise_complete_text">'+random_exercise_complete_text+'</div>';
+                            html+='<div class="awesome_text">'+random_awesome_text+'</div>';
+                            html+='</div>';
+                            html+='<div class="col-lg-3">';
+                            html+='</div>';
+                            html+='</div>';
+                            html+='<div class="row">';
+                            html+='<div class="col-lg-4">';
+                            html+='<div class="blueclass">';
+                            html+='<div class="text1">You gained</div>';
+                            html+='<div class="text2">'+qScore+'</div>';
+                            html+='<div class="text3">Smart Points</div>';
+                            html+='</div>';
+                            html+='</div>';
+                            html+='<div class="col-lg-4">';
+                            html+='<div class="orangeclass">';
+                            html+='<div class="text1">You answered</div>';
+                            html+='<div class="text2">'+tQ_attend+'</div>';
+                            html+='<div class="text3">Questions</div>';
+                            html+='</div>';
+                            html+='</div>';
+                            html+='<div class="col-lg-4">';
+                            html+='<div class="greenclass">';
+                            html+='<div class="text1">You spend</div>';
+                            html+='<div class="text2">'+ score_time_count_min + ':'+ score_time_count_sec+'</div>';
+                            html+='<div class="text3">Time</div>';
+                            html+='</div>';
+                            html+='</div>';
+                            html+='</div>';
+                            html+='</div>';
                             html+='<div class="print_action_div">';
-                            html+='<a class="btn btn-small btn-outline-default" onclick="printDiv(\'printableArea\')">Print</a> <a href="'+ base_url +'frontend/topic/'+urls[url_count-3]+'/'+urls[url_count-2]+'" class="btn btn-small btn-outline-default" >Continue</a>';
+
+                            html+='<a class="btn btn-small btn-outline-default" onclick="printDiv(\'printableArea\')">Print</a> <a href="'+ base_url +'frontend/topic/'+urls[url_count-3]+'/'+urls[url_count-2]+'" class="btn btn-small btn-outline-default" >Back to Main Menu</a>';
                             html+='</div>';
                             html+='</div>';
                             // save certificate
@@ -315,6 +400,9 @@ jQuery(document).ready(function(){
                                 }
                             });
                             ///
+                            jQuery('#change_col1').removeClass('col-lg-10');
+                            jQuery('#change_col1').addClass('col-lg-12');
+                            jQuery('#change_col2').hide();
                             jQuery('.qAns_form').html(html);
                             clearInterval(my_time_interval);
                         }else{
