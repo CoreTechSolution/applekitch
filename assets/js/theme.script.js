@@ -302,6 +302,14 @@ jQuery(document).ready(function(){
                     jQuery('#ans_label').html('<i class="fa fa-check" aria-hidden="true"></i> '+ data['qRight_feedback']);
                     jQuery('.score_ans').find('.content').html(data['score_ans']);
                     jQuery('.score_smart').find('.content').html(data['score_smart']);
+
+                    var topic = jQuery('.breadcrumbs .breadcrumbs__item_active').find('.breadcrumbs__element').html();
+
+                    var exercise_complete_text = new Array("Exercise Complete!", "Mission accomplished!", "Mission Complete!");
+                    var random_exercise_complete_text = exercise_complete_text[Math.floor( Math.random() * exercise_complete_text.length )];
+                    var awesome_text = new Array("You are great!", "You're a star", "You're awesome");
+                    var random_awesome_text = awesome_text[Math.floor( Math.random() * awesome_text.length )];
+
                     /// Timer start for next question
                     setTimeout(function() {
                         jQuery("#overlay").slideToggle();
@@ -319,6 +327,12 @@ jQuery(document).ready(function(){
                             var score_persentage=(100*(qScore/tQ_score)).toFixed(0);
                             //console.log(user_name);
                             //console.log(tQ_score);
+
+                            if(qScore >= 70){
+                                var prize = base_url+'assets/images/cup.png';
+                            } else {
+                                var prize = base_url+'assets/images/medal.png';
+                            }
 
                             var html='<div class="result_show" id="printableArea">';
                             //html+='<table class="table table-bordered table-result">';
@@ -354,7 +368,7 @@ jQuery(document).ready(function(){
                             html+='<div class="exercise_complete_text">'+random_exercise_complete_text+'</div>';
                             html+='<div class="awesome_text">'+random_awesome_text+'</div>';
                             html+='</div>';
-                            html+='<div class="col-lg-3">';
+                            html+='<div class="col-lg-3"><img src="'+prize+'">';
                             html+='</div>';
                             html+='</div>';
                             html+='<div class="row">';
