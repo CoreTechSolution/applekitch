@@ -3278,6 +3278,9 @@ a.custom_button {
 .blueclass, .orangeclass, .greenclass{
     padding: 30px;
 }
+.no_data_h3{
+    text-align: center;
+}
 .text1{
     font-size: 20px;
     font-weight: 400;

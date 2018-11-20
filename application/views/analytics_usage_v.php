@@ -73,14 +73,15 @@ require_once 'templates/header.php';
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <h3>Practice by Day</h3>
-                                                    <div id="Anthony_chart_div" style="width: 800px; height: 500px;"></div>
+                                                    <?php if(!empty($jquery_day_text)){ ?>
+                                                        <div id="Anthony_chart_div" style="width: 800px; height: 500px;"></div>
+                                                    <?php } else{ ?>
+                                                        <p class="no_data_h3">No Data</p>
+                                                    <?php } ?>
                                                 </div>
-
                                             </div>
                                         </div>
-
 									<?php } ?>
-
 								</div>
 							</div>
 						</div>

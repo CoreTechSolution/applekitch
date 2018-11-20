@@ -15,7 +15,7 @@ require_once 'templates/header.php';
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
-				<?php require_once 'templates/profile_sidebar.php'; ?>
+                <?php require_once 'templates/profile_sidebar.php'; ?>
             </div>
             <div class="col-lg-9">
                 <div class="contentSection">
@@ -24,74 +24,72 @@ require_once 'templates/header.php';
                             <div class="box-title"><?php echo $title; ?></div>
                             <div class="box-container">
                                 <?php if(isUserType('Student')!=true){ ?>
-                                <div class="child_search_div">
-                                    <form action="<?php echo base_url('dashboard/scorechart') ?>" method="post" class="child_search_drop">
-                                        <div class="row">
-                                            <div class="col-lg-2">
-                                                <h5>Select Child</h5>
-                                            </div>
-                                            <div class="col-lg-3">
-												<?php echo form_dropdown('child_id',form_dropdown_child(get_current_user_id()),$child_id,array('class'=>'form-control')); ?>
-                                            </div>
+                                    <div class="child_search_div">
+                                        <form action="<?php echo base_url('dashboard/scorechart') ?>" method="post" class="child_search_drop">
+                                            <div class="row">
+                                                <div class="col-lg-2">
+                                                    <h5>Select Child</h5>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <?php echo form_dropdown('child_id',form_dropdown_child(get_current_user_id()),$child_id,array('class'=>'form-control')); ?>
+                                                </div>
 
-                                            <div class="col-lg-2" >
-                                                <input type="submit" class="btn btn-small btn-primary" value="Show">
+                                                <div class="col-lg-2" >
+                                                    <input type="submit" class="btn btn-small btn-primary" value="Show">
 
+                                                </div>
                                             </div>
-                                        </div>
-                                    </form>
-                                </div>
+                                        </form>
+                                    </div>
                                 <?php } ?>
-								<?php if($get_child_id!=0){ ?>
+                                <?php if($get_child_id!=0){ ?>
                                     <div class="filter_box">
-										<?php echo form_open(base_url('dashboard/'.$search_url),array('class'=>'form-control filter-form')); ?>
-										<?php echo form_dropdown('subject_id',form_dropdown_cr(array('id','name'),'subject'),'',array('class'=>'form-control')); ?>
-										<?php echo form_dropdown('grade_id',form_dropdown_cr(array('id','name'),'grade'),'',array('class'=>'form-control')); ?>
-										<?php echo form_submit('search','Search',array('class'=>'btn btn-default btn-small')); ?>
-										<?php echo form_close(); ?>
+                                        <?php echo form_open(base_url('dashboard/'.$search_url),array('class'=>'form-control filter-form')); ?>
+                                        <?php echo form_dropdown('subject_id',form_dropdown_cr(array('id','name'),'subject'),'',array('class'=>'form-control')); ?>
+                                        <?php echo form_dropdown('grade_id',form_dropdown_cr(array('id','name'),'grade'),'',array('class'=>'form-control')); ?>
+                                        <?php echo form_submit('search','Search',array('class'=>'btn btn-default btn-small')); ?>
+                                        <?php echo form_close(); ?>
                                     </div>
                                     <!--<div class="graphic_chart">
                                         <h3>Overview of Rana's performance - All time</h3>
                                         <div id="score-chart" style="width: 750px; height: 450px; margin: 0;padding: 0; overflow: hidden" ></div>
                                     </div>-->
-                                    <div class="score_table">
-                                        <h3>Scores</h3>
-                                        <div class="table_head">
-                                            <div class="row">
-                                                <div class="col-lg-4"><div class="table_head_text">Skill</div></div>
-                                                <div class="col-lg-2"><div class="table_head_text">SmartScore</div></div>
-                                                <div class="col-lg-2"><div class="table_head_text">Answered</div></div>
-                                                <div class="col-lg-2"><div class="table_head_text">Time</div></div>
-                                                <div class="col-lg-2"><div class="table_head_text">Date</div></div>
+                                    <?php if(!empty($jquery_day_array)){ ?>
+                                        <div class="score_table">
+                                            <div class="table_head">
+                                                <div class="row">
+                                                    <div class="col-lg-4"><div class="table_head_text">Skill</div></div>
+                                                    <div class="col-lg-2"><div class="table_head_text">SmartScore</div></div>
+                                                    <div class="col-lg-2"><div class="table_head_text">Answered</div></div>
+                                                    <div class="col-lg-2"><div class="table_head_text">Time</div></div>
+                                                    <div class="col-lg-2"><div class="table_head_text">Date</div></div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="table_body">
-											<?php //print_r($jquery_day_array); exit(); ?>
-											<?php if(!empty($jquery_day_array)){ ?>
-												<?php foreach ($jquery_day_array as $key_cat=>$value_cat){ ?>
+                                            <div class="table_body">
+                                                <?php //print_r($jquery_day_array); exit(); ?>
+
+                                                <?php foreach ($jquery_day_array as $key_cat=>$value_cat){ ?>
                                                     <button class="accordion"><?php echo get_returnfield('category','id', $key_cat,'name'); ?> </button>
                                                     <div class="panel">
-														<?php foreach($value_cat as $key_top=>$value_top) { ?>
+                                                        <?php foreach($value_cat as $key_top=>$value_top) { ?>
                                                             <div class="row">
                                                                 <div class="col-lg-4"><div class="table_body_text"><?php echo get_returnfield('topics','topic_id', $key_top,'topic_name'); ?></div></div>
-																<?php if(empty($value_top['total_ans_right'])){
-																	$value_top['total_ans_right']=0;
-																} ?>
-																<?php $persantage=round(($value_top['total_ans_right']/$value_top['total_ans'])*100); ?>
+                                                                <?php if(empty($value_top['total_ans_right'])){
+                                                                    $value_top['total_ans_right']=0;
+                                                                } ?>
+                                                                <?php $persantage=round(($value_top['total_ans_right']/$value_top['total_ans'])*100); ?>
                                                                 <div class="col-lg-2"><div class="table_body_text"><?php echo $persantage; ?></div></div>
                                                                 <div class="col-lg-2"><div class="table_body_text"><?php echo $value_top['total_ans']; ?></div></div>
                                                                 <div class="col-lg-2"><div class="table_body_text"><?php echo $value_top['total_time']; ?> min</div></div>
                                                                 <div class="col-lg-2"><div class="table_body_text"><?php echo dateFormat('m-d-Y',$value_top['last_date']); ?></div></div>
                                                             </div>
-														<?php } ?>
+                                                        <?php } ?>
                                                     </div>
-												<?php } ?>
-											<?php } else { echo '<h3>No data found!</h3>'; } ?>
-
+                                                <?php } ?>
+                                            </div>
                                         </div>
-
-                                    </div>
-								<?php } ?>
+                                    <?php } else { echo '<h3 class="no_data_h3">No data found!</h3>'; } ?>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>

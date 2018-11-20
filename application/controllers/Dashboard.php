@@ -286,7 +286,7 @@ class Dashboard extends CI_Controller {
                 $this->load->view( 'child_share_v', $data );
             } else{
                 $value['message']=str_replace("{{url}}",'<a href='.base_url().' >Applekitch</a>',$this->input->post('message'));
-                $value['email']=$this->input->post('message');
+                $value['email']=$this->input->post('email');
                 $send_mail=send_mail($value['email'],'Invitation from Applekitch',$value['message']);
                 if($send_mail){
                     $this->session->set_flashdata(array('msg_type'=>'success','msg'=>'One email send to your friends email address!'));

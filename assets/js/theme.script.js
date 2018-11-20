@@ -191,7 +191,6 @@ jQuery(document).ready(function(){
                             var grade=data['grade'];
                             var subject=data['subject'];
                             var score_persentage=(100*(qScore/tQ_score)).toFixed(0);
-
                             if(qScore >= 70){
                                 var prize = base_url+'assets/images/cup.png';
                             } else {

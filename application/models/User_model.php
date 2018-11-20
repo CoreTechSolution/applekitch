@@ -9,10 +9,7 @@ class User_model extends CI_Model{
 	}
 
 	public function register_user($user){
-
-
 		$this->db->insert('user', $user);
-
 	}
 
 	public function activate_user($email) {
@@ -97,7 +94,7 @@ class User_model extends CI_Model{
 	public function save_profile($user) {
 		$this->db->set('fname', $user['fname']);
 		$this->db->set('lname', $user['lname']);
-		$this->db->set('phone', $user['phone']);
+		/*$this->db->set('phone', $user['phone']);*/
 		if(isset($user['password']) && !empty($user['password'])) {
 			$this->db->set( 'password', $user['password'] );
 		}

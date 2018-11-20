@@ -33,23 +33,12 @@ function send_mail($to,$subject,$message){
 		'charset' => 'iso-8859-1',
 		'wordwrap' => TRUE
 	);
- /*   $config = Array(
-        'protocol' => 'smtp',
-        'smtp_host' => 'smtp.sendgrid.net',
-        'smtp_port' => 465,
-        'smtp_crypto' => 'ssl',
-        'smtp_user' => 'apikey',
-        'smtp_pass' => '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',
-        'mailtype' => 'html',
-        'charset' => 'iso-8859-1',
-        'wordwrap' => TRUE
-    );*/
 	$CI->email->initialize($config);
 	$CI->email->set_mailtype("html");
 	$CI->email->set_newline("\r\n");
 	$htmlContent = $message;
 	$CI->email->to($to);
-	$CI->email->from('smtp@coregensolution.com','AppleKitch');
+	$CI->email->from('info@applekitch.com','AppleKitch');
 	$CI->email->subject($subject);
 	$CI->email->message($htmlContent);
 //print_r($CI->email->send()); exit();
