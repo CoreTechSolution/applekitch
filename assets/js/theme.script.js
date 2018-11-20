@@ -229,30 +229,30 @@ jQuery(document).ready(function(){
                             html+='</table>';*/
                             html+='<div class="final_result">';
                             html+='<div class="row">';
-                            html+='<div class="col-lg-9">';
+                            html+='<div class="col-lg-9 col-md-9 col-xs-9">';
                             html+='<div class="subject_grade_topic">'+subject+' | '+grade+' | '+topic+'</div>';
                             html+='<div class="exercise_complete_text">'+random_exercise_complete_text+'</div>';
                             html+='<div class="awesome_text">'+random_awesome_text+'</div>';
                             html+='</div>';
-                            html+='<div class="col-lg-3"><img src="'+prize+'">';
+                            html+='<div class="col-lg-3 col-md-3 col-xs-3"><img src="'+prize+'">';
                             html+='</div>';
                             html+='</div>';
                             html+='<div class="row">';
-                            html+='<div class="col-lg-4">';
+                            html+='<div class="col-lg-4 col-md-4 col-xs-4">';
                             html+='<div class="blueclass">';
                             html+='<div class="text1">You gained</div>';
                             html+='<div class="text2">'+qScore+'</div>';
                             html+='<div class="text3">Smart Points</div>';
                             html+='</div>';
                             html+='</div>';
-                            html+='<div class="col-lg-4">';
+                            html+='<div class="col-lg-4 col-md-4 col-xs-4">';
                             html+='<div class="orangeclass">';
                             html+='<div class="text1">You answered</div>';
                             html+='<div class="text2">'+tQ_attend+'</div>';
                             html+='<div class="text3">Questions</div>';
                             html+='</div>';
                             html+='</div>';
-                            html+='<div class="col-lg-4">';
+                            html+='<div class="col-lg-4 col-md-4 col-xs-4">';
                             html+='<div class="greenclass">';
                             html+='<div class="text1">You spend</div>';
                             html+='<div class="text2">'+ score_time_count_min + ':'+ score_time_count_sec+'</div>';
@@ -261,10 +261,10 @@ jQuery(document).ready(function(){
                             html+='</div>';
                             html+='</div>';
                             html+='</div>';
+                            html+='</div>';
                             html+='<div class="print_action_div">';
 
                             html+='<a class="btn btn-small btn-outline-default" onclick="printDiv(\'printableArea\')">Print</a> <a href="'+ base_url +'frontend/topic/'+urls[url_count-3]+'/'+urls[url_count-2]+'" class="btn btn-small btn-outline-default" >Back to Main Menu</a>';
-                            html+='</div>';
                             html+='</div>';
                             //////////////// save certificate after complete a topic /////////////////////////
                             jQuery.ajax({
@@ -362,30 +362,30 @@ jQuery(document).ready(function(){
                             html+='</table>';*/
                             html+='<div class="final_result">';
                             html+='<div class="row">';
-                            html+='<div class="col-lg-9">';
+                            html+='<div class="col-lg-9 col-md-9 col-xs-9">';
                             html+='<div class="subject_grade_topic">'+subject+' | '+grade+' | '+topic+'</div>';
                             html+='<div class="exercise_complete_text">'+random_exercise_complete_text+'</div>';
                             html+='<div class="awesome_text">'+random_awesome_text+'</div>';
                             html+='</div>';
-                            html+='<div class="col-lg-3"><img src="'+prize+'">';
+                            html+='<div class="col-lg-3 col-md-3 col-xs-3"><img src="'+prize+'">';
                             html+='</div>';
                             html+='</div>';
                             html+='<div class="row">';
-                            html+='<div class="col-lg-4">';
+                            html+='<div class="col-lg-4 col-md-4 col-xs-4">';
                             html+='<div class="blueclass">';
                             html+='<div class="text1">You gained</div>';
                             html+='<div class="text2">'+qScore+'</div>';
                             html+='<div class="text3">Smart Points</div>';
                             html+='</div>';
                             html+='</div>';
-                            html+='<div class="col-lg-4">';
+                            html+='<div class="col-lg-4 col-md-4 col-xs-4">';
                             html+='<div class="orangeclass">';
                             html+='<div class="text1">You answered</div>';
                             html+='<div class="text2">'+tQ_attend+'</div>';
                             html+='<div class="text3">Questions</div>';
                             html+='</div>';
                             html+='</div>';
-                            html+='<div class="col-lg-4">';
+                            html+='<div class="col-lg-4 col-md-4 col-xs-4">';
                             html+='<div class="greenclass">';
                             html+='<div class="text1">You spend</div>';
                             html+='<div class="text2">'+ score_time_count_min + ':'+ score_time_count_sec+'</div>';
@@ -394,10 +394,10 @@ jQuery(document).ready(function(){
                             html+='</div>';
                             html+='</div>';
                             html+='</div>';
+                            html+='</div>';
                             html+='<div class="print_action_div">';
 
                             html+='<a class="btn btn-small btn-outline-default" onclick="printDiv(\'printableArea\')">Print</a> <a href="'+ base_url +'frontend/topic/'+urls[url_count-3]+'/'+urls[url_count-2]+'" class="btn btn-small btn-outline-default" >Back to Main Menu</a>';
-                            html+='</div>';
                             html+='</div>';
                             // save certificate
                             jQuery.ajax({
