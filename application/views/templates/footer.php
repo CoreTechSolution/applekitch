@@ -30,7 +30,7 @@
 						<div class="col-lg-6">
 							<div class="col2">
 								<ul>
-									<li><a href="javascript:void(0)">Web Tour</a></li>
+									<li><a href="<?php echo base_url('/pages/web-tour'); ?>">Web Tour</a></li>
 									<li><a href="<?php echo base_url('/pages/contact-us'); ?>">Contact us</a></li>
 									<li><a href="<?php echo base_url('/pages/what-we-offer'); ?>">What We offer</a></li>
 									<li><a href="<?php echo base_url('/pages/reviews-testimonials'); ?>">Reviews/Testimonial</a></li>
