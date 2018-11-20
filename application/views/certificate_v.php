@@ -83,9 +83,9 @@ require_once 'templates/header.php';
                                                             <!--<h2><?php /*echo $child_data->fname.' '.$child_data->lname; */?> was awarded <?php /*echo $name; */?></h2>-->
                                                             <h2><?php echo $child_data->fname.' '.$child_data->lname; ?> has successfully
                                                                 completed
-                                                                <?php
+                                                                "<?php
                                                                 echo get_returnfield('topics', 'topic_id', $certificate->topic_id,
-                                                                        'topic_name').' for '
+                                                                        'topic_name').'" for '
                                                                      .get_returnfield('grade', 'id', $certificate->grade_id,
 		                                                                'name')
                                                                 .' in '
@@ -94,7 +94,9 @@ require_once 'templates/header.php';
                                                                 ?></h2>
                                                             <div class="row">
                                                                 <div class="col-lg-6">
-                                                                    <a style="background-color: <?= $colorcode[$rand] ?>;" href="<?php echo
+                                                                    <a style="background-color: <?= $colorcode[$rand] ?>; border-color:
+                                                                    <?= $colorcode[$rand] ?>;"
+                                                                       href="<?php echo
                                                                     base_url('dashboard/generate_pdf/'.$certificate->id); ?>" class="custom_button">View Certificate</a>
                                                                 </div>
                                                                 <div class="col-lg-6">
@@ -102,8 +104,9 @@ require_once 'templates/header.php';
                                                                         <span>Share Result:</span>
                                                                         <ul>
                                                                             <li><a target="_blank" href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                                                            <li><a target="_blank" href="#"><i class="fab fa-twitter"></i></a></li>
-                                                                            <li><a target="_blank" href="#"><i class="fab fa-instagram"></i></a></li>
+                                                                            <li><a target="_blank" href="http://twitter.com/share?text=&url=<?php echo
+	                                                                            base_url('dashboard/generate_pdf/'.$certificate->id); ?>"><i class="fab fa-twitter"></i></a></li>
+                                                                            <!--<li><a target="_blank" href="#"><i class="fab fa-instagram"></i></a></li>-->
                                                                         </ul>
                                                                     </div>
                                                                 </div>

@@ -18,7 +18,7 @@ require_once(APPPATH.'third_party/stripe-php/config.php');
                                     <div id="pay_form">
                                         <div class="row">
                                             <div class="col-lg-6">
-                                                <a id="stripeButton" href="#" class="stripe-connect"><span>Pay with Card</span></a>
+                                                <a id="stripeButton" href="#" class="stripe-connect"><span>Pay with Stripe</span></a>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div id="paypal-button"></div>

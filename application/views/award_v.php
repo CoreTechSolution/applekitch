@@ -99,7 +99,7 @@ if(!empty($ans_topic)) {
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
-                    <h4><a class="matchHeight1" style="background-color: <?php echo $colorcode[0]; ?>" href="javascript:void(0);">You’ve achieved excellence in <span><?php echo count($ans_topic_array); ?></span> skills</a></h4>
+                    <h4><a class="matchHeight1" style="background-color: <?php echo $colorcode[0]; ?>" href="javascript:void(0);">You’ve achieved excellence in <span class="ans_topic"><?php echo count($ans_topic_array); ?></span> skills</a></h4>
                 </div>
                 <div class="col-lg-3">
                     <h4><a class="matchHeight1" style="background-color: <?php echo $colorcode[1]; ?>" href="javascript:void(0);">You’ve answered <span><?php echo $total_question; ?></span> questions</a></h4>
@@ -178,7 +178,8 @@ if(!empty($ans_topic)) {
 									?>
                                     <div class="award_box_wrap">
                                         <div class="award_blank_box tooltip_award" title="Click to Reveal" data-id="<?php echo $count; ?>"<?php if(in_array($count, $award_click)) { echo ' style="display:none;"'; } ?>><i class="fas fa-trophy"></i></div>
-                                        <div class="award_blank_box_img tooltip_award" title="<?php echo $title; ?>"<?php if(in_array($count, $award_click)) { echo ' style="display:block;"'; } ?>><img src="<?php echo base_url('/assets/images/award/'.$total_value.'.png'); ?>" /></div>
+                                        <div class="award_blank_box_img tooltip_award" title="<?php echo $title; ?>"<?php if(in_array
+                                        ($count, $award_click)) { echo ' style="display:block;"'; } ?>><img src="<?php echo base_url('/assets/images/award/'.$total_value.'.png'); ?>" /></div>
                                     </div>
 								<?php } else { ?>
                                     <div class="award_blank_box lock">
@@ -252,7 +253,8 @@ if(!empty($ans_topic)) {
 									?>
                                     <div class="award_box_wrap">
                                         <div class="award_blank_box tooltip_award" title="Click to Reveal" data-id="<?php echo $count; ?>"<?php if(in_array($count, $award_click)) { echo ' style="display:none;"'; } ?>><i class="fas fa-trophy"></i></div>
-                                        <div class="award_blank_box_img tooltip_award" title="<?php echo $title; ?>"<?php if(in_array($count, $award_click)) { echo ' style="display:block;"'; } ?>><img src="<?php echo base_url('/assets/images/award/'.$total_value.'.png'); ?>" /></div>
+                                        <div class="award_blank_box_img tooltip_award" title="<?php echo $title; ?>"<?php if(in_array
+                                        ($count, $award_click)) { echo ' style="display:block;"'; } ?>><img src="<?php echo base_url('/assets/images/award/'.$total_value.'.png'); ?>" /></div>
                                     </div>
 								<?php } else { ?>
                                     <div class="award_blank_box lock">
@@ -328,7 +330,8 @@ if(!empty($ans_topic)) {
 									?>
                                     <div class="award_box_wrap">
                                         <div class="award_blank_box tooltip_award" title="Click to Reveal" data-id="<?php echo $count; ?>"<?php if(in_array($count, $award_click)) { echo ' style="display:none;"'; } ?>><i class="fas fa-trophy"></i></div>
-                                        <div class="award_blank_box_img tooltip_award" title="<?php echo $title; ?>"<?php if(in_array($count, $award_click)) { echo ' style="display:block;"'; } ?>><img src="<?php echo base_url('/assets/images/award/'.$total_value.'.png'); ?>" /></div>
+                                        <div class="award_blank_box_img tooltip_award" title="<?php echo $title; ?>"<?php if(in_array
+                                        ($count, $award_click)) { echo ' style="display:block;"'; } ?>><img src="<?php echo base_url('/assets/images/award/'.$total_value.'.png'); ?>" /></div>
                                     </div>
 								<?php } else { ?>
                                     <div class="award_blank_box lock">
@@ -403,7 +406,8 @@ if(!empty($ans_topic)) {
 									?>
                                     <div class="award_box_wrap">
                                         <div class="award_blank_box tooltip_award" title="Click to Reveal" data-id="<?php echo $count; ?>"<?php if(in_array($count, $award_click)) { echo ' style="display:none;"'; } ?>><i class="fas fa-trophy"></i></div>
-                                        <div class="award_blank_box_img tooltip_award" title="<?php echo $title; ?>"<?php if(in_array($count, $award_click)) { echo ' style="display:block;"'; } ?>><img src="<?php echo base_url('/assets/images/award/'.$total_value.'.png'); ?>" /></div>
+                                        <div class="award_blank_box_img tooltip_award" title="<?php echo $title; ?>"<?php if(in_array
+                                        ($count, $award_click)) { echo ' style="display:block;"'; } ?>><img src="<?php echo base_url('/assets/images/award/'.$total_value.'.png'); ?>" /></div>
                                     </div>
 								<?php } else { ?>
                                     <div class="award_blank_box lock">
@@ -472,7 +476,8 @@ if(!empty($ans_topic)) {
 									?>
                                     <div class="award_box_wrap">
                                         <div class="award_blank_box tooltip_award" title="Click to Reveal" data-id="<?php echo $count; ?>"<?php if(in_array($count, $award_click)) { echo ' style="display:none;"'; } ?>><i class="fas fa-trophy"></i></div>
-                                        <div class="award_blank_box_img tooltip_award" title="<?php echo $title; ?>"<?php if(in_array($count, $award_click)) { echo ' style="display:block;"'; } ?>><img src="<?php echo base_url('/assets/images/award/'.$total_value.'.png'); ?>" /></div>
+                                        <div class="award_blank_box_img tooltip_award" title="<?php echo $title; ?>"<?php if(in_array
+                                        ($count, $award_click)) { echo ' style="display:block;"'; } ?>><img src="<?php echo base_url('/assets/images/award/'.$total_value.'.png'); ?>" /></div>
                                     </div>
 								<?php } else { ?>
                                     <div class="award_blank_box lock">
@@ -498,6 +503,7 @@ if(!empty($ans_topic)) {
            var this_element = jQuery(this);
            jQuery(this_element).hide();
            jQuery(this_element).parent().find('.award_blank_box_img').show();
+           jQuery(this_element).parent().find('.award_blank_box_img').addClass('openAward');
            var id = jQuery(this_element).attr('data-id');
            jQuery.ajax({
                type: "POST",
@@ -510,6 +516,12 @@ if(!empty($ans_topic)) {
                }
            });
        })
+    });
+    jQuery(document).ready(function() {
+        var type_num = jQuery('.award_points').find('.award_blank_box_img:visible').length;
+        var ans_topic = jQuery('.award_points').find('.award_blank_box.tooltip_award').length;
+        jQuery('span.type_num').text(type_num);
+        jQuery('span.ans_topic').text(ans_topic);
     });
 </script>
 <?php
