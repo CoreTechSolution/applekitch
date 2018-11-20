@@ -85,7 +85,7 @@ require_once 'templates/header.php';
 							<br>
 							<div class="from-group">
 								<div class="checkbox">
-									<label><input name="terms" type="checkbox" value="1"> By clicking Register, you agree to our <a href="#">Terms & Conditions</a> and that you have read our <a href="#">Privacy Policy</a>.</label>
+									<label><input name="terms" type="checkbox" value="1"> By clicking Register, you agree to our <a href="<?php echo base_url('pages/terms-and-conditions'); ?>">Terms & Conditions</a> and that you have read our <a href="<?php echo base_url('pages/privacy-policy'); ?>">Privacy Policy</a>.</label>
 								</div>
 							</div>
 							<br>
