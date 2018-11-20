@@ -27,6 +27,7 @@ require_once 'templates/header.php';
 					<thead>
 						<tr>
 							<th>Page</th>
+							<th>Slug</th>
 							<th>Page Title</th>
 							<th></th>
 						</tr>
@@ -36,6 +37,7 @@ require_once 'templates/header.php';
 						<?php foreach($pages as $page){ ?>
 						<tr>
 							<td><?php echo $page['page']; ?></td>
+							<td><?php echo $page['page_slug']; ?></td>
 							<td><?php echo $page['page_title']; ?></td>
 							<td><a class="edit_link" href="<?= base_url('/admin/edit_page'); ?>/<?= $page['page_id']; ?>"><span data-feather="edit"></span> Edit</a> | <a class="delete_link" onclick="delete_data(<?php echo $page['page_id']; ?>,'page_id','pages');" href="javascript:void(0)"><span data-feather="delete"></span> Delete</a></td>
 						</tr>
