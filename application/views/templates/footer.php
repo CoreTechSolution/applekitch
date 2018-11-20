@@ -18,11 +18,11 @@
 						<div class="col-lg-4">
 							<div class="col2">
 								<ul>
-									<li><a href="javascript:void(0)">For Student</a></li>
-									<li><a href="javascript:void(0)">For Parents</a></li>
-									<li><a href="javascript:void(0)">For Teacher</a></li>
-									<li><a href="javascript:void(0)">For School</a></li>
-									<li><a href="javascript:void(0)">Exercise Page</a></li>
+									<li><a href="<?php echo base_url('/for-student'); ?>">For Student</a></li>
+									<li><a href="<?php echo base_url('/for-parents'); ?>">For Parents</a></li>
+									<li><a href="<?php echo base_url('/for-teacher'); ?>">For Teacher</a></li>
+									<li><a href="<?php echo base_url('/for-school'); ?>">For School</a></li>
+									<li><a href="<?php echo base_url('/grades'); ?>">Exercise Page</a></li>
 									<li><a href="<?php echo base_url('/pages/about-us'); ?>">About Us</a></li>
 								</ul>
 							</div>
@@ -34,7 +34,9 @@
 									<li><a href="<?php echo base_url('/pages/contact-us'); ?>">Contact us</a></li>
 									<li><a href="<?php echo base_url('/pages/what-we-offer'); ?>">What We offer</a></li>
 									<li><a href="<?php echo base_url('/pages/reviews-testimonials'); ?>">Reviews/Testimonial</a></li>
-									<li><a href="javascript:void(0)">Awards and Certificates</a></li>
+                                    <?php if(loginCheck()){ ?>
+									<li><a href="<?php echo base_url('/awards'); ?>">Awards and Certificates</a></li>
+                                    <?php } ?>
 								</ul>
 							</div>
 						</div>
