@@ -18,10 +18,10 @@
 						<div class="col-lg-4">
 							<div class="col2">
 								<ul>
-									<li><a href="<?php echo base_url('/for-student'); ?>">For Student</a></li>
-									<li><a href="<?php echo base_url('/for-parents'); ?>">For Parents</a></li>
-									<li><a href="<?php echo base_url('/for-teacher'); ?>">For Teacher</a></li>
-									<li><a href="<?php echo base_url('/for-school'); ?>">For School</a></li>
+									<li><a href="<?php echo base_url('/pages/for-student'); ?>">For Student</a></li>
+									<li><a href="<?php echo base_url('/pages/for-parents'); ?>">For Parents</a></li>
+									<li><a href="<?php echo base_url('/pages/for-teacher'); ?>">For Teacher</a></li>
+									<li><a href="<?php echo base_url('/pages/for-school'); ?>">For School</a></li>
 									<li><a href="<?php echo base_url('/grades'); ?>">Exercise Page</a></li>
 									<li><a href="<?php echo base_url('/pages/about-us'); ?>">About Us</a></li>
 								</ul>
