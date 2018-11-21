@@ -596,7 +596,7 @@ class Admin extends CI_Controller {
                 $this->admin_model->insert_category($category_array);
             }
         }*/
-        $this->admin_model->insert_category($category_array);
+        $insert=$this->admin_model->insert_category($category_array);
 
         if($insert) {
             $category_array['cat_img']=$insert;
