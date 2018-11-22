@@ -1,0 +1,163 @@
+/**
+    Theme Name: Standard Theme
+    Author: Coregen Team
+    Author URI: http://coregensolutions.com
+    Version: dd.mm.yyyy
+ **/
+body {
+    direction: ltr;
+    color: #3C4858;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 300;
+    line-height: 21px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 300;
+    margin: 0 0 15px 0;
+}
+p{
+    margin: 0 0 15px 0;
+    line-height: 150%;
+}
+a {
+    color: #9c27b0;
+}
+a:hover, a:focus {
+    color: #89229b;
+    text-decoration: none;
+}
+img{
+    max-width: 100%;
+}
+img.alignright {float:right; margin:0 0 1em 1em}
+img.alignleft {float:left; margin:0 1em 1em 0}
+img.aligncenter {display: block; margin-left: auto; margin-right: auto}
+.alignright {float:right; }
+.alignleft {float:left; }
+.aligncenter {display: block; margin-left: auto; margin-right: auto}
+#rspnavigation {
+    display: none;
+}
+.nav{
+    padding-top: 55px;
+    text-align: right;
+}
+.nav ul {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    list-style: none;
+}
+.nav ul li {
+    display: inline-block;
+    list-style: none;
+    position: relative;
+}
+.nav li ul { display: none; }
+.nav li a {
+    display: block;
+    font-size: 14px;
+    padding: 0px 25px;
+    text-decoration: none;
+    white-space: nowrap;
+    color: #353535;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+}
+.nav ul.sub-menu li{
+    display: block;
+    width: auto;
+}
+.nav ul.menu li:first-child a{
+    padding-left: 0;
+}
+.nav ul.menu li:last-child a{
+    padding-right: 0;
+}
+.nav > div > ul > li.current-menu-item a{
+    color: #3c86c8;
+}
+.nav > div > ul > li a:hover{
+    color: #3c86c8;
+}
+.nav ul.sub-menu li a{
+    color: #ffffff;
+}
+.nav ul.sub-menu li a:hover{
+    background: #ffffff;
+}
+.nav ul li ul{
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    z-index: 99;
+    background: #CCC;
+    text-align: left;
+}
+.nav ul li:last-child ul.sub-menu{
+    left: auto;
+    right: 0;
+}
+.nav li:hover > ul{
+    display: block;
+    position: absolute;
+}
+.nav ul ul ul {
+    left: 100%;
+    top: 0;
+}
+.nav ul ul ul ul{
+    left: 100%;
+    top: 0;
+}
+.nav ul ul ul ul ul{
+    left: 100%;
+    top: 0;
+}
+.nav #mega-menu-wrap-mainmenu #mega-menu-mainmenu > li.mega-menu-item > a.mega-menu-link{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    color: #393939 !important;
+    text-transform: uppercase;
+    display: block;
+    padding: 5px 10px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+.nav #mega-menu-wrap-mainmenu #mega-menu-mainmenu > li.mega-menu-item > a.mega-menu-link:hover{
+    color: #393939;
+}
+.nav #mega-menu-wrap-mainmenu #mega-menu-mainmenu > li.mega-menu-flyout ul.mega-sub-menu li.mega-menu-item a.mega-menu-link{
+    background: #407cca;
+    color: #FFFFFF;
+}
+.nav #mega-menu-wrap-mainmenu #mega-menu-mainmenu > li.mega-menu-flyout ul.mega-sub-menu li.mega-menu-item a.mega-menu-link:hover{
+    background: #FFFFFF;
+    color:#407cca;
+}
+.nav #mega-menu-wrap-mainmenu #mega-menu-mainmenu > li.mega-menu-flyout ul.mega-sub-menu{
+    width: auto;
+    color: #FFFFFF;
+    background: #407cca;
+}
+.nav #mega-menu-wrap-mainmenu #mega-menu-mainmenu > li.mega-menu-item.mega-current-menu-item > a.mega-menu-link, .nav #mega-menu-wrap-mainmenu #mega-menu-mainmenu > li.mega-menu-item.mega-current-menu-ancestor > a.mega-menu-link, .nav #mega-menu-wrap-mainmenu #mega-menu-mainmenu > li.mega-menu-item.mega-current-page-ancestor > a.mega-menu-link{
+    color: #407cca;
+}
+.nav #mega-menu-wrap-mainmenu #mega-menu-mainmenu > li.mega-menu-megamenu > ul.mega-sub-menu{
+    background: #407cca;
+}
+.nav #mega-menu-wrap-mainmenu #mega-menu-mainmenu > li.mega-menu-megamenu > ul.mega-sub-menu > li.mega-menu-item > a.mega-menu-link, .nav #mega-menu-wrap-mainmenu #mega-menu-mainmenu > li.mega-menu-megamenu > ul.mega-sub-menu > li.mega-menu-item > a.mega-menu-link:hover{
+    color: #FFFFFF;
+}
+.nav #mega-menu-wrap-mainmenu #mega-menu-mainmenu > li.mega-menu-megamenu > ul.mega-sub-menu > li.mega-menu-item li.mega-menu-item > a.mega-menu-link, .nav #mega-menu-wrap-mainmenu #mega-menu-mainmenu > li.mega-menu-megamenu > ul.mega-sub-menu > li.mega-menu-item li.mega-menu-item > a.mega-menu-link:hover{
+    color: #FFFFFF;
+}
+.container{
+    max-width: 1300px;
+}
+/*==================================*/
+/* Wrapper 1 */
+/*==================================*/
