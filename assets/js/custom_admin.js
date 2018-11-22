@@ -380,6 +380,7 @@ jQuery(document).ready(function() {
 
     jQuery('body').on('change', '.upload_images', function(e){
         e.preventDefault();
+        jQuery('#loading').show();
         var this_element=jQuery(this);
         var parent = this_element.closest('.add_question_row');
         var form_data = new FormData(parent.find('.addQ_form')[0]);
@@ -393,12 +394,14 @@ jQuery(document).ready(function() {
                 //jQuery('#upload_images_section').hide();
                 jQuery(this_element).closest('.addQ_field_grp').find('#uploaded_images').show();
                 jQuery(this_element).closest('.addQ_field_grp').find('#uploaded_images').html(data);
+                jQuery('#loading').hide();
             }
         });
     });
 
     jQuery('body').on('change', '.upload_select_multiple_images', function(e){
         e.preventDefault();
+        jQuery('#loading').show();
         var this_element=jQuery(this);
         var parent = this_element.closest('.add_question_row');
         var form_data = new FormData(parent.find('.addQ_form')[0]);
@@ -412,6 +415,7 @@ jQuery(document).ready(function() {
                 jQuery('#upload_images_section').hide();
                 jQuery(this_element).closest('.addQ_field_grp').find('#uploaded_images').show();
                 jQuery(this_element).closest('.addQ_field_grp').find('#uploaded_images').append(data);
+                jQuery('#loading').hide();
             }
         });
     });
@@ -437,6 +441,7 @@ jQuery(document).ready(function() {
 
     jQuery('body').on('change', '.svgBoximg', function(e){
         e.preventDefault();
+        jQuery('#loading').show();
         var this_element = jQuery(this);
         var parent = this_element.closest('.add_question_row');
         var form_data = new FormData(parent.find('.addQ_form')[0]);
@@ -450,12 +455,14 @@ jQuery(document).ready(function() {
             success: function (data) {
                 jQuery(parent).find('.svg_image_wrap').html('<div><img src="'+data[0].src+'" style="width: 50px; height: 50px;"/></div>');
                 jQuery(parent).find('.svg_how_many').show();
+                jQuery('#loading').hide();
             }
         });
     });
 
     jQuery('body').on('change', '.base_image', function(e){
         e.preventDefault();
+        jQuery('#loading').show();
         var this_element = jQuery(this);
         var parent = this_element.closest('.add_question_row');
         var form_data = new FormData(parent.find('.addQ_form')[0]);
@@ -469,12 +476,14 @@ jQuery(document).ready(function() {
             success: function (data) {
                 jQuery(parent).find('.drag_drop_img').html('<div><img src="'+data['base_image'].src+'" style="width: 200px; height:' + ' auto;"/></div>');
                 jQuery(parent).find('.extra_img').show();
+                jQuery('#loading').hide();
             }
         });
     });
 
     jQuery('body').on('change', '.extra_image', function(e){
         e.preventDefault();
+        jQuery('#loading').show();
         var this_element = jQuery(this);
         var parent = this_element.closest('.add_question_row');
         var form_data = new FormData(parent.find('.addQ_form')[0]);
@@ -488,6 +497,7 @@ jQuery(document).ready(function() {
             success: function (data) {
                 jQuery(parent).find('.drag_drop_extra_image').html('<div><img src="'+data['extra_image'].src+'" style="width: 100px;' + ' height:' + ' auto;"/></div>');
                 jQuery(parent).find('.extra_img_num').show();
+                jQuery('#loading').hide();
             }
         });
     });
@@ -510,6 +520,7 @@ jQuery(document).ready(function() {
 
     jQuery('body').on('click', '.question_with_put_images_done', function(e) {
         e.preventDefault();
+        jQuery('#loading').show();
         var this_element = jQuery(this);
         var parent = this_element.closest('.add_question_row');
         var form_data = new FormData(parent.find('.addQ_form')[0]);
@@ -573,12 +584,14 @@ jQuery(document).ready(function() {
                         }
                     }
                 });
+                jQuery('#loading').hide();
             }
         });
     });
 
     jQuery('body').on('change', '.imageQ_bg_upload', function(e){
         e.preventDefault();
+        jQuery('#loading').show();
         var this_element = jQuery(this);
         var parent = this_element.closest('.add_question_row');
         var form_data = new FormData(parent.find('.addQ_form')[0]);
@@ -595,6 +608,7 @@ jQuery(document).ready(function() {
                     ' height: auto;"/></div>');
                 jQuery(parent).find('.imageQ_bg_img_wrap').show();
                 jQuery(parent).find('.imageQ_multiple_image_wrap').show();
+                jQuery('#loading').hide();
                 //jQuery(parent).find('.imageQ_multiple_image_wrap').html('<div class="col-lg-6"><label for="imageQ_upload">Upload
                 // Images</label><input type="file" name="upload_images[]" multiple class="form-control imageQ_multiple_image" required></div>');
             }
@@ -603,6 +617,7 @@ jQuery(document).ready(function() {
 
     jQuery('body').on('change', '.imageQ_multiple_image', function(e){
         e.preventDefault();
+        jQuery('#loading').show();
         var this_element = jQuery(this);
         var parent = this_element.closest('.add_question_row');
         var form_data = new FormData(parent.find('.addQ_form')[0]);
@@ -680,6 +695,7 @@ jQuery(document).ready(function() {
                         }
                     }
                 });
+                jQuery('#loading').hide();
             }
         });
     });
