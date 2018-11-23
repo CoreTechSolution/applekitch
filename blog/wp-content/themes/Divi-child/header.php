@@ -1,3 +1,9 @@
+<?php
+if(isset($_POST['submit'])){
+    $email_id = $_POST['email_id'];
+    syncMailchimp($email_id);
+}
+?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -236,7 +242,8 @@
 			?>
 				<div class="logo_container">
 					<span class="logo_helper"></span>
-					<a href="<?php echo esc_url( home_url( '/' ) ); ?>">
+                    <?php $site_url = str_replace("blog/","",home_url( '/' )); ?>
+					<a href="<?php echo esc_url( $site_url ); ?>">
 						<img src="<?php echo esc_attr( $logo ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" id="logo" data-height-percentage="<?php echo esc_attr( et_get_option( 'logo_height', '54' ) ); ?>" />
 					</a>
 				</div>
