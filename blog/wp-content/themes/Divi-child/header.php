@@ -1,7 +1,7 @@
 <?php
 if(isset($_POST['submit'])){
     $email_id = $_POST['email_id'];
-    syncMailchimp($email_id);
+    syncMailchimp1($email_id);
 }
 ?>
 <!DOCTYPE html>

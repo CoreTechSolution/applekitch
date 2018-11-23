@@ -313,5 +313,5 @@ switch (ENVIRONMENT)
  *
  * And away we go...
  */
-require_once 'blog/wp-blog-header.php';
+//require_once 'blog/wp-blog-header.php';
 require_once BASEPATH.'core/CodeIgniter.php';

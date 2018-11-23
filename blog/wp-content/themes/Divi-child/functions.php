@@ -31,7 +31,7 @@ function divi_remove_menu_pages() {
     remove_menu_page( 'et_divi_options' );
 }
 
-function syncMailchimp($email) {
+function syncMailchimp1($email) {
     $apiKey = '7b421545ab8fdb0987c32b7cf92dd226-us16';
     $listId = '161155';
 
