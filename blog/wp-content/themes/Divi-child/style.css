@@ -1,0 +1,212 @@
+/*
+Theme Name: Divi Child Theme
+Description: A child theme template for Divi
+Author: CGS Themes
+Author URI: https://www.cgsthemes.com/
+Template: Divi
+Version: 1.0.0
+*/
+@import url("../Divi/style.css");
+
+/***** Header Section ****/
+#main-header #top-menu, #et_mobile_nav_menu{ display: none; }
+#main-header #et-top-navigation{ padding: 32px; }
+
+/***** Footer Section ****/
+#main-footer .footer-widget h4 {
+    font-weight: 600;
+    padding-bottom: 30px;
+    font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
+}
+#main-footer .footer-widget p{
+    font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
+}
+#footer-widgets .footer-widget li:before{
+    display: none;
+}
+#footer-widgets .footer-widget li{
+    padding-left: 0;
+    font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
+}
+#footer-widgets{
+    border-bottom: 1px solid #43494e;
+}
+#footer-info{
+    text-align:center;
+    float: none;
+    font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
+}
+
+.footer-social a {
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    display: block;
+    font-size: 22px;
+    float: left;
+    margin-right: 6px;
+    background: #00BD7B;
+    border-radius: 100%;
+    color: #fff !important;
+}
+.footer-social .face_icon:hover {
+    background: #4a67a1;
+}
+.footer-social .inst_icon:hover {
+    background: ##E00068;
+}
+.footer-social .twit_icon:hover {
+    background: #0177b5;
+}
+.footer-social .youtude_icon:hover {
+    background: #df2c28;
+}
+.custom-html-widget .newsletter-form{
+    margin-bottom: 25px;
+}
+.custom-html-widget .newsletter-form form input[type="email"] {
+    font-size: 15px;
+    color: #000000;
+    vertical-align: top;
+    padding: 11px 5px;
+    border: 1px solid #222222;
+    border-radius: 4px;
+}
+.custom-html-widget .newsletter-form form input[type="submit"] {
+    font-size: 0;
+    background: url(../Divi-child/images/submitbtn.png) no-repeat;
+    width: 49px;
+    height: 45px;
+    border: none;
+    cursor: pointer;
+}
+
+/***** Single Post Section ****/
+.single-post .et_pb_fullwidth_header.et_pb_fullwidth_header_0,
+.archive .et_pb_fullwidth_header.et_pb_fullwidth_header_0{
+    background-image: url(../Divi-child/images/wrapper2-bg.jpg);
+    background-position: top left;
+}
+.single-post .et_pb_fullwidth_header_0,
+.archive .et_pb_fullwidth_header_0{
+    padding-top: 60px;
+    padding-bottom: 45px;
+}
+.single-post h1,
+.archive h1{
+    font-family: 'Roboto',Helvetica,Arial,Lucida,sans-serif;
+    font-weight: 300;
+    font-size: 2.5rem;
+    text-align: center;
+}
+.archive h2{
+    font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
+    font-weight: 700!important;
+}
+.single-post h3,
+.archive h3{
+    font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
+}
+.single-post .entry-content p,
+.single-post .entry-content li,
+.archive .et_pb_post,
+.archive #left-area p,
+.comment-content p,
+.comment_postinfo .fn,
+.comment_postinfo .comment_date,
+.comment_postinfo a.comment-edit-link{
+    font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
+    font-size: 16px;
+    line-height: 30px;
+    color: #222;
+}
+.single-post #left-area p.post-meta,
+.archive #left-area p.post-meta{
+    font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
+    font-size: 14px;
+    padding-bottom: 10;
+    color: #222;
+}
+.archive #left-area p.post-meta{
+    padding-bottom: 0;
+}
+.single-post .et_pb_button{
+    color: #F94530;
+    font-size: 16px !important;
+    padding: 5px 10px;
+    font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
+}
+.single-post a.et_pb_more_button:after,
+.single-post .et-pb-arrow-prev:before{
+    font-size: 24px !important;
+    line-height: 1.2 !important;
+}
+
+/***** Sideber Section ****/
+#sidebar h4.widgettitle{
+    font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
+    font-weight: 700;
+    line-height: 1.5em;
+}
+#sidebar p,
+#sidebar li,
+#sidebar li a{
+    font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif !important;
+    margin-bottom: .5em;
+    color: #222;
+    font-size: 16px;
+}
+
+#sidebar ol, #sidebar ul, .page-id-8 .et_pb_widget_area ul {
+    list-style: disc !important;
+    margin-left: 20px;
+}
+
+@media only screen and (min-width: 980px) {
+    /***** Header Section ****/
+    .et_header_style_left .et-fixed-header #et-top-navigation{
+        padding-top: 33px;
+    }
+
+    /***** Footer Section ****/
+    .et_pb_gutters3.et_pb_footer_columns4 .footer-widget:nth-child(1){
+        width: 30%;
+    }
+    .et_pb_gutters3.et_pb_footer_columns4 .footer-widget:nth-child(2){
+        width: 5.2%;
+    }
+    .et_pb_gutters3.et_pb_footer_columns4 .footer-widget:nth-child(3){
+        width: 10%;
+    }
+    .et_pb_gutters3.et_pb_footer_columns4 .footer-widget:nth-child(4){
+        width: 14.2%;
+    }
+    .et_pb_gutters3.et_pb_footer_columns4 .footer-widget:nth-child(5){
+        width: 30%;
+    }
+    .et_pb_gutters3 .footer-widget {
+        margin: 0 .8% 5.5% 0;
+    }
+    .et_pb_gutters3 .footer-widget:nth-child(1) {
+        margin: 0 4% 5.5% 0;
+    }
+    .et_pb_gutters3 .footer-widget:nth-child(4) {
+        margin: 0 4% 5.5% 0 !important;
+    }
+
+    /***** Blog Section ****/
+    .single-post #left-area,
+    .archive #left-area{
+        width: 70%;
+    }
+    .single-post #sidebar,
+    .archive #sidebar{
+        width: 30%;
+    }
+    .single-post #main-content .container:before,
+    .archive #main-content .container:before{
+        width: 0;
+    }
+
+}
