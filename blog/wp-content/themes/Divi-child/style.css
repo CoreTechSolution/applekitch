@@ -210,3 +210,23 @@ Version: 1.0.0
     }
 
 }
+@media only screen and (max-width: 981px) {
+    .et_pb_footer_columns4 .footer-widget:nth-child(n) {
+        width: 30% !important;
+    }
+    .et_pb_footer_columns4 .footer-widget:nth-child(1){
+        width: 100% !important;
+    }
+    .et_pb_footer_columns4 .footer-widget:nth-child(5){
+        width: 75% !important;
+    }
+}
+@media only screen and (max-width: 767px) {
+    #footer-widgets .footer-widget:nth-child(n) {
+        margin-bottom: .5% !important;
+    }
+    #footer-widgets .footer-widget:nth-child(1),
+    #footer-widgets .footer-widget:nth-child(4){
+        margin-bottom: 8% !important;
+    }
+}
