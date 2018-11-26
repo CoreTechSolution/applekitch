@@ -30,11 +30,11 @@ require_once 'templates/header.php';
                                                 <div class="col-lg-2">
                                                     <h5>Select Child</h5>
                                                 </div>
-                                                <div class="col-lg-3">
+                                                <div class="col-lg-3 col-md-8 col-sm-8 col-xs-8">
 					                                <?php echo form_dropdown('child_id',form_dropdown_child(get_current_user_id()),$child_id,array('class'=>'form-control')); ?>
                                                 </div>
 
-                                                <div class="col-lg-2" >
+                                                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-4" >
                                                     <input type="submit" class="btn btn-small btn-primary" value="Show">
 
                                                 </div>
@@ -43,12 +43,13 @@ require_once 'templates/header.php';
                                     </div>
                                     <?php } ?>
 									<?php if($get_child_id!=0){ ?>
-                                        <table class="table small_table" data-paging="true" data-sorting="true" data-filtering="true" data-paging-size="20">
+                                        <table class="table small_table q_log" data-paging="true" data-sorting="true" data-filtering="true"
+                                               data-paging-size="20">
                                             <thead>
                                             <tr>
-                                                <th>Question</th>
-                                                <th>Right Answer</th>
-                                                <th>Your Answer</th>
+                                                <th data-class="expand">Question</th>
+                                                <th data-hide="phone,tablet">Right Answer</th>
+                                                <th data-hide="phone,tablet">Your Answer</th>
                                                 <th>Time</th>
                                                 <th>Marks</th>
                                                 <th>Score</th>
