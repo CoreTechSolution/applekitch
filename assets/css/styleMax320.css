@@ -61,3 +61,11 @@
     width: 100%;
     padding: 33px 36px;
 }
+.pie_chart_style{
+    width: 300px;
+    height: 100px;
+}
+.bar_chart_style{
+    width: 300px;
+    height: 150px;
+}
