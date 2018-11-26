@@ -69,12 +69,12 @@ require_once 'templates/header.php';
                                             <div class="row">
                                                 <div class="col-lg-12">
                                                     <h3>Practice by Grade</h3>
-                                                    <div id="donutchart" style="width: 800px; height: 400px;"></div>
+                                                    <div id="donutchart" class="pie_chart_style"></div>
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <h3>Practice by Day</h3>
                                                     <?php if(!empty($jquery_day_text)){ ?>
-                                                        <div id="Anthony_chart_div" style="width: 800px; height: 500px;"></div>
+                                                        <div id="Anthony_chart_div" class="bar_chart_style"></div>
                                                     <?php } else{ ?>
                                                         <p class="no_data_h3">No Data</p>
                                                     <?php } ?>

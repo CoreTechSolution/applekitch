@@ -92,3 +92,11 @@
 .print_action_div a {
     margin-bottom: 15px;
 }
+.pie_chart_style{
+    width: 600px;
+    height: 300px;
+}
+.bar_chart_style{
+    width: 600px;
+    height: 300px;
+}

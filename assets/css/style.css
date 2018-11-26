@@ -3327,3 +3327,11 @@ a.custom_button {
 .print_action_div a:hover{
     color: #FFFFFF !important;
 }
+.pie_chart_style{
+    width: 800px;
+    height: 400px;
+}
+.bar_chart_style{
+    width: 800px;
+    height: 500px;
+}
