@@ -61,6 +61,9 @@
 .bx-controls {
     display: none;
 }
+.top_tap_sub ul li {
+    padding: 0 4%;
+}
 .top_tap_sub ul li a {
     padding: 10px 7px 10px 0;
 }

@@ -314,10 +314,13 @@ class Dashboard extends CI_Controller {
 				$data['certificates'] = $this->user_model->get_ans_certificates_by_user( $user_id );
 			}
 		} else {
+			$user_id = ( ! empty( $_GET['child_id'] ) ) ? $_GET['child_id'] : get_current_user_id();
 			$data['title']     = 'Certificates';
-			$data['user_data'] = $this->user_model->get_userdata();
+			$data['user_data'] = $this->user_model->get_userdata($user_id);
 			$data['certificates'] = 0;
 		}
+
+		//print_r($data['certificates']); exit;
 
 
 		$this->load->view('certificate_v',$data);

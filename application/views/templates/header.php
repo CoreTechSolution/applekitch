@@ -195,8 +195,17 @@
                     <li><a href="<?php echo base_url('math') ?>">Math</a></li>
                     <li><a href="<?php echo base_url('english') ?>">English</a></li>
                     <?php if(loginCheck()==true){ ?>
-                        <li><a href="<?php echo base_url('awards'); ?>">Awards</a></li>
-                        <li><a href="<?php echo base_url('certificates'); ?>">Certificates</a></li>
+	                    <?php if(isUserType('Parent')==true || isUserType('Teacher')==true || isUserType('School')==true){ ?>
+                            <li><a href="<?php echo base_url('childcertificate'); ?>">Certificates center</a></li>
+	                    <?php } elseif (isUserType('Student')) { ?>
+                            <li><a href="<?php echo base_url('certificates'); ?>">Certificates center</a></li>
+	                    <?php } ?>
+
+	                    <?php if(isUserType('Parent')==true || isUserType('Teacher')==true || isUserType('School')==true){ ?>
+                            <li><a href="<?php echo base_url('childaward'); ?>">Awards</a></li>
+	                    <?php } elseif (isUserType('Student')) { ?>
+                            <li><a href="<?php echo base_url('awards'); ?>">Awards</a></li>
+	                    <?php } ?>
                         <li><a href="<?php echo base_url('dashboard/usage'); ?>">Analytics</a></li>
                     <?php } ?>
 
