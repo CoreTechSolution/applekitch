@@ -5,13 +5,15 @@ $this->load->view('templates/header');
         <div class="breadcrumbs_section">
             <div class="container">
                 <div class="row">
-                    <ul class="breadcrumbs">
-                        <?php //print_r($this->uri->segment(3)); ?>
-                        <li class="breadcrumbs__item"><a href="<?= base_url(); ?>" class="breadcrumbs__element">Home</a></li>
-                        <li class="breadcrumbs__item breadcrumbs__item_active"><span class="breadcrumbs__element"><?= ucfirst($this->uri->segment(1)); ?></span></li>
-                        <!--<li class="breadcrumbs__item"><a href="<?/*= base_url('frontend/grades/'); */?>" class="breadcrumbs__element">Grade</a></li>
-                        <li class="breadcrumbs__item breadcrumbs__item_active"><span class="breadcrumbs__element">Topic</span></li>-->
-                    </ul>
+                    <div class="col-lg-12">
+                        <ul class="breadcrumbs">
+                            <?php //print_r($this->uri->segment(3)); ?>
+                            <li class="breadcrumbs__item"><a href="<?= base_url(); ?>" class="breadcrumbs__element">Home</a></li>
+                            <li class="breadcrumbs__item breadcrumbs__item_active"><span class="breadcrumbs__element"><?= ucfirst($this->uri->segment(1)); ?></span></li>
+                            <!--<li class="breadcrumbs__item"><a href="<?/*= base_url('frontend/grades/'); */?>" class="breadcrumbs__element">Grade</a></li>
+                            <li class="breadcrumbs__item breadcrumbs__item_active"><span class="breadcrumbs__element">Topic</span></li>-->
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

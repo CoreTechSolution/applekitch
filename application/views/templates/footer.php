@@ -1,7 +1,7 @@
 <div class="wrapper10">
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-4">
+			<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
 				<div class="footer-logo">
 					<img src="<?php echo base_url('/assets/images/logo.png'); ?>">
 				</div>
@@ -12,10 +12,10 @@
 			<div class="col-lg-5">
 				<div class="footermenu">
 					<div class="row">
-						<div class="col-lg-2">
+						<div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
 							<p class="col1">Menu</p>
 						</div>
-						<div class="col-lg-4">
+						<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
 							<div class="col2">
 								<ul>
 									<li><a href="<?php echo base_url('/pages/for-student'); ?>">For Student</a></li>
@@ -27,7 +27,7 @@
 								</ul>
 							</div>
 						</div>
-						<div class="col-lg-6">
+						<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
 							<div class="col2">
 								<ul>
 									<li><a href="<?php echo base_url('/pages/web-tour'); ?>">Web Tour</a></li>
@@ -43,7 +43,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-3">
+			<div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
                 <?php if(!loginCheck()) { ?>
 				<p class="col1">Newsletter Signup</p>
 				<div class="newsletter-form">

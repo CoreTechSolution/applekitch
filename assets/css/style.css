@@ -164,9 +164,9 @@ ul.dropdown_list li{
 .dropdown_list li a{
     width: 100%;
 }
-.container{
+/*.container{
     width: 1200px;
-}
+}*/
 .wrapper {
     background: #FFFFFF;
     padding: 0px 0 10px 0;
@@ -337,7 +337,7 @@ ul.dropdown_list li{
     text-align: center;
     cursor: pointer;
     color: #FFFFFF;
-    margin: 12px 0;
+    margin: 12px auto;
 }
 
 .circleWrap h3{
@@ -797,6 +797,7 @@ ul.dropdown_list li{
     padding: 11px 5px;
     border: 1px solid #222222;
     border-radius: 4px;
+    width: 72%;
 }
 .wrapper10 .newsletter-form form input[type="submit"]{
     font-size: 0;
@@ -1711,9 +1712,9 @@ label.error{color: #FF0000; }
     cursor: pointer;
     visibility: hidden;
 }
-.question_view{
+/*.question_view{
     padding: 0 0 50px 0;
-}
+}*/
 .footable .caret{
     display: none!important;
 }
@@ -1924,7 +1925,6 @@ only screen and (min-device-pixel-ratio: 1.5) {
 }
 .top_tap_sub {
     background: #65b7f5;
-    height: 40px;
     color: #fff;
     padding: 10px 0;
     margin: 10px 0 -10px 0;
@@ -1948,7 +1948,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
 }
 .top_tap_sub ul li a{
     color: #fff;
-    padding: 10px 45px 10px 0;
+    padding: 10px 30px 10px 0;
     font-weight: 500;
 }
 .top_tap_sub ul li a.active{

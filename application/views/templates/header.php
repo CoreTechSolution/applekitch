@@ -109,12 +109,12 @@
 <div class="wrapper1">
     <div class="container">
         <div class="row">
-            <div class="col-lg-3 col-md-3">
+            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
                 <div class="logo">
                     <a href="<?php echo base_url(); ?>"><img src="<?php echo base_url('/assets/images/logo.png'); ?>"></a>
                 </div>
             </div>
-            <div class="col-lg-5 col-md-5">
+            <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
                 <div class="subjects">
                     <ul>
                         <!--<li><a href="<?php /*echo base_url('math') */?>">Worksheet</a></li>
@@ -124,7 +124,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4">
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
                 <div class="reg-log-section">
                     <ul>
 						<?php if(loginCheck()){ ?>

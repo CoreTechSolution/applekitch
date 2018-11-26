@@ -1,0 +1,28 @@
+.circleWrap {
+    width: 230px;
+    height: 230px;
+}
+.newsletter-form input[type="email"] {
+    width: 72%;
+}
+.footer_social_link li {
+    margin: 10px 1px;
+}
+.wrapper8 .bx-wrapper .bx-prev {
+    left: -16px;
+}
+.wrapper8 .bx-wrapper .bx-next {
+    right: -34px;
+}
+.wrapper7-right ul li:first-child {
+    padding: 33px;
+}
+.wrapper7-left ul li:nth-child(3) {
+    padding: 33px;
+}
+.wrapper7-right ul li:nth-child(1) p, .wrapper7-right ul li:nth-child(4) p {
+    font-size: 15px;
+}
+.wrapper7-left ul li:nth-child(3) p {
+    font-size: 15px;
+}

@@ -10,14 +10,14 @@ require_once 'templates/header.php';
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-3"></div>
-                <div class="col-lg-6">
+                <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12"></div>
+                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                     <form method="post" action="<?php echo base_url('frontend/topic'); ?>">
                         <div class="row row1">
-                            <div class="col-lg-4">
+                            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
                                 <label>Select Your Grade</label>
                             </div>
-                            <div class="col-lg-8">
+                            <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
                                 <?php echo form_dropdown('grade_id',form_dropdown_cr(array('id','name'),'grade'),'', array('class'=>'form-control','id'=>'home_grade_id')); ?>
                                 <!--<select class="form-control" name="age">
                                     <option value="">Select Your Grade</option>
@@ -28,19 +28,19 @@ require_once 'templates/header.php';
                             <div class="col-lg-4">
                                 <label>Subject</label>
                             </div>
-                            <div class="col-lg-8">
+                            <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
                                 <?php echo form_dropdown('subject_id',form_dropdown_cr(array('id','name'),'subject'), '',array('class'=>'form-control','id'=>'home_subject_id')); ?>
                             </div>
                         </div>
                         <div class="row row1">
-                            <div class="col-lg-4"></div>
-                            <div class="col-lg-8">
+                            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12"></div>
+                            <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
                                 <input type="submit" class="form-control" name="take_the_test" value="Practice Now">
                             </div>
                         </div>
                     </form>
                 </div>
-                <div class="col-lg-3"></div>
+                <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12"></div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
@@ -55,14 +55,14 @@ require_once 'templates/header.php';
     <div class="wrapper4">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                     <div class="wrapper4-content-wrap">
                         <h1><?=!empty($serialize_settings['heading'])? $serialize_settings['heading']:''; ?></h1>
                         <h2><?=!empty($serialize_settings['subheading'])? $serialize_settings['subheading']:''; ?></h2>
                         <p><?=!empty($serialize_settings['content'])? $serialize_settings['content']:''; ?></p>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                     <div class="video-wrap">
                         <div class="video"><img src="<?=!empty($serialize_settings['content_image'])? $serialize_settings['content_image']:''; ?>"></div>
                         <!--<div class="play-btn"><a href="javascript:void(0);"><img src="<?php /*echo base_url('/assets/images/play-btn.png'); */?>"></a></div>-->
@@ -77,13 +77,13 @@ require_once 'templates/header.php';
     <div class="wrapper5">
         <div class="container">
             <div class="row">
-                <div class="col-lg-1"></div>
-                <div class="col-lg-10">
+                <div class="col-lg-1 col-md-12 col-sm-12 col-xs-12"></div>
+                <div class="col-lg-10 col-md-12 col-sm-12 col-xs-12">
                     <h1><?=!empty($serialize_settings['heading'])? $serialize_settings['heading']:''; ?></h1>
                     <h2><?=!empty($serialize_settings['content'])? $serialize_settings['content']:''; ?></h2>
                     <p class="get-started"><a href="<?=!empty($serialize_settings['button_link'])? base_url($serialize_settings['button_link']):''; ?>"><?=!empty($serialize_settings['button_text'])? $serialize_settings['button_text']:''; ?></a></p>
                 </div>
-                <div class="col-lg-1"></div>
+                <div class="col-lg-1 col-md-12 col-sm-12 col-xs-12"></div>
             </div>
         </div>
     </div>
@@ -150,10 +150,10 @@ require_once 'templates/header.php';
                             <div>
                                 <div class="testimonials-wrapper">
                                     <div class="row">
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
                                             <div class="client-profile"><img src="<?= $testimonial->testimonial_img; ?>"></div>
                                         </div>
-                                        <div class="col-lg-9">
+                                        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
                                             <p class="client-comment"><?= $testimonial->content; ?></p>
                                             <p class="client-name"><?= $testimonial->name; ?></p>
                                         </div>

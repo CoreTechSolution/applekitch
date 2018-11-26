@@ -28,14 +28,15 @@ $this->load->view('templates/header');
         <div class="breadcrumbs_section">
             <div class="container">
                 <div class="row">
-                    <ul class="breadcrumbs">
-                        <?php //print_r($this->uri->segment(3)); ?>
-                        <li class="breadcrumbs__item"><a href="<?= base_url(); ?>" class="breadcrumbs__element">Home</a></li>
+                    <div class="col-lg-12">
+                        <ul class="breadcrumbs">
+                            <?php //print_r($this->uri->segment(3)); ?>
+                            <li class="breadcrumbs__item"><a href="<?= base_url(); ?>" class="breadcrumbs__element">Home</a></li>
 
-                        <li class="breadcrumbs__item"><a href="<?= base_url($this->uri->segment(2)); ?>" class="breadcrumbs__element"><?php echo ucfirst($this->uri->segment(2)) ?></a></li>
-                        <li class="breadcrumbs__item breadcrumbs__item_active"><span class="breadcrumbs__element"><?= get_returnfield('grade','slug',$this->uri->segment(3),'name'); ?></span></li>
-
-                    </ul>
+                            <li class="breadcrumbs__item"><a href="<?= base_url($this->uri->segment(2)); ?>" class="breadcrumbs__element"><?php echo ucfirst($this->uri->segment(2)) ?></a></li>
+                            <li class="breadcrumbs__item breadcrumbs__item_active"><span class="breadcrumbs__element"><?= get_returnfield('grade','slug',$this->uri->segment(3),'name'); ?></span></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
