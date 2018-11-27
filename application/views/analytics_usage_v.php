@@ -22,11 +22,11 @@ require_once 'templates/header.php';
                                                 <div class="col-lg-2">
                                                     <h5>Select Child</h5>
                                                 </div>
-                                                <div class="col-lg-3">
+                                                <div class="col-lg-3 col-md-8 col-sm-8 col-xs-8">
 													<?php echo form_dropdown('child_id',form_dropdown_child(get_current_user_id()),$child_id,array('class'=>'form-control')); ?>
                                                 </div>
 
-                                                <div class="col-lg-2" >
+                                                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-4" >
                                                     <input type="submit" class="btn btn-small btn-primary" value="Show">
 
                                                 </div>

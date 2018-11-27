@@ -165,7 +165,7 @@ function get_parent($user_id) {
 	$CI->db->where( 'id', $user_id );
 	$queries = $CI->db->get();
 	$values = $queries->row();
-	if($values->role == 1) {
+	if($values->role == 1 || $values->role == 2 || $values->role == 4) {
 		return $user_id;
 	} else {
 		return $values->parent;

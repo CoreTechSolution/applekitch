@@ -62,8 +62,10 @@ class User_model extends CI_Model{
 
 	}
 
-	public function get_userdata() {
-		$user_id = $this->session->userdata('user_id');
+	public function get_userdata($user_id='') {
+		if(empty($user_id)) {
+			$user_id = $this->session->userdata( 'user_id' );
+		}
 		$this->db->select('*');
 		$this->db->from('user');
 		$this->db->where('id',$user_id);
