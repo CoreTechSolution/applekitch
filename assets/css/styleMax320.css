@@ -69,3 +69,6 @@
     width: 300px;
     height: 150px;
 }
+.mobile_hide{
+    display: none;
+}
