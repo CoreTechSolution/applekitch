@@ -58,11 +58,11 @@ require_once 'templates/header.php';
                                         <div class="score_table">
                                             <div class="table_head">
                                                 <div class="row">
-                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-2"><div class="table_head_text">Skill</div></div>
-                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-2"><div class="table_head_text">SmartScore</div></div>
-                                                    <div class="col-lg-3 col-md-3 col-sm-3 col-3"><div class="table_head_text">Answered</div></div>
-                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-2"><div class="table_head_text">Time</div></div>
-                                                    <div class="col-lg-3 col-md-3 col-sm-3 col-3"><div class="table_head_text">Date</div></div>
+                                                    <div class="col-lg-4 col-md-4 col-sm-4 col-4"><div class="table_head_text">Skill</div></div>
+                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-3"><div class="table_head_text">SmartScore</div></div>
+                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-3 mobile_hide"><div class="table_head_text">Answered</div></div>
+                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-3"><div class="table_head_text">Time</div></div>
+                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-2"><div class="table_head_text">Date</div></div>
                                                 </div>
                                             </div>
                                             <div class="table_body">
@@ -78,9 +78,9 @@ require_once 'templates/header.php';
                                                                     $value_top['total_ans_right']=0;
                                                                 } ?>
                                                                 <?php $persantage=round(($value_top['total_ans_right']/$value_top['total_ans'])*100); ?>
-                                                                <div class="col-lg-2 col-md-2 col-sm-2 col-2"><div class="table_body_text"><?php echo $persantage; ?></div></div>
-                                                                <div class="col-lg-2 col-md-2 col-sm-2 col-2"><div class="table_body_text"><?php echo $value_top['total_ans']; ?></div></div>
-                                                                <div class="col-lg-2 col-md-2 col-sm-2 col-2"><div class="table_body_text"><?php echo $value_top['total_time']; ?> min</div></div>
+                                                                <div class="col-lg-2 col-md-2 col-sm-2 col-3"><div class="table_body_text"><?php echo $persantage; ?></div></div>
+                                                                <div class="col-lg-2 col-md-2 col-sm-2 col-3 mobile_hide"><div class="table_body_text"><?php echo $value_top['total_ans']; ?></div></div>
+                                                                <div class="col-lg-2 col-md-2 col-sm-2 col-3"><div class="table_body_text"><?php echo $value_top['total_time']; ?> min</div></div>
                                                                 <div class="col-lg-2 col-md-2 col-sm-2 col-2"><div class="table_body_text"><?php echo dateFormat('m-d-Y',$value_top['last_date']); ?></div></div>
                                                             </div>
                                                         <?php } ?>

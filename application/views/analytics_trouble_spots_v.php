@@ -55,8 +55,8 @@ require_once 'templates/header.php';
                                             <div class="table_head">
                                                 <div class="row">
                                                     <div class="col-lg-4 col-md-4 col-sm-4 col-4"><div class="table_head_text">Skill</div></div>
-                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-2"><div class="table_head_text">Time</div></div>
-                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-2"><div class="table_head_text">Score</div></div>
+                                                    <div class="col-lg-2 col-md-2 col-sm-3 col-3"><div class="table_head_text">Time</div></div>
+                                                    <div class="col-lg-2 col-md-2 col-sm-3 col-3"><div class="table_head_text">Score</div></div>
                                                     <div class="col-lg-2 col-md-2 col-sm-2 col-2 mobile_hide"><div class="table_head_text">Missed</div></div>
                                                     <div class="col-lg-2 col-md-2 col-sm-2 col-2"><div class="table_head_text"></div></div>
                                                 </div>
@@ -70,8 +70,8 @@ require_once 'templates/header.php';
                                                         <?php foreach($value_cat as $key_top=>$value_top) { ?>
                                                             <div class="row">
                                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-4"><div class="table_body_text"><?php echo get_returnfield('topics','topic_id', $key_top,'topic_name'); ?></div></div>
-                                                                <div class="col-lg-2 col-md-2 col-sm-2 col-2"><div class="table_body_text"><?php echo (!empty($value_top['total_time']))?$value_top['total_time']:'0'; ?> min</div></div>
-                                                                <div class="col-lg-2 col-md-2 col-sm-2 col-2"><div class="table_body_text"><?php echo (!empty($value_top['total_marks']))?$value_top['total_marks']:'0'; ?></div></div>
+                                                                <div class="col-lg-2 col-md-2 col-sm-3 col-3"><div class="table_body_text"><?php echo (!empty($value_top['total_time']))?$value_top['total_time']:'0'; ?> min</div></div>
+                                                                <div class="col-lg-2 col-md-2 col-sm-3 col-3"><div class="table_body_text"><?php echo (!empty($value_top['total_marks']))?$value_top['total_marks']:'0'; ?></div></div>
                                                                 <div class="col-lg-2 col-md-2 col-sm-2 col-2 mobile_hide"><div class="table_body_text"><?php echo (!empty($value_top['total_ans_wrong']))?$value_top['total_ans_wrong']:0; ?></div></div>
                                                                 <div class="col-lg-2 col-md-2 col-sm-2 col-2"><div class="table_body_text"><a href="<?= base_url('dashboard/questionlog'); ?>">View All</a></div></div>
                                                             </div>

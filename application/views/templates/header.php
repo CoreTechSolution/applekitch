@@ -191,7 +191,7 @@
     <div class="top_tap_sub">
         <div class="container">
             <div class="row">
-                <ul>
+                <ul id="menu-res">
                     <li><a href="<?php echo base_url('math') ?>">Math</a></li>
                     <li><a href="<?php echo base_url('english') ?>">English</a></li>
                     <?php if(loginCheck()==true){ ?>
@@ -210,6 +210,8 @@
                     <?php } ?>
 
                 </ul>
+                <div id="res_menu"></div>
+
             </div>
         </div>
     </div>
