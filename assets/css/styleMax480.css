@@ -110,3 +110,12 @@
 .mobile_hide{
     display: none;
 }
+.score_time_div .score_time .title {
+    width: 50%;
+}
+.score_time_div .score_ans .title {
+    width: 50%;
+}
+.score_time_div .score_smart .title {
+    width: 50%;
+}

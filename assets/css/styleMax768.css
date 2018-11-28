@@ -100,3 +100,34 @@
     width: 600px;
     height: 300px;
 }
+.score_time_div .score_ans {
+    width: 30%;
+    margin: 0 5px 10px 0;
+}
+.score_time_div .score_smart {
+    width: 30%;
+    margin: 0 5px 10px 0;
+}
+.score_time_div .score_time {
+    width: 30%;
+    margin: 0 5px 10px 0;
+}
+.score_time_div .score_time .content {
+    padding: 1px 1px 1px 3px;
+    font-size: 14px;
+    font-weight: bold;
+    display: inline-block;
+    vertical-align: bottom;
+    text-align: center;
+}
+.score_time_div .score_time .title {
+    background: #f7bc01;
+    color: #fff;
+    /* height: 59px; */
+    font-size: 16px;
+    font-weight: 600;
+    padding: 13px 10px;
+    display: inline-block;
+    width: 46%;
+    line-height: 124%;
+}
