@@ -69,3 +69,12 @@
     width: 300px;
     height: 150px;
 }
+.mobile_hide{
+    display: none;
+}
+.score_time_div .score_ans {
+    margin: 0 0 10px 0;
+}
+.score_time_div .score_smart {
+    margin: 0 0 10px 0;
+}
