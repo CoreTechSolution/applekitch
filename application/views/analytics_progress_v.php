@@ -30,11 +30,11 @@ require_once 'templates/header.php';
                                                     <div class="col-lg-2">
                                                         <h5>Select Child</h5>
                                                     </div>
-                                                    <div class="col-lg-3 col-md-8 col-sm-8 col-xs-8">
+                                                    <div class="col-lg-3">
                                                         <?php echo form_dropdown('child_id',form_dropdown_child(get_current_user_id()),$child_id,array('class'=>'form-control')); ?>
                                                     </div>
 
-                                                    <div class="col-lg-2 col-md-4 col-sm-4 col-xs-4" >
+                                                    <div class="col-lg-2" >
                                                         <input type="submit" class="btn btn-small btn-primary" value="Show">
 
                                                     </div>
@@ -54,11 +54,10 @@ require_once 'templates/header.php';
                                             <div class="score_table">
                                                 <div class="table_head">
                                                     <div class="row">
-                                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><div
-                                                                    class="table_head_text">Skill</div></div>
-                                                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"><div class="table_head_text">Time</div></div>
-                                                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"><div class="table_head_text">Questions</div></div>
-                                                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"><div class="table_head_text">Improvement</div></div>
+                                                        <div class="col-lg-4 col-md-4 col-sm-4 col-4"><div class="table_head_text">Skill</div></div>
+                                                        <div class="col-lg-2 col-md-2 col-sm-2 col-2 mobile_hide"><div class="table_head_text">Time</div></div>
+                                                        <div class="col-lg-2 col-md-2 col-sm-2 col-2 mobile_hide"><div class="table_head_text">Questions</div></div>
+                                                        <div class="col-lg-4 col-md-4 col-sm-4 col-8"><div class="table_head_text">Improvement</div></div>
                                                     </div>
                                                 </div>
                                                 <div class="table_body">
@@ -68,14 +67,12 @@ require_once 'templates/header.php';
                                                         <div class="panel">
                                                             <?php foreach($value_cat as $key_top=>$value_top) { ?>
                                                                 <div class="row">
-                                                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><div
-                                                                                class="table_body_text"><?php echo get_returnfield('topics','topic_id', $key_top,'topic_name'); ?></div></div>
-                                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"><div class="table_body_text"><?php echo (!empty($value_top['total_time']))?$value_top['total_time']:'0'; ?> min</div></div>
-                                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"><div class="table_body_text"><?php echo (!empty($value_top['total_ans']))?$value_top['total_ans']:'0'; ?></div></div>
+                                                                    <div class="col-lg-4 col-md-4 col-sm-4 col-4"><div class="table_body_text"><?php echo get_returnfield('topics','topic_id', $key_top,'topic_name'); ?></div></div>
+                                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-2 mobile_hide"><div class="table_body_text"><?php echo (!empty($value_top['total_time']))?$value_top['total_time']:'0'; ?> min</div></div>
+                                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-2 mobile_hide"><div class="table_body_text"><?php echo (!empty($value_top['total_ans']))?$value_top['total_ans']:'0'; ?></div></div>
                                                                     <?php $persantage=round(((!empty($value_top['total_ans_right']))?$value_top['total_ans_right']:0/$value_top['total_ans'])*100); ?>
                                                                     <?php $persantage=($persantage>100)?100:$persantage; ?>
-                                                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><div
-                                                                                class="table_body_text">
+                                                                    <div class="col-lg-4 col-md-4 col-sm-4 col-8"><div class="table_body_text">
                                                                             <div class="table-cell skill-improvement" id="yui_3_14_0_1_1536582406995_90">
                                                                                 <div class="improvement-container" id="yui_3_14_0_1_1536582406995_89">
                                                                                     <div class="score" style="left: calc(0% - 30px);">0</div>

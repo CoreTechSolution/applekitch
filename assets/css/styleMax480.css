@@ -100,11 +100,11 @@
     margin-bottom: 15px;
 }
 .pie_chart_style{
-    width: 350px;
+    width: 400px;
     height: 180px;
 }
 .bar_chart_style{
-    width: 350px;
+    width: 400px;
     height: 200px;
 }
 .mobile_hide{
@@ -124,4 +124,16 @@
 }
 .score_time_div .score_smart {
     margin: 0 0 10px 0;
+}
+.mobile_hide{
+    display: none;
+}
+.score_time_div .score_time .title {
+    width: 50%;
+}
+.score_time_div .score_ans .title {
+    width: 50%;
+}
+.score_time_div .score_smart .title {
+    width: 50%;
 }

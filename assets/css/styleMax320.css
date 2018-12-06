@@ -78,3 +78,6 @@
 .score_time_div .score_smart {
     margin: 0 0 10px 0;
 }
+.mobile_hide{
+    display: none;
+}

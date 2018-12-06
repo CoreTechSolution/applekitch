@@ -133,7 +133,16 @@
     )
     wow.init();
 </script>
-
+<script>
+  /*  jQuery(function(){
+        jQuery('#menu-res').slicknav({
+           prependTo:'#res_menu'
+        });
+    });*/
+   /* jQuery('#menu').slicknav({
+        prependTo:'#demo1'
+    });*/
+</script>
 <!--
 <script>
     jQuery( document ).ready(function( $ ) {

@@ -3335,3 +3335,30 @@ a.custom_button {
     width: 800px;
     height: 500px;
 }
+.slicknav_menu {
+    display:none;
+}
+
+@media screen and (max-width: 40em) {
+   /* !* #menu is the original menu *!
+    #menu-res {
+        display:none;
+    }
+
+    .slicknav_menu {
+        display:block;
+    }
+    .slicknav_menu {
+        background: #65b7f5;
+        padding: 0;
+    }
+    .slicknav_btn {
+        margin: 0;
+        text-decoration: none;
+        text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        background-color: #1b7dc6;
+    }*/
+}

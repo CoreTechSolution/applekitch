@@ -48,12 +48,12 @@ require_once 'templates/header.php';
                                             <thead>
                                             <tr>
                                                 <th data-class="expand">Question</th>
-                                                <th data-hide="phone,tablet">Right Answer</th>
-                                                <th data-hide="phone,tablet">Your Answer</th>
-                                                <th>Time</th>
-                                                <th>Marks</th>
-                                                <th>Score</th>
-                                                <th>Date</th>
+                                                <th data-breakpoints="xs">Right Answer</th>
+                                                <th data-breakpoints="xs">Your Answer</th>
+                                                <th data-breakpoints="xs sm">Time</th>
+                                                <th data-breakpoints="xs sm md">Marks</th>
+                                                <th data-breakpoints="xs sm md">Score</th>
+                                                <th data-breakpoints="xs sm md">Date</th>
                                             </tr>
                                             </thead>
                                             <tbody>
