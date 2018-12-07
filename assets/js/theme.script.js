@@ -287,6 +287,9 @@ jQuery(document).ready(function(){
                             clearInterval(my_time_interval);
                         }else{
                             jQuery('.qAns_form').html(data['html']);
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery('.qAns_form').offset().top
+                            }, 2000);
                             jQuery( "#sortable" ).sortable();
                             jQuery( "#sortable" ).disableSelection();
                             jQuery(init);
@@ -420,6 +423,9 @@ jQuery(document).ready(function(){
                             clearInterval(my_time_interval);
                         }else{
                             jQuery('.qAns_form').html(data['html']);
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery('.qAns_form').offset().top
+                            }, 2000);
                             jQuery( "#sortable" ).sortable();
                             jQuery( "#sortable" ).disableSelection();
                             jQuery(init);
