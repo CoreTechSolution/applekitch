@@ -2101,7 +2101,7 @@ class Ajax extends CI_Controller {
         $rtnt.='<div class="row">';
         $rtnt.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
                                 <div class="col-lg-5">
-                                    <div class="question_count">Question <a href="javacript:void(0);" id="play_question" data-question="<?php echo ($data->question_name); ?>"><i class="fas fa-volume-up"></i></a></div>
+                                    <div class="question_count">Question <a href="javacript:void(0);" id="play_question" data-question="'.$data->question_name.'"><i class="fas fa-volume-up"></i></a></div>
                                             <div class="question_display">'.$data->question_name.'</div>
                                 </div>';
         $rtnt.='<div class="col-lg-7">';
