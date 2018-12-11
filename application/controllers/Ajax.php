@@ -462,6 +462,7 @@ class Ajax extends CI_Controller {
             $id_not_in=$form_data['id_not_in'];
             if(!empty($id_not_in)) {
                 $ids_not_in = explode(',', $id_not_in);
+                //print_r($ids_not_in); exit();
             } else{
                 $ids_not_in=array();
             }
@@ -483,7 +484,7 @@ class Ajax extends CI_Controller {
                 if (!empty($questions_next)) {
                     $question_form_data = unserialize($questions_next[0]->form_data);
                     $qview_option = 'qView_option_' . $question_form_data['question_option'];
-                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions->question_id);
+                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions_next[0]->question_id);
                 }
                 if (empty($html)) {
                     $html = '';
@@ -511,7 +512,7 @@ class Ajax extends CI_Controller {
                 if (!empty($questions_next)) {
                     $question_form_data = unserialize($questions_next[0]->form_data);
                     $qview_option = 'qView_option_' . $question_form_data['question_option'];
-                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions->question_id);
+                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions_next[0]->question_id);
                 } else {
                     $html = '';
                 }
@@ -537,7 +538,7 @@ class Ajax extends CI_Controller {
                 if (!empty($questions_next)) {
                     $question_form_data = unserialize($questions_next[0]->form_data);
                     $qview_option = 'qView_option_' . $question_form_data['question_option'];
-                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions->question_id);
+                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions_next[0]->question_id);
                 }
                 if (empty($html)) {
                     $html = '';
@@ -564,7 +565,7 @@ class Ajax extends CI_Controller {
                 if (!empty($questions_next)) {
                     $question_form_data = unserialize($questions_next[0]->form_data);
                     $qview_option = 'qView_option_' . $question_form_data['question_option'];
-                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions->question_id);
+                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions_next[0]->question_id);
                 }
                 if (empty($html)) {
                     $html = '';
@@ -592,7 +593,7 @@ class Ajax extends CI_Controller {
                 if (!empty($questions_next)) {
                     $question_form_data = unserialize($questions_next[0]->form_data);
                     $qview_option = 'qView_option_' . $question_form_data['question_option'];
-                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions->question_id);
+                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions_next[0]->question_id);
                 } else {
                     $html = '';
                 }
@@ -618,7 +619,7 @@ class Ajax extends CI_Controller {
                 if (!empty($questions_next)) {
                     $question_form_data = unserialize($questions_next[0]->form_data);
                     $qview_option = 'qView_option_' . $question_form_data['question_option'];
-                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions->question_id);
+                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions_next[0]->question_id);
                 }
                 if (empty($html)) {
                     $html = '';
@@ -645,7 +646,7 @@ class Ajax extends CI_Controller {
                 if (!empty($questions_next)) {
                     $question_form_data = unserialize($questions_next[0]->form_data);
                     $qview_option = 'qView_option_' . $question_form_data['question_option'];
-                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions->question_id);
+                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions_next[0]->question_id);
                 }
                 if (empty($html)) {
                     $html = '';
@@ -672,7 +673,7 @@ class Ajax extends CI_Controller {
                 if (!empty($questions_next)) {
                     $question_form_data = unserialize($questions_next[0]->form_data);
                     $qview_option = 'qView_option_' . $question_form_data['question_option'];
-                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions->question_id);
+                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions_next[0]->question_id);
                 }
                 if (empty($html)) {
                     $html = '';
@@ -699,7 +700,7 @@ class Ajax extends CI_Controller {
                 if (!empty($questions_next)) {
                     $question_form_data = unserialize($questions_next[0]->form_data);
                     $qview_option = 'qView_option_' . $question_form_data['question_option'];
-                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions->question_id);
+                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions_next[0]->question_id);
                 }
                 if (empty($html)) {
                     $html = '';
@@ -727,7 +728,7 @@ class Ajax extends CI_Controller {
                 if (!empty($questions_next)) {
                     $question_form_data = unserialize($questions_next[0]->form_data);
                     $qview_option = 'qView_option_' . $question_form_data['question_option'];
-                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions->question_id);
+                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions_next[0]->question_id);
                 } else {
                     $html = '';
                 }
@@ -753,7 +754,7 @@ class Ajax extends CI_Controller {
                 if (!empty($questions_next)) {
                     $question_form_data = unserialize($questions_next[0]->form_data);
                     $qview_option = 'qView_option_' . $question_form_data['question_option'];
-                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions->question_id);
+                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions_next[0]->question_id);
                 }
                 if (empty($html)) {
                     $html = '';
@@ -783,7 +784,7 @@ class Ajax extends CI_Controller {
                 if (!empty($questions_next)) {
                     $question_form_data = unserialize($questions_next[0]->form_data);
                     $qview_option = 'qView_option_' . $question_form_data['question_option'];
-                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions->question_id);
+                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions_next[0]->question_id);
                 }
                 if (empty($html)) {
                     $html = '';
@@ -810,7 +811,7 @@ class Ajax extends CI_Controller {
                 if (!empty($questions_next)) {
                     $question_form_data = unserialize($questions_next[0]->form_data);
                     $qview_option = 'qView_option_' . $question_form_data['question_option'];
-                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions->question_id);
+                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions_next[0]->question_id);
                 }
                 if (empty($html)) {
                     $html = '';
@@ -837,7 +838,7 @@ class Ajax extends CI_Controller {
                 if (!empty($questions_next)) {
                     $question_form_data = unserialize($questions_next[0]->form_data);
                     $qview_option = 'qView_option_' . $question_form_data['question_option'];
-                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions->question_id);
+                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions_next[0]->question_id);
                 }
                 if (empty($html)) {
                     $html = '';
@@ -865,7 +866,7 @@ class Ajax extends CI_Controller {
                 if (!empty($questions_next)) {
                     $question_form_data = unserialize($questions_next[0]->form_data);
                     $qview_option = 'qView_option_' . $question_form_data['question_option'];
-                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions->question_id);
+                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions_next[0]->question_id);
                 }
                 if (empty($html)) {
                     $html = '';
@@ -892,7 +893,7 @@ class Ajax extends CI_Controller {
                 if (!empty($questions_next)) {
                     $question_form_data = unserialize($questions_next[0]->form_data);
                     $qview_option = 'qView_option_' . $question_form_data['question_option'];
-                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions->question_id);
+                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions_next[0]->question_id);
                 }
                 if (empty($html)) {
                     $html = '';
@@ -920,7 +921,7 @@ class Ajax extends CI_Controller {
                 if (!empty($questions_next)) {
                     $question_form_data = unserialize($questions_next[0]->form_data);
                     $qview_option = 'qView_option_' . $question_form_data['question_option'];
-                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions->question_id);
+                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions_next[0]->question_id);
                 }
                 if (empty($html)) {
                     $html = '';
@@ -947,7 +948,7 @@ class Ajax extends CI_Controller {
                 if (!empty($questions_next)) {
                     $question_form_data = unserialize($questions_next[0]->form_data);
                     $qview_option = 'qView_option_' . $question_form_data['question_option'];
-                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions->question_id);
+                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions_next[0]->question_id);
                 }
                 if (empty($html)) {
                     $html = '';
@@ -974,7 +975,7 @@ class Ajax extends CI_Controller {
                 if (!empty($questions_next)) {
                     $question_form_data = unserialize($questions_next[0]->form_data);
                     $qview_option = 'qView_option_' . $question_form_data['question_option'];
-                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions->question_id);
+                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions_next[0]->question_id);
                 }
                 if (empty($html)) {
                     $html = '';
@@ -1021,7 +1022,7 @@ class Ajax extends CI_Controller {
                 if (!empty($questions_next)) {
                     $question_form_data = unserialize($questions_next[0]->form_data);
                     $qview_option = 'qView_option_' . $question_form_data['question_option'];
-                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions->question_id);
+                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions_next[0]->question_id);
                 }
                 if (empty($html)) {
                     $html = '';
@@ -1047,7 +1048,7 @@ class Ajax extends CI_Controller {
                 if (!empty($questions_next)) {
                     $question_form_data = unserialize($questions_next[0]->form_data);
                     $qview_option = 'qView_option_' . $question_form_data['question_option'];
-                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions->question_id);
+                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions_next[0]->question_id);
                 }
                 if (empty($html)) {
                     $html = '';
@@ -1074,7 +1075,7 @@ class Ajax extends CI_Controller {
                 if (!empty($questions_next)) {
                     $question_form_data = unserialize($questions_next[0]->form_data);
                     $qview_option = 'qView_option_' . $question_form_data['question_option'];
-                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions->question_id);
+                    $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions_next[0]->question_id);
                 } else {
                     $html = '';
                 }
@@ -1100,7 +1101,7 @@ class Ajax extends CI_Controller {
 	            if (!empty($questions_next)) {
 		            $question_form_data = unserialize($questions_next[0]->form_data);
 		            $qview_option = 'qView_option_' . $question_form_data['question_option'];
-		            $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions->question_id);
+		            $html = $this->$qview_option($questions_next[0], $grade_id, $subject_id, $topic_id, $start,$questions_next[0]->question_id);
 	            }
 	            if (empty($html)) {
 		            $html = '';
@@ -1168,7 +1169,10 @@ class Ajax extends CI_Controller {
             $rtntext['grade_id']=$questions->grade_id;
             $rtntext['category_id']=$questions->category_id;
             $rtntext['topic_id']=$questions->topic_id;
-            $rtntext['id_not_in']=$questions->question_id;
+            if($start==1){
+	            $rtntext['id_not_in']=$questions->question_id;
+            }
+
             //$rtntext['tQ_attend']=$this->session->userdata('score_ans');
             //$rtntext['tQ_score']=$this->session->userdata('score_smart');
             $rtntext['total_time']=$form_data['total_time_inSecond'];
@@ -2090,6 +2094,7 @@ class Ajax extends CI_Controller {
     }
     function qView_common_part($data,$start,$grade_id,$subject_id,$id_not_in,$topic_id){
         $rtnt='';
+        //echo $id_not_in;
         if(!empty($_POST['id_not_in'])){
             $id_not_in=$_POST['id_not_in'].','.$id_not_in;
         }
