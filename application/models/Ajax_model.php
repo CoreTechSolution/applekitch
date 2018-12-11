@@ -107,12 +107,9 @@ class Ajax_model extends CI_Model{
 			$not_in = array_map('strval',$not_in);
 			$this->db->where_not_in('question_id', $not_in);
 		}
-		if($start!=''){
-			$this->db->limit(1, $start);
-		}
-		else{
-			$this->db->limit(1, 0);
-		}
+
+		$this->db->limit(1, 0);
+
 		$this->db->order_by('question_id');
 		$this->db->from('questions');
 		$queries=$this->db->get();
