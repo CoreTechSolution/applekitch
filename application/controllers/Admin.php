@@ -599,13 +599,13 @@ class Admin extends CI_Controller {
         $insert=$this->admin_model->insert_category($category_array);
 
         if($insert) {
-            $category_array['cat_img']=$insert;
+            /*$category_array['cat_img']=$insert;
 
-            $this->admin_model->insert_category($category_array);
+            $this->admin_model->insert_category($category_array);*/
+	        $this->session->set_flashdata(array('msg_type'=>'success','msg'=>'New category added!'));
         }
 
-        $this->session->set_flashdata(array('msg_type'=>'success','msg'=>'New category added!'));
-		redirect('admin/category');
+        redirect('admin/category');
 	}
 	public function edit_category($cat_id) {
 		isLogin( 'admin' );
