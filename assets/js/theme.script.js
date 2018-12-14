@@ -254,7 +254,7 @@ jQuery(document).ready(function(){
                             html+='</div>';
                             html+='<div class="col-lg-4 col-md-4 col-xs-4">';
                             html+='<div class="greenclass">';
-                            html+='<div class="text1">You spend</div>';
+                            html+='<div class="text1">You spent</div>';
                             html+='<div class="text2">'+ score_time_count_min + ':'+ score_time_count_sec+'</div>';
                             html+='<div class="text3">Time</div>';
                             html+='</div>';
@@ -390,7 +390,7 @@ jQuery(document).ready(function(){
                             html+='</div>';
                             html+='<div class="col-lg-4 col-md-4 col-xs-4">';
                             html+='<div class="greenclass">';
-                            html+='<div class="text1">You spend</div>';
+                            html+='<div class="text1">You spent</div>';
                             html+='<div class="text2">'+ score_time_count_min + ':'+ score_time_count_sec+'</div>';
                             html+='<div class="text3">Time</div>';
                             html+='</div>';
