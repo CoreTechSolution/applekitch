@@ -39,7 +39,9 @@ require_once 'templates/header.php';
                     if(!empty($grade_settings)) {
                         $counter=1;
                         foreach($grade_settings as $grade_setting) {
-
+                            /*if($grade_setting->id==10){
+                                print_r($grade_setting); exit();
+                            }*/
                             ?>
                             <tr>
                                 <td><?php echo $counter; ?></td>
