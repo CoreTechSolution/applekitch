@@ -47,7 +47,7 @@ require_once 'templates/header.php';
                                 <td><?php echo $counter; ?></td>
                                 <td><?php echo get_returnfield('subject','id',$grade_setting->subject_id,'name'); ?></td>
                                 <td><?php echo get_returnfield('grade','id',$grade_setting->grade_id,'name'); ?></td>
-                                <td title="<?php echo $grade_setting->content; ?>"><?php echo  word_limiter($grade_setting->content,15); ?></td>
+                                <td title="<?php //echo $grade_setting->content; ?>"><?php echo word_limiter(realEscapeString($grade_setting->content),15); ?></td>
                                 <td><a class="edit_link" href="<?php echo base_url('/admin/edit_grade_setting'); ?>/<?php echo $grade_setting->id; ?>"><span data-feather="edit"></span> Edit</a> | <a class="delete_link" onclick="delete_data(<?php echo $grade_setting->id; ?>,'id','grade_settings');" href="javascript:void(0)"><span data-feather="delete"></span> Delete</a></td>
                             </tr>
                             <?php

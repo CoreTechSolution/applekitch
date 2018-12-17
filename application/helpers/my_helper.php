@@ -17,7 +17,11 @@ function get_settings(){
     $query = $db->get( 'settings' );
     return $query->row();
 }
-
+function realEscapeString($val) {
+	$db = get_instance()->db->conn_id;
+	$val = mysqli_real_escape_string($db, $val);
+	return $val;
+}
 function send_mail($to,$subject,$message){
 	$CI = & get_instance();
 	$CI->load->library('email');
