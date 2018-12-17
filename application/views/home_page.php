@@ -52,6 +52,7 @@ require_once 'templates/header.php';
     <?php $this->load->view('frontend/template_part/grade_listing_part'); ?>
 <?php $settings=$this->admin_model->get_home_settings(array('slug'=>'section-1'),true); ?>
 <?php $serialize_settings=unserialize($settings->page_content); ?>
+<?php if(!empty($serialize_settings['heading'])){ ?>
     <div class="wrapper4">
         <div class="container">
             <div class="row">
@@ -71,9 +72,11 @@ require_once 'templates/header.php';
             </div>
         </div>
     </div>
+    <?php } ?>
     <!---->
 <?php $settings=$this->admin_model->get_home_settings(array('slug'=>'section-2'),true); ?>
 <?php $serialize_settings=unserialize($settings->page_content); ?>
+<?php if(!empty($serialize_settings['heading'])){ ?>
     <div class="wrapper5">
         <div class="container">
             <div class="row">
@@ -87,8 +90,10 @@ require_once 'templates/header.php';
             </div>
         </div>
     </div>
+    <?php } ?>
 <?php $settings=$this->admin_model->get_home_settings(array('slug'=>'section-3'),true); ?>
 <?php $serialize_settings=unserialize($settings->page_content); ?>
+<?php if(!empty($serialize_settings['heading'])){ ?>
     <div class="wrapper6">
         <div class="container">
             <div class="row">
@@ -118,20 +123,20 @@ require_once 'templates/header.php';
                 <li class="">
                     <div class="featured-icons"><img src="<?php echo base_url('/assets/images/national-carriculum.png'); ?>"></div>
                     <h2>National curriculum</h2>
-                    <p>With IXL, it's easy to meet your learning objectives! All of IXL's skills are aligned with the national curricula in the UK.</p>
+                    <p>With Applekitch, it's easy to meet your learning objectives! All of Applekitch's skills are aligned with the national curricula in the UK.</p>
                 </li>
                 <li class=""></li>
                 <li class=""></li>
                 <li class="">
                     <div class="featured-icons"><img src="<?php echo base_url('/assets/images/analytics.png'); ?>"></div>
                     <h2>Analytics</h2>
-                    <p>Get unprecedented insight into student performance with IXL Analytics. View real-time data on usage, trouble spots and more!</p>
+                    <p>Get unprecedented insight into student performance with Applekitch Analytics. View real-time data on usage, trouble spots and more!</p>
                 </li>
             </ul>
         </div>
     </div>
     <!---->
-
+<?php } ?>
 <?php $settings=$this->admin_model->get_home_settings(array('slug'=>'section-4'),true); ?>
 <?php $serialize_settings=unserialize($settings->page_content); ?>
     <div class="wrapper8">
