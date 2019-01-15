@@ -63,10 +63,10 @@ require_once 'templates/header.php';
                                 echo form_dropdown('work_topic_id', form_dropdown_cr(array('id','name'),'work_topics'), 'default',array('class'=>'form-control','id'=>'work_topic_id'));
                                 ?>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-6">
+                            <!-- <div class="col-lg-6 col-md-6 col-6">
                                 <label>Featured Image: </label>
                                 <input type="file" name="worksheet_img" class="form-control" />
-                            </div>
+                            </div> -->
                             <div class="col-lg-6 col-md-6 col-6">
                                 <label>PDF File: </label>
                                 <input type="file" name="pdf_path" class="form-control" />
@@ -76,7 +76,7 @@ require_once 'templates/header.php';
                                 <?php echo form_dropdown('label',array('New','Premium','Free'),'',array('class'=>'form-control')); ?>
                             </div>
                             <div class="col-lg-6 col-md-6 col-6">
-                                <h1>Rating</h1>
+                                <h3>Rating</h3>
                                 <input name="rating" value="0" id="rating_star" type="hidden" postID="1" />
                                 
                             </div>

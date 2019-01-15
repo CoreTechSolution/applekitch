@@ -685,4 +685,21 @@ INNER JOIN country ON subject.country = country.id INNER JOIN grade ON subject.g
         $insert_id = $this->db->insert_id();
         return $insert_id;
 	}
+	function get_ratting_number($id){
+		$this->db->select('*');
+		if(!empty($conditions)){
+			$this->db->where(array('rating_id'=>$id));
+		}
+        $this->db->from('worksheet_rating');
+		$query = $this->db->get();
+		$f_data=$query->result();
+
+        if($f_data->rating_number)
+        {
+            return $f_data->rating_number;
+        }
+        else{
+            return 0;
+        }
+	}
 }

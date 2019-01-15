@@ -68,7 +68,7 @@ jQuery(function () {
 });
 
 function processRating(val, attrVal) {
-    jQuery.ajax({
+   /*  jQuery.ajax({
         type: 'POST',
         url: 'rating.php',
         data: 'post_id=1&points=' + val,
@@ -82,5 +82,5 @@ function processRating(val, attrVal) {
                 alert('please after some time.');
             }
         }
-    });
+    }); */
 }

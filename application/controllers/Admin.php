@@ -1457,6 +1457,13 @@ class Admin extends CI_Controller {
                 }
                 $insert=$this->admin_model->insert_worksheet($value);
                 if($insert){
+					$rat_value=array();
+					$rat_value['worksheet_id']=$insert;
+					$rat_value['rating_number']=$this->admin_model->get_ratting_number($insert)+1;
+					$rat_value['total_points']=$this->admin_model->get_total_points($insert)+$this->input->post('rating');
+					$rat_value['created']=date('Y-m-d H:i:s');
+					$rat_value['modified']=date('Y-m-d H:i:s');
+
                     $this->session->set_flashdata(array('msg_type'=>'success','msg'=>'New worksheet added!'));
                     $this->load->view( 'admin/worksheet_v', $data );
                 }
@@ -1465,6 +1472,7 @@ class Admin extends CI_Controller {
             $this->load->view( 'admin/add_worksheet_v', $data );
         }
 	}
+	
 	public function work_subject(){
 		isLogin('admin');
         $data['title']='Worksheet Subject';
