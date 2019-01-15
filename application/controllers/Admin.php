@@ -1423,6 +1423,7 @@ class Admin extends CI_Controller {
         isLogin('admin');
         $data['method']='add_worksheet';
         $data['title']='Add New Worksheet';
+        $data['ratings']=$this->admin_model->get_rattings();
         if(!empty($this->input->post('save'))){
             $this->form_validation->set_rules('name', 'Name', 'required');
             //$this->form_validation->set_rules('work_subject_id', 'Name', 'required');
@@ -1440,15 +1441,6 @@ class Admin extends CI_Controller {
                 $value['work_cat_id']=$this->input->post('work_cat_id');
                 $value['work_topic_id']=$this->input->post('work_topic_id');
                 $value['label']=$this->input->post('label');
-                /* if(!empty($_FILES['worksheet_img']['name'])){
-                    $img_path=image_upload($_FILES,'worksheet_img','uploads/worksheets');
-                    if($img_path){
-                        $value['worksheet_img']=$img_path;
-                    } else{
-                        //$this->load->view( 'admin/add_certificate_v', $data );
-                        $value['worksheet_img']="";
-                    }
-				} */
 				if(!empty($_FILES['pdf_path ']['name'])){
                     $img_path=image_upload($_FILES,'pdf_path','uploads/worksheets');
                     if($img_path){

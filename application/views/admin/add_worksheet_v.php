@@ -2,6 +2,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 require_once 'templates/header.php';
 ?>
+<script language="javascript" type="text/javascript">
+
+</script>
     <div class="container-fluid">
         <div class="row">
             <nav class="col-md-2 d-none d-md-block bg-light sidebar">
@@ -67,6 +70,15 @@ require_once 'templates/header.php';
                             <div class="col-lg-6 col-md-6 col-6">
                                 <label>PDF File: </label>
                                 <input type="file" name="pdf_path" class="form-control" />
+                            </div>
+                             <div class="col-lg-6 col-md-6 col-6">
+                                <label>Label: </label>
+                                <?php echo form_dropdown('label',array('New','Premium','Free'),'',array('class'=>'form-control')); ?>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-6">
+                                <h1>Rating</h1>
+                                <input name="rating" value="0" id="rating_star" type="hidden" postID="1" />
+                                
                             </div>
 
                             <div class="col-md-12">
