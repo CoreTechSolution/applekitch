@@ -133,19 +133,53 @@ function get_userdata_by_id($user_id) {
 	}
 }
 
-function form_dropdown_cr($fields,$table_name){
+function form_dropdown_cr($fields,$table_name,$choose_text=true){
 	$CI = & get_instance();
 	$CI->db->select($fields);
 	$CI->db->from($table_name);
-	$CI->db->order_by($fields[0],'asc');
+	$CI->db->order_by($fields[1],'asc');
 	$queries=$CI->db->get();
 	$values= $queries->result_array();
-	$query=array('0'=>'-----Choose-----');
+	$query=array();
+	if($choose_text==true){
+		$query=array('0'=>'-----Choose-----');
+	}
+	
 	foreach ($values as $value){
 		$query[$value[$fields[0]]]=$value[$fields[1]];
 	}
 	return $query;
 
+}
+function form_dropdown_relative($fields,$table_name,$conditions=array(),$choose_text=true){
+	$CI = & get_instance();
+	$CI->db->select($fields);
+	$CI->db->from($table_name);
+	$CI->db->order_by($fields[1],'asc');
+	$queries=$CI->db->get();
+	$values= $queries->result_array();
+	$query=array();
+	if($choose_text==true){
+		$query=array('0'=>'-----Choose-----');
+	}
+	
+	foreach ($values as $value){
+		$query[$value[$fields[0]]]=$value[$fields[1]];
+	}
+	return $query;
+
+}
+function genPdfThumbnail($source, $target)
+{
+	//$source = realpath($source);
+	//$target = dirname($source).DIRECTORY_SEPARATOR.$target;
+	$im     = new Imagick($source."[0]"); // 0-first page, 1-second page
+	$im->setImageColorspace(255); // prevent image colors from inverting
+	$im->setimageformat("jpeg");
+	$im->thumbnailimage(160, 120); // width and height
+	$im->writeimage($target);
+	$im->clear();
+	$im->destroy();
 }
 function form_dropdown_child($user_id){
 	$CI = & get_instance();

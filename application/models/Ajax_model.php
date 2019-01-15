@@ -25,6 +25,29 @@ class Ajax_model extends CI_Model{
             return false;
         }
 
+	}
+	function get_sub_wise_grade($id,$table){
+		$this->db->select('*');
+		//echo $table;
+		if($table=="work_grades"){
+			$this->db->where(array('work_subject_id'=>$id));
+		} elseif ($table=="work_categories") {
+			$this->db->where(array('work_grade_id'=>$id));
+		} elseif ($table=="work_topics"){
+			$this->db->where(array('work_cat_id'=>$id));
+		} else{
+			$this->db->where(array('id'=>$id));
+		}
+        $this->db->from($table);
+		$query=$this->db->get();
+		//echo $this->db->last_query();
+        $res=$query->result();
+        if(!empty($res) && $res != ''){
+            return $res;
+        }else{
+            return false;
+        }
+
     }
 	function insert_question($data){
 		$this->db->insert('questions',$data);
@@ -107,7 +130,7 @@ class Ajax_model extends CI_Model{
 			$not_in = array_map('strval',$not_in);
 			$this->db->where_not_in('question_id', $not_in);
 		}
-
+		
 		$this->db->limit(1, 0);
 
 		$this->db->order_by('question_id');

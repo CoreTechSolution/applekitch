@@ -1411,5 +1411,195 @@ class Admin extends CI_Controller {
 			);
 		}
 	    $this->load->view( 'admin/awards', $data );
-    }
+	}
+	
+	public function worksheets(){
+		isLogin('admin');
+        $data['title']='Worksheet';
+        $data['worksheets']=$this->admin_model->get_worksheets();
+        $this->load->view( 'admin/worksheet_v', $data );
+	}
+	public function add_worksheet() {
+        isLogin('admin');
+        $data['method']='add_worksheet';
+        $data['title']='Add New Worksheet';
+        if(!empty($this->input->post('save'))){
+            $this->form_validation->set_rules('name', 'Name', 'required');
+            //$this->form_validation->set_rules('work_subject_id', 'Name', 'required');
+            //$this->form_validation->set_rules('work_grade', 'Name', 'required');
+            //$this->form_validation->set_rules('work_category', 'Name', 'required');
+            //$this->form_validation->set_rules('work_topic', 'Name', 'required');
+            if ($this->form_validation->run() == FALSE){
+                $this->load->view( 'admin/add_worksheet_v', $data );
+            } else{
+				$value['name']=$this->input->post('name');
+                $value['content']=$this->input->post('content');
+                $value['slug']=$this->input->post('slug');
+                $value['work_subject_id']=$this->input->post('work_subject_id');
+                $value['work_grade_id']=$this->input->post('work_grade_id');
+                $value['work_cat_id']=$this->input->post('work_cat_id');
+                $value['work_topic_id']=$this->input->post('work_topic_id');
+                $value['label']=$this->input->post('label');
+                /* if(!empty($_FILES['worksheet_img']['name'])){
+                    $img_path=image_upload($_FILES,'worksheet_img','uploads/worksheets');
+                    if($img_path){
+                        $value['worksheet_img']=$img_path;
+                    } else{
+                        //$this->load->view( 'admin/add_certificate_v', $data );
+                        $value['worksheet_img']="";
+                    }
+				} */
+				if(!empty($_FILES['pdf_path ']['name'])){
+                    $img_path=image_upload($_FILES,'pdf_path','uploads/worksheets');
+                    if($img_path){
+						$value['pdf_path']=$img_path;
+						$image_path_lenth=explode('/',$img_path);
+						//$relative_path=FCPATH.'uploads/worksheets/'.$image_path_lenth[count($image_path_lenth)-1];
+						genPdfThumbnail($CI->session->userdata('delete_file_path'),FCPATH.'uploads/worksheets/thumbnail/'.$image_path_lenth[count($image_path_lenth)-1]);
+						echo base_url('uploads/worksheets/thumbnail/').$image_path_lenth[count($image_path_lenth)-1];
+						die();
+                    } else{
+                        //$this->load->view( 'admin/add_certificate_v', $data );
+                        $value['pdf_path']="";
+                    }
+                }
+                $insert=$this->admin_model->insert_worksheet($value);
+                if($insert){
+                    $this->session->set_flashdata(array('msg_type'=>'success','msg'=>'New worksheet added!'));
+                    $this->load->view( 'admin/worksheet_v', $data );
+                }
+            }
+        } else {
+            $this->load->view( 'admin/add_worksheet_v', $data );
+        }
+	}
+	public function work_subject(){
+		isLogin('admin');
+        $data['title']='Worksheet Subject';
+        $data['work_subjects']=$this->admin_model->get_work_subject();
+        $this->load->view( 'admin/work_subject_v', $data );
+	}
+	public function add_work_subject() {
+        isLogin('admin');
+        $data['method']='add_work_subject';
+        $data['title']='Add New Worksheet Subject';
+        if(!empty($this->input->post('save'))){
+            $this->form_validation->set_rules('name', 'Name', 'required');
+            $this->form_validation->set_rules('slug', 'Slug', 'required');
+            if ($this->form_validation->run() == FALSE){
+                $this->load->view( 'admin/add_work_subject_v', $data );
+            } else{
+				$value['name']=$this->input->post('name');
+                $value['slug']=$this->input->post('slug');
+                
+                $insert=$this->admin_model->insert_work_subject($value);
+                if($insert){
+					$this->session->set_flashdata(array('msg_type'=>'success','msg'=>'New worksheet subject added!'));
+					
+					redirect('admin/work_subject');
+					
+                    $this->load->view( 'admin/work_subject_v', $data );
+                }
+            }
+        } else {
+            $this->load->view( 'admin/add_work_subject_v', $data );
+        }
+	}
+	public function work_grade(){
+		isLogin('admin');
+        $data['title']='Worksheet Grade';
+        $data['work_grades']=$this->admin_model->get_work_grade();
+        $this->load->view( 'admin/work_grade_v', $data );
+	}
+	public function add_work_grade() {
+        isLogin('admin');
+        $data['method']='add_work_grade';
+        $data['title']='Add New Worksheet Grade';
+        if(!empty($this->input->post('save'))){
+            $this->form_validation->set_rules('name', 'Name', 'required');
+            $this->form_validation->set_rules('slug', 'Slug', 'required');
+            if ($this->form_validation->run() == FALSE){
+                $this->load->view( 'admin/add_work_grade_v', $data );
+            } else{
+				$value['name']=$this->input->post('name');
+                $value['slug']=$this->input->post('slug');
+                $value['work_subject_id']=$this->input->post('work_subject_id');
+                
+                $insert=$this->admin_model->insert_work_grade($value);
+                if($insert){
+					$this->session->set_flashdata(array('msg_type'=>'success','msg'=>'New worksheet grade added!'));
+					redirect('admin/work_grade');
+                    //$this->load->view( 'admin/work_grade_v', $data );
+                }
+            }
+        } else {
+            $this->load->view( 'admin/add_work_grade_v', $data );
+        }
+	}
+	public function work_cat(){
+		isLogin('admin');
+        $data['title']='Worksheet Category';
+        $data['work_cats']=$this->admin_model->get_work_cat();
+        $this->load->view( 'admin/work_cat_v', $data );
+	}
+	public function add_work_cat() {
+        isLogin('admin');
+        $data['method']='add_work_cat';
+        $data['title']='Add New Worksheet Category';
+        if(!empty($this->input->post('save'))){
+            $this->form_validation->set_rules('name', 'Name', 'required');
+            $this->form_validation->set_rules('slug', 'Slug', 'required');
+            if ($this->form_validation->run() == FALSE){
+                $this->load->view( 'admin/add_work_cat_v', $data );
+            } else{
+				$value['name']=$this->input->post('name');
+                $value['slug']=$this->input->post('slug');
+                $value['work_subject_id']=$this->input->post('work_subject_id');
+                $value['work_grade_id']=$this->input->post('work_grade_id');
+                
+                $insert=$this->admin_model->insert_work_cat($value);
+                if($insert){
+					$this->session->set_flashdata(array('msg_type'=>'success','msg'=>'New worksheet category added!'));
+					redirect('admin/work_cat');
+                    //$this->load->view( 'admin/work_grade_v', $data );
+                }
+            }
+        } else {
+            $this->load->view( 'admin/add_work_cat_v', $data );
+        }
+	}
+	public function work_topic(){
+		isLogin('admin');
+        $data['title']='Worksheet Topic';
+		$data['work_topics']=$this->admin_model->get_work_topic();
+		//print_r($data['work_topics']); die();
+        $this->load->view( 'admin/work_topic_v', $data );
+	}
+	public function add_work_topic() {
+        isLogin('admin');
+        $data['method']='add_work_topic';
+        $data['title']='Add New Worksheet Topic';
+        if(!empty($this->input->post('save'))){
+            $this->form_validation->set_rules('name', 'Name', 'required');
+            $this->form_validation->set_rules('slug', 'Slug', 'required');
+            if ($this->form_validation->run() == FALSE){
+                $this->load->view( 'admin/add_work_topic_v', $data );
+            } else{
+				$value['name']=$this->input->post('name');
+                $value['slug']=$this->input->post('slug');
+                $value['work_subject_id']=$this->input->post('work_subject_id');
+                $value['work_grade_id']=$this->input->post('work_grade_id');
+                $value['work_cat_id']=$this->input->post('work_cat_id');
+                
+                $insert=$this->admin_model->insert_work_topic($value);
+                if($insert){
+					$this->session->set_flashdata(array('msg_type'=>'success','msg'=>'New worksheet topic added!'));
+					redirect('admin/work_topic');
+                    //$this->load->view( 'admin/work_grade_v', $data );
+                }
+            }
+        } else {
+            $this->load->view( 'admin/add_work_topic_v', $data );
+        }
+	}
 }

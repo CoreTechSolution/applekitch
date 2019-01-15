@@ -6,7 +6,7 @@
 					<img src="<?php echo base_url('/assets/images/logo.png'); ?>">
 				</div>
 				<div class="footer-about">
-					<p>Ex soleat habemus usu, te nec eligendi deserunt vituperata. Natum consulatu vel ea, duo cetero repudiare efficiendi cu. Has at quas nonumy facilisis, enim percipitur mei ad. Mazim possim adipisci sea ei, omnium aeterno platonem mei no.</p>
+					<p>Apple Kitch is an educational platform which helps children between the ages 4 to 11 develop their Math and English skills, confidence and ability. Using Math and English worksheets in addition to interactive learning exercises Apple Kitch helps to make education fun and interesting.</p>
 				</div>
 			</div>
 			<div class="col-lg-5">

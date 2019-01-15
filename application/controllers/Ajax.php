@@ -450,6 +450,119 @@ class Ajax extends CI_Controller {
             echo '';
         }
     }
+    public function get_work_sub_slug_ajax(){
+        $slug_text=$_POST['slug'];
+        if(!empty($slug_text)){
+            $i=1;
+            while ($i==1) {
+                $slug=array('slug'=>$slug_text);
+                $rtn_slug=$this->ajax_model->get_slug($slug,'work_subjects');
+                if($rtn_slug==true){
+                    $slug_text=$slug_text.'-1';
+                } else{
+                    echo $slug_text;
+                    break;
+                }
+            }
+
+        } else{
+            echo '';
+        }
+    }
+    public function get_work_grade_slug_ajax(){
+        $slug_text=$_POST['slug'];
+        if(!empty($slug_text)){
+            $i=1;
+            while ($i==1) {
+                $slug=array('slug'=>$slug_text);
+                $rtn_slug=$this->ajax_model->get_slug($slug,'work_grades');
+                if($rtn_slug==true){
+                    $slug_text=$slug_text.'-1';
+                } else{
+                    echo $slug_text;
+                    break;
+                }
+            }
+
+        } else{
+            echo '';
+        }
+    }
+    public function get_work_cat_slug_ajax(){
+        $slug_text=$_POST['slug'];
+        if(!empty($slug_text)){
+            $i=1;
+            while ($i==1) {
+                $slug=array('slug'=>$slug_text);
+                $rtn_slug=$this->ajax_model->get_slug($slug,'work_categories');
+                if($rtn_slug==true){
+                    $slug_text=$slug_text.'-1';
+                } else{
+                    echo $slug_text;
+                    break;
+                }
+            }
+
+        } else{
+            echo '';
+        }
+    }
+    public function get_work_topic_slug_ajax(){
+        $slug_text=$_POST['slug'];
+        if(!empty($slug_text)){
+            $i=1;
+            while ($i==1) {
+                $slug=array('slug'=>$slug_text);
+                $rtn_slug=$this->ajax_model->get_slug($slug,'work_topics');
+                if($rtn_slug==true){
+                    $slug_text=$slug_text.'-1';
+                } else{
+                    echo $slug_text;
+                    break;
+                }
+            }
+
+        } else{
+            echo '';
+        }
+    }
+    public function get_worksheet_slug_ajax(){
+        $slug_text=$_POST['slug'];
+        if(!empty($slug_text)){
+            $i=1;
+            while ($i==1) {
+                $slug=array('slug'=>$slug_text);
+                $rtn_slug=$this->ajax_model->get_slug($slug,'worksheets');
+                if($rtn_slug==true){
+                    $slug_text=$slug_text.'-1';
+                } else{
+                    echo $slug_text;
+                    break;
+                }
+            }
+
+        } else{
+            echo '';
+        }
+    }
+    public function get_sub_wise_grade(){
+        $id=$_POST['id'];
+        $table=$_POST['table'];
+        //print_r($_POST); 
+        $rtns=array();
+        if(!empty($id)){
+            $rtns=$this->ajax_model->get_sub_wise_grade($id,$table);
+        }
+        $rtntext='';
+        if(!empty($rtns)){
+            foreach ($rtns as $rtn){
+                $rtntext.='<option value='.$rtn->id.'>'.$rtn->name.'</option>';
+            }
+        }
+        
+        echo $rtntext;
+    }
+    
 	public function question_submit(){
         $form_data=$_POST;
         $rtntext=array();

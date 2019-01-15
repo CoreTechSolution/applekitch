@@ -84,7 +84,47 @@
                 Testimonials
             </a>
         </li>
-
+        <li class="nav-item ">
+            
+            <div class="dropdown">
+               <a class="nav-link<?php if($title == 'Worksheet' || $title == 'Worksheet Subject' || $title == 'Worksheet Grade') { ?> active<?php } ?>" href="javascript:void(0);">
+                <span data-feather="layers"></span>
+                Worksheet <span data-feather="chevron-down"></span>
+                </a>
+                
+                <div class="dropdown-content">
+                   <ul>
+                       <li><a class="nav-link<?php if($title == 'Worksheet') { ?> active<?php } ?>" href="<?php echo base_url('/admin/worksheets'); ?>">
+                            <span data-feather="chevron-right"></span>
+                                Worksheets
+                            </a>
+                        </li>
+                         <li><a class="nav-link<?php if($title == 'Worksheet Subject') { ?> active<?php } ?>" href="<?php echo base_url('/admin/work_subject'); ?>">
+                            <span data-feather="chevron-right"></span>
+                                Worksheets Subject
+                            </a>
+                        </li>
+                        <li><a class="nav-link<?php if($title == 'Worksheet Grade') { ?> active<?php } ?>" href="<?php echo base_url('/admin/work_grade'); ?>">
+                            <span data-feather="chevron-right"></span>
+                                Worksheets Grade
+                            </a>
+                        </li>
+                        <li><a class="nav-link<?php if($title == 'Worksheet Category') { ?> active<?php } ?>" href="<?php echo base_url('/admin/work_cat'); ?>">
+                            <span data-feather="chevron-right"></span>
+                                Worksheets Category
+                            </a>
+                        </li>
+                        <li><a class="nav-link<?php if($title == 'Worksheet Topic') { ?> active<?php } ?>" href="<?php echo base_url('/admin/work_topic'); ?>">
+                            <span data-feather="chevron-right"></span>
+                                Worksheets Topic
+                            </a>
+                        </li>
+                   </ul>
+            </div>
+            </div>
+        </li>
+        
+        
         <li class="nav-item">
             <a class="nav-link<?php if($title == 'Settings') { ?> active<?php } ?>" href="<?php echo base_url('/admin/settings'); ?>">
                 <span data-feather="settings"></span>

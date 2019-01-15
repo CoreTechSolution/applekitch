@@ -41,7 +41,7 @@
 </head>
 <body>
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-    <div class="navbar-brand col-sm-3 col-md-2 mr-0"><a target="_blank" href="<?php echo  base_url(); ?>"><img src="<?php echo  base_url('/assets/images/logo.png'); ?>"></a></div>
+    <div class="navbar-brand col-sm-3 col-md-2 mr-0"><a target="_blank" href="<?php echo  base_url(); ?>"><img style="width: 70%;" src="<?php echo  base_url('/assets/images/logo.png'); ?>"></a></div>
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
 	        <?php if(isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] == 1){ ?>

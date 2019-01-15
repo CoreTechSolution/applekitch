@@ -575,5 +575,110 @@ INNER JOIN country ON subject.country = country.id INNER JOIN grade ON subject.g
         } else{
             return false;
         }
-    }
+	}
+	function get_worksheets($conditions=array()) {
+		$this->db->select('*');
+		if(!empty($conditions)){
+			$this->db->where($conditions);
+		}
+        $this->db->from('worksheets');
+        $this->db->order_by("id", "desc");
+
+        if($query = $this->db->get())
+        {
+            return $query->result();
+        }
+        else{
+            return false;
+        }
+	}
+	function insert_worksheet($data){
+        $this->db->insert('worksheets', $data);
+        $insert_id = $this->db->insert_id();
+        return $insert_id;
+	}
+	function get_work_subject($conditions=array()) {
+		$this->db->select('*');
+		if(!empty($conditions)){
+			$this->db->where($conditions);
+		}
+        $this->db->from('work_subjects');
+        $this->db->order_by("id", "desc");
+
+        if($query = $this->db->get())
+        {
+            return $query->result();
+        }
+        else{
+            return false;
+        }
+	}
+	function insert_work_subject($data){
+        $this->db->insert('work_subjects', $data);
+        $insert_id = $this->db->insert_id();
+        return $insert_id;
+	}
+	function get_work_grade($conditions=array()) {
+		$this->db->select('*');
+		if(!empty($conditions)){
+			$this->db->where($conditions);
+		}
+        $this->db->from('work_grades');
+        $this->db->order_by("id", "desc");
+
+        if($query = $this->db->get())
+        {
+            return $query->result();
+        }
+        else{
+            return false;
+        }
+	}
+	function insert_work_grade($data){
+        $this->db->insert('work_grades', $data);
+        $insert_id = $this->db->insert_id();
+        return $insert_id;
+	}
+	function get_work_cat($conditions=array()) {
+		$this->db->select('*');
+		if(!empty($conditions)){
+			$this->db->where($conditions);
+		}
+        $this->db->from('work_categories');
+        $this->db->order_by("id", "desc");
+
+        if($query = $this->db->get())
+        {
+            return $query->result();
+        }
+        else{
+            return false;
+        }
+	}
+	function insert_work_cat($data){
+        $this->db->insert('work_categories', $data);
+        $insert_id = $this->db->insert_id();
+        return $insert_id;
+	}
+	function get_work_topic($conditions=array()) {
+		$this->db->select('*');
+		if(!empty($conditions)){
+			$this->db->where($conditions);
+		}
+        $this->db->from('work_topics');
+        $this->db->order_by("id", "desc");
+
+        if($query = $this->db->get())
+        {
+            return $query->result();
+        }
+        else{
+            return false;
+        }
+	}
+	function insert_work_topic($data){
+        $this->db->insert('work_topics', $data);
+        $insert_id = $this->db->insert_id();
+        return $insert_id;
+	}
 }
