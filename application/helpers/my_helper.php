@@ -10,7 +10,6 @@ foreach( $query->result() as $row ){
 
 }
 
-
 function get_settings(){
     $CI = & get_instance();
     $db =$CI->db;
