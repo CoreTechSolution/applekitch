@@ -1441,16 +1441,10 @@ class Admin extends CI_Controller {
                 $value['work_cat_id']=$this->input->post('work_cat_id');
                 $value['work_topic_id']=$this->input->post('work_topic_id');
                 $value['label']=$this->input->post('label');
-
-                //print_r($_FILES['pdf_path']['name']);exit;
-
 				if(!empty($_FILES['pdf_path']['name'])){
                     $file_name = $_FILES['pdf_path']['name'];
                     $return_data = uploadpdfconvertjpg('uploads/worksheets', $file_name, 'pdf_path');
                     $json_img_url = json_encode($return_data['image-url']);
-                    //print_r($json_img_url);
-                    //exit;
-
                     if($return_data){
                         $value['pdf_path'] = $return_data['pdf-url'];
                         $value['worksheet_img'] = $json_img_url;
@@ -1458,19 +1452,6 @@ class Admin extends CI_Controller {
                         $value['pdf_path']= "";
                         $value['worksheet_img']= "";
                     }
-
-                    //$img_path=image_upload($_FILES,'pdf_path','uploads/worksheets');
-                    //if($img_path){
-					//	$value['pdf_path']=$img_path;
-					//	$image_path_lenth=explode('/',$img_path);
-						//$relative_path=FCPATH.'uploads/worksheets/'.$image_path_lenth[count($image_path_lenth)-1];
-					//	genPdfThumbnail($CI->session->userdata('delete_file_path'),FCPATH.'uploads/worksheets/thumbnail/'.$image_path_lenth[count($image_path_lenth)-1]);
-					//	echo base_url('uploads/worksheets/thumbnail/').$image_path_lenth[count($image_path_lenth)-1];
-					//	die();
-                    //} else{
-                        //$this->load->view( 'admin/add_certificate_v', $data );
-                        //$value['pdf_path']="";
-                   // }
                 }
                 $insert=$this->admin_model->insert_worksheet($value);
                 //print_r($insert);exit;
@@ -1482,7 +1463,7 @@ class Admin extends CI_Controller {
 					$rat_value['total_points']=$this->admin_model->get_total_points($insert)+$this->input->post('rating');
 					$rat_value['created']=date('Y-m-d H:i:s');
 					$rat_value['modified']=date('Y-m-d H:i:s');
-
+					$insert_rating=$this->admin_model->insert_ratings($rat_value);
                     $this->session->set_flashdata(array('msg_type'=>'success','msg'=>'New worksheet added!'));
                     $this->load->view( 'admin/worksheet_v', $data );
                 }

@@ -698,4 +698,21 @@ INNER JOIN country ON subject.country = country.id INNER JOIN grade ON subject.g
             return 0;
         }
 	}
+	function get_total_points($id){
+		$this->db->select('*');
+		if(!empty($conditions)){
+			$this->db->where(array('rating_id'=>$id));
+		}
+        $this->db->from('worksheet_rating');
+		$query = $this->db->get();
+		$f_data=$query->result();
+
+        if($f_data->total_points)
+        {
+            return $f_data->total_points;
+        }
+        else{
+            return 0;
+        }
+	}
 }
