@@ -499,3 +499,67 @@ function syncMailchimp($email) {
 
 	return $httpCode;
 }
+function uploadpdfconvertjpg($path='uploads', $data, $f_name){
+    $rtntext='';
+    $CI = & get_instance();
+    $CI->load->library('upload');
+    $upload_path=$path;
+
+    if (!file_exists(FCPATH .$upload_path)) {
+        mkdir(FCPATH .$upload_path, 0777, true);
+    }
+
+    $config['upload_path'] = FCPATH . $upload_path . '/';
+    $config['allowed_types']  = 'pdf';
+    $config['overwrite']      = TRUE;
+    $config['remove_spaces']  = TRUE;
+    $config['file_name'] = $data;
+
+    $CI->upload->initialize($config);
+
+    if (! $CI->upload->do_upload($f_name))
+    {
+        $CI->session->set_flashdata('msg', $CI->upload->display_errors());
+        $CI->session->set_flashdata('msg_type', 'Error');
+        $rtntext = false;
+
+    }else{
+
+        $im = new Imagick();
+        $im->setResolution(250,200);
+
+        $ig = 0;
+
+        //while(true){
+        //    try {
+                $im->readimage($config['upload_path'].$config['file_name']."[$ig]");
+        //    } catch (Exception $e) {
+        //        $ig = -1;
+        //    }
+
+         //   if($ig === -1) break;
+
+            $im->setImageBackgroundColor('white');
+            $im->setImageFormat('jpg');
+            $exp_file = explode('.',$config['file_name']);
+
+            $image_name     = $exp_file[0]."_$ig".'.jpg';
+            //$imageprops     = $im->getImageGeometry();
+
+            $im->writeImage($config['upload_path'] .$image_name);
+            $im->clear();
+            $im->destroy();
+
+        //    ImageJPEG(ImageCreateFromString(file_get_contents($config['upload_path'].$image_name)), $config['upload_path'].$image_name);
+        //    $ig++;
+            $img_path[] = $rtntext=base_url().$upload_path.'/'.$image_name;
+        //}
+
+        $pdf_path = base_url().$upload_path.'/'.$config['file_name'];
+    }
+
+    $rtntext = array('image-url' => $img_path, 'pdf-url' => $pdf_path);
+
+    //print_r($rtntext);exit;
+    return $rtntext;
+}

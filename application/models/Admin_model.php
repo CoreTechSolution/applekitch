@@ -16,11 +16,7 @@ class Admin_model extends CI_Model {
 			return false;
 		}
 	}
-	function get_rattings(){
-		$query = "SELECT rating_number, FORMAT((total_points / rating_number),1) as average_rating FROM view_rating WHERE post_id = 1 AND status = 1";
-		$result = $this->db->query($query);
-		return $query->result_array();
-	}
+	
 	function get_users() {
 		$this->db->select('*');
 		$this->db->from('user');

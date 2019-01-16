@@ -1423,7 +1423,7 @@ class Admin extends CI_Controller {
         isLogin('admin');
         $data['method']='add_worksheet';
         $data['title']='Add New Worksheet';
-        $data['ratings']=$this->admin_model->get_rattings();
+        //$data['ratings']=$this->admin_model->get_rattings();
         if(!empty($this->input->post('save'))){
             $this->form_validation->set_rules('name', 'Name', 'required');
             //$this->form_validation->set_rules('work_subject_id', 'Name', 'required');
@@ -1441,21 +1441,40 @@ class Admin extends CI_Controller {
                 $value['work_cat_id']=$this->input->post('work_cat_id');
                 $value['work_topic_id']=$this->input->post('work_topic_id');
                 $value['label']=$this->input->post('label');
-				if(!empty($_FILES['pdf_path ']['name'])){
-                    $img_path=image_upload($_FILES,'pdf_path','uploads/worksheets');
-                    if($img_path){
-						$value['pdf_path']=$img_path;
-						$image_path_lenth=explode('/',$img_path);
-						//$relative_path=FCPATH.'uploads/worksheets/'.$image_path_lenth[count($image_path_lenth)-1];
-						genPdfThumbnail($CI->session->userdata('delete_file_path'),FCPATH.'uploads/worksheets/thumbnail/'.$image_path_lenth[count($image_path_lenth)-1]);
-						echo base_url('uploads/worksheets/thumbnail/').$image_path_lenth[count($image_path_lenth)-1];
-						die();
-                    } else{
-                        //$this->load->view( 'admin/add_certificate_v', $data );
-                        $value['pdf_path']="";
+
+                //print_r($_FILES['pdf_path']['name']);exit;
+
+				if(!empty($_FILES['pdf_path']['name'])){
+                    $file_name = $_FILES['pdf_path']['name'];
+                    $return_data = uploadpdfconvertjpg('uploads/worksheets', $file_name, 'pdf_path');
+                    $json_img_url = json_encode($return_data['image-url']);
+                    //print_r($json_img_url);
+                    //exit;
+
+                    if($return_data){
+                        $value['pdf_path'] = $return_data['pdf-url'];
+                        $value['worksheet_img'] = $json_img_url;
+                    }else{
+                        $value['pdf_path']= "";
+                        $value['worksheet_img']= "";
                     }
+
+                    //$img_path=image_upload($_FILES,'pdf_path','uploads/worksheets');
+                    //if($img_path){
+					//	$value['pdf_path']=$img_path;
+					//	$image_path_lenth=explode('/',$img_path);
+						//$relative_path=FCPATH.'uploads/worksheets/'.$image_path_lenth[count($image_path_lenth)-1];
+					//	genPdfThumbnail($CI->session->userdata('delete_file_path'),FCPATH.'uploads/worksheets/thumbnail/'.$image_path_lenth[count($image_path_lenth)-1]);
+					//	echo base_url('uploads/worksheets/thumbnail/').$image_path_lenth[count($image_path_lenth)-1];
+					//	die();
+                    //} else{
+                        //$this->load->view( 'admin/add_certificate_v', $data );
+                        //$value['pdf_path']="";
+                   // }
                 }
                 $insert=$this->admin_model->insert_worksheet($value);
+                //print_r($insert);exit;
+
                 if($insert){
 					$rat_value=array();
 					$rat_value['worksheet_id']=$insert;
