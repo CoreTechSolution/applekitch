@@ -1442,16 +1442,12 @@ class Admin extends CI_Controller {
                 $value['work_topic_id']=$this->input->post('work_topic_id');
                 $value['label']=$this->input->post('label');
 				if(!empty($_FILES['pdf_path']['name'])){
-                    $file_name = $_FILES['pdf_path']['name'];
-                    $return_data = uploadpdfconvertjpg('uploads/worksheets', $file_name, 'pdf_path');
-                    $json_img_url = json_encode($return_data['image-url']);
-                    if($return_data){
-                        $value['pdf_path'] = $return_data['pdf-url'];
-                        $value['worksheet_img'] = $json_img_url;
-                    }else{
-                        $value['pdf_path']= "";
-                        $value['worksheet_img']= "";
-                    }
+                    $img_path=image_upload($_FILES,'pdf_path','uploads/worksheets','pdf');
+                    $pdf_abs_path=$this->session->userdata('delete_file_path');
+                    $pdf_thumb_img=pdf_to_thumbnail($pdf_abs_path,'uploads/worksheets');
+                    //$json_img_url = json_encode($pdf_thumb_img);
+                    $value['worksheet_img'] = $pdf_thumb_img;
+                    $value['pdf_path'] = $img_path;
                 }
                 $insert=$this->admin_model->insert_worksheet($value);
                 //print_r($insert);exit;
@@ -1464,8 +1460,14 @@ class Admin extends CI_Controller {
 					$rat_value['created']=date('Y-m-d H:i:s');
 					$rat_value['modified']=date('Y-m-d H:i:s');
 					$insert_rating=$this->admin_model->insert_ratings($rat_value);
-                    $this->session->set_flashdata(array('msg_type'=>'success','msg'=>'New worksheet added!'));
-                    $this->load->view( 'admin/worksheet_v', $data );
+					if($insert_rating){
+                        $this->session->set_flashdata(array('msg_type'=>'success','msg'=>'New worksheet added!'));
+                        redirect('admin/worksheets');
+                    } else{
+                        $this->session->set_flashdata(array('msg_type'=>'success','msg'=>'New worksheet added! but rating not allowed'));
+                        redirect('admin/worksheets');
+                    }
+
                 }
             }
         } else {

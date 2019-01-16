@@ -690,7 +690,7 @@ INNER JOIN country ON subject.country = country.id INNER JOIN grade ON subject.g
 		$query = $this->db->get();
 		$f_data=$query->result();
 
-        if($f_data->rating_number)
+        if(!empty($f_data))
         {
             return $f_data->rating_number;
         }
@@ -707,7 +707,7 @@ INNER JOIN country ON subject.country = country.id INNER JOIN grade ON subject.g
 		$query = $this->db->get();
 		$f_data=$query->result();
 
-        if($f_data->total_points)
+        if(!empty($f_data))
         {
             return $f_data->total_points;
         }
@@ -715,4 +715,9 @@ INNER JOIN country ON subject.country = country.id INNER JOIN grade ON subject.g
             return 0;
         }
 	}
+	function insert_ratings($value){
+        $this->db->insert('worksheet_rating', $value);
+        $insert_id = $this->db->insert_id();
+        return $insert_id;
+    }
 }
