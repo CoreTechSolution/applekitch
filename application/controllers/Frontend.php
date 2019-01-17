@@ -151,4 +151,10 @@ class Frontend extends CI_Controller {
 		$this->session->unset_userdata('total_qScore');
 		$this->load->view('frontend/questions_page',$data);
 	}
+
+	public function worksheets(){
+        $data['title']='Worksheets';
+        $data['worksheets']=$this->frontend_model->get_worksheets();
+        $this->load->view('frontend/worksheet_list_page', $data);
+    }
 }

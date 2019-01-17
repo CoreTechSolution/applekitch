@@ -34,6 +34,22 @@ class Frontend_model extends CI_Model {
             return false;
         }
     }
+    function get_worksheets($conditions=array()) {
+        $this->db->select('*');
+        if(!empty($conditions)){
+            $this->db->where($conditions);
+        }
+        $this->db->from('worksheets');
+        $this->db->order_by("id", "desc");
+
+        if($query = $this->db->get())
+        {
+            return $query->result();
+        }
+        else{
+            return false;
+        }
+    }
     function get_grade_content($conditions=array(),$row=true){
         $this->db->select('*');
         if (!empty($conditions))
