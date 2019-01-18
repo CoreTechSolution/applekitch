@@ -155,6 +155,10 @@ class Frontend extends CI_Controller {
 	public function worksheets(){
         $data['title']='Worksheets';
         $data['worksheets']=$this->frontend_model->get_worksheets();
+        $data['work_subjects']=$this->frontend_model->get_work_subjects();
+        //$data['work_grades']=$this->frontend_model->get_work_grades();
+        //$data['work_categories']=$this->frontend_model->get_work_categories();
+        //$data['work_topics']=$this->frontend_model->get_work_topics();
         $this->load->view('frontend/worksheet_list_page', $data);
     }
 }
