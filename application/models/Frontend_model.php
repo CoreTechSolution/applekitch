@@ -34,6 +34,60 @@ class Frontend_model extends CI_Model {
             return false;
         }
     }
+    function get_worksheets($conditions=array()){
+	    $this->db->select('*');
+	    if(!empty($conditions)){
+	        $this->db->where($conditions);
+        }
+	    $this->db->from('worksheets');
+	    $query=$this->db->get();
+	    if($query){
+	        return $query->result();
+        } else{
+	        return false;
+        }
+
+    }
+
+
+    function get_worksheet_rating($conditions=array()){
+        $this->db->select('*');
+        if(!empty($conditions)){
+            $this->db->where($conditions);
+        }
+        $this->db->from('worksheet_rating');
+        $query=$this->db->get();
+        if($query){
+            return $query->result();
+        } else{
+            return false;
+        }
+
+    }
+
+
+
+
+
+/*
+    function get_worksheets($conditions=array()){
+        $this->db->select('*');
+        if(!empty($conditions)){
+            $this->db->where($conditions);
+        }
+        $this->db->from('worksheets');
+        $query=$this->db->get();
+        if($query){
+            return $query->result();
+        } else{
+            return false;
+        }
+
+    }*/
+
+
+
+
     function get_grade_content($conditions=array(),$row=true){
         $this->db->select('*');
         if (!empty($conditions))

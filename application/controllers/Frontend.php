@@ -17,6 +17,8 @@ class Frontend extends CI_Controller {
 
 		$this->load->view('home_page', $data);
 	}
+
+
 	public function home()
 	{
 		$data = array(
@@ -151,4 +153,22 @@ class Frontend extends CI_Controller {
 		$this->session->unset_userdata('total_qScore');
 		$this->load->view('frontend/questions_page',$data);
 	}
+
+
+
+
+
+
+    public function worksheets(){
+        $data['title']='worksheets';
+        $data['worksheets']=$this->frontend_model->get_worksheets(/*array('work_subject_id'=>3,'work_topic_id'=>2)*/);
+    $data['worksheetrating']=$this->frontend_model->get_worksheet_rating();
+
+        $this->load->view('frontend/worksheet_page',$data);
+    }
+
+
+
+
+
 }
