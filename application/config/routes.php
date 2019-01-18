@@ -69,6 +69,7 @@ $route['childaward'] = 'dashboard/childaward';
 $route['share'] = 'dashboard/share';
 $route['math'] = 'frontend/math';
 $route['english'] = 'frontend/english';
+$route['worksheets'] = 'frontend/worksheets';
 $route['awards/(:any)/(:any)'] = 'dashboard/awards/$1/$2';
 $route['exercise/(:any)/(:any)/(:any)'] = 'frontend/questions/$1/$2/$3';
 $route['exercise/(:any)/(:any)/(:any)'] = 'frontend/questions/$1/$2/$3';
