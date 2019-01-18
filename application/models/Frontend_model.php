@@ -50,6 +50,27 @@ class Frontend_model extends CI_Model {
             return false;
         }
     }
+
+
+    function get_subject($conditions=array()) {
+        $this->db->select('*');
+        if(!empty($conditions)){
+            $this->db->where($conditions);
+        }
+        $this->db->from('work_subjects');
+
+
+        if($query = $this->db->get())
+        {
+            return $query->result();
+        }
+        else{
+            return false;
+        }
+    }
+
+
+
     function get_work_subjects($conditions=array()) {
         $this->db->select('*');
         if(!empty($conditions)){
@@ -66,6 +87,84 @@ class Frontend_model extends CI_Model {
             return false;
         }
     }
+
+
+    function get_work_grades($conditions=array()) {
+        $this->db->select('*');
+        if(!empty($conditions)){
+            $this->db->where($conditions);
+        }
+        $this->db->from('work_grades');
+        $this->db->order_by("id", "desc");
+
+        if($query = $this->db->get())
+        {
+            return $query->result();
+        }
+        else{
+            return false;
+        }
+    }
+
+
+
+
+     function  get_work_categories ($conditions=array()){
+	    $this->db->select('*');
+         if(!empty($conditions)){
+             $this->db->where($conditions);
+         }
+         $this->db->from('work_categories');
+         $this->db->order_by("id","desc");
+         if($query=$this->db->get()){
+             return $query->result();
+         }
+         else {
+             return false;
+         }
+
+     }
+
+
+
+     function get_work_topics ($conditions=array()){
+	    $this->db->select('*');
+	    if(!empty($conditions)){
+	        $this->db->where($conditions);
+        }
+
+	    $this->db->from('work_topics');
+	    $this->db->order_by("id","desc");
+	    if($query=$this->db->get()){
+	        return $query->result();
+        }
+	    else {
+	        return false;
+        }
+     }
+
+
+
+
+     public function get_worksheet_rating(){
+         $this->db->select('*');
+         if(!empty($conditions)){
+             $this->db->where($conditions);
+         }
+
+         $this->db->from('worksheet_rating');
+
+         if($query=$this->db->get()){
+             return $query->result();
+         }
+         else {
+             return false;
+         }
+     }
+
+
+
+
     function get_grade_content($conditions=array(),$row=true){
         $this->db->select('*');
         if (!empty($conditions))

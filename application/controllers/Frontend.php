@@ -156,9 +156,22 @@ class Frontend extends CI_Controller {
         $data['title']='Worksheets';
         $data['worksheets']=$this->frontend_model->get_worksheets();
         $data['work_subjects']=$this->frontend_model->get_work_subjects();
-        //$data['work_grades']=$this->frontend_model->get_work_grades();
-        //$data['work_categories']=$this->frontend_model->get_work_categories();
-        //$data['work_topics']=$this->frontend_model->get_work_topics();
+        $data['work_grades']=$this->frontend_model->get_work_grades();
+        $data['work_categories']=$this->frontend_model->get_work_categories();
+        $data['work_topics']=$this->frontend_model->get_work_topics();
+        $data['worksheetrating']=$this->frontend_model->get_worksheet_rating();
+
+
         $this->load->view('frontend/worksheet_list_page', $data);
-    }
+	}
+
+         public function  subject_english(){
+	    $data['title']='Subject Enlglish';
+
+	    $data['subject']=$this->frontend_model->get_subject(array('name'=>'Math'));
+
+	    $this->load->view('frontend/subject_english_page',$data);
+
+}
+
 }
