@@ -25,8 +25,19 @@ $this->load->view('templates/header');
                         </div>
                         <div class="col-lg-10 col-md-9">
                             <h1><?php echo ucfirst($title); ?></h1>
+                            <div class="search_boardcumb" id="search_boardcumb">
+                                <span>Filter: </span>
+                                <ul id="search_boardcumb_ul">
+
+                                </ul>
+                            </div>
+                            <div class="leading_worksheet">
+                                <img src="<?= base_url('assets/images/leader_worksheet.gif'); ?>" alt="">
+                            </div>
+
                             <?php if(!empty($worksheets)){ ?>
-                            <div class="worksheet_list_main">
+                            <div class="worksheet_list_main" id="worksheet_list_main">
+
                                 <div class="row">
                                     <?php foreach ($worksheets as $worksheet){ ?>
                                         <div class="col-lg-3 col-md-4">

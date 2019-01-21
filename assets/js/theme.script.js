@@ -816,6 +816,7 @@ function saveUserData(userData){
         }
     });
 }
+
 /*
 jQuery('.logged-in-usermenus ul li.dropdown > a').on('click', function(e) {
    var thisClass = jQuery(this);
@@ -921,4 +922,129 @@ jQuery(document).ready(function() {
             thisElement.addClass('SActive');
         }
     });*/
-})
+});
+function search_id_genarate(type,id,dom_id){
+    //alert(dom_id);
+    jQuery('.leading_worksheet').show();
+    jQuery('#worksheet_list_main').html('');
+    if(type=='subject'){
+        jQuery('.active_work').removeClass('active_work');
+        //var ids=(jQuery('#search_subject_id').val()!='') ? ','+id : id;
+        jQuery('#search_subject_id').val(id);
+        jQuery('#'+dom_id).addClass('active_work');
+        //jQuery('#search_boardcumb').show();
+        //var old_html=jQuery('#search_boardcumb_ul').html();
+        /*var return_data=search_breadcumb('subject',id);
+        console.log(return_data);
+        alert(search_breadcumb('subject',id));
+        jQuery('#search_boardcumb_ul').html("subject: "+search_breadcumb('subject',id));*/
+    } else if(type=='grade'){
+        var ids=(jQuery('#search_grade_id').val()!='') ? ','+id : id;
+        //jQuery('#search_grade_id').val(jQuery('#search_grade_id').val()+ids);
+        jQuery('#search_grade_id').val(id);
+        jQuery('#'+dom_id).addClass('active_work');
+
+        /*jQuery('#search_boardcumb').show();
+        var old_html=jQuery('#search_boardcumb_ul').html();
+        jQuery('#search_boardcumb_ul').html(old_html+search_breadcumb('grade',id));*/
+    } else if(type=='category'){
+        var ids=(jQuery('#search_cat_id').val()!='') ? ','+id : id;
+        //jQuery('#search_cat_id').val(jQuery('#search_cat_id').val()+ids);
+        jQuery('#search_cat_id').val(id);
+        jQuery('#'+dom_id).addClass('active_work');
+
+        /*jQuery('#search_boardcumb').show();
+        var old_html=jQuery('#search_boardcumb_ul').html();
+        jQuery('#search_boardcumb_ul').html(old_html+search_breadcumb('cat',id));*/
+    } else if(type=='topic'){
+        var ids=(jQuery('#search_topic_id').val()!='') ? ','+id : id;
+        //jQuery('#search_topic_id').val(jQuery('#search_topic_id').val()+ids);
+        jQuery('#search_topic_id').val(id);
+        jQuery('#'+dom_id).addClass('active_work');
+        /*jQuery('#search_boardcumb').show();
+        var old_html=jQuery('#search_boardcumb_ul').html();
+        jQuery('#search_boardcumb_ul').html(old_html+search_breadcumb('topic',id));*/
+    }
+
+    jQuery.ajax({
+        type : "post",
+        //dataType : "json",
+        url : base_url+'ajax/search_worksheet',
+        data : {subject_ids: jQuery('#search_subject_id').val(),grade_ids: jQuery('#search_grade_id').val(),cat_ids: jQuery('#search_cat_id').val(),topic_ids: jQuery('#search_topic_id').val()},
+        success: function(response) {
+            //console.log(response);
+            if(response) {
+                jQuery('.leading_worksheet').hide();
+                jQuery('#worksheet_list_main').html(response);
+            }
+        }
+    });
+
+}
+function clear_work_search(){
+    jQuery('.leading_worksheet').show();
+    jQuery('#search_subject_id').val('');
+    jQuery('#search_grade_id').val('');
+    jQuery('#search_topic_id').val('');
+    jQuery('#search_cat_id').val('');
+    jQuery('.active_work').removeClass('active_work');
+    jQuery.ajax({
+        type : "post",
+        //dataType : "json",
+        url : base_url+'ajax/search_worksheet',
+        data : {subject_ids: jQuery('#search_subject_id').val(),grade_ids: jQuery('#search_grade_id').val(),cat_ids: jQuery('#search_cat_id').val(),topic_ids: jQuery('#search_topic_id').val()},
+        success: function(response) {
+            //console.log(response);
+            if(response) {
+                jQuery('.leading_worksheet').hide();
+                jQuery('#worksheet_list_main').html(response);
+            }
+        }
+    });
+    jQuery('.leading_worksheet').hide();
+}
+function search_breadcumb(type, id){
+    var  b_rtntext='';
+    var  table='';
+    var  p_field='';
+    var  p_value='';
+    var  r_field='';
+    if(type=='subject'){
+        table='work_subjects';
+        p_field='id';
+        p_value=id;
+        r_field='name';
+    } else if(type=='grade'){
+        table='work_grades';
+        p_field='id';
+        p_value=id;
+        r_field='name';
+    } else if(type=='cat'){
+        table='work_categories';
+        p_field='id';
+        p_value=id;
+        r_field='name';
+    } else if(type=='topic'){
+        table='work_topics';
+        p_field='id';
+        p_value=id;
+        r_field='name';
+    }
+
+    jQuery.ajax({
+        type : "post",
+        //dataType : "json",
+        url : base_url+'ajax/get_returnfield',
+        data : {table: table,p_field:p_field,p_value:p_value,r_field:r_field},
+        success: function(data) {
+            if(data) {
+                console.log(data);
+                return '<li>'+data+'</li>';
+            }
+        }
+    });
+    /*return {
+        li_data : b_rtntext
+    }*/
+    //return '<li>'+rtntext+'</li>';
+}

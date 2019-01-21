@@ -3339,7 +3339,7 @@ a.custom_button {
     display:none;
 }
 .worksheet_sidebar {
-    padding: 30px 0 0 0;
+    padding: 0px 0 0 0;
 }
 .worksheet_sidebar .sidebar_header {
     font-size: 16px;
@@ -3364,6 +3364,30 @@ a.custom_button {
 .worksheet_sidebar ul li a:hover{
 
 }
+.active_work{
+    color: #e84c24;
+    font-weight: 500;
+}
+.search_boardcumb{
+    display:none;
+    font-size: 12px;
+}
+.search_boardcumb span{
+    font-size: 12px;
+}
+.search_boardcumb ul {
+    list-style: none;
+    padding: 0;
+    display: inline-block;
+}
+.search_boardcumb ul li{
+    display: inline-block;
+    padding: 0px 9px;
+    border: 1px solid #e1e1e1;
+    border-radius: 10px;
+    color: #7b7b7b;
+    margin-right: 5px;
+}
 .worksheet_box{
     -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
@@ -3385,6 +3409,16 @@ a.custom_button {
     padding: 0 10px 10px 10px;
     font-size: 12px;
     color: #848282;
+}
+.leading_worksheet {
+    display: none;
+    width: 100%;
+    text-align: center;
+}
+.clear_search {
+    font-size: 14px;
+    text-align: right;
+    padding-bottom: 11px;
 }
 @media screen and (max-width: 40em) {
    /* !* #menu is the original menu *!

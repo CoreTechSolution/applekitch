@@ -2429,4 +2429,77 @@ class Ajax extends CI_Controller {
 
         }
     }
+    public function search_worksheet(){
+	    $where='';
+        $html='';
+	    $subject_ids=$_POST['subject_ids'];
+	    $grade_ids=$_POST['grade_ids'];
+	    $cat_ids=$_POST['cat_ids'];
+	    $topic_ids=$_POST['topic_ids'];
+	    $subject_query = (!empty($subject_ids)) ? "work_subject_id IN (".$subject_ids.")" : "";
+	    $grade_query = (!empty($grade_ids)) ? "work_grade_id IN (".$grade_ids.")" : "";
+	    $cat_query = (!empty($cat_ids)) ? 'work_cat_id IN ('.$cat_ids.")" : "";
+	    $topic_query = (!empty($topic_ids)) ? "work_topic_id IN (".$topic_ids.")" : "";
+	    if(!empty($subject_query)){
+	        $where.=(!empty($where))?' AND '.$subject_query : $subject_query;
+        }
+        if(!empty($grade_query)){
+            $where.=(!empty($where))?' AND '.$grade_query : $grade_query;
+        }
+        if(!empty($cat_query)){
+            $where.=(!empty($where))?' AND '.$cat_query : $cat_query;
+        }
+        if(!empty($topic_query)){
+            $where.=(!empty($where))?' AND '.$topic_query : $topic_query;
+        }
+
+        $worksheets=$this->ajax_model->get_worksheets($where);
+        if(!empty($worksheets)){
+            $html.='<div class="row">';
+            foreach ($worksheets as $worksheet) {
+                $html.='
+                <div class="col-lg-3 col-md-4">
+                                            <a href="#">
+                                            <div class="worksheet_box">
+                                                <div class="work_img">
+                                                    <img src="'.$worksheet->worksheet_img.'" alt="">
+                                                </div>
+                                                <div class="work_name">
+                                                    '.$worksheet->name.'
+                                                </div>
+                                                <div class="work_details">
+                                                    <div class="details">worksheet</div>
+                                                    <div class="star_rating">rating<span class="stars-container stars-10">★★★★★</span></div>
+                                                </div>
+                                            </div>
+                                            </a>
+                                        </div>
+                ';
+            }
+
+            $html.='</div>';
+        }
+        if(empty($html)){
+            $html='<h4>No data found!</h4>';
+        }
+        echo $html;
+    }
+    function get_returnfield(){
+	    $db=$_POST['table'];
+        $p_field=$_POST['p_field'];
+        $p_value=$_POST['p_value'];
+        $r_field=$_POST['r_field'];
+        $rtntext='';
+        $CI = & get_instance();
+        $CI->db->select($r_field);
+        $CI->db->from($db);
+        $CI->db->where(array($p_field=>$p_value));
+        $results = $CI->db->get();
+
+        foreach ($results->result() as $key) {
+            $rtntext = $key->$r_field;
+        }
+        //print_r($rtntext); exit();
+        echo $rtntext;
+    }
 }
