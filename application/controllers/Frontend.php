@@ -163,7 +163,10 @@ class Frontend extends CI_Controller {
         $this->load->view('frontend/worksheet_list_page', $data);
 	}
     public function worksheet($subject_slug,$grade_slug,$topic_slug,$worksheet_slug){
-        $data['title']='Worksheet';
+	    $worksheet_id=$this->frontend_model->get_worksheet_by_slug(array('slug'=>$worksheet_slug));
+	    //print_r($worksheet_id[0]->id); exit();
+        $data['worksheets']=$this->frontend_model->get_worksheets(array('id'=>$worksheet_id[0]->id));
+        $data['title']=get_returnfield('worksheets','id',$worksheet_id[0]->id,'name');
         //$data['worksheets']=$this->frontend_model->get_worksheets(array('work_subject_id'=>));
         /*$data['work_subjects']=$this->frontend_model->get_work_subjects();
         $data['work_grades']=$this->frontend_model->get_work_grades();
@@ -172,7 +175,7 @@ class Frontend extends CI_Controller {
         $data['worksheetrating']=$this->frontend_model->get_worksheet_rating();*/
 
 
-        $this->load->view('frontend/worksheet_list_page', $data);
+        $this->load->view('frontend/worksheet_single_v', $data);
     }
 
 	public function  subject_english(){

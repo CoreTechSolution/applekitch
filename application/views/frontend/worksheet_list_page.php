@@ -41,7 +41,7 @@ $this->load->view('templates/header');
                                 <div class="row">
                                     <?php foreach ($worksheets as $worksheet){ ?>
                                         <div class="col-lg-3 col-md-4">
-                                            <a href="#">
+                                            <a href="<?php echo base_url('frontend/worksheet/math/1/test/'.$worksheet->slug) ?>">
                                             <div class="worksheet_box">
                                                 <div class="work_img">
                                                     <img src="<?= $worksheet->worksheet_img; ?>" alt="">

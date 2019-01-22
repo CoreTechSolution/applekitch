@@ -98,6 +98,20 @@ function loginCheck($user_type='user'){
 		return false;
 	}
 }
+function  get_rattings($id){
+    $CI = & get_instance();
+    $CI->db->select('rating_number, FORMAT((total_points / rating_number),1) as average_rating');
+    $CI->db->from('worksheet_rating');
+    $CI->db->where(array('worksheet_id'=>$id));
+    if($query=$CI->db->get())
+    {
+        return $query->row();
+    }
+    else{
+        return false;
+    }
+
+}
 function isUserType($param){
 	$CI = & get_instance();
 	if(strtolower($param)==strtolower($CI->session->userdata('user_type'))){

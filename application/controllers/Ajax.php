@@ -7,6 +7,7 @@ class Ajax extends CI_Controller {
 
 		parent::__construct();
 		$this->load->model('ajax_model');
+		$this->load->model('user_model');
 
 
 	}
@@ -2501,5 +2502,53 @@ class Ajax extends CI_Controller {
         }
         //print_r($rtntext); exit();
         echo $rtntext;
+    }
+    function login_check($user_type='user'){
+        $CI = & get_instance();
+        if($user_type=='admin'){
+            $admin_logged_in = $CI->session->userdata('admin_logged_in');
+        } else{
+            $admin_logged_in = $CI->session->userdata('logged_in');
+        }
+        if($admin_logged_in == 1) {
+            echo true;
+        } else{
+            echo false;
+        }
+    }
+    function modal_login(){
+        $user_login=array(
+            'email_id'=>$this->input->post('username'),
+            'pwd'=>md5($this->input->post('password'))
+
+        );
+        $data = $this->user_model->login_user($user_login['email_id'],$user_login['pwd']);
+        //print_r($data); exit();
+        if($data) {
+            $this->session->set_userdata('user_id',$data['id']);
+            $this->session->set_userdata('logged_in','1');
+            $this->session->set_userdata('email',$data['email_address']);
+            $this->session->set_userdata('user_type',get_returnfield('user_roles','id',$data['role'],'name'));
+            /*if($this->input->post('remember_me')==true){
+                $this->session->set_userdata('remember_me', $this->input->post('remember_me'));
+            }*/
+            if(!isUserType('student')) {
+                $user = $this->user_model->get_user_by_id($data['id']);
+                $childs = $this->user_model->get_child_data($data['id']);
+                $data = array(
+                    'title' => 'Welcome, who are you?',
+                    'user' => $user,
+                    'childs' => $childs
+                );
+                echo true;
+
+            } else {
+                echo true;
+            }
+
+        } else{
+            echo false;
+
+        }
     }
 }

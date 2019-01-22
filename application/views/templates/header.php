@@ -36,7 +36,9 @@
     <link rel="stylesheet" media="all" href="<?php echo base_url('/assets/css/backend.css'); ?>" />
     <link rel="stylesheet" media="all" href="<?php echo base_url('/assets/css/tooltipster.bundle.min.css'); ?>" />
     <link rel="stylesheet" href="<?php echo base_url('/assets/css/jquery-ui.css'); ?>">
-    <link rel="stylesheet" href="<?php echo base_url('/assets/css/font-awesome.css'); ?>" >
+    <link rel="stylesheet" href="<?php //echo base_url('/assets/css/font-awesome.css'); ?>" >
+    <link rel="stylesheet" href="<?php echo base_url('/assets/jssocials/jssocials.css'); ?>" >
+    <link rel="stylesheet" href="<?php echo base_url('/assets/jssocials/jssocials-theme-minima.css'); ?>" >
 
     <!--[if lt IE 9]>
 
@@ -49,6 +51,7 @@
     <link rel="stylesheet" media="only screen and (max-width: 480px)" href="<?php echo base_url('/assets/css/styleMax480.css'); ?>">
     <script src="<?php echo base_url('/assets/js/jquery.js'); ?>" type="text/javascript"></script>
     <script src="<?php echo base_url('/assets/js/jquery-ui.js'); ?>"></script>
+    <script src="<?php echo base_url('/assets/jssocials/jssocials.js'); ?>"></script>
     <!--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">-->
     <script>
         var base_url='<?php echo base_url(); ?>';

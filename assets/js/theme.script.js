@@ -913,15 +913,21 @@ jQuery(document).ready(function() {
             thiselement.addClass('active');
         }
     });
-    /*jQuery('body').on('click', '.subject_top_nav .dropdown', function() {
-        var thisElement = jQuery(this);
-        console.log('aa');
-        if(thisElement.hasClass('SActive')) {
-            thisElement.removeClass('SActive');
-        } else {
-            thisElement.addClass('SActive');
+
+    jQuery(".work_single_social_share").jsSocials({
+        shares: ["twitter", "facebook", "googleplus"],
+        url: encodeURI(window.location.href),
+        text: "Applekitch",
+        showLabel: true,
+        showCount: true,
+        shareIn: "popup",
+        on: {
+            click: function(e) {},
+            mouseenter: function(e) {},
+            mouseleave: function(e) {}
         }
-    });*/
+
+    });
 });
 function search_id_genarate(type,id,dom_id){
     //alert(dom_id);
@@ -1047,4 +1053,65 @@ function search_breadcumb(type, id){
         li_data : b_rtntext
     }*/
     //return '<li>'+rtntext+'</li>';
+}
+function worksheet_print(doc) {
+    jQuery.ajax({
+        type : "post",
+        //dataType : "json",
+        url : base_url+'ajax/login_check',
+        success: function(data) {
+            if(data) {
+                console.log(data);
+                var iframe = document.createElement('iframe');
+                iframe.width="300px";
+                iframe.height="250px";
+                iframe.id="worksheet_pdf_ifra";
+                iframe.src = doc;
+                document.body.appendChild(iframe);  // Add the frame to the web page.
+                iframe.onload = function() {
+                    setTimeout(function() {
+                        iframe.focus();
+                        iframe.contentWindow.print();
+                    }, 1);
+                };
+            } else{
+                jQuery('#modalLoginForm').modal('toggle');
+            }
+        }
+    });
+
+}
+function modal_login(){
+    var username=jQuery('#username').val();
+    var password=jQuery('#password').val();
+    if(username!='' && password!=''){
+        jQuery.ajax({
+            type : "post",
+            //dataType : "json",
+            url : base_url+'ajax/modal_login',
+            data : {username: username,password:password},
+            success: function(data) {
+                if(data) {
+                    window.location.reload();
+                } else{
+                    alert('username or password incorrect!');
+                }
+            }
+        });
+    }
+}
+
+function worksheet_download(doc){
+    jQuery.ajax({
+        type : "post",
+        //dataType : "json",
+        url : base_url+'ajax/login_check',
+        success: function(data) {
+            if(data) {
+                window.location.href=doc;
+            } else{
+                jQuery('#modalLoginForm').modal('toggle');
+            }
+        }
+    });
 }

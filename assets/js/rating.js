@@ -60,7 +60,7 @@
 jQuery(function () {
     jQuery("#rating_star").spaceo_rating_widget({
         starLength: '5',
-        initialValue: '',
+        initialValue: jQuery('#rating_star').val(),
         callbackFunctionName: 'processRating',
         imageDirectory: base_url+'assets/images',
         inputAttr: 'post_id'

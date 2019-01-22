@@ -50,6 +50,22 @@ class Frontend_model extends CI_Model {
             return false;
         }
     }
+    function get_worksheet_by_slug($conditions=array()) {
+        $this->db->select('*');
+        if(!empty($conditions)){
+            $this->db->where($conditions);
+        }
+        $this->db->from('worksheets');
+        $this->db->order_by("id", "desc");
+
+        if($query = $this->db->get())
+        {
+            return $query->result();
+        }
+        else{
+            return false;
+        }
+    }
 
 
     function get_subject($conditions=array()) {

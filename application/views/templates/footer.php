@@ -72,7 +72,40 @@
 		</div>
 	</div>
 </div>
+<!--Login  Registration Modal-->
+<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <div class="md-form mb-5">
+                    <i class="fa fa-user"></i>
+                    <input type="text" name="username" id="username" class="form-control validate" placeholder="Username">
+                </div>
 
+                <div class="md-form mb-4">
+                    <i class="fa fa-lock"></i>
+                    <input type="password" name="password" id="password" class="form-control validate" placeholder="Password">
+                </div>
+
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button class="btn btn-outline-default" onclick="modal_login();">Login</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="text-center">
+    <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm">Launch
+        Modal Login Form</a>
+</div>
 <script src="<?php echo base_url('/assets/js/loader.js'); ?>" type="text/javascript"></script>
 <script src="<?php echo base_url('/assets/js/html5.js'); ?>" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -88,7 +121,9 @@
 <script src="<?php echo base_url('/assets/js/jquery.datetimepicker.js'); ?>" type="text/javascript"></script>
 <script src="<?php echo base_url('/assets/js/tooltipster.bundle.min.js'); ?>" type="text/javascript"></script>
 <script src="<?php echo base_url('/assets/js/theme.script.js'); ?>" type="text/javascript"></script>
+<script src="<?php echo base_url('/assets/js/print.min.js'); ?>" type="text/javascript"></script>
 <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+<script src="<?php echo base_url('assets/js/rating.js'); ?>"></script>
 
 <script src="<?php echo base_url('assets/js/combinations.js'); ?>"></script>
 <script>
