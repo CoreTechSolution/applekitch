@@ -1449,6 +1449,8 @@ class Admin extends CI_Controller {
                     $value['worksheet_img'] = $pdf_thumb_img;
                     $value['pdf_path'] = $img_path;
                 }
+                $value['work_uni_id']=uniqid('app-');
+                $value['create_dt']=date('Y-m-d H:i:s');
                 $insert=$this->admin_model->insert_worksheet($value);
                 //print_r($insert);exit;
 
