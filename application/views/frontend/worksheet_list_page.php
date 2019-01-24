@@ -43,6 +43,10 @@ $this->load->view('templates/header');
                                         <div class="col-lg-3 col-md-4">
                                             <a href="<?php echo base_url('frontend/worksheet/math/1/test/'.$worksheet->slug) ?>">
                                             <div class="worksheet_box">
+                                                <div class="work_list_label">
+
+                                                    <span class="badge badge-default"><?= $worksheet->label; ?></span>
+                                                </div>
                                                 <div class="work_img">
                                                     <img src="<?= $worksheet->worksheet_img; ?>" alt="">
                                                 </div>
@@ -60,10 +64,10 @@ $this->load->view('templates/header');
 
                                                 ?>
                                                 <div class="work_details">
-                                                    <div class="details">worksheet</div>
-                                                    <div class="star_rating_list">rating
+                                                    <div class="star_rating_list">
                                                         <span class="stars-container stars-10" style="--bubble-color: <?php echo $percent .'%' ?>;">★★★★★</span>
                                                     </div>
+                                                    <div class="details"><?= ucfirst(get_returnfield('work_grades','id',$worksheet->work_grade_id,'name')) ?></div>
                                                 </div>
                                             </div>
                                             </a>

@@ -3497,7 +3497,7 @@ a.custom_button {
     top: 0;
     left: 0;
     content: '★★★★★';
-    color: gold;
+    color: #0bc1b6;
     overflow: hidden;
     width: var(--bubble-color);
 }
@@ -3522,6 +3522,16 @@ a.custom_button {
 }
 .spaceo_rating_widget li span{
     display: none !important;
+}
+.work_list_label {
+    position: absolute;
+    text-align: right;
+    right: 15px;
+    top: 0;
+}
+.badge-default{
+    background: #0bc1b6;
+    color: #ffffff;
 }
 @media screen and (max-width: 40em) {
    /* !* #menu is the original menu *!
