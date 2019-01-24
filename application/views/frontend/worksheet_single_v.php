@@ -81,15 +81,15 @@ $this->load->view('templates/header');
                                                 <table class="work_single_table">
                                                     <tr>
                                                         <th>Year Group</th>
-                                                        <td>Year  1</td>
+                                                        <td><?= get_returnfield('work_grades','id',$worksheets[0]->work_grade_id,'name'); ?></td>
                                                     </tr>
                                                     <tr>
                                                         <th>Subject</th>
-                                                        <td>Math</td>
+                                                        <td><?= get_returnfield('work_subjects','id',$worksheets[0]->work_subject_id,'name'); ?></td>
                                                     </tr>
                                                     <tr>
                                                         <th>Category</th>
-                                                        <td>Year  1</td>
+                                                        <td><?= get_returnfield('work_categories','id',$worksheets[0]->work_cat_id,'name'); ?></td>
                                                     </tr>
                                                 </table>
 
