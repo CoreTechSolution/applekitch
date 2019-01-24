@@ -1,7 +1,7 @@
 <div class="worksheet_sidebar">
     <?php if(!empty($work_subjects)){ ?>
         <div class="clear_search">
-            <a href="javascript:void(0)" onclick="clear_work_search();">Clear Search</a>
+            <a href="javascript:void(0)" onclick="clear_work_search();">- Clear Search</a>
         </div>
         <div class="sidebar_header">By Subject</div>
         <ul>

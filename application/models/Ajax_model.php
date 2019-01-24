@@ -212,4 +212,10 @@ class Ajax_model extends CI_Model{
             return false;
         }
     }
+    function add_to_favorite($data) {
+
+        $this->db->insert('worksheet_favorite', $data);
+        $insert_id = $this->db->insert_id();
+        return $insert_id;
+    }
 }

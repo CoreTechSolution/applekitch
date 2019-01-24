@@ -3342,31 +3342,46 @@ a.custom_button {
     padding: 0px 0 0 0;
 }
 .worksheet_sidebar .sidebar_header {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 500;
     padding: 5px 10px;
-    background: #e84c24;
-    color: #fff;
-    margin: 0 0 8px 0;
+    /* background: #e84c24; */
+    color: #868080;
+    margin: 0 0 1px 0;
+}
+.bx-wrapper{
+    border:none;
+    background:none;
+    box-shadow:none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    margin: 10px 0;
 }
 .worksheet_sidebar ul {
     padding: 0 0 0 28px;
-    list-style: disclosure-closed;
+    list-style: none;
+    margin: 0;
 }
 .worksheet_sidebar ul li {
-    padding: 2px 0;
-    border-bottom: 1px solid #e4e4e4;
+    /*padding: 2px 0;*/
+    /*border-bottom: 1px solid #e4e4e4;*/
     font-size: 14px;
 }
-.worksheet_sidebar ul li a{
-
+.worksheet_sidebar ul li a {
+    color: #474747;
+    font-size: 13px;
 }
 .worksheet_sidebar ul li a:hover{
 
 }
-.active_work{
+.active_work {
     color: #e84c24;
     font-weight: 500;
+    background: #ededed;
+}
+.filter_sort {
+    text-align: right;
+    padding: 26px 0;
 }
 .search_boardcumb{
     display:none;
@@ -3411,15 +3426,27 @@ a.custom_button {
     font-size: 12px;
     color: #848282;
 }
+.worksheet_box .work_details .details {
+    display: inline-block;
+}
 .leading_worksheet {
     display: none;
     width: 100%;
     text-align: center;
 }
-.clear_search {
-    font-size: 14px;
+.filter_sort {
     text-align: right;
-    padding-bottom: 11px;
+    padding: 26px 0;
+    font-size: 14px;
+    font-weight: 400;
+}
+.filter_sort select {
+    padding: 0;
+    font-size: 12px;
+    margin-left: 10px;
+}
+.filter_sort select option {
+    font-size: 12px;
 }
 .worksheet_single_sidebar {
     background: #f9f9f9;
@@ -3429,10 +3456,7 @@ a.custom_button {
     padding: 6px 15px;
     border-bottom: 1px solid #dbdbdb;
 }
-.worksheet_single_sidebar .work_single_details {
-    /* padding: 5px 15px; */
-    /*border-bottom: 1px solid #dbdbdb;*/
-}
+
 .worksheet_single_sidebar .work_single_details .work_single_id {
     font-size: 20px;
     border-bottom: 1px solid #dbdbdb;
@@ -3445,37 +3469,88 @@ a.custom_button {
     display: block;
     padding: 4px 0;
 }
-.worksheet_single_sidebar .work_single_download {
+.work_single_download {
     font-size: 20px;
-    border-bottom: 1px solid #dbdbdb;
+    /* border-bottom: 1px solid #dbdbdb; */
     padding: 12px 15px;
     text-transform: uppercase;
+    width: 70%;
 }
-.worksheet_single_sidebar .work_single_download .work_single_print_btn {
+.work_single_download .work_single_print_btn {
     width: 100%;
     background: #65b7f5;
     display: block;
-    text-align: center;
+    text-align: left;
     color: #fff;
-    padding: 10px 0;
+    padding: 10px 10px;
     margin: 10px 0 0 0;
     border-radius: 5px;
 }
-.worksheet_single_sidebar .work_single_download .work_single_download_btn {
+.work_single_download .work_single_print_btn i {
+    float: right;
+}
+.work_single_download .work_single_download_btn {
     width: 100%;
-    background: #f1693c;
+    background: #a8cf41;
     display: block;
-    text-align: center;
+    text-align: left;
     color: #fff;
-    padding: 10px 0;
+    padding: 10px 10px;
     margin: 10px 0 0 0;
     border-radius: 5px;
+}
+.work_single_download .work_single_download_btn i {
+    float: right;
+}
+.work_single_download .work_single_favorite_btn {
+    width: 180px;
+    background: #e0e0e0;
+    display: block;
+    text-align: left;
+    color: #fff;
+    padding: 10px 10px;
+    margin: 10px 0 0 0;
+    border-radius: 5px;
+    text-transform: capitalize;
+    font-size: 17px;
+    color: #666666;
 }
 .work_single_image {
     border: 1px solid #ccc;
     padding: 5px;
     border-radius: 5px;
     margin: 10px 0 0 0;
+}
+.work_single_details {
+    background: #f2f2f2;
+    padding: 10px;
+    width: 75%;
+}
+.work_single_table {
+
+}
+.work_single_table tr{
+
+}
+.work_single_table tr th {
+    padding: 10px 25px 0 10px;
+}
+.work_single_table tr td{
+    padding: 10px 25px 0 10px;
+}
+.work_single_right_content{
+
+}
+.work_single_rating {
+    padding: 10px 0;
+    text-align: left;
+}
+.work_single_rating .spaceo_rating_widget {
+    float: none;
+    display: inline-block;
+    /* padding: 10px 0; */
+    /* margin-top: 10px; */
+    vertical-align: bottom;
 }
 /*star rating frontend modal style*/
 .stars-container {
@@ -3501,8 +3576,10 @@ a.custom_button {
     overflow: hidden;
     width: var(--bubble-color);
 }
-.star_rating_list{
-
+.star_rating_list {
+    display: inline-block;
+    width: 45%;
+    margin: 10px 0;
 }
 .spaceo_rating_widget{
     padding: 0px;
@@ -3532,6 +3609,9 @@ a.custom_button {
 .badge-default{
     background: #0bc1b6;
     color: #ffffff;
+}
+.work_related_div {
+    padding: 30px 0;
 }
 @media screen and (max-width: 40em) {
    /* !* #menu is the original menu *!

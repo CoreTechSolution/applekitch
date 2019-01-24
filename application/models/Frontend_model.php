@@ -40,7 +40,7 @@ class Frontend_model extends CI_Model {
             $this->db->where($conditions);
         }
         $this->db->from('worksheets');
-        $this->db->order_by("id", "desc");
+        $this->db->order_by("create_dt", "desc");
 
         if($query = $this->db->get())
         {
@@ -67,6 +67,21 @@ class Frontend_model extends CI_Model {
         }
     }
 
+    function get_related_worksheets($id){
+	    $this->db->select('*');
+	    $this->db->where("id<>".$id);
+        $this->db->limit(10, 0);
+        $this->db->from('worksheets');
+        $this->db->order_by("create_dt", "desc");
+
+        if($query = $this->db->get())
+        {
+            return $query->result();
+        }
+        else{
+            return false;
+        }
+    }
 
     function get_subject($conditions=array()) {
         $this->db->select('*');

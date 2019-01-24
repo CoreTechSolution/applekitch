@@ -167,12 +167,11 @@ class Frontend extends CI_Controller {
 	    //print_r($worksheet_id[0]->id); exit();
         $data['worksheets']=$this->frontend_model->get_worksheets(array('id'=>$worksheet_id[0]->id));
         $data['title']=get_returnfield('worksheets','id',$worksheet_id[0]->id,'name');
-        //$data['worksheets']=$this->frontend_model->get_worksheets(array('work_subject_id'=>));
-        /*$data['work_subjects']=$this->frontend_model->get_work_subjects();
+        $data['work_subjects']=$this->frontend_model->get_work_subjects();
         $data['work_grades']=$this->frontend_model->get_work_grades();
         $data['work_categories']=$this->frontend_model->get_work_categories();
         $data['work_topics']=$this->frontend_model->get_work_topics();
-        $data['worksheetrating']=$this->frontend_model->get_worksheet_rating();*/
+        $data['related_worksheets']=$this->frontend_model->get_related_worksheets($worksheet_id[0]->id);
 
 
         $this->load->view('frontend/worksheet_single_v', $data);

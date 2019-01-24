@@ -2433,6 +2433,11 @@ class Ajax extends CI_Controller {
     public function search_worksheet(){
 	    $where='';
         $html='';
+        $title='Worksheet';
+        $subject_title='';
+        $grade_title='';
+        $cat_title='';
+        $topic_title='';
 	    $subject_ids=$_POST['subject_ids'];
 	    $grade_ids=$_POST['grade_ids'];
 	    $cat_ids=$_POST['cat_ids'];
@@ -2443,15 +2448,19 @@ class Ajax extends CI_Controller {
 	    $topic_query = (!empty($topic_ids)) ? "work_topic_id IN (".$topic_ids.")" : "";
 	    if(!empty($subject_query)){
 	        $where.=(!empty($where))?' AND '.$subject_query : $subject_query;
+            $subject_title=get_returnfield('work_subjects','id',$subject_ids,'name');
         }
         if(!empty($grade_query)){
             $where.=(!empty($where))?' AND '.$grade_query : $grade_query;
+            $grade_title=get_returnfield('work_grades','id',$grade_ids,'name');
         }
         if(!empty($cat_query)){
             $where.=(!empty($where))?' AND '.$cat_query : $cat_query;
+            $cat_title=get_returnfield('work_categories','id',$cat_ids,'name');
         }
         if(!empty($topic_query)){
             $where.=(!empty($where))?' AND '.$topic_query : $topic_query;
+            $topic_title=get_returnfield('work_topics','id',$topic_ids,'name');
         }
 
         $worksheets=$this->ajax_model->get_worksheets($where);
@@ -2460,18 +2469,35 @@ class Ajax extends CI_Controller {
             foreach ($worksheets as $worksheet) {
                 $html.='
                 <div class="col-lg-3 col-md-4">
-                                            <a href="#">
+                                         <a href="'.base_url('frontend/worksheet/'.get_returnfield('work_subjects','id',$worksheet->work_subject_id,'slug').'/'.get_returnfield('work_grades','id',$worksheet->work_grade_id,'slug').'/'.get_returnfield('work_categories','id',$worksheet->work_cat_id,'slug').'/'.$worksheet->slug) .'">
                                             <div class="worksheet_box">
+                                             <div class="work_list_label">
+
+                                                    <span class="badge badge-default">'. $worksheet->label.'</span>
+                                                </div>
                                                 <div class="work_img">
                                                     <img src="'.$worksheet->worksheet_img.'" alt="">
                                                 </div>
                                                 <div class="work_name">
                                                     '.$worksheet->name.'
-                                                </div>
-                                                <div class="work_details">
-                                                    <div class="details">worksheet</div>
-                                                    <div class="star_rating">rating<span class="stars-container stars-10">★★★★★</span></div>
-                                                </div>
+                                                </div>';
+                $total_point=get_returnfield('worksheet_rating','worksheet_id',$worksheet->id,'total_points');
+                $rating_numbers=get_returnfield('worksheet_rating','worksheet_id',$worksheet->id,'rating_number');
+                if($total_point!=0 && $rating_numbers!=0){
+                    $percent= ($total_point/($rating_numbers*5))*100;
+                } else{
+                    $percent= 0;
+                }
+                $html.='<div class="work_details">
+                                                    <div class="star_rating_list">
+                                                        <span class="stars-container stars-10" style="--bubble-color:'. $percent .'% ">★★★★★</span>
+                                                    </div>
+                                                    <div class="details">'.
+                                                        ucfirst(get_returnfield('work_grades','id',$worksheet->work_grade_id,'name')).'
+                                                        &nbsp;&nbsp;&nbsp;'.ucfirst(get_returnfield('work_subjects','id',$worksheet->work_subject_id,'name')).'
+                                                    </div>
+                                                </div>';
+                $html.='
                                             </div>
                                             </a>
                                         </div>
@@ -2480,10 +2506,37 @@ class Ajax extends CI_Controller {
 
             $html.='</div>';
         }
+        if(!empty($subject_title)){
+            $title=$subject_title.' Worksheets';
+        }
+        if(!empty($grade_title)){
+            $title=$subject_title.' Worksheets for '. $grade_title;
+        }
+        if(!empty($topic_title)){
+            $title=$topic_title.' '. $subject_title.' Worksheets for '. $grade_title;
+        }
         if(empty($html)){
             $html='<h4>No data found!</h4>';
+            $title='Worksheet';
         }
-        echo $html;
+        $rtn=array();
+        $rtn['title']=$title;
+        $rtn['html']=$html;
+
+        echo json_encode($rtn);
+    }
+    function add_to_favorite(){
+	    $rtn=false;
+	    $work_id=$_POST['work_id'];
+	    $value['worksheet_id']=$work_id;
+	    $value['user_id']=get_current_user_id();
+	    $value['create_dt']=date('Y-m-d H:i:s');
+	    $rtn=$this->ajax_model->add_to_favorite($value);
+	    if($rtn){
+	        echo true;
+        } else{
+	        echo false;
+        }
     }
     function get_returnfield(){
 	    $db=$_POST['table'];
