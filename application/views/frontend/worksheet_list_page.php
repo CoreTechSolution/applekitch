@@ -49,9 +49,21 @@ $this->load->view('templates/header');
                                                 <div class="work_name">
                                                     <?= $worksheet->name; ?>
                                                 </div>
+                                                <?php
+                                                $total_point=get_returnfield('worksheet_rating','worksheet_id',$worksheet->id,'total_points');
+                                                $rating_numbers=get_returnfield('worksheet_rating','worksheet_id',$worksheet->id,'rating_number');
+                                                if($total_point!=0 && $rating_numbers!=0){
+                                                    $percent= ($total_point/($rating_numbers*5))*100;
+                                                } else{
+                                                    $percent= 0;
+                                                }
+
+                                                ?>
                                                 <div class="work_details">
                                                     <div class="details">worksheet</div>
-                                                    <div class="star_rating">rating<span class="stars-container stars-10">★★★★★</span></div>
+                                                    <div class="star_rating_list">rating
+                                                        <span class="stars-container stars-10" style="--bubble-color: <?php echo $percent .'%' ?>;">★★★★★</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                             </a>
@@ -62,69 +74,6 @@ $this->load->view('templates/header');
                             <?php } ?>
 
                         </div>
-
-                        <div class="pageContainer">
-                            <?php
-                            $total_point=0;
-                            $rating_numbers=0;
-
-                            if(!empty($worksheets)){
-
-                                foreach ($worksheetrating as $row){
-                                    $row->total_points.'<br>';
-                                    $row->rating_number.'<br>';
-                                    $total_point+=$row->total_points;
-                                    $rating_numbers+=$row->rating_number;?>
-                                    <?php
-                                }
-                            }
-                            ?>
-                            <?php /*echo $total_point;*/?><!--
-                            --><?php /*echo $rating_numbers*/?>
-                            <?php
-                            $percent= ($rating_numbers/$total_point)*100;
-
-                            /*echo $percent.'%';*/
-                            ?>
-                        </div>
-                        <style>
-                            body { font-size: 18px; }
-
-                            .stars-container {
-                                position: relative;
-                                display: inline-block;
-                                color: transparent;
-                            }
-
-                            .stars-container:before {
-                                position: absolute;
-                                top: 0;
-                                left: 0;
-                                content: '★★★★★';
-                                color: lightgray;
-                            }
-
-                            .stars-container:after {
-                                position: absolute;
-                                top: 0;
-                                left: 0;
-                                content: '★★★★★';
-                                color: gold;
-                                overflow: hidden;
-                            }
-
-
-
-
-                            .stars-10:after { width: <?php echo $percent .'%' ?>; }
-
-
-
-                        </style>
-
-
-<!--                        <div><span class="stars-container stars-10">★★★★★</span></div>
--->
                     </div>
                 </div>
                 <?php if(!empty($grade_content)){ ?>

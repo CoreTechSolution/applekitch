@@ -3478,7 +3478,32 @@ a.custom_button {
     margin: 10px 0 0 0;
 }
 /*star rating frontend modal style*/
+.stars-container {
+    position: relative;
+    display: inline-block;
+    color: transparent;
+}
 
+.stars-container:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: '★★★★★';
+    color: lightgray;
+}
+
+.stars-container:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: '★★★★★';
+    color: gold;
+    overflow: hidden;
+    width: var(--bubble-color);
+}
+.star_rating_list{
+
+}
 .spaceo_rating_widget{
     padding: 0px;
     margin: 0px;
