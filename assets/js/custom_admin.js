@@ -70,6 +70,8 @@ function initializetinymce(){
         plugins: 'print preview searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount imagetools  contextmenu colorpicker textpattern help code',
         toolbar1: 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat | code',
         image_advtab: true,
+        relative_urls : false,
+        remove_script_host : false,
         templates: [
             { title: 'Test template 1', content: 'Test 1' },
             { title: 'Test template 2', content: 'Test 2' }
@@ -125,6 +127,159 @@ jQuery(document).ready(function() {
                 }
             })
             //$('#slug').val(slug_text);
+        }
+    });
+    jQuery('body').on('change', '#name_work_sub', function (e) {
+        var slug_text = jQuery(this).val().trim();
+        if (slug_text.length > 0) {
+            slug_text = slug_text.toLowerCase();
+            slug_text = slug_text.replace(/[^a-zA-Z0-9 ]+/g, "");
+            slug_text = slug_text.replace(/\s+/g, "-");
+            jQuery.ajax({
+                url: base_url + 'ajax/get_work_sub_slug_ajax',
+                data: { slug: slug_text },
+                type: 'post',
+                success: function (res) {
+                    jQuery('#slug').val(res);
+                }
+            })
+        }
+    });
+    jQuery('body').on('change', '#name_work_grade', function (e) {
+        var slug_text = jQuery(this).val().trim();
+        if (slug_text.length > 0) {
+            slug_text = slug_text.toLowerCase();
+            slug_text = slug_text.replace(/[^a-zA-Z0-9 ]+/g, "");
+            slug_text = slug_text.replace(/\s+/g, "-");
+            jQuery.ajax({
+                url: base_url + 'ajax/get_work_grade_slug_ajax',
+                data: { slug: slug_text },
+                type: 'post',
+                success: function (res) {
+                    jQuery('#slug').val(res);
+                }
+            })
+        }
+    });
+    jQuery('body').on('change', '#name_work_cat', function (e) {
+        var slug_text = jQuery(this).val().trim();
+        if (slug_text.length > 0) {
+            slug_text = slug_text.toLowerCase();
+            slug_text = slug_text.replace(/[^a-zA-Z0-9 ]+/g, "");
+            slug_text = slug_text.replace(/\s+/g, "-");
+            jQuery.ajax({
+                url: base_url + 'ajax/get_work_cat_slug_ajax',
+                data: { slug: slug_text },
+                type: 'post',
+                success: function (res) {
+                    jQuery('#slug').val(res);
+                }
+            })
+        }
+    });
+    jQuery('body').on('change', '#name_work_topic', function (e) {
+        var slug_text = jQuery(this).val().trim();
+        if (slug_text.length > 0) {
+            slug_text = slug_text.toLowerCase();
+            slug_text = slug_text.replace(/[^a-zA-Z0-9 ]+/g, "");
+            slug_text = slug_text.replace(/\s+/g, "-");
+            jQuery.ajax({
+                url: base_url + 'ajax/get_work_topic_slug_ajax',
+                data: { slug: slug_text },
+                type: 'post',
+                success: function (res) {
+                    jQuery('#slug').val(res);
+                }
+            })
+        }
+    });
+    jQuery('body').on('change', '#name_worksheet', function (e) {
+        var slug_text = jQuery(this).val().trim();
+        if (slug_text.length > 0) {
+            slug_text = slug_text.toLowerCase();
+            slug_text = slug_text.replace(/[^a-zA-Z0-9 ]+/g, "");
+            slug_text = slug_text.replace(/\s+/g, "-");
+            jQuery.ajax({
+                url: base_url + 'ajax/get_worksheet_slug_ajax',
+                data: { slug: slug_text },
+                type: 'post',
+                success: function (res) {
+                    jQuery('#slug').val(res);
+                }
+            })
+        }
+    });
+    jQuery('body').on('change', '#work_subject_id', function (e) {
+        var id = jQuery(this).val().trim();
+        if (id.length > 0) {
+            jQuery.ajax({
+                url: base_url + 'ajax/get_sub_wise_grade',
+                data: { id: id, table:'work_grades' },
+                type: 'post',
+                success: function (res) {
+                    jQuery('#work_grade_id').html(res);
+                }
+            })
+        }
+    });
+    jQuery('body').on('change', '#work_grade_id', function (e) {
+        var id = jQuery(this).val().trim();
+        if (id.length > 0) {
+            jQuery.ajax({
+                url: base_url + 'ajax/get_sub_wise_grade',
+                data: { id: id, table: 'work_categories' },
+                type: 'post',
+                success: function (res) {
+                    jQuery('#work_cat_id').html(res);
+                }
+            })
+        }
+    });
+    jQuery('body').on('blur', '#work_grade_id', function (e) {
+        var id = jQuery(this).val().trim();
+        if (id.length > 0) {
+            jQuery.ajax({
+                url: base_url + 'ajax/get_sub_wise_grade',
+                data: { id: id, table: 'work_categories' },
+                type: 'post',
+                success: function (res) {
+                    jQuery('#work_cat_id').html(res);
+                }
+            })
+        }
+    });
+    jQuery('body').on('change', '#work_cat_id', function (e) {
+        var id = jQuery(this).val().trim();
+        if (id.length > 0) {
+            jQuery.ajax({
+                url: base_url + 'ajax/get_sub_wise_grade',
+                data: { id: id, table: 'work_topics' },
+                type: 'post',
+                success: function (res) {
+                    jQuery('#work_topic_id').html(res);
+                }
+            })
+        }
+    });
+    jQuery('body').on('blur', '#work_cat_id', function (e) {
+        var id = jQuery(this).val().trim();
+        if (id.length > 0) {
+            jQuery.ajax({
+                url: base_url + 'ajax/get_sub_wise_grade',
+                data: { id: id, table: 'work_topics' },
+                type: 'post',
+                success: function (res) {
+                    jQuery('#work_topic_id').html(res);
+                }
+            })
+        }
+    });
+    jQuery('body').on('change','#work_label_select', function (e) {
+        var slug_text=jQuery(this).val().trim();
+        if(slug_text=='0'){
+            jQuery('#work_new_days_limit').show();
+        } else{
+            jQuery('#work_new_days_limit').hide();
         }
     });
  /*   jQuery('body').on('keyup','#topic_name', function (e) {

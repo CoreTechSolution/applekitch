@@ -1451,6 +1451,7 @@ class Admin extends CI_Controller {
                 }
                 $value['work_uni_id']=uniqid('app-');
                 $value['create_dt']=date('Y-m-d H:i:s');
+                $value['new_days_limit']=$this->input->post('new_days_limit');
                 $insert=$this->admin_model->insert_worksheet($value);
                 //print_r($insert);exit;
 

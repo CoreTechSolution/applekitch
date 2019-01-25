@@ -152,9 +152,60 @@ class Frontend extends CI_Controller {
 		$this->load->view('frontend/questions_page',$data);
 	}
 
-	public function worksheets(){
+	public function worksheets($subject_slug='',$grade_slug='',$cat_slug='',$topic_slug=''){
         $data['title']='Worksheets';
-        $data['worksheets']=$this->frontend_model->get_worksheets();
+        $where='';
+        if(!empty($_GET)){
+            $type=$_GET['type'];
+            $id=$_GET['id'];
+            if($type=='subject'){
+                $data['worksheets']=$this->frontend_model->get_worksheets(array('work_subject_id'=>$id));
+            } elseif($type=="grade") {
+                $data['worksheets']=$this->frontend_model->get_worksheets(array('work_grade_id'=>$id));
+            } elseif($type=="cat") {
+                $data['worksheets']=$this->frontend_model->get_worksheets(array('work_cat_id'=>$id));
+            } elseif($type=="topic") {
+                $data['worksheets']=$this->frontend_model->get_worksheets(array('work_topic_id'=>$id));
+            }
+
+        } else{
+            $data['worksheets']=$this->frontend_model->get_worksheets();
+            $start_index = ($this->uri->segment(2)) ? $this->uri->segment(2) : 0;
+        }
+
+        if($subject_slug!=''){
+            $subject_id=get_id_by_slug('id',$subject_slug,'work_subjects');
+            $where.=($where!='')?' AND work_subject_id='.$subject_id:' work_subject_id='.$subject_id;
+            $start_index = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        }
+        if($grade_slug!=''){
+            $grade_id=get_id_by_slug('id',$grade_slug,'work_grades');
+            $where.=($where!='')?' AND work_grade_id='.$grade_id:' work_grade_id='.$grade_id;
+            $start_index = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
+        }
+        if($cat_slug!=''){
+            $cat_id=get_id_by_slug('id',$cat_slug,'work_categories');
+            $where.=($where!='')?' AND work_cat_id='.$cat_id:' work_cat_id='.$cat_id;
+            $start_index = ($this->uri->segment(5)) ? $this->uri->segment(5) : 0;
+        }
+        if($topic_slug!=''){
+            $topic_id=get_id_by_slug('id',$topic_slug,'work_topics');
+            $where.=($where!='')?' AND work_topic_id='.$topic_id:' work_topic_id='.$topic_id;
+            $start_index = ($this->uri->segment(6)) ? $this->uri->segment(6) : 0;
+        }
+        if($where!=''){
+            $data['worksheets']=$this->frontend_model->get_worksheets($where);
+        }
+        /*for pagination*/
+
+        //$limit_per_page = 32;
+
+        //$total_records = $this->Users->get_total();
+
+
+
+
+        //echo $this->db->last_query(); exit();
         $data['work_subjects']=$this->frontend_model->get_work_subjects();
         $data['work_grades']=$this->frontend_model->get_work_grades();
         $data['work_categories']=$this->frontend_model->get_work_categories();

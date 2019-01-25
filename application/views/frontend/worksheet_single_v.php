@@ -2,19 +2,31 @@
 $this->load->view('templates/header');
 ?>
     <div class="wrapper inner-pages">
-        <!--<div class="breadcrumbs_section">
+        <div class="breadcrumbs_section">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
                         <ul class="breadcrumbs">
-                            <?php /*//print_r($this->uri->segment(3)); */?>
-                            <li class="breadcrumbs__item"><a href="<?/*= base_url(); */?>" class="breadcrumbs__element">Home</a></li>
-                            <li class="breadcrumbs__item"><a href="<?/*= base_url($this->uri->segment(2)); */?>" class="breadcrumbs__element"><?php /*echo ucfirst($this->uri->segment(2)) */?></a></li>
+                            <?php //print_r($this->uri->segment(3)); ?>
+                            <li class="breadcrumbs__item"><a href="<?= base_url(); ?>" class="breadcrumbs__element">Home</a></li>
+                            <?php if(!empty($this->uri->segment(1))) { ?>
+                                <li class="breadcrumbs__item"><a href="<?= base_url($this->uri->segment(1).'s'); ?>" class="breadcrumbs__element"><?php echo ucfirst($this->uri->segment(1)).'s' ?></a></li>
+                            <?php } ?>
+                            <?php if(!empty($this->uri->segment(2))) { ?>
+                                <li class="breadcrumbs__item"><a href="<?= base_url('worksheets/'.$this->uri->segment(2)); ?>" class="breadcrumbs__element"><?php echo ucfirst($this->uri->segment(2)) ?></a></li>
+                            <?php } ?>
+                            <?php if(!empty($this->uri->segment(3))) { ?>
+                                <li class="breadcrumbs__item"><a href="<?= base_url('worksheets/'.$this->uri->segment(2).'/'.$this->uri->segment(3)); ?>" class="breadcrumbs__element"><?php echo ucfirst($this->uri->segment(3)) ?></a></li>
+                            <?php } ?>
+                            <?php if(!empty($this->uri->segment(4))) { ?>
+                                <li class="breadcrumbs__item"><a href="<?= base_url('worksheets/'.$this->uri->segment(2).'/'.$this->uri->segment(3).'/'.$this->uri->segment(4)); ?>" class="breadcrumbs__element"><?php echo ucfirst($this->uri->segment(4)) ?></a></li>
+                            <?php } ?>
+
                         </ul>
                     </div>
                 </div>
             </div>
-        </div>-->
+        </div>
         <style type="text/css">
             .overall-rating{font-size: 14px;margin-top: 5px;color: #8e8d8d;}
         </style>
@@ -24,7 +36,11 @@ $this->load->view('templates/header');
                     <div class="row">
                         <?php if(!empty($worksheets)){ ?>
                             <div class="col-lg-3 col-md-3">
-                                <?php $this->load->view('frontend/template_part/worksheet_sidebar'); ?>
+                                <?php
+                                $p_data=array();
+                                $p_data['single']=true;
+                                ?>
+                                <?php $this->load->view('frontend/template_part/worksheet_sidebar',$p_data); ?>
                             </div>
                             <div class="col-lg-9 col-md-9">
                                 <div class="row">

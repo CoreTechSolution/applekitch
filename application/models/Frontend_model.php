@@ -39,6 +39,7 @@ class Frontend_model extends CI_Model {
         if(!empty($conditions)){
             $this->db->where($conditions);
         }
+        $this->db->join('worksheet_rating','worksheets.id=worksheet_rating.worksheet_id','left');
         $this->db->from('worksheets');
         $this->db->order_by("create_dt", "desc");
 

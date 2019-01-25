@@ -196,13 +196,20 @@ class Ajax_model extends CI_Model{
 			return false;
 		}
 	}
-    function get_worksheets($conditions=array()) {
+    function get_worksheets($conditions=array(),$sort_by='') {
         $this->db->select('*');
         if(!empty($conditions)){
             $this->db->where($conditions);
         }
+        $this->db->join('worksheet_rating','worksheets.id=worksheet_rating.worksheet_id','left');
         $this->db->from('worksheets');
-        $this->db->order_by("id", "desc");
+        if($sort_by=='most_recent'){
+            $this->db->order_by("create_dt", "desc");
+        } elseif($sort_by=='most_popular') {
+            $this->db->order_by("total_points", "desc");
+        } else{
+            $this->db->order_by("create_dt", "desc");
+        }
 
         if($query = $this->db->get())
         {

@@ -71,9 +71,14 @@ require_once 'templates/header.php';
                                 <label>PDF File: </label>
                                 <input type="file" name="pdf_path" class="form-control" />
                             </div>
-                             <div class="col-lg-6 col-md-6 col-6">
+                             <div class="col-lg-4 col-md-4 col-6">
                                 <label>Label: </label>
-                                <?php echo form_dropdown('label',array('New','Premium','Free'),'',array('class'=>'form-control')); ?>
+                                <?php echo form_dropdown('label',array('New','Premium','Free'),'',array('class'=>'form-control','id'=>'work_label_select')); ?>
+
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-6" id="work_new_days_limit">
+                                <label>Days: </label>
+                                <br><input type="number" min="0" name="new_days_limit" value="0">
                             </div>
                             <div class="col-lg-6 col-md-6 col-6">
                                 <h3>Rating</h3>

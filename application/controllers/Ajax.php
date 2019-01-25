@@ -2462,8 +2462,12 @@ class Ajax extends CI_Controller {
             $where.=(!empty($where))?' AND '.$topic_query : $topic_query;
             $topic_title=get_returnfield('work_topics','id',$topic_ids,'name');
         }
-
-        $worksheets=$this->ajax_model->get_worksheets($where);
+        if(!empty($_POST['sort_by'])){
+            $worksheets=$this->ajax_model->get_worksheets($where,$_POST['sort_by']);
+        } else {
+            $worksheets=$this->ajax_model->get_worksheets($where);
+        }
+        $worksheets=$this->ajax_model->get_worksheets($where,$_POST['sort_by']);
         if(!empty($worksheets)){
             $html.='<div class="row">';
             foreach ($worksheets as $worksheet) {

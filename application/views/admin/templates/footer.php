@@ -1,7 +1,4 @@
-</body>
-<!-- Icons -->
-
-<script src="<?php echo base_url('/assets/js/bootstrap.min.js'); ?>" type="text/javascript"></script>
+<script src="<?php echo base_url('/assets/js/bootstrap.min.js'); ?>"></script>
 <script src="<?php echo base_url('/assets/js/footable.js'); ?>" type="text/javascript"></script>
 <script src="<?php echo base_url('/assets/js/jquery.fancybox.pack.js'); ?>" type="text/javascript"></script>
 <script src="<?php echo base_url('/assets/js/sweetalert2.min.js'); ?>"></script>
@@ -18,4 +15,8 @@
         //jQuery('.table').append(html).trigger('footable_redraw');
     });
 </script>
+</body>
+<!-- Icons -->
+
+
 </html>

@@ -946,6 +946,8 @@ jQuery(document).ready(function() {
 });
 function search_id_genarate(type,id,dom_id){
     //alert(dom_id);
+    var sort_by=jQuery('#filter_short').val();
+    sort_by=jQuery('select#filter_short option:selected').val();
     jQuery('.leading_worksheet').show();
     jQuery('#worksheet_list_main').html('');
     if(type=='subject'){
@@ -991,7 +993,7 @@ function search_id_genarate(type,id,dom_id){
         type : "post",
         dataType : "json",
         url : base_url+'ajax/search_worksheet',
-        data : {subject_ids: jQuery('#search_subject_id').val(),grade_ids: jQuery('#search_grade_id').val(),cat_ids: jQuery('#search_cat_id').val(),topic_ids: jQuery('#search_topic_id').val()},
+        data : {subject_ids: jQuery('#search_subject_id').val(),grade_ids: jQuery('#search_grade_id').val(),cat_ids: jQuery('#search_cat_id').val(),topic_ids: jQuery('#search_topic_id').val(),sort_by:sort_by},
         success: function(response) {
             //console.log(response);
             if(response) {
@@ -1020,7 +1022,8 @@ function clear_work_search(){
             //console.log(response);
             if(response) {
                 jQuery('.leading_worksheet').hide();
-                jQuery('#worksheet_list_main').html(response.html);
+                window.location.href=base_url+'worksheets';
+                //jQuery('#worksheet_list_main').html(response.html);
                 //jQuery('#work_list_dynamic_title').html(response.title);
             }
         }
