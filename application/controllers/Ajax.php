@@ -2608,4 +2608,38 @@ class Ajax extends CI_Controller {
 
         }
     }
+    public function modal_register(){
+	    $rtn=array();
+        $user = array(
+            'fname' => $this->input->post('fname'),
+            'lname' => $this->input->post('lname'),
+            'email_address' => $this->input->post('email_address'),
+            //'phone' => $this->input->post('phone'),
+            'password' => md5($this->input->post('pwd1')),
+            'role' => $this->input->post('user_type')
+        );
+
+        $email_check = $this->user_model->email_check($user['email_address']);
+
+        if($email_check) {
+            $return_id=$this->user_model->register_user($user);
+            if($return_id){
+                $msg = 'Welcome to AppleKitch<br /><br />Please click on the link to complete the registration process.<br><br>Activation Link :<a href="'.base_url('/register/activation').'/?email='.encripted($this->input->post('email_address')).'" target="_blank">'.base_url('/register/activation').'/?email='.encripted($this->input->post('email_address')).'</a><br><br>Regards,<br>AppleKitch';
+                send_mail($this->input->post('email_address'), 'Activate your account', $msg);
+                $rtn['msg']='Please check your email to complete the activation process';
+                $rtn['status']=true;
+            } else{
+                $rtn['msg']='Try again later';
+                $rtn['status']=false;
+            }
+
+
+
+        } else {
+            $rtn['msg']='Email address already exists';
+            $rtn['status']=false;
+
+        }
+        echo json_encode($rtn);
+    }
 }

@@ -10,6 +10,8 @@ class User_model extends CI_Model{
 
 	public function register_user($user){
 		$this->db->insert('user', $user);
+        $insert_id = $this->db->insert_id();
+        return $insert_id;
 	}
 
 	public function activate_user($email) {

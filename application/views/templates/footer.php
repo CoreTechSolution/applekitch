@@ -77,27 +77,76 @@
      aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header text-center">
-                <h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
+
+            <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-            </div>
-            <div class="modal-body mx-3">
-                <div class="md-form mb-5">
-                    <i class="fa fa-user"></i>
-                    <input type="text" name="username" id="username" class="form-control validate" placeholder="Username">
-                </div>
+                <ul id="myTab" class="nav nav-tabs nav-tabs-responsive" role="tablist">
+                    <li role="presentation" class="active">
+                        <a href="#register" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">
+                            <h4 class="modal-title w-100 font-weight-bold">Register</h4>
+                        </a>
+                    </li>
+                    <li role="presentation" class="next">
+                        <a href="#login" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">
+                            <h4 class="modal-title w-100 font-weight-bold">Login</h4>
+                        </a>
+                    </li>
+                </ul>
 
-                <div class="md-form mb-4">
-                    <i class="fa fa-lock"></i>
-                    <input type="password" name="password" id="password" class="form-control validate" placeholder="Password">
-                </div>
+                <div id="myTabContent" class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active show " id="register" aria-labelledby="home-tab">
+                        <div class="modal-body mx-3">
+                            <div class="md-form mb-4">
+                                <label>First Name <span>*</span></label>
+                                <input type="text" name="fname" id="fname" class="form-control" value="<?= set_value('fname') ?>" />
+                            </div>
 
+                            <div class="md-form mb-4">
+                                <label>Last Name <span>*</span></label>
+                                <input type="text" name="lname" id="lname" class="form-control" value="<?= set_value('lname') ?>" />
+                            </div>
+                            <div class="md-form mb-4">
+                                <label>Email Address <span>*</span></label>
+                                <input type="text" name="email_address" id="email_address" class="form-control" value="<?= set_value('email_address') ?>" />
+                            </div>
+                            <div class="md-form mb-4">
+                                <label>Password <span>*</span></label>
+                                <input id="pwd1" type="password" name="pwd1" id="pwd1" class="form-control" />
+                            </div>
+                            <div class="md-form mb-4">
+                                <label>User Type <span>*</span></label><br>
+                                <input id="parent" checked type="radio" name="user_type" value="1"/> Parent
+                                <input id="teacher" type="radio" name="user_type" value="4"/> Teacher
+                                <input id="school" type="radio" name="user_type" value="4"/> School
+                            </div>
+
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center">
+                            <button class="btn btn-outline-default" onclick="modal_register();">Register</button>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="login" aria-labelledby="profile-tab">
+                        <div class="modal-body mx-3">
+                            <div class="md-form mb-5">
+                                <i class="fa fa-user"></i>
+                                <input type="text" name="username" id="username" class="form-control validate" placeholder="Username">
+                            </div>
+
+                            <div class="md-form mb-4">
+                                <i class="fa fa-lock"></i>
+                                <input type="password" name="password" id="password" class="form-control validate" placeholder="Password">
+                            </div>
+
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center">
+                            <button class="btn btn-outline-default" onclick="modal_login();">Login</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="modal-footer d-flex justify-content-center">
-                <button class="btn btn-outline-default" onclick="modal_login();">Login</button>
-            </div>
+
         </div>
     </div>
 </div>
@@ -168,46 +217,7 @@
     )
     wow.init();
 </script>
-<script>
-  /*  jQuery(function(){
-        jQuery('#menu-res').slicknav({
-           prependTo:'#res_menu'
-        });
-    });*/
-   /* jQuery('#menu').slicknav({
-        prependTo:'#demo1'
-    });*/
-</script>
-<!--
-<script>
-    jQuery( document ).ready(function( $ ) {
-        jQuery(".fs").fsortable({
-            connectWith: ".fs",
-            tolerance: "pointer",
-            size: 5
-        }).disableSelection();
 
-        jQuery("#content .item").draggable({
-            connectToSortable: ".fs:not(.full)",
-            revert: "invalid",
-            helper: "clone",
-            stop: function(e, ui) {
-                jQuery("#img_order_student").val("");
-                var file_name_array = [];
-                jQuery(".fs .item img").each(function(){
-                    var this_element = jQuery(this);
-                    var src = jQuery(this_element).attr("src");
-                    var tarr = src.split("/");
-                    var file_name = tarr[tarr.length-1];
-                    console.log(file_name);
-                    file_name_array.push(file_name);
-                    var file_name_string = file_name_array.toString();
-                    jQuery("#img_order_student").val(file_name_string);
-                });
-            }
-        });
-    });
-</script>-->
 
 </body>
 </html>

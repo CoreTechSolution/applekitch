@@ -68,7 +68,7 @@ $this->load->view('templates/header');
                                     <?php foreach ($worksheets as $worksheet){ ?>
                                         <div class="col-lg-3 col-md-4">
                                             <a href="<?php echo base_url('worksheet/'.get_returnfield('work_subjects','id',$worksheet->work_subject_id,'slug').'/'.get_returnfield('work_grades','id',$worksheet->work_grade_id,'slug').'/'.get_returnfield('work_categories','id',$worksheet->work_cat_id,'slug').'/'.$worksheet->slug) ?>">
-                                            <div class="worksheet_box">
+                                            <div class="worksheet_box matchHeight1">
                                                 <div class="work_list_label">
 
                                                     <span class="badge badge-default"><?= $worksheet->label; ?></span>

@@ -3358,7 +3358,7 @@ a.custom_button {
     margin: 10px 0;
 }
 .worksheet_sidebar ul {
-    padding: 0 0 0 28px;
+    padding: 0 0 0 8px;
     list-style: none;
     margin: 0;
 }
@@ -3472,9 +3472,14 @@ a.custom_button {
 .work_single_download {
     font-size: 20px;
     /* border-bottom: 1px solid #dbdbdb; */
-    padding: 12px 15px;
+    padding: 12px 0px;
     text-transform: uppercase;
     width: 70%;
+}
+.work_single_social_share {
+    font-size: 10px;
+    display: inline-block;
+    vertical-align: middle;
 }
 .work_single_download .work_single_print_btn {
     width: 100%;
@@ -3544,6 +3549,10 @@ a.custom_button {
 .work_single_rating {
     padding: 10px 0;
     text-align: left;
+    font-weight: 400;
+}
+.work_single_pages{
+    font-weight: 400;
 }
 .work_single_rating .spaceo_rating_widget {
     float: none;
@@ -3613,6 +3622,7 @@ a.custom_button {
 .work_related_div {
     padding: 30px 0;
 }
+
 @media screen and (max-width: 40em) {
    /* !* #menu is the original menu *!
     #menu-res {
@@ -3635,4 +3645,16 @@ a.custom_button {
         border-radius: 4px;
         background-color: #1b7dc6;
     }*/
+}
+.work_single_h1 {
+    font-size: 28px !important;
+    font-weight: 500;
+    color: #eb6c44 !important;
+    margin: 0 0 25px 0;
+    padding-top: 0 !important;
+}
+.work_single_social_text {
+    font-size: 10px;
+    display: inline-block;
+    /* padding-top: 1px; */
 }

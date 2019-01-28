@@ -15,33 +15,6 @@ class Register extends CI_Controller {
 		$this->load->view('register_page', $data);
 	}
 	public function check() {
-		/*$this->form_validation->set_rules('fname', 'First Name', 'trim|required|alpha');
-		$this->form_validation->set_rules('lname', 'Last Name', 'trim|required|alpha');
-		$this->form_validation->set_rules('email_address', 'Email Address', 'trim|required|valid_email');
-		$this->form_validation->set_rules('email_address', 'Email Address', 'trim|required|valid_email');
-		$this->form_validation->set_rules('pwd1', 'Password', 'trim|required|min_length[5]|max_length[18]', array(
-			'required'      => 'You have not provided %s.',
-			'min_length'    => 'This %s length should be greater than 5.',
-			'max_length'    => 'This %s length should be less than 18.'
-		));
-		$this->form_validation->set_rules('pwd2', 'Password Confirmation', 'trim|required|min_length[5]|max_length[18]|matches[pwd1]', array(
-			'required'      => 'You have not provided %s.',
-			'min_length'    => 'This %s length should be greater than 5.',
-			'max_length'    => 'This %s length should be less than 18.',
-			'matches'       => 'The %s must match the Password'
-		));
-
-		if($this->form_validation->run()) {
-			$this->load->view('register_page', $data);
-		} else {
-			echo "Validation is successful";
-			exit;
-			$data = array(
-				'title' => 'Register',
-			);
-			$this->load->view('register_page', $data);
-			echo validation_errors();
-		}*/
 
 		$user = array(
 			'fname' => $this->input->post('fname'),

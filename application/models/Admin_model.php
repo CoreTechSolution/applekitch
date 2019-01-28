@@ -690,7 +690,7 @@ INNER JOIN country ON subject.country = country.id INNER JOIN grade ON subject.g
 		$query = $this->db->get();
 		$f_data=$query->result();
 
-        if(!empty($f_data))
+        if(!empty($f_data->rating_number))
         {
             return $f_data->rating_number;
         }
@@ -707,7 +707,7 @@ INNER JOIN country ON subject.country = country.id INNER JOIN grade ON subject.g
 		$query = $this->db->get();
 		$f_data=$query->result();
 
-        if(!empty($f_data))
+        if(!empty($f_data->total_points))
         {
             return $f_data->total_points;
         }

@@ -225,4 +225,7 @@ class Ajax_model extends CI_Model{
         $insert_id = $this->db->insert_id();
         return $insert_id;
     }
+    function modal_register(){
+
+    }
 }

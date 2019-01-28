@@ -915,11 +915,11 @@ jQuery(document).ready(function() {
     });
 
     jQuery(".work_single_social_share").jsSocials({
-        shares: ["twitter", "facebook", "googleplus"],
+        shares: ["pinterest","twitter", "facebook", "googleplus"],
         url: encodeURI(window.location.href),
-        text: "Applekitch",
-        showLabel: true,
-        showCount: true,
+        text: "Applekitch worksheet share",
+        showLabel: false,
+        showCount: false,
         shareIn: "popup",
         on: {
             click: function(e) {},
@@ -1116,6 +1116,29 @@ function modal_login(){
                     window.location.reload();
                 } else{
                     alert('username or password incorrect!');
+                }
+            }
+        });
+    }
+}
+function modal_register(){
+    var fname=jQuery('#fname').val();
+    var lname=jQuery('#lname').val();
+    var email_address=jQuery('#email_address').val();
+    var pwd1=jQuery('#pwd1').val();
+    var user_type=jQuery("input[name='user_type']:checked").val();
+    if(username!='' && password!=''){
+        jQuery.ajax({
+            type : "post",
+            dataType : "json",
+            url : base_url+'ajax/modal_register',
+            data : {fname: fname,lname:lname,email_address:email_address,pwd1:pwd1,user_type:user_type},
+            success: function(data) {
+                if(data.status) {
+                    alert(data.msg);
+                    window.location.reload();
+                } else{
+                    alert(data.msg);
                 }
             }
         });

@@ -44,10 +44,13 @@ $this->load->view('templates/header');
                             </div>
                             <div class="col-lg-9 col-md-9">
                                 <div class="row">
-                                    <div class="col-lg-6 col-md-6">
-                                        <h1><?php echo ucfirst($title); ?></h1>
+                                    <div class="col-lg-9 col-md-8">
+                                        <h1 class="work_single_h1"><?php echo ucfirst($title); ?></h1>
                                     </div>
-                                    <div class="col-lg-6 col-md-6">
+                                    <div class="col-lg-3 col-md-4">
+                                        <div class="work_single_social_text">
+                                            Share this worksheet
+                                        </div>
                                         <div class="work_single_social_share">
 
                                         </div>
@@ -169,20 +172,4 @@ $this->load->view('templates/header');
 <?php
 $this->load->view('templates/footer');
 ?>
-<script>
-    $('.carousel.carousel-multi-item.v-2 .carousel-item').each(function(){
-        var next = $(this).next();
-        if (!next.length) {
-            next = $(this).siblings(':first');
-        }
-        next.children(':first-child').clone().appendTo($(this));
 
-        for (var i=0;i<3;i++) {
-            next=next.next();
-            if (!next.length) {
-                next = $(this).siblings(':first');
-            }
-            next.children(':first-child').clone().appendTo($(this));
-        }
-    });
-</script>
