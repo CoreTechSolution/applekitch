@@ -554,7 +554,7 @@ function getPDFPages($source)
 
     if(file_exists($source) ){
         $image = new Imagick();
-        $image->pingImage('myPdfFile.pdf');
+        $image->pingImage($source);
         $pagecount= $image->getNumberImages();
     }
 

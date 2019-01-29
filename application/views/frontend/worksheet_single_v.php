@@ -66,7 +66,7 @@ $this->load->view('templates/header');
                                             <input name="rating" value="0" id="rating_star" type="hidden" postID="<?= $worksheets[0]->id; ?>" />
                                         </div>
                                         <div class="work_single_pages">
-                                            pages: 4
+                                            pages: <?= $worksheets[0]->pdf_page_count; ?>
                                         </div>
                                     </div>
                                     <div class="col-lg-8 col-md-6">
