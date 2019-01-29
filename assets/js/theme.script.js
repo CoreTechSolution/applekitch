@@ -1004,6 +1004,7 @@ function search_id_genarate(type,id,dom_id){
                     page: 4,
                     pagination: true
                 });
+                jQuery('.matchHeight1').matchHeight();
             }
         }
     });
