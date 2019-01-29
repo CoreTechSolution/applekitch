@@ -79,7 +79,7 @@ $this->load->view('templates/header');
                                                                     <img src="<?= $worksheet->worksheet_img; ?>" alt="">
                                                                 </div>
                                                                 <div class="work_name">
-                                                                    <?= $worksheet->name; ?>
+                                                                    <?= word_limiter($worksheet->name,3); ?>
                                                                 </div>
                                                                 <?php
                                                                 $total_point=get_returnfield('worksheet_rating','worksheet_id',$worksheet->id,'total_points');

@@ -1000,6 +1000,10 @@ function search_id_genarate(type,id,dom_id){
                 jQuery('.leading_worksheet').hide();
                 jQuery('#worksheet_list_main').html(response.html);
                 jQuery('#work_list_dynamic_title').html(response.title);
+                var monkeyList = new List('test-list', {
+                    page: 4,
+                    pagination: true
+                });
             }
         }
     });

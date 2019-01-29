@@ -2485,7 +2485,7 @@ class Ajax extends CI_Controller {
                                                     <img src="'.$worksheet->worksheet_img.'" alt="">
                                                 </div>
                                                 <div class="work_name">
-                                                    '.$worksheet->name.'
+                                                    '.word_limiter($worksheet->name,3).'
                                                 </div>';
                 $total_point=get_returnfield('worksheet_rating','worksheet_id',$worksheet->id,'total_points');
                 $rating_numbers=get_returnfield('worksheet_rating','worksheet_id',$worksheet->id,'rating_number');
@@ -2511,7 +2511,15 @@ class Ajax extends CI_Controller {
                 ';
             }
 
-            $html.='</ul></div>';
+            $html.='</ul>
+<div class="pagination_box">
+                                            <ul class="pagination"></ul>
+                                            <ul class="prev_ul"><li class="next">
+                                                    <a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>
+                                                    </a>
+                                                </li></ul>
+                                        </div>
+</div>';
         }
         if(!empty($subject_title)){
             $title=$subject_title.' Worksheets';
