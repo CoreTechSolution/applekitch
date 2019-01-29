@@ -2469,12 +2469,14 @@ class Ajax extends CI_Controller {
         }
         $worksheets=$this->ajax_model->get_worksheets($where,$_POST['sort_by']);
         if(!empty($worksheets)){
-            $html.='<div class="row">';
+            $html.='<div id="test-list">
+                                        <ul class="list row">';
             foreach ($worksheets as $worksheet) {
                 $html.='
-                <div class="col-lg-3 col-md-4">
+                 <li class="col-lg-3 col-md-4">
+                 <div class="worksheet_box matchHeight1">
                                          <a href="'.base_url('frontend/worksheet/'.get_returnfield('work_subjects','id',$worksheet->work_subject_id,'slug').'/'.get_returnfield('work_grades','id',$worksheet->work_grade_id,'slug').'/'.get_returnfield('work_categories','id',$worksheet->work_cat_id,'slug').'/'.$worksheet->slug) .'">
-                                            <div class="worksheet_box">
+                                            
                                              <div class="work_list_label">
 
                                                     <span class="badge badge-default">'. $worksheet->label.'</span>
@@ -2502,13 +2504,14 @@ class Ajax extends CI_Controller {
                                                     </div>
                                                 </div>';
                 $html.='
-                                            </div>
+                                            
                                             </a>
-                                        </div>
+                                            </div>
+                                        </li>
                 ';
             }
 
-            $html.='</div>';
+            $html.='</ul></div>';
         }
         if(!empty($subject_title)){
             $title=$subject_title.' Worksheets';
