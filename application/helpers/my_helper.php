@@ -194,6 +194,7 @@ function genPdfThumbnail($source, $target)
 	$im->clear();
 	$im->destroy();
 }
+
 function form_dropdown_child($user_id){
 	$CI = & get_instance();
 	$fields=array('id','fname','lname');
@@ -541,4 +542,21 @@ function pdf_to_thumbnail($abs_path='uploads', $destination){
     }
 
      return $rtntext;
+}
+function getPDFPages($source)
+{
+    $pagecount=0;
+    $CI = & get_instance();
+    $CI->load->library('upload');
+
+    $pdf_file_name=explode('/',$source);
+    $pdf_file_name_without_ext=explode('.',$pdf_file_name[count($pdf_file_name)-1]);
+
+    if(file_exists($source) ){
+        $image = new Imagick();
+        $image->pingImage('myPdfFile.pdf');
+        $pagecount= $image->getNumberImages();
+    }
+
+        return $pagecount;
 }

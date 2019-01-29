@@ -172,7 +172,8 @@
 <script src="<?php echo base_url('/assets/js/theme.script.js'); ?>" type="text/javascript"></script>
 <script src="<?php echo base_url('/assets/js/print.min.js'); ?>" type="text/javascript"></script>
 <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
-<script src="<?php echo base_url('assets/js/rating.js'); ?>"></script>
+<script src="<?php echo base_url('assets/js/rating.js'); ?>" type="text/javascript"></script>
+<script src="<?php echo base_url('assets/js/list.min.js'); ?>"></script>
 
 <script src="<?php echo base_url('assets/js/combinations.js'); ?>"></script>
 <script>
@@ -216,6 +217,26 @@
         }
     )
     wow.init();
+
+    var monkeyList = new List('test-list', {
+        page: 4,
+        pagination: true
+    });
+    var i = 1;
+
+    jQuery('.next').on('click', function (e) {
+        e.preventDefault();
+        i+=4;
+        console.log(i);
+        monkeyList.show(i, 4);
+    });
+
+    jQuery('.prev').on('click', function (e) {
+        e.preventDefault();
+        i-=4;
+        console.log(i);
+        monkeyList.show(i, 4);
+    });
 </script>
 
 

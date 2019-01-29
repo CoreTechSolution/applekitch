@@ -1445,9 +1445,11 @@ class Admin extends CI_Controller {
                     $img_path=image_upload($_FILES,'pdf_path','uploads/worksheets','pdf');
                     $pdf_abs_path=$this->session->userdata('delete_file_path');
                     $pdf_thumb_img=pdf_to_thumbnail($pdf_abs_path,'uploads/worksheets');
+                    $pdf_page_count=getPDFPages($pdf_abs_path);
                     //$json_img_url = json_encode($pdf_thumb_img);
                     $value['worksheet_img'] = $pdf_thumb_img;
                     $value['pdf_path'] = $img_path;
+                    $value['pdf_page_count']=$pdf_page_count;
                 }
                 $value['work_uni_id']=uniqid('app-');
                 $value['create_dt']=date('Y-m-d H:i:s');

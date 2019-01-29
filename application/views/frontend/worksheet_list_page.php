@@ -60,53 +60,68 @@ $this->load->view('templates/header');
                             <div class="leading_worksheet">
                                 <img src="<?= base_url('assets/images/leader_worksheet.gif'); ?>" alt="">
                             </div>
+
                             <div class="worksheet_list_main" id="worksheet_list_main">
-                            <?php if(!empty($worksheets)){ ?>
+                                <?php if(!empty($worksheets)){ ?>
+                                    <div id="test-list">
+                                        <ul class="list row">
 
+                                            <?php foreach ($worksheets as $worksheet){ ?>
+                                                <li class="col-lg-3 col-md-4">
+                                                        <div class="worksheet_box matchHeight1">
+                                                            <a href="<?php echo base_url('worksheet/'.get_returnfield('work_subjects','id',$worksheet->work_subject_id,'slug').'/'.get_returnfield('work_grades','id',$worksheet->work_grade_id,'slug').'/'.get_returnfield('work_categories','id',$worksheet->work_cat_id,'slug').'/'.$worksheet->slug) ?>">
 
-                                <div class="row">
-                                    <?php foreach ($worksheets as $worksheet){ ?>
-                                        <div class="col-lg-3 col-md-4">
-                                            <a href="<?php echo base_url('worksheet/'.get_returnfield('work_subjects','id',$worksheet->work_subject_id,'slug').'/'.get_returnfield('work_grades','id',$worksheet->work_grade_id,'slug').'/'.get_returnfield('work_categories','id',$worksheet->work_cat_id,'slug').'/'.$worksheet->slug) ?>">
-                                            <div class="worksheet_box matchHeight1">
-                                                <div class="work_list_label">
+                                                                <div class="work_list_label">
 
-                                                    <span class="badge badge-default"><?= $worksheet->label; ?></span>
-                                                </div>
-                                                <div class="work_img">
-                                                    <img src="<?= $worksheet->worksheet_img; ?>" alt="">
-                                                </div>
-                                                <div class="work_name">
-                                                    <?= $worksheet->name; ?>
-                                                </div>
-                                                <?php
-                                                $total_point=get_returnfield('worksheet_rating','worksheet_id',$worksheet->id,'total_points');
-                                                $rating_numbers=get_returnfield('worksheet_rating','worksheet_id',$worksheet->id,'rating_number');
-                                                if($total_point!=0 && $rating_numbers!=0){
-                                                    $percent= ($total_point/($rating_numbers*5))*100;
-                                                } else{
-                                                    $percent= 0;
-                                                }
+                                                                    <span class="badge badge-default"><?= $worksheet->label; ?></span>
+                                                                </div>
+                                                                <div class="work_img">
+                                                                    <img src="<?= $worksheet->worksheet_img; ?>" alt="">
+                                                                </div>
+                                                                <div class="work_name">
+                                                                    <?= $worksheet->name; ?>
+                                                                </div>
+                                                                <?php
+                                                                $total_point=get_returnfield('worksheet_rating','worksheet_id',$worksheet->id,'total_points');
+                                                                $rating_numbers=get_returnfield('worksheet_rating','worksheet_id',$worksheet->id,'rating_number');
+                                                                if($total_point!=0 && $rating_numbers!=0){
+                                                                    $percent= ($total_point/($rating_numbers*5))*100;
+                                                                } else{
+                                                                    $percent= 0;
+                                                                }
 
-                                                ?>
-                                                <div class="work_details">
-                                                    <div class="star_rating_list">
-                                                        <span class="stars-container stars-10" style="--bubble-color: <?php echo $percent .'%' ?>;">★★★★★</span>
-                                                    </div>
-                                                    <div class="details">
-                                                        <?= ucfirst(get_returnfield('work_grades','id',$worksheet->work_grade_id,'name')) ?>
-                                                        &nbsp;&nbsp;&nbsp;<?= ucfirst(get_returnfield('work_subjects','id',$worksheet->work_subject_id,'name')) ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            </a>
+                                                                ?>
+                                                                <div class="work_details">
+                                                                    <div class="star_rating_list">
+                                                                        <span class="stars-container stars-10" style="--bubble-color: <?php echo $percent .'%' ?>;">★★★★★</span>
+                                                                    </div>
+                                                                    <div class="details">
+                                                                        <?= ucfirst(get_returnfield('work_grades','id',$worksheet->work_grade_id,'name')) ?>
+                                                                        &nbsp;&nbsp;&nbsp;<?= ucfirst(get_returnfield('work_subjects','id',$worksheet->work_subject_id,'name')) ?>
+                                                                    </div>
+                                                                </div>
+
+                                                            </a>
+                                                        </div>
+                                                </li>
+                                            <?php } ?>
+                                        </ul>
+                                        <div class="pagination_box">
+                                           <!-- <ul class="prev_ul"><li class="prev">
+                                                    <a href="#">Previous</a>
+                                                </li></ul>-->
+                                            <ul class="pagination"></ul>
+                                            <ul class="prev_ul"><li class="next">
+                                                    <a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>
+                                                    </a>
+                                                </li></ul>
                                         </div>
-                                    <?php } ?>
-                                </div>
 
-                            <?php } else{
-                                echo  '<h4>No data found!</h4>';
-                            } ?>
+                                    </div>
+
+                                <?php }  else{
+                                    echo  '<h4>No data found!</h4>';
+                                } ?>
                             </div>
 
                         </div>
