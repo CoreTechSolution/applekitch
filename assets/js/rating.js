@@ -21,7 +21,7 @@
         g.next("ul").children("li").hover(function(){
             jQuery(this).parent().children("li").css('background-position','0px 0px');
             var a = jQuery(this).parent().children("li").index(jQuery(this));
-            jQuery(this).parent().children("li").slice(0,a+1).css('background-position','0px -28px')
+            jQuery(this).parent().children("li").slice(0,a+1).css('background-position','0px -27px')
         },function(){});
         g.next("ul").children("li").click(function(){
             var a = jQuery(this).parent().children("li").index(jQuery(this));
@@ -37,7 +37,7 @@
                 jQuery(this).children("li").slice(0,f).css('background-position','0px 0px')
             }else{
                 jQuery(this).children("li").css('background-position','0px 0px');
-                jQuery(this).children("li").slice(0,f).css('background-position','0px -28px')
+                jQuery(this).children("li").slice(0,f).css('background-position','0px -27px')
             }
         });
         function init(){
@@ -46,13 +46,13 @@
             var a = jQuery("<ul>");
             a.addClass("spaceo_rating_widget");
             for(var i=1;i<=b;i++){
-                a.append('<li style="background-image:url('+d+'/widget_star.gif)"><span>'+i+'</span></li>')
+                a.append('<li style="background-image:url('+d+'/stars.png)"><span>'+i+'</span></li>')
             }
             a.insertAfter(g);
             if(e != ""){
                 f = e;
                 g.val(e);
-                g.next("ul").children("li").slice(0,f).css('background-position','0px -28px')
+                g.next("ul").children("li").slice(0,f).css('background-position','0px -27px')
             }
         }
     }
