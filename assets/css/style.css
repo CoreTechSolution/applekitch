@@ -3342,9 +3342,9 @@ a.custom_button {
     padding: 0px 0 0 0;
 }
 .worksheet_sidebar .sidebar_header {
-    font-size: 15px;
+    font-size: 22px;
     font-weight: 500;
-    padding: 5px 10px;
+    padding: 17px 8px 4px 8px;
     /* background: #e84c24; */
     color: #868080;
     margin: 0 0 1px 0;
@@ -3369,7 +3369,7 @@ a.custom_button {
 }
 .worksheet_sidebar ul li a {
     color: #474747;
-    font-size: 13px;
+    font-size: 17px;
 }
 .worksheet_sidebar ul li a:hover{
 
@@ -3438,7 +3438,7 @@ a.custom_button {
     text-align: right;
     padding: 26px 0;
     font-size: 14px;
-    font-weight: 400;
+    font-weight: bold;
 }
 .filter_sort select {
     padding: 0;

@@ -94,7 +94,7 @@ $this->load->view('templates/header');
                                             </div>
                                             <div class="work_single_download">
 
-                                                <a class="work_single_favorite_btn" href="javascript:void(0)"  onclick="worksheet_favorite('<?= $worksheets[0]->id ?>')"><i class="fa fa-heart" aria-hidden="true"></i> Add to Favorites</a>
+                                                <a class="work_single_favorite_btn" href="javascript:void(0)"  onclick="worksheet_favorite('<?= $worksheets[0]->id ?>')"><i class="fa fa-heart" aria-hidden="true"></i> Add to Favourites</a>
                                             </div>
                                             <div class="work_single_details">
                                                 <table class="work_single_table">
@@ -123,9 +123,9 @@ $this->load->view('templates/header');
                                     <div class="bxslider_related" style="width: 100%">
                                         <?php foreach ($related_worksheets as $related_worksheet){ ?>
                                             <div>
+                                                <div class="worksheet_box matchHeight1">
+                                                    <a href="<?php echo base_url('frontend/worksheet/'.get_returnfield('work_subjects','id',$related_worksheet->work_subject_id,'slug').'/'.get_returnfield('work_grades','id',$related_worksheet->work_grade_id,'slug').'/'.get_returnfield('work_categories','id',$related_worksheet->work_cat_id,'slug').'/'.$related_worksheet->slug) ?>">
 
-                                                <a href="<?php echo base_url('frontend/worksheet/'.get_returnfield('work_subjects','id',$related_worksheet->work_subject_id,'slug').'/'.get_returnfield('work_grades','id',$related_worksheet->work_grade_id,'slug').'/'.get_returnfield('work_categories','id',$related_worksheet->work_cat_id,'slug').'/'.$related_worksheet->slug) ?>">
-                                                    <div class="worksheet_box">
                                                         <div class="work_list_label">
 
                                                             <span class="badge badge-default"><?= $related_worksheet->label; ?></span>
@@ -134,7 +134,7 @@ $this->load->view('templates/header');
                                                             <img src="<?= $related_worksheet->worksheet_img; ?>" alt="">
                                                         </div>
                                                         <div class="work_name">
-                                                            <?= $related_worksheet->name; ?>
+                                                            <?= word_limiter($related_worksheet->name,3); ?>
                                                         </div>
                                                         <?php
                                                         $total_point=get_returnfield('worksheet_rating','worksheet_id',$related_worksheet->id,'total_points');
@@ -155,9 +155,9 @@ $this->load->view('templates/header');
                                                                 &nbsp;&nbsp;&nbsp;<?= ucfirst(get_returnfield('work_subjects','id',$related_worksheet->work_subject_id,'name')) ?>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </a>
 
+                                                    </a>
+                                                </div>
                                             </div>
                                         <?php } ?>
                                     </div>

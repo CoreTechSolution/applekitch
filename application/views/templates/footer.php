@@ -151,10 +151,10 @@
     </div>
 </div>
 
-<div class="text-center">
+<!--<div class="text-center">
     <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm">Launch
         Modal Login Form</a>
-</div>
+</div>-->
 <script src="<?php echo base_url('/assets/js/loader.js'); ?>" type="text/javascript"></script>
 <script src="<?php echo base_url('/assets/js/html5.js'); ?>" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -219,7 +219,7 @@
     wow.init();
 
     var monkeyList = new List('test-list', {
-        page: 4,
+        page: 24,
         pagination: true
     });
     var i = 1;
@@ -228,14 +228,14 @@
         e.preventDefault();
         i+=4;
         console.log(i);
-        monkeyList.show(i, 4);
+        monkeyList.show(i, 24);
     });
 
     jQuery('.prev').on('click', function (e) {
         e.preventDefault();
         i-=4;
         console.log(i);
-        monkeyList.show(i, 4);
+        monkeyList.show(i, 24);
     });
 </script>
 

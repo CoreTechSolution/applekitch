@@ -8,6 +8,7 @@ class Ajax extends CI_Controller {
 		parent::__construct();
 		$this->load->model('ajax_model');
 		$this->load->model('user_model');
+		$this->load->model('admin_model');
 
 
 	}
@@ -2652,5 +2653,22 @@ class Ajax extends CI_Controller {
 
         }
         echo json_encode($rtn);
+    }
+    public function insert_rating(){
+	    $worksheet_id=$_POST['worksheet_id'];
+	    $rating=$_POST['rating'];
+        $insert=$worksheet_id;
+        $rat_value['worksheet_id']=$worksheet_id;
+
+        $rat_value['rating_number']=(int)$this->admin_model->get_ratting_number_by_worksheet($insert)+1;
+        $rat_value['total_points']=(int)$this->admin_model->get_total_points_by_worksheet($insert)+$rating;
+        $rat_value['created']=date('Y-m-d H:i:s');
+        $rat_value['modified']=date('Y-m-d H:i:s');
+        $insert_rating=$this->admin_model->insert_ratings($rat_value);
+        if($insert_rating){
+            echo true;
+        } else{
+            echo false;
+        }
     }
 }

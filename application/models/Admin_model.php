@@ -683,41 +683,86 @@ INNER JOIN country ON subject.country = country.id INNER JOIN grade ON subject.g
 	}
 	function get_ratting_number($id){
 		$this->db->select('*');
-		if(!empty($conditions)){
+		if(!empty($id)){
 			$this->db->where(array('rating_id'=>$id));
 		}
         $this->db->from('worksheet_rating');
 		$query = $this->db->get();
 		$f_data=$query->result();
 
-        if(!empty($f_data->rating_number))
+        if(!empty($f_data[0]->rating_number))
         {
-            return $f_data->rating_number;
+            return $f_data[0]->rating_number;
         }
         else{
             return 0;
         }
 	}
+    function get_ratting_number_by_worksheet($id){
+        $this->db->select('*');
+        if(!empty($id)){
+            $this->db->where(array('worksheet_id'=>$id));
+        }
+        $this->db->from('worksheet_rating');
+        $query = $this->db->get();
+        $f_data=$query->result();
+        if(!empty($f_data[0]->rating_number))
+        {
+            return $f_data[0]->rating_number;
+        }
+        else{
+            return 0;
+        }
+    }
 	function get_total_points($id){
 		$this->db->select('*');
-		if(!empty($conditions)){
+		if(!empty($id)){
 			$this->db->where(array('rating_id'=>$id));
 		}
         $this->db->from('worksheet_rating');
 		$query = $this->db->get();
 		$f_data=$query->result();
 
-        if(!empty($f_data->total_points))
+        if(!empty($f_data[0]->total_points))
         {
-            return $f_data->total_points;
+            return $f_data[0]->total_points;
         }
         else{
             return 0;
         }
 	}
+    function get_total_points_by_worksheet($id){
+        $this->db->select('*');
+        if(!empty($id)){
+            $this->db->where(array('worksheet_id'=>$id));
+        }
+        $this->db->from('worksheet_rating');
+        $query = $this->db->get();
+        $f_data=$query->result();
+
+        if(!empty($f_data[0]->total_points))
+        {
+            return $f_data[0]->total_points;
+        }
+        else{
+            return 0;
+        }
+    }
 	function insert_ratings($value){
-        $this->db->insert('worksheet_rating', $value);
-        $insert_id = $this->db->insert_id();
-        return $insert_id;
+
+	    $worksheet_rattings=get_rattings($value['worksheet_id']);
+
+	    if(!empty($worksheet_rattings)){
+	        $this->db->where(array('worksheet_id'=>$value['worksheet_id']));
+	        $this->db->update('worksheet_rating',$value);
+           // print_r($this->db->last_query()); exit();
+	        //return ;
+	        return true;
+        } else {
+            $this->db->insert('worksheet_rating', $value);
+            $insert_id = $this->db->insert_id();
+            return $insert_id;
+        }
+
     }
 }

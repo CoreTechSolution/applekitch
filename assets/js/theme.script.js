@@ -913,6 +913,39 @@ jQuery(document).ready(function() {
             thiselement.addClass('active');
         }
     });
+    jQuery('body').on('click', '.spaceo_rating_widget', function(e) {
+        jQuery.ajax({
+            type : "post",
+            //dataType : "json",
+            url : base_url+'ajax/login_check',
+            success: function(data) {
+                if(data) {
+                    var thiselement = jQuery(this);
+                    var rating=jQuery('#rating_star').val();
+                    var worksheet_id=jQuery('#rating_star').attr('postID');
+                    if(rating!=0){
+                        jQuery.ajax({
+                            type : "post",
+                            dataType : "json",
+                            url : base_url+'ajax/insert_rating',
+                            data : {worksheet_id: worksheet_id,rating: rating},
+                            success: function(response) {
+                                if(response) {
+                                    console.log(response);
+                                    window.location.reload();
+                                } else{
+                                    alert('Please try again later');
+                                }
+                            }
+                        });
+                    }
+                } else{
+                    jQuery('#modalLoginForm').modal('toggle');
+                }
+            }
+        });
+
+    });
 
     jQuery(".work_single_social_share").jsSocials({
         shares: ["pinterest","twitter", "facebook", "googleplus"],
@@ -931,7 +964,7 @@ jQuery(document).ready(function() {
     jQuery('.bxslider_related').bxSlider({
         auto: true,
         pager: false,
-        minSlides: 4,
+        minSlides: 6,
         maxSlides: 12,
         slideWidth: 250,
         moveSlides: 1,
@@ -1001,7 +1034,7 @@ function search_id_genarate(type,id,dom_id){
                 jQuery('#worksheet_list_main').html(response.html);
                 jQuery('#work_list_dynamic_title').html(response.title);
                 var monkeyList = new List('test-list', {
-                    page: 4,
+                    page: 24,
                     pagination: true
                 });
                 jQuery('.matchHeight1').matchHeight();
@@ -1157,7 +1190,15 @@ function worksheet_download(doc){
         url : base_url+'ajax/login_check',
         success: function(data) {
             if(data) {
-                window.location.href=doc;
+
+
+                window.open(
+                    doc,
+                    '_blank' // <- This is what makes it open in a new window.
+                );
+
+
+                //window.location.href=doc;
             } else{
                 jQuery('#modalLoginForm').modal('toggle');
             }
@@ -1177,7 +1218,7 @@ function worksheet_favorite(work_id){
                     data:{work_id: work_id},
                     success: function(ress) {
                         if(ress) {
-                            alert('worksheet  add to your faorite');
+                            alert('worksheet add to your favourites');
                         } else{
                             alert('Please try again later');
                         }
