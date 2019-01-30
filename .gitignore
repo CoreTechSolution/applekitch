@@ -1,12 +1,14 @@
 .DS_Store
 .vscode
 .idea
-application/config/database.php
+**/.vscode/*
+**/.idea/*
+**/application/config/database.php
 
-application/cache/
+**/application/cache/
 !application/cache/index.html
 
-application/logs/
+application/logs/*
 !application/logs/index.html
 
 !application/*/.htaccess
