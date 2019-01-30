@@ -2439,10 +2439,11 @@ class Ajax extends CI_Controller {
         $grade_title='';
         $cat_title='';
         $topic_title='';
-	    $subject_ids=$_POST['subject_ids'];
-	    $grade_ids=$_POST['grade_ids'];
-	    $cat_ids=$_POST['cat_ids'];
-	    $topic_ids=$_POST['topic_ids'];
+
+	    $subject_ids=(!empty($_POST['subject_ids']))?$_POST['subject_ids']:0;
+	    $grade_ids=(!empty($_POST['grade_ids']))?$_POST['grade_ids']:0;
+	    $cat_ids=(!empty($_POST['cat_ids']))?$_POST['cat_ids']:0;
+	    $topic_ids=(!empty($_POST['topic_ids']))?$_POST['topic_ids']:0;
 	    $subject_query = (!empty($subject_ids)) ? "work_subject_id IN (".$subject_ids.")" : "";
 	    $grade_query = (!empty($grade_ids)) ? "work_grade_id IN (".$grade_ids.")" : "";
 	    $cat_query = (!empty($cat_ids)) ? 'work_cat_id IN ('.$cat_ids.")" : "";
