@@ -269,7 +269,7 @@ jQuery(document).ready(function() {
                 data: { id: id, table: 'work_categories' },
                 type: 'post',
                 success: function (res) {
-                    jQuery('#work_grade_id').html(res);
+                    jQuery('#work_topic_id').html(res);
                 }
             })
         }
