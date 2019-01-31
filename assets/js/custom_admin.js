@@ -289,7 +289,7 @@ jQuery(document).ready(function() {
     });
     jQuery('body').on('change','#work_label_select', function (e) {
         var slug_text=jQuery(this).val().trim();
-        if(slug_text=='0'){
+        if(slug_text=='New'){
             jQuery('#work_new_days_limit').show();
         } else{
             jQuery('#work_new_days_limit').hide();

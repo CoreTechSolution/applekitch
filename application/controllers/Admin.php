@@ -1479,6 +1479,55 @@ class Admin extends CI_Controller {
             $this->load->view( 'admin/add_worksheet_v', $data );
         }
 	}
+    public function edit_worksheet($id) {
+        isLogin('admin');
+        $data['method']='edit_worksheet';
+        $data['title']='Edit Worksheet';
+        $data['edit_data']=$this->admin_model->get_worksheets(array('id'=>$id),true);
+        if(!empty($this->input->post('save'))){
+            $this->form_validation->set_rules('name', 'Name', 'required');
+            if ($this->form_validation->run() == FALSE){
+                $this->load->view( 'admin/edit_worksheet_v', $data );
+            } else{
+                $value['name']=$this->input->post('name');
+                $value['content']=$this->input->post('content');
+                $value['slug']=$this->input->post('slug');
+                $value['work_subject_id']=$this->input->post('work_subject_id');
+
+                $value['work_grade_id']=$this->input->post('work_grade_id');
+                $value['work_cat_id']=$this->input->post('work_cat_id');
+                $value['work_topic_id']=$this->input->post('work_topic_id');
+                $value['label']=$this->input->post('label');
+
+                if(!empty($_FILES['pdf_path']['name'])){
+                    $img_path=image_upload($_FILES,'pdf_path','uploads/worksheets','pdf');
+                    $pdf_abs_path=$this->session->userdata('delete_file_path');
+                    $pdf_thumb_img=pdf_to_thumbnail($pdf_abs_path,'uploads/worksheets');
+                    $pdf_page_count=getPDFPages($pdf_abs_path);
+                    //$json_img_url = json_encode($pdf_thumb_img);
+                    $value['worksheet_img'] = $pdf_thumb_img;
+                    $value['pdf_path'] = $img_path;
+                    $value['pdf_page_count']=$pdf_page_count;
+                }
+                $value['new_days_limit']=$this->input->post('new_days_limit');
+                //print_r($value); exit();
+                $conditions=array('id'=>$id);
+                $insert=$this->admin_model->update_worksheet($value,$conditions);
+                //echo $this->db->last_query();exit();
+                if($insert){
+                    $data['edit_data']=$this->admin_model->get_worksheets(array('id'=>$id),true);
+                    $this->session->set_flashdata(array('msg_type'=>'success','msg'=>'Worksheet subject updated!'));
+                    redirect('admin/worksheets');
+                } else{
+                    $data['edit_data']=$this->admin_model->get_worksheets(array('id'=>$id),true);
+                    $this->session->set_flashdata(array('msg_type'=>'error','msg'=>'Something wrong! try again later!'));
+                    $this->load->view( 'admin/edit_worksheet_v', $data );
+                }
+            }
+        } else {
+            $this->load->view( 'admin/edit_worksheet_v', $data );
+        }
+    }
 	
 	public function work_subject(){
 		isLogin('admin');

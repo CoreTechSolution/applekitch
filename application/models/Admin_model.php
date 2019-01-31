@@ -576,7 +576,7 @@ INNER JOIN country ON subject.country = country.id INNER JOIN grade ON subject.g
             return false;
         }
 	}
-	function get_worksheets($conditions=array()) {
+	function get_worksheets($conditions=array(),$row=false) {
 		$this->db->select('*');
 		if(!empty($conditions)){
 			$this->db->where($conditions);
@@ -586,7 +586,11 @@ INNER JOIN country ON subject.country = country.id INNER JOIN grade ON subject.g
 
         if($query = $this->db->get())
         {
-            return $query->result();
+            if($row){
+                return $query->row();
+            } else{
+                return $query->result();
+            }
         }
         else{
             return false;
@@ -597,6 +601,15 @@ INNER JOIN country ON subject.country = country.id INNER JOIN grade ON subject.g
         $insert_id = $this->db->insert_id();
         return $insert_id;
 	}
+    function update_worksheet($data,$conditions){
+        $this->db->set($data);  //Set the column name and which value to set..
+        $this->db->where($conditions); //set column_name and value in which row need to update
+        if($this->db->update('worksheets')){
+            return true;
+        } else{
+            return false;
+        }
+    }
 	function get_work_subject($conditions=array(),$row=false) {
 		$this->db->select('*');
 		if(!empty($conditions)){
