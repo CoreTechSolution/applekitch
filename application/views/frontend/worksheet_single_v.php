@@ -100,15 +100,15 @@ $this->load->view('templates/header');
                                                 <table class="work_single_table">
                                                     <tr>
                                                         <th>Year Group</th>
-                                                        <td><?= get_returnfield('work_grades','id',$worksheets[0]->work_grade_id,'name'); ?></td>
+                                                        <td><a href="<?= base_url('worksheets/'.$this->uri->segment(2).'/'.$this->uri->segment(3)); ?>"><?= get_returnfield('work_grades','id',$worksheets[0]->work_grade_id,'name'); ?></a></td>
                                                     </tr>
                                                     <tr>
                                                         <th>Subject</th>
-                                                        <td><?= get_returnfield('work_subjects','id',$worksheets[0]->work_subject_id,'name'); ?></td>
+                                                        <td><a href="<?= base_url('worksheets/'.$this->uri->segment(2)); ?>"><?= get_returnfield('work_subjects','id',$worksheets[0]->work_subject_id,'name'); ?></a></td>
                                                     </tr>
                                                     <tr>
                                                         <th>Category</th>
-                                                        <td><?= get_returnfield('work_categories','id',$worksheets[0]->work_cat_id,'name'); ?></td>
+                                                        <td><a href="<?= base_url('worksheets/'.$this->uri->segment(2).'/'.$this->uri->segment(3).'/'.$this->uri->segment(4)); ?>"><?= get_returnfield('work_categories','id',$worksheets[0]->work_cat_id,'name'); ?></a></td>
                                                     </tr>
                                                 </table>
 

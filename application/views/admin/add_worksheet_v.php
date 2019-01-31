@@ -73,7 +73,7 @@ require_once 'templates/header.php';
                             </div>
                              <div class="col-lg-4 col-md-4 col-6">
                                 <label>Label: </label>
-                                <?php echo form_dropdown('label',array('New','Premium','Free'),'',array('class'=>'form-control','id'=>'work_label_select')); ?>
+                                <?php echo form_dropdown('label',array('New'=>'New','Premium'=>'Premium','Free'=>'Free'),'',array('class'=>'form-control','id'=>'work_label_select')); ?>
 
                             </div>
                             <div class="col-lg-2 col-md-2 col-6" id="work_new_days_limit">

@@ -266,7 +266,7 @@ jQuery(document).ready(function() {
         if (id.length > 0) {
             jQuery.ajax({
                 url: base_url + 'ajax/get_sub_wise_grade',
-                data: { id: id, table: 'work_categories' },
+                data: { id: id, table: 'work_topics' },
                 type: 'post',
                 success: function (res) {
                     jQuery('#work_topic_id').html(res);
