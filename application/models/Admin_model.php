@@ -597,7 +597,7 @@ INNER JOIN country ON subject.country = country.id INNER JOIN grade ON subject.g
         $insert_id = $this->db->insert_id();
         return $insert_id;
 	}
-	function get_work_subject($conditions=array()) {
+	function get_work_subject($conditions=array(),$row=false) {
 		$this->db->select('*');
 		if(!empty($conditions)){
 			$this->db->where($conditions);
@@ -607,7 +607,11 @@ INNER JOIN country ON subject.country = country.id INNER JOIN grade ON subject.g
 
         if($query = $this->db->get())
         {
-            return $query->result();
+            if($row){
+                return $query->row();
+            } else{
+                return $query->result();
+            }
         }
         else{
             return false;
@@ -618,7 +622,16 @@ INNER JOIN country ON subject.country = country.id INNER JOIN grade ON subject.g
         $insert_id = $this->db->insert_id();
         return $insert_id;
 	}
-	function get_work_grade($conditions=array()) {
+    function update_work_subject($data,$conditions){
+        $this->db->set($data);  //Set the column name and which value to set..
+        $this->db->where($conditions); //set column_name and value in which row need to update
+        if($this->db->update('work_subjects')){
+            return true;
+        } else{
+            return false;
+        }
+    }
+	function get_work_grade($conditions=array(),$row=false) {
 		$this->db->select('*');
 		if(!empty($conditions)){
 			$this->db->where($conditions);
@@ -628,7 +641,11 @@ INNER JOIN country ON subject.country = country.id INNER JOIN grade ON subject.g
 
         if($query = $this->db->get())
         {
-            return $query->result();
+            if($row){
+                return $query->row();
+            } else{
+                return $query->result();
+            }
         }
         else{
             return false;
@@ -639,7 +656,16 @@ INNER JOIN country ON subject.country = country.id INNER JOIN grade ON subject.g
         $insert_id = $this->db->insert_id();
         return $insert_id;
 	}
-	function get_work_cat($conditions=array()) {
+    function update_work_grade($data,$conditions){
+        $this->db->set($data);  //Set the column name and which value to set..
+        $this->db->where($conditions); //set column_name and value in which row need to update
+        if($this->db->update('work_grades')){
+            return true;
+        } else{
+            return false;
+        }
+    }
+	function get_work_cat($conditions=array(),$row=false) {
 		$this->db->select('*');
 		if(!empty($conditions)){
 			$this->db->where($conditions);
@@ -649,7 +675,11 @@ INNER JOIN country ON subject.country = country.id INNER JOIN grade ON subject.g
 
         if($query = $this->db->get())
         {
-            return $query->result();
+            if($row){
+                return $query->row();
+            } else{
+                return $query->result();
+            }
         }
         else{
             return false;
@@ -660,6 +690,15 @@ INNER JOIN country ON subject.country = country.id INNER JOIN grade ON subject.g
         $insert_id = $this->db->insert_id();
         return $insert_id;
 	}
+    function update_work_cat($data,$conditions){
+        $this->db->set($data);  //Set the column name and which value to set..
+        $this->db->where($conditions); //set column_name and value in which row need to update
+        if($this->db->update('work_categories')){
+            return true;
+        } else{
+            return false;
+        }
+    }
 	function get_work_topic($conditions=array()) {
 		$this->db->select('*');
 		if(!empty($conditions)){

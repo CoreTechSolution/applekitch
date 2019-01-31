@@ -55,11 +55,11 @@
                 <?php } ?>
 				<div class="social-connects">
                     <ul class="footer_social_link">
-                        <li><a target="_blank" href="<?php echo social_media_link('facebook'); ?>"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a target="_blank" href="<?php echo social_media_link('twitter'); ?>"><i class="fab fa-twitter"></i></a></li>
-                       <!-- <li><a href="<?php /*echo social_media_link('google_plus'); */?>"><i class="fab fa-google-plus-g"></i></a></li>-->
-                        <li><a target="_blank" href="<?php echo social_media_link('instragram'); ?>"><i class="fab fa-instagram"></i></a></li>
-                        <li><a target="_blank" href="<?php echo social_media_link('youtube'); ?>"><i class="fab fa-youtube"></i></a></li>
+                        <li><a target="_blank" href="<?php echo social_media_link('facebook'); ?>"><i class="fa fa-facebook-f"></i></a></li>
+                        <li><a target="_blank" href="<?php echo social_media_link('twitter'); ?>"><i class="fa fa-twitter"></i></a></li>
+                       <!-- <li><a href="<?php /*echo social_media_link('google_plus'); */?>"><i class="fa fa-google-plus-g"></i></a></li>-->
+                        <li><a target="_blank" href="<?php echo social_media_link('instragram'); ?>"><i class="fa fa-instagram"></i></a></li>
+                        <li><a target="_blank" href="<?php echo social_media_link('youtube'); ?>"><i class="fa fa-youtube"></i></a></li>
                     </ul>
                 </div>
 			</div>

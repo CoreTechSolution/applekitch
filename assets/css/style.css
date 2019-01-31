@@ -2505,13 +2505,13 @@ div.list-group a:nth-child(12):hover{
     /*color: #f1693c!important;*/
     float: right;
     margin-left: 5px;
-    font-family: "Font Awesome 5 Free";
+    font-family: "FontAwesome";
     font-weight: 900;
 }
 
 .accordion.active:after {
     content: "\f0d8"; /* Unicode character for "minus" sign (-) */
-    font-family: "Font Awesome 5 Free";
+    font-family: "FontAwesome";
     font-weight: 900;
 }
 /* Style the accordion panel. Note: hidden by default */
@@ -3477,7 +3477,7 @@ a.custom_button {
     width: 70%;
 }
 .work_single_social_share {
-    font-size: 10px;
+    font-size: 14px;
     display: inline-block;
     vertical-align: middle;
 }
@@ -3722,7 +3722,7 @@ a.custom_button {
     padding-top: 0 !important;
 }
 .work_single_social_text {
-    font-size: 10px;
+    font-size: 12px;
     display: inline-block;
     /* padding-top: 1px; */
 }

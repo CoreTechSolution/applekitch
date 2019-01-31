@@ -42,7 +42,7 @@ require_once 'templates/header.php';
 							<tr>
 								<td><?= $work_grade->name; ?></td>
 								<td><?= get_returnfield('work_subjects','id',$work_grade->work_subject_id,'name'); ?></td>
-								<td><!--<a class="edit_link" href="<?php /*echo base_url('admin/edit_subject'); */?>/?subject_id=<?php /*echo $subject['id']; */?>"><span data-feather="edit"></span> Edit</a> | --><a class="delete_link" onclick="delete_data(<?php echo $work_grade->id; ?>,'id','work_grades');" href="javascript:void(0)"><span data-feather="delete"></span> Delete</a></td>
+								<td><a class="edit_link" href="<?php echo base_url('admin/edit_work_grade'); ?>/<?php echo $work_grade->id; ?>"><span data-feather="edit"></span> Edit</a> | <a class="delete_link" onclick="delete_data(<?php echo $work_grade->id; ?>,'id','work_grades');" href="javascript:void(0)"><span data-feather="delete"></span> Delete</a></td>
 							</tr>
 							<?php
 						}

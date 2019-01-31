@@ -57,7 +57,7 @@ require_once 'templates/header.php';
                                             foreach($topics as $topic) {
                                                 ?>
                                                 <tr>
-                                                    <td><span class="dash_tick"><i class="far fa-check-square"></i></span></td>
+                                                    <td><span class="dash_tick"><i class="fa fa-check-square"></i></span></td>
                                                     <td><?= get_returnfield('topics','topic_id',$topic->topic_id,'topic_name'); ?></td>
                                                     <td>Completed</td>
                                                 </tr>

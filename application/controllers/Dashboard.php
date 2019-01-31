@@ -46,6 +46,15 @@ class Dashboard extends CI_Controller {
 			redirect('login');
 		}
 	}
+    public function favourite_worksheet() {
+        isLogin();
+        $user_id = $this->session->userdata('user_id');
+        $data['title']='Favourite worksheet';
+        $data['user_data']=$this->user_model->get_userdata();
+        $data['child_data']=$this->user_model->get_child_data($user_id);
+        $data['favourite_worksheets']=$this->user_model->get_favourite_worksheet(array('user_id'=>get_current_user_id()),false);
+        $this->load->view( 'favourite_worksheet_v', $data );
+    }
 	public function save_profile() {
 		if(!empty($this->input->post('pwd1'))) {
 			$user = array(

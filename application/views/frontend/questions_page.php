@@ -84,7 +84,7 @@ $this->load->view('templates/header');
                                         <input type="hidden" name="id_not_in" value="<?php echo $question->question_id; ?>" />
                                         <input type="hidden" class="question_id" name="question_id" value="<?php echo $question->question_id; ?>">
                                         <div class="col-lg-5">
-                                            <div class="question_count">Question <a href="javacript:void(0);" id="play_question" data-question="<?php echo ($question->question_name); ?>"><i class="fas fa-volume-up"></i></a></div>
+                                            <div class="question_count">Question <a href="javacript:void(0);" id="play_question" data-question="<?php echo ($question->question_name); ?>"><i class="fa fa-volume-up"></i></a></div>
                                             <div class="question_display"><?php echo $question->question_name; ?></div>
                                             <!--<div id="play_text_div" class="play_text_div"></div>-->
                                         </div>
@@ -112,7 +112,7 @@ $this->load->view('templates/header');
 								<div class="content"><?= (!empty($this->session->userdata('score_ans')))? $this->session->userdata('score_ans'):'0' ?></div>
 							</div>
 							<div class="score_smart">
-								<div class="title">Score <br><sup>out of 100</sup> <a title="This is my span's tooltip message!" href="javascript:void(0)"><i class="fas fa-question-circle"></i></a></div>
+								<div class="title">Score <br><sup>out of 100</sup> <a title="This is my span's tooltip message!" href="javascript:void(0)"><i class="fa fa-question-circle"></i></a></div>
 								<div class="content"><?= (!empty($this->session->userdata('score_smart')))? $this->session->userdata('score_smart'):'0' ?></div>
 							</div>
 							<div class="score_time">

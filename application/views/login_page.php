@@ -60,9 +60,9 @@ require_once 'templates/header.php';
                                     <li><a href="javascript:void(0);" onclick="fbLogin()" class="facbook_login_btn"> Continue with Facebook</a></li>
                                     <li><a href="<?php //echo filter_var($authUrl, FILTER_SANITIZE_URL); ?>" class="google_login_btn">
                                             Continue with Google</a></li>
-                                    <!--<li><a href="<?php /*echo filter_var($authUrl, FILTER_SANITIZE_URL); */?>"><i class="fab fa-google-plus-square"></i> Continue with Google</a></li>-->
-                                    <!--<li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>-->
+                                    <!--<li><a href="<?php /*echo filter_var($authUrl, FILTER_SANITIZE_URL); */?>"><i class="fa fa-google-plus-square"></i> Continue with Google</a></li>-->
+                                    <!--<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>-->
                                 </ul>
                             </div>
 						</div>

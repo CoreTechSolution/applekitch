@@ -62,7 +62,8 @@ require_once 'templates/header.php';
                                                 <div class="row">
                                                     <div class="col-lg-4">
                                                         <div class="certificate_icon" style="border-color: <?= $colorcode[$rand] ?>; color: <?= $colorcode[$rand] ?>;">
-                                                            <i class="fas fa-book-open"></i>
+                                                            <i class="fa fa-book" aria-hidden="true"></i>
+
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-8">
@@ -103,10 +104,10 @@ require_once 'templates/header.php';
                                                                     <div class="cerfificate_share">
                                                                         <span>Share Result:</span>
                                                                         <ul>
-                                                                            <li><a target="_blank" href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                                                            <li><a target="_blank" href="#"><i class="fa fa-facebook-f"></i></a></li>
                                                                             <li><a target="_blank" href="http://twitter.com/share?text=&url=<?php echo
-	                                                                            base_url('dashboard/generate_pdf/'.$certificate->id); ?>"><i class="fab fa-twitter"></i></a></li>
-                                                                            <!--<li><a target="_blank" href="#"><i class="fab fa-instagram"></i></a></li>-->
+	                                                                            base_url('dashboard/generate_pdf/'.$certificate->id); ?>"><i class="fa fa-twitter"></i></a></li>
+                                                                            <!--<li><a target="_blank" href="#"><i class="fa fa-instagram"></i></a></li>-->
                                                                         </ul>
                                                                     </div>
                                                                 </div>

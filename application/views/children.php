@@ -54,7 +54,7 @@ require_once 'templates/header.php';
 													<td><?= $child['fname']." ".$child['lname']; ?></td>
 													<td><?= $child['email_address']; ?></td>
 													<td>
-                                                        <a href="<?= base_url('/edit-child'); ?>/?child_id=<?= $child['id']; ?>" title="Edit"><i class="fas fa-edit"></i></a>  <a href="<?= base_url('/delete-child'); ?>/?child_id=<?= $child['id']; ?>" title="Delete"><i class="fas fa-trash"></i></a>
+                                                        <a href="<?= base_url('/edit-child'); ?>/?child_id=<?= $child['id']; ?>" title="Edit"><i class="fa fa-edit"></i></a>  <a href="<?= base_url('/delete-child'); ?>/?child_id=<?= $child['id']; ?>" title="Delete"><i class="fa fa-trash"></i></a>
                                                     </td>
 												</tr>
 												<?php

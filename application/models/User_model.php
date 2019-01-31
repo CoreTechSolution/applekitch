@@ -314,6 +314,26 @@ class User_model extends CI_Model{
 			return false;
 		}
 	}
+    function get_favourite_worksheet($conditions=array(),$row=false) {
+        $this->db->select('*');
+        if(!empty($conditions)){
+            $this->db->where($conditions);
+        }
+        $this->db->from('worksheet_favorite');
+        $this->db->join('worksheets', 'worksheet_favorite.worksheet_id = worksheets.id', 'left');
+        $this->db->order_by("id", "desc");
 
+        if($query = $this->db->get())
+        {
+            if($row){
+                return $query->row();
+            } else{
+                return $query->result();
+            }
+        }
+        else{
+            return false;
+        }
+    }
 
 }

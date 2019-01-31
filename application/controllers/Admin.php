@@ -1512,6 +1512,37 @@ class Admin extends CI_Controller {
             $this->load->view( 'admin/add_work_subject_v', $data );
         }
 	}
+    public function edit_work_subject($id) {
+        isLogin('admin');
+        $data['method']='edit_work_subject';
+        $data['title']='Edit Worksheet Subject';
+        $data['edit_data']=$this->admin_model->get_work_subject(array('id'=>$id),true);
+        if(!empty($this->input->post('save'))){
+            $this->form_validation->set_rules('name', 'Name', 'required');
+            $this->form_validation->set_rules('slug', 'Slug', 'required');
+            if ($this->form_validation->run() == FALSE){
+                $this->load->view( 'admin/edit_work_subject_v', $data );
+            } else{
+                $value['name']=$this->input->post('name');
+                $value['slug']=$this->input->post('slug');
+
+                $conditions=array('id'=>$id);
+                $insert=$this->admin_model->update_work_subject($value,$conditions);
+                //echo $this->db->last_query();exit();
+                if($insert){
+                    $data['edit_data']=$this->admin_model->get_work_subject(array('id'=>$id),true);
+                    $this->session->set_flashdata(array('msg_type'=>'success','msg'=>'Worksheet subject updated!'));
+                    redirect('admin/work_subject');
+                } else{
+                    $data['edit_data']=$this->admin_model->get_work_subject(array('id'=>$id),true);
+                    $this->session->set_flashdata(array('msg_type'=>'error','msg'=>'Something wrong! try again later!'));
+                    $this->load->view( 'admin/edit_work_subject_v', $data );
+                }
+            }
+        } else {
+            $this->load->view( 'admin/edit_work_subject_v', $data );
+        }
+    }
 	public function work_grade(){
 		isLogin('admin');
         $data['title']='Worksheet Grade';
@@ -1543,6 +1574,37 @@ class Admin extends CI_Controller {
             $this->load->view( 'admin/add_work_grade_v', $data );
         }
 	}
+    public function edit_work_grade($id) {
+        isLogin('admin');
+        $data['method']='edit_work_grade';
+        $data['title']='Edit Worksheet Grade';
+        $data['edit_data']=$this->admin_model->get_work_grade(array('id'=>$id),true);
+        if(!empty($this->input->post('save'))){
+            $this->form_validation->set_rules('name', 'Name', 'required');
+            $this->form_validation->set_rules('slug', 'Slug', 'required');
+            if ($this->form_validation->run() == FALSE){
+                $this->load->view( 'admin/edit_work_grade_v', $data );
+            } else{
+                $value['name']=$this->input->post('name');
+                $value['slug']=$this->input->post('slug');
+                $value['work_subject_id']=$this->input->post('work_subject_id');
+                $conditions=array('id'=>$id);
+                $insert=$this->admin_model->update_work_grade($value,$conditions);
+                //echo $this->db->last_query();exit();
+                if($insert){
+                    $data['edit_data']=$this->admin_model->get_work_grade(array('id'=>$id),true);
+                    $this->session->set_flashdata(array('msg_type'=>'success','msg'=>'Worksheet grade updated!'));
+                    redirect('admin/work_grade');
+                } else{
+                    $data['edit_data']=$this->admin_model->get_work_grade(array('id'=>$id),true);
+                    $this->session->set_flashdata(array('msg_type'=>'error','msg'=>'Something wrong! try again later!'));
+                    $this->load->view( 'admin/edit_work_grade_v', $data );
+                }
+            }
+        } else {
+            $this->load->view( 'admin/edit_work_grade_v', $data );
+        }
+    }
 	public function work_cat(){
 		isLogin('admin');
         $data['title']='Worksheet Category';
@@ -1575,6 +1637,38 @@ class Admin extends CI_Controller {
             $this->load->view( 'admin/add_work_cat_v', $data );
         }
 	}
+    public function edit_work_cat($id) {
+        isLogin('admin');
+        $data['method']='edit_work_cat';
+        $data['title']='Edit Worksheet Category';
+        $data['edit_data']=$this->admin_model->get_work_cat(array('id'=>$id),true);
+        if(!empty($this->input->post('save'))){
+            $this->form_validation->set_rules('name', 'Name', 'required');
+            $this->form_validation->set_rules('slug', 'Slug', 'required');
+            if ($this->form_validation->run() == FALSE){
+                $this->load->view( 'admin/edit_work_cat_v', $data );
+            } else{
+                $value['name']=$this->input->post('name');
+                $value['slug']=$this->input->post('slug');
+                $value['work_subject_id']=$this->input->post('work_subject_id');
+                $value['work_grade_id']=$this->input->post('work_grade_id');
+                $conditions=array('id'=>$id);
+                $insert=$this->admin_model->update_work_cat($value,$conditions);
+                //echo $this->db->last_query();exit();
+                if($insert){
+                    $data['edit_data']=$this->admin_model->get_work_cat(array('id'=>$id),true);
+                    $this->session->set_flashdata(array('msg_type'=>'success','msg'=>'Worksheet cat updated!'));
+                    redirect('admin/work_cat');
+                } else{
+                    $data['edit_data']=$this->admin_model->get_work_cat(array('id'=>$id),true);
+                    $this->session->set_flashdata(array('msg_type'=>'error','msg'=>'Something wrong! try again later!'));
+                    $this->load->view( 'admin/edit_work_cat_v', $data );
+                }
+            }
+        } else {
+            $this->load->view( 'admin/edit_work_cat_v', $data );
+        }
+    }
 	public function work_topic(){
 		isLogin('admin');
         $data['title']='Worksheet Topic';

@@ -54,7 +54,7 @@ require_once 'templates/header.php';
 													<td><?= $child['fname']." ".$child['lname']; ?></td>
 													<td><?= $child['email_address']; ?></td>
 													<td>
-														<a href="<?= base_url('dashboard/certificates'); ?>/?child_id=<?= $child['id']; ?>" title="View"><i class="fas fa-list"></i></a>
+														<a href="<?= base_url('dashboard/certificates'); ?>/?child_id=<?= $child['id']; ?>" title="View"><i class="fa fa-list"></i></a>
 													</td>
 												</tr>
 												<?php

@@ -266,10 +266,23 @@ jQuery(document).ready(function() {
         if (id.length > 0) {
             jQuery.ajax({
                 url: base_url + 'ajax/get_sub_wise_grade',
-                data: { id: id, table: 'work_topics' },
+                data: { id: id, table: 'work_categories' },
                 type: 'post',
                 success: function (res) {
-                    jQuery('#work_topic_id').html(res);
+                    jQuery('#work_grade_id').html(res);
+                }
+            })
+        }
+    });
+    jQuery('body').on('blur', '.work_subject_id', function (e) {
+        var id = jQuery(this).val().trim();
+        if (id.length > 0) {
+            jQuery.ajax({
+                url: base_url + 'ajax/get_sub_wise_grade',
+                data: { id: id, table:'work_grades' },
+                type: 'post',
+                success: function (res) {
+                    jQuery('#work_grade_id').html(res);
                 }
             })
         }

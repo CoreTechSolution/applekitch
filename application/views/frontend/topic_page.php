@@ -141,7 +141,7 @@ $this->load->view('templates/header');
                                                                 <?php if($cat_image!=''){ ?>
                                                                     <div class="cat_lis"><!--<span class="cat_img"><img src="<?php /*echo $cat_image ; */?>" alt=""></span>--><h4 class="listing_category" style="color:<?= $colorcode[$rand]; ?>;"><?php echo ucfirst($cat_name); ?></h4></div>
                                                                 <?php } else{ ?>
-                                                                    <div class="cat_lis"><!--<span class="cat_img"><i class="fas fa-question-circle"></i></span>--><h4 class="listing_category" style="color:<?= $colorcode[$rand]; ?>;"><?php echo ucfirst($cat_name); ?></h4></div>
+                                                                    <div class="cat_lis"><!--<span class="cat_img"><i class="fa fa-question-circle"></i></span>--><h4 class="listing_category" style="color:<?= $colorcode[$rand]; ?>;"><?php echo ucfirst($cat_name); ?></h4></div>
                                                                 <?php } ?>
                                                                 <?php echo ''; ?>
                                                                 <ul>
@@ -153,15 +153,15 @@ $this->load->view('templates/header');
 
                                                                             foreach ($completed_topics as $completed_topic){
                                                                                 if($cate_arra==$completed_topic->topic_id){
-                                                                                    $sufix='<span class="front_check"><i class="fas fa-check-square"></i></span>';
+                                                                                    $sufix='<span class="front_check"><i class="fa fa-check-square"></i></span>';
                                                                                     break;
                                                                                 } else{
-                                                                                    $sufix='<span class="front_check"><i class="far fa-square"></i></span>';
+                                                                                    $sufix='<span class="front_check"><i class="fa fa-square"></i></span>';
                                                                                 }
                                                                             }
                                                                         } else{
                                                                             if(empty($sufix) || $sufix=='')
-                                                                                $sufix='<span class="front_check"><i class="far fa-square"></i></span>';
+                                                                                $sufix='<span class="front_check"><i class="fa fa-square"></i></span>';
                                                                         }
                                                                         ?>
 

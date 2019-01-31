@@ -44,10 +44,10 @@ $this->load->view('templates/header');
                             </div>
                             <div class="col-lg-9 col-md-9">
                                 <div class="row">
-                                    <div class="col-lg-9 col-md-8">
+                                    <div class="col-lg-8 col-md-8">
                                         <h1 class="work_single_h1"><?php echo ucfirst($title); ?></h1>
                                     </div>
-                                    <div class="col-lg-3 col-md-4">
+                                    <div class="col-lg-4 col-md-4">
                                         <div class="work_single_social_text">
                                             Share this worksheet
                                         </div>

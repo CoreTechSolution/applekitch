@@ -169,7 +169,8 @@ if(!empty($ans_topic)) {
 									?>
                                     <div class="award_blank_box question tooltip_award" title="<?php echo $title; ?>"
                                          style="background-size: auto, 100% <?php echo $persentage; ?>%;">
-                                        <i class="fas fa-question"></i>
+                                        <i class="fa fa-question-circle" aria-hidden="true"></i>
+
                                     </div>
 								<?php } elseif($total >= $total_item) { ?>
 									<?php
@@ -177,13 +178,14 @@ if(!empty($ans_topic)) {
 									$k++;
 									?>
                                     <div class="award_box_wrap">
-                                        <div class="award_blank_box tooltip_award" title="Click to Reveal" data-id="<?php echo $count; ?>"<?php if(in_array($count, $award_click)) { echo ' style="display:none;"'; } ?>><i class="fas fa-trophy"></i></div>
+                                        <div class="award_blank_box tooltip_award" title="Click to Reveal" data-id="<?php echo $count; ?>"<?php if(in_array($count, $award_click)) { echo ' style="display:none;"'; } ?>><i class="fa fa-trophy" aria-hidden="true"></i>
+                                        </div>
                                         <div class="award_blank_box_img tooltip_award" title="<?php echo $title; ?>"<?php if(in_array
                                         ($count, $award_click)) { echo ' style="display:block;"'; } ?>><img src="<?php echo base_url('/assets/images/award/'.$total_value.'.png'); ?>" /></div>
                                     </div>
 								<?php } else { ?>
                                     <div class="award_blank_box lock">
-                                        <i class="fas fa-lock"></i>
+                                        <i class="fa fa-lock"></i>
                                     </div>
 								<?php } ?>
 								<?php echo $total_item; ?> questions
@@ -244,7 +246,8 @@ if(!empty($ans_topic)) {
 									?>
                                     <div class="award_blank_box question tooltip_award" title="<?php echo $title; ?>"
                                          style="background-size: auto, 100% <?php echo $persentage; ?>%;">
-                                        <i class="fas fa-question"></i>
+                                        <i class="fa fa-question-circle" aria-hidden="true"></i>
+
                                     </div>
 								<?php } elseif($total >= $total_item) { ?>
 									<?php
@@ -252,13 +255,13 @@ if(!empty($ans_topic)) {
 									$k++
 									?>
                                     <div class="award_box_wrap">
-                                        <div class="award_blank_box tooltip_award" title="Click to Reveal" data-id="<?php echo $count; ?>"<?php if(in_array($count, $award_click)) { echo ' style="display:none;"'; } ?>><i class="fas fa-trophy"></i></div>
+                                        <div class="award_blank_box tooltip_award" title="Click to Reveal" data-id="<?php echo $count; ?>"<?php if(in_array($count, $award_click)) { echo ' style="display:none;"'; } ?>><i class="fa fa-trophy"></i></div>
                                         <div class="award_blank_box_img tooltip_award" title="<?php echo $title; ?>"<?php if(in_array
                                         ($count, $award_click)) { echo ' style="display:block;"'; } ?>><img src="<?php echo base_url('/assets/images/award/'.$total_value.'.png'); ?>" /></div>
                                     </div>
 								<?php } else { ?>
                                     <div class="award_blank_box lock">
-                                        <i class="fas fa-lock"></i>
+                                        <i class="fa fa-lock"></i>
                                     </div>
 								<?php } ?>
 								<?php echo $total_item/60; ?> hour
@@ -321,7 +324,8 @@ if(!empty($ans_topic)) {
 									?>
                                     <div class="award_blank_box question tooltip_award" title="<?php echo $title; ?>"
                                          style="background-size: auto, 100% <?php echo $persentage; ?>%;">
-                                        <i class="fas fa-question"></i>
+                                        <i class="fa fa-question-circle" aria-hidden="true"></i>
+
                                     </div>
 								<?php } elseif($total >= $total_item) { ?>
 									<?php
@@ -329,13 +333,13 @@ if(!empty($ans_topic)) {
 									$k++;
 									?>
                                     <div class="award_box_wrap">
-                                        <div class="award_blank_box tooltip_award" title="Click to Reveal" data-id="<?php echo $count; ?>"<?php if(in_array($count, $award_click)) { echo ' style="display:none;"'; } ?>><i class="fas fa-trophy"></i></div>
+                                        <div class="award_blank_box tooltip_award" title="Click to Reveal" data-id="<?php echo $count; ?>"<?php if(in_array($count, $award_click)) { echo ' style="display:none;"'; } ?>><i class="fa fa-trophy"></i></div>
                                         <div class="award_blank_box_img tooltip_award" title="<?php echo $title; ?>"<?php if(in_array
                                         ($count, $award_click)) { echo ' style="display:block;"'; } ?>><img src="<?php echo base_url('/assets/images/award/'.$total_value.'.png'); ?>" /></div>
                                     </div>
 								<?php } else { ?>
                                     <div class="award_blank_box lock">
-                                        <i class="fas fa-lock"></i>
+                                        <i class="fa fa-lock"></i>
                                     </div>
 								<?php } ?>
 								<?php echo $total_item; ?> days
@@ -397,7 +401,8 @@ if(!empty($ans_topic)) {
 									?>
                                     <div class="award_blank_box question tooltip_award" title="<?php echo $title; ?>"
                                          style="background-size: auto, 100% <?php echo $persentage; ?>%;">
-                                        <i class="fas fa-question"></i>
+                                        <i class="fa fa-question-circle" aria-hidden="true"></i>
+
                                     </div>
 								<?php } elseif($total >= $total_item) { ?>
 									<?php
@@ -405,13 +410,13 @@ if(!empty($ans_topic)) {
 									$k++;
 									?>
                                     <div class="award_box_wrap">
-                                        <div class="award_blank_box tooltip_award" title="Click to Reveal" data-id="<?php echo $count; ?>"<?php if(in_array($count, $award_click)) { echo ' style="display:none;"'; } ?>><i class="fas fa-trophy"></i></div>
+                                        <div class="award_blank_box tooltip_award" title="Click to Reveal" data-id="<?php echo $count; ?>"<?php if(in_array($count, $award_click)) { echo ' style="display:none;"'; } ?>><i class="fa fa-trophy"></i></div>
                                         <div class="award_blank_box_img tooltip_award" title="<?php echo $title; ?>"<?php if(in_array
                                         ($count, $award_click)) { echo ' style="display:block;"'; } ?>><img src="<?php echo base_url('/assets/images/award/'.$total_value.'.png'); ?>" /></div>
                                     </div>
 								<?php } else { ?>
                                     <div class="award_blank_box lock">
-                                        <i class="fas fa-lock"></i>
+                                        <i class="fa fa-lock"></i>
                                     </div>
 								<?php } ?>
 								<?php echo $total_item; ?> skill
@@ -467,7 +472,8 @@ if(!empty($ans_topic)) {
 									?>
                                     <div class="award_blank_box question tooltip_award" title="<?php echo $title; ?>"
                                          style="background-size: auto, 100% <?php echo $persentage; ?>%;">
-                                        <i class="fas fa-question"></i>
+                                        <i class="fa fa-question-circle" aria-hidden="true"></i>
+
                                     </div>
 								<?php } elseif($total >= $total_item) { ?>
 									<?php
@@ -475,13 +481,13 @@ if(!empty($ans_topic)) {
 									$k++;
 									?>
                                     <div class="award_box_wrap">
-                                        <div class="award_blank_box tooltip_award" title="Click to Reveal" data-id="<?php echo $count; ?>"<?php if(in_array($count, $award_click)) { echo ' style="display:none;"'; } ?>><i class="fas fa-trophy"></i></div>
+                                        <div class="award_blank_box tooltip_award" title="Click to Reveal" data-id="<?php echo $count; ?>"<?php if(in_array($count, $award_click)) { echo ' style="display:none;"'; } ?>><i class="fa fa-trophy"></i></div>
                                         <div class="award_blank_box_img tooltip_award" title="<?php echo $title; ?>"<?php if(in_array
                                         ($count, $award_click)) { echo ' style="display:block;"'; } ?>><img src="<?php echo base_url('/assets/images/award/'.$total_value.'.png'); ?>" /></div>
                                     </div>
 								<?php } else { ?>
                                     <div class="award_blank_box lock">
-                                        <i class="fas fa-lock"></i>
+                                        <i class="fa fa-lock"></i>
                                     </div>
 								<?php } ?>
 								<?php echo $total_item; ?> point

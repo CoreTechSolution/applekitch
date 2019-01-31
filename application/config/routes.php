@@ -57,6 +57,7 @@ $route['translate_uri_dashes'] = FALSE;
 $route['forgot-password'] = 'login/forgot_password';
 $route['reset-password'] = '/login/reset_password';
 $route['manage-profile'] = 'dashboard/manage_profile';
+$route['favourite-worksheet'] = 'dashboard/favourite_worksheet';
 $route['membership-plan'] = 'dashboard/membership_plan';
 $route['children'] = 'dashboard/children';
 $route['add-child'] = 'dashboard/add_child';

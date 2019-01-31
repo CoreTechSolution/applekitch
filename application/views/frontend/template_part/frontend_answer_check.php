@@ -134,7 +134,8 @@
     <br/>
     <ul class="svgButton">
         <li><a href="#" class="svgAdd">1 <span><img src="<?php echo $form_data['img']; ?>" /></span></a></li>
-        <li><a href="#" class="svgDelete">1 <span><i class="fas fa-trash-alt"></i></span></a></li>
+        <li><a href="#" class="svgDelete">1 <span><i class="fa fa-trash-o" aria-hidden="true"></i>
+</span></a></li>
     </ul>
     <br/>
     <br/>
@@ -401,7 +402,7 @@
                 <img src="<?php echo $form_data['img']; ?>" alt="" class="img-thumbnail">
             </div>
             <div class="second_q">
-                <a href="javacript:void(0);" id="play_question1" data-question="<?php echo ($form_data['second_question']); ?>"><i class="fas fa-volume-up"></i></a> <?php echo $form_data['second_question']; ?>
+                <a href="javacript:void(0);" id="play_question1" data-question="<?php echo ($form_data['second_question']); ?>"><i class="fa fa-volume-up"></i></a> <?php echo $form_data['second_question']; ?>
             </div>
             <input id="img_answer" type="hidden" name="img_answer" value="">
             <?php $i = 1; ?>

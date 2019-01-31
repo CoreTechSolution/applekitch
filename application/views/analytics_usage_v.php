@@ -41,7 +41,7 @@ require_once 'templates/header.php';
                                             <div class="row">
                                                 <div class="col-lg-4">
                                                     <div class="total_usage_list_box">
-                                                        <div class="icon text_color_seegreen"><i class="fas fa-pencil-alt"></i></div>
+                                                        <div class="icon text_color_seegreen"><i class="fa fa-pencil"></i></div>
                                                         <div class="normal_text">ANSWERED</div>
                                                         <div class="score_text"><?php echo $total_q_ans; ?></div>
                                                         <div class="normal_text">QUESTIONS</div>
@@ -49,7 +49,8 @@ require_once 'templates/header.php';
                                                 </div>
                                                 <div class="col-lg-4">
                                                     <div class="total_usage_list_box">
-                                                        <div class="icon text_color_orange"><i class="fas fa-clock"></i></div>
+                                                        <div class="icon text_color_orange"><i class="fa fa-clock-o" aria-hidden="true"></i>
+                                                        </div>
                                                         <div class="normal_text">SPENT</div>
                                                         <div class="score_text"><?php echo $total_time_spent; ?></div>
                                                         <div class="normal_text">PRACTISING</div>
@@ -57,7 +58,7 @@ require_once 'templates/header.php';
                                                 </div>
                                                 <div class="col-lg-4">
                                                     <div class="total_usage_list_box">
-                                                        <div class="icon text_color_yellow"><i class="fas fa-puzzle-piece"></i></i></div>
+                                                        <div class="icon text_color_yellow"><i class="fa fa-puzzle-piece"></i></i></div>
                                                         <div class="normal_text">MADE PROGRESS IN</div>
                                                         <div class="score_text"><?php echo $total_completed_topic; ?></div>
                                                         <div class="normal_text">SKILLS</div>

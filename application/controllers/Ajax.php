@@ -1748,7 +1748,7 @@ class Ajax extends CI_Controller {
         $rtntext .= '<input type="hidden" name="svgNum" value="'.$count.'"/>';
         $rtntext .= '<br/><br/><br/>';
         $rtntext .= '<ul class="svgButton"><li><a href="#" class="svgAdd">1 <span><img src="'.$form_serializedata['img'].'" 
-/></span></a></li><li><a href="#" class="svgDelete">1 <span><i class="fas fa-trash-alt"></i></span></a></li></ul>';
+/></span></a></li><li><a href="#" class="svgDelete">1 <span><i class="fa fa-trash-o"></i></span></a></li></ul>';
         $rtntext .= '<br/><br/>';
         $rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
         $rtntext.='</div>';
@@ -2143,7 +2143,7 @@ class Ajax extends CI_Controller {
             $rtntext.='<img src="'. $form_serializedata['img'].'" alt="" class="img-thumbnail">';
             $rtntext.='</div>';
             $rtntext.='<div class="second_q">';
-            $rtntext.='  <a href="javacript:void(0);" id="play_question1" data-question="'.($form_serializedata['second_question']).'"><i class="fas fa-volume-up"></i></a>'.$form_serializedata['second_question'];
+            $rtntext.='  <a href="javacript:void(0);" id="play_question1" data-question="'.($form_serializedata['second_question']).'"><i class="fa fa-volume-up"></i></a>'.$form_serializedata['second_question'];
             $rtntext.='</div>';
             $rtntext.='<input id="img_answer" type="hidden" name="img_answer" value="">';
             $i = 1;
@@ -2221,7 +2221,7 @@ class Ajax extends CI_Controller {
         $rtnt.='<div class="row">';
         $rtnt.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
                                 <div class="col-lg-5">
-                                    <div class="question_count">Question <a href="javacript:void(0);" id="play_question" data-question="'.$data->question_name.'"><i class="fas fa-volume-up"></i></a></div>
+                                    <div class="question_count">Question <a href="javacript:void(0);" id="play_question" data-question="'.$data->question_name.'"><i class="fa fa-volume-up"></i></a></div>
                                             <div class="question_display">'.$data->question_name.'</div>
                                 </div>';
         $rtnt.='<div class="col-lg-7">';
