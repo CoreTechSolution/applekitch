@@ -964,10 +964,10 @@ jQuery(document).ready(function() {
     jQuery('.bxslider_related').bxSlider({
         auto: true,
         pager: false,
-        minSlides: 6,
-        maxSlides: 12,
+        minSlides: 4,
+        maxSlides: 6,
         slideWidth: 250,
-        moveSlides: 1,
+        moveSlides: 2,
         slideMargin: 20,
         infiniteLoop: false,
         controls: true

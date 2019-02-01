@@ -3349,13 +3349,16 @@ a.custom_button {
     color: #868080;
     margin: 0 0 1px 0;
 }
-.bx-wrapper{
+.work_related_div .bx-wrapper{
     border:none;
     background:none;
     box-shadow:none;
     -moz-box-shadow: none;
     -webkit-box-shadow: none;
-    margin: 10px 0;
+
+}
+.work_related_div .bx-wrapper .bx-viewport{
+    padding: 10px;
 }
 .worksheet_sidebar ul {
     padding: 0 0 0 8px;
