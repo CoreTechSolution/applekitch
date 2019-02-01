@@ -48,19 +48,19 @@ require_once 'templates/header.php';
                             <div class="col-lg-6 col-md-6 col-6">
                                 <label>Grade: </label>
                                 <?php 
-                                echo form_dropdown('work_grade_id', form_dropdown_cr(array('id','name'),'work_grades'), 'default',array('class'=>'form-control','id'=>'work_grade_id'));
+                                echo form_dropdown('work_grade_id', array('Choose subject first'), 'default',array('class'=>'form-control','id'=>'work_grade_id'));
                                 ?>
                             </div>
                             <div class="col-lg-6 col-md-6 col-6">
                                 <label>Category: </label>
                                 <?php 
-                                echo form_dropdown('work_cat_id', form_dropdown_cr(array('id','name'),'work_categories'), 'default',array('class'=>'form-control','id'=>'work_cat_id'));
+                                echo form_dropdown('work_cat_id', array('Choose grade first'), 'default',array('class'=>'form-control','id'=>'work_cat_id'));
                                 ?>
                             </div>
                              <div class="col-lg-6 col-md-6 col-6">
                                 <label>Topic: </label>
                                 <?php 
-                                echo form_dropdown('work_topic_id', form_dropdown_cr(array('id','name'),'work_topics'), 'default',array('class'=>'form-control','id'=>'work_topic_id'));
+                                echo form_dropdown('work_topic_id', array('Choose category first'), 'default',array('class'=>'form-control','id'=>'work_topic_id'));
                                 ?>
                             </div>
                             <!-- <div class="col-lg-6 col-md-6 col-6">
