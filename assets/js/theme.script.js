@@ -962,7 +962,7 @@ jQuery(document).ready(function() {
 
     });
     jQuery('.bxslider_related').bxSlider({
-        auto: true,
+        auto: false,
         pager: false,
         minSlides: 4,
         maxSlides: 6,

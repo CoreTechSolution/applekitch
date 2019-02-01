@@ -3476,9 +3476,10 @@ a.custom_button {
     font-size: 20px;
     /* border-bottom: 1px solid #dbdbdb; */
     padding: 12px 0px;
-    text-transform: uppercase;
+    text-transform: normal;
     width: 70%;
-}
+    font-weight: 400;
+} 
 .work_single_social_share {
     font-size: 14px;
     display: inline-block;
@@ -3486,42 +3487,45 @@ a.custom_button {
 }
 .work_single_download .work_single_print_btn {
     width: 100%;
-    background: #65b7f5;
+    background: #EC7F21;
     display: block;
     text-align: left;
     color: #fff;
-    padding: 10px 10px;
-    margin: 10px 0 0 0;
+    padding: 18px 20px;
+    margin: 18px 0 0 0;
     border-radius: 5px;
 }
 .work_single_download .work_single_print_btn i {
-    float: right;
+    margin-right: 10px;
 }
 .work_single_download .work_single_download_btn {
     width: 100%;
-    background: #a8cf41;
+    background: #7dc146;
     display: block;
     text-align: left;
     color: #fff;
-    padding: 10px 10px;
+    padding: 18px 20px;
     margin: 10px 0 0 0;
     border-radius: 5px;
 }
 .work_single_download .work_single_download_btn i {
-    float: right;
+    margin-right: 10px;
 }
 .work_single_download .work_single_favorite_btn {
-    width: 180px;
-    background: #e0e0e0;
+    /* width: 180px; */
+    background: #65b7f5;
     display: block;
     text-align: left;
     color: #fff;
-    padding: 10px 10px;
+    padding: 18px 20px;
     margin: 10px 0 0 0;
     border-radius: 5px;
     text-transform: capitalize;
     font-size: 17px;
-    color: #666666;
+    color: #fff;
+} 
+.work_single_favorite_btn i{
+    margin-right: 20px;
 }
 .work_single_image {
     border: 1px solid #ccc;

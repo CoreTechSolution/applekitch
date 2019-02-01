@@ -88,13 +88,13 @@ $this->load->view('templates/header');
                                                 <span class="stars-container stars-10" style="--bubble-color: <?php echo $percent .'%' ?>;">★★★★★</span> (<?= $rating_numbers; ?> ratings)
                                             </div>
                                             <div class="work_single_download">
-                                                <a class="work_single_download_btn" href="javascript:void(0)" onclick="worksheet_download('<?= $worksheets[0]->pdf_path ?>')"> Download <i class="fa fa-download" aria-hidden="true"></i></a>
-                                                <a class="work_single_print_btn" href="javascript:void(0)"  onclick="worksheet_print('<?= $worksheets[0]->pdf_path ?>')"> Print <i class="fa fa-print" aria-hidden="true"></i></a>
+                                                <a class="work_single_download_btn" href="javascript:void(0)" onclick="worksheet_download('<?= $worksheets[0]->pdf_path ?>')"><i class="fa fa-download" aria-hidden="true"></i> Download </a>
+                                                <a class="work_single_print_btn" href="javascript:void(0)"  onclick="worksheet_print('<?= $worksheets[0]->pdf_path ?>')"><i class="fa fa-print" aria-hidden="true"></i> Print</a>
 
                                             </div>
                                             <div class="work_single_download">
 
-                                                <a class="work_single_favorite_btn" href="javascript:void(0)"  onclick="worksheet_favorite('<?= $worksheets[0]->id ?>')"><i class="fa fa-heart" aria-hidden="true"></i> Add to Favourites</a>
+                                                <a class="work_single_favorite_btn" href="javascript:void(0)"  onclick="worksheet_favorite('<?= $worksheets[0]->id ?>')"><i class="fa fa-heart" style="margin-right: 10px;" aria-hidden="true"></i> Add to Favourites</a>
                                             </div>
                                             <div class="work_single_details">
                                                 <table class="work_single_table">

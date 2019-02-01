@@ -524,7 +524,7 @@ function pdf_to_thumbnail($abs_path='uploads', $destination){
     if(file_exists($abs_path) ){
 
         $im = new Imagick();
-        $im->setResolution(250,200);
+        $im->setSize(250,280);
         $ig = 0;
         $im->readimage($abs_path."[$ig]");
         $im->setImageBackgroundColor('white');

@@ -70,11 +70,13 @@ $this->load->view('templates/header');
                                                 <li class="col-lg-3 col-md-4">
                                                         <div class="worksheet_box matchHeight1">
                                                             <a href="<?php echo base_url('worksheet/'.get_returnfield('work_subjects','id',$worksheet->work_subject_id,'slug').'/'.get_returnfield('work_grades','id',$worksheet->work_grade_id,'slug').'/'.get_returnfield('work_categories','id',$worksheet->work_cat_id,'slug').'/'.$worksheet->slug) ?>">
+                                                                <?php if($worksheet->label!='No Label'){ ?>
+                                                                    <div class="work_list_label">
 
-                                                                <div class="work_list_label">
+                                                                        <span class="badge badge-default"><?= $worksheet->label; ?></span>
+                                                                    </div>
+                                                                <?php } ?>
 
-                                                                    <span class="badge badge-default"><?= $worksheet->label; ?></span>
-                                                                </div>
                                                                 <div class="work_img">
                                                                     <img src="<?= $worksheet->worksheet_img; ?>" alt="">
                                                                 </div>

@@ -14,7 +14,7 @@ require_once 'templates/header.php';
                 </div>
                 <?php $this->load->view('admin/templates/error_v.php'); ?>
                 <?php //print_r($edit_data); ?>
-                <form method="post" action="<?= base_url('admin/'.$method.'/'.$edit_data->id) ?>">
+                <form method="post" action="<?= base_url('admin/'.$method.'/'.$edit_data->id) ?>" enctype="multipart/form-data">
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-6 col-lg-6 col-6">
@@ -64,7 +64,7 @@ require_once 'templates/header.php';
 
                             <div class="col-lg-4 col-md-4 col-6">
                                 <label>Label: </label>
-                                <?php echo form_dropdown('label',array('New'=>'New','Premium'=>'Premium','Free'=>'Free'),(!empty($edit_data->label))?$edit_data->label:'',array('class'=>'form-control','id'=>'work_label_select')); ?>
+                                <?php echo form_dropdown('label',array('No Label'=>'No Label','New'=>'New','Premium'=>'Premium','Free'=>'Free'),(!empty($edit_data->label))?$edit_data->label:'',array('class'=>'form-control','id'=>'work_label_select')); ?>
 
                             </div>
                             <?php $display=($edit_data->label=='New')?'style="display:block;"':'style="display:none;"';  ?>

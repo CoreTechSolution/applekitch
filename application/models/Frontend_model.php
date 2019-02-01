@@ -71,7 +71,7 @@ class Frontend_model extends CI_Model {
     function get_related_worksheets($id){
 	    $this->db->select('*');
 	    $this->db->where("id<>".$id);
-        $this->db->limit(10, 0);
+        $this->db->limit(6, 0);
         $this->db->from('worksheets');
         $this->db->order_by("create_dt", "desc");
 
