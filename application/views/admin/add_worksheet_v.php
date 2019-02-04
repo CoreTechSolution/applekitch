@@ -39,30 +39,30 @@ require_once 'templates/header.php';
 								<input required type="text" name="slug" id="slug" class="form-control" value="" readonly/>
 							</div>
                             <div class="col-lg-6 col-md-6 col-6">
+                                <label>Grade: </label>
+                                <?php
+                                echo form_dropdown('work_grade_id', form_dropdown_cr(array('id','name'),'work_grades'), 'default',array('class'=>'form-control','id'=>'work_grade_id'));
+                                ?>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-6">
                                 <label>Subject: </label>
                                 <?php 
                                 echo form_dropdown('work_subject_id', form_dropdown_cr(array('id','name'),'work_subjects'), 'default',array('class'=>'form-control','id'=>'work_subject_id'));
                                  ?>
-                                
                             </div>
-                            <div class="col-lg-6 col-md-6 col-6">
-                                <label>Grade: </label>
-                                <?php 
-                                echo form_dropdown('work_grade_id', array('Choose subject first'), 'default',array('class'=>'form-control','id'=>'work_grade_id'));
-                                ?>
-                            </div>
+
                             <div class="col-lg-6 col-md-6 col-6">
                                 <label>Category: </label>
                                 <?php 
                                 echo form_dropdown('work_cat_id', array('Choose grade first'), 'default',array('class'=>'form-control','id'=>'work_cat_id'));
                                 ?>
                             </div>
-                             <div class="col-lg-6 col-md-6 col-6">
+                             <!--<div class="col-lg-6 col-md-6 col-6">
                                 <label>Topic: </label>
-                                <?php 
+                                <?php /*
                                 echo form_dropdown('work_topic_id', array('Choose category first'), 'default',array('class'=>'form-control','id'=>'work_topic_id'));
-                                ?>
-                            </div>
+                                */?>
+                            </div>-->
                             <!-- <div class="col-lg-6 col-md-6 col-6">
                                 <label>Featured Image: </label>
                                 <input type="file" name="worksheet_img" class="form-control" />
@@ -81,7 +81,7 @@ require_once 'templates/header.php';
                                 <br><input type="number" min="0" name="new_days_limit" value="0">
                             </div>
                             <div class="col-lg-6 col-md-6 col-6">
-                                <h3>Rating</h3>
+                                <label>Rating</label>
                                 <input name="rating" value="0" id="rating_star" type="hidden" postID="1" />
                                 
                             </div>

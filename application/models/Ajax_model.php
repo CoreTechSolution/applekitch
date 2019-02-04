@@ -26,13 +26,13 @@ class Ajax_model extends CI_Model{
         }
 
 	}
-	function get_sub_wise_grade($id,$table){
+	function get_sub_wise_grade($id,$table,$grade_id=0){
 		$this->db->select('*');
 		//echo $table;
 		if($table=="work_grades"){
 			$this->db->where(array('work_subject_id'=>$id));
 		} elseif ($table=="work_categories") {
-			$this->db->where(array('work_grade_id'=>$id));
+			$this->db->where(array('work_subject_id'=>$id,'work_grade_id'=>$grade_id));
 		} elseif ($table=="work_topics"){
 			$this->db->where(array('work_cat_id'=>$id));
 		} else{
@@ -218,6 +218,21 @@ class Ajax_model extends CI_Model{
         else{
             return false;
         }
+    }
+    function get_categories($conditions=array()){
+        $this->db->select('*');
+        if(!empty($conditions)){
+            $this->db->where($conditions);
+        }
+        $this->db->from('work_categories');
+        if($query = $this->db->get())
+        {
+            return $query->result();
+        }
+        else{
+            return false;
+        }
+
     }
     function add_to_favorite($data) {
 

@@ -16,16 +16,16 @@ require_once 'templates/header.php';
 				<form method="post" action="<?= base_url('admin/'.$method) ?>">
 					<div class="form-group">
 						<div class="row">
-                            <div class="col-md-4">
+                            <!--<div class="col-md-4">
 								<label>Subject: </label>
-                                <?php echo form_dropdown('work_subject_id', form_dropdown_cr(array('id','name'),'work_subjects',false), '1',array('class'=>'form-control'));
-                                ?>
-							</div>
-							<div class="col-md-4">
+                                <?php /*echo form_dropdown('work_subject_id', form_dropdown_cr(array('id','name'),'work_subjects',false), '1',array('class'=>'form-control'));
+                                */?>
+							</div>-->
+							<div class="col-md-6">
 								<label>Name: </label>
 								<input required type="text" name="name" id="name_work_grade" class="form-control" value=""/>
 							</div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
 								<label>Slug: </label>
 								<input required type="text" name="slug" id="slug" class="form-control" value="" readonly/>
 							</div>

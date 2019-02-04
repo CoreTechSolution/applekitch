@@ -1439,7 +1439,7 @@ class Admin extends CI_Controller {
                 $value['work_subject_id']=$this->input->post('work_subject_id');
                 $value['work_grade_id']=$this->input->post('work_grade_id');
                 $value['work_cat_id']=$this->input->post('work_cat_id');
-                $value['work_topic_id']=$this->input->post('work_topic_id');
+                //$value['work_topic_id']=$this->input->post('work_topic_id');
                 $value['label']=$this->input->post('label');
 				if(!empty($_FILES['pdf_path']['name'])){
                     $img_path=image_upload($_FILES,'pdf_path','uploads/worksheets','pdf');
@@ -1496,7 +1496,7 @@ class Admin extends CI_Controller {
 
                 $value['work_grade_id']=$this->input->post('work_grade_id');
                 $value['work_cat_id']=$this->input->post('work_cat_id');
-                $value['work_topic_id']=$this->input->post('work_topic_id');
+                //$value['work_topic_id']=$this->input->post('work_topic_id');
                 $value['label']=$this->input->post('label');
 
                 if(!empty($_FILES['pdf_path']['name'])){
@@ -1610,7 +1610,7 @@ class Admin extends CI_Controller {
             } else{
 				$value['name']=$this->input->post('name');
                 $value['slug']=$this->input->post('slug');
-                $value['work_subject_id']=$this->input->post('work_subject_id');
+                //$value['work_subject_id']=$this->input->post('work_subject_id');
                 
                 $insert=$this->admin_model->insert_work_grade($value);
                 if($insert){
@@ -1636,7 +1636,7 @@ class Admin extends CI_Controller {
             } else{
                 $value['name']=$this->input->post('name');
                 $value['slug']=$this->input->post('slug');
-                $value['work_subject_id']=$this->input->post('work_subject_id');
+                //$value['work_subject_id']=$this->input->post('work_subject_id');
                 $conditions=array('id'=>$id);
                 $insert=$this->admin_model->update_work_grade($value,$conditions);
                 //echo $this->db->last_query();exit();

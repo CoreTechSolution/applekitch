@@ -99,26 +99,27 @@
                                 Worksheets
                             </a>
                         </li>
-                         <li><a class="nav-link<?php if($title == 'Worksheet Subject') { ?> active<?php } ?>" href="<?php echo base_url('/admin/work_subject'); ?>">
-                            <span data-feather="chevron-right"></span>
-                                Worksheets Subject
-                            </a>
-                        </li>
+
                         <li><a class="nav-link<?php if($title == 'Worksheet Grade') { ?> active<?php } ?>" href="<?php echo base_url('/admin/work_grade'); ?>">
                             <span data-feather="chevron-right"></span>
                                 Worksheets Grade
                             </a>
                         </li>
+                       <li><a class="nav-link<?php if($title == 'Worksheet Subject') { ?> active<?php } ?>" href="<?php echo base_url('/admin/work_subject'); ?>">
+                               <span data-feather="chevron-right"></span>
+                               Worksheets Subject
+                           </a>
+                       </li>
                         <li><a class="nav-link<?php if($title == 'Worksheet Category') { ?> active<?php } ?>" href="<?php echo base_url('/admin/work_cat'); ?>">
                             <span data-feather="chevron-right"></span>
                                 Worksheets Category
                             </a>
                         </li>
-                        <li><a class="nav-link<?php if($title == 'Worksheet Topic') { ?> active<?php } ?>" href="<?php echo base_url('/admin/work_topic'); ?>">
+                        <!--<li><a class="nav-link<?php /*if($title == 'Worksheet Topic') { */?> active<?php /*} */?>" href="<?php /*echo base_url('/admin/work_topic'); */?>">
                             <span data-feather="chevron-right"></span>
                                 Worksheets Topic
                             </a>
-                        </li>
+                        </li>-->
                    </ul>
             </div>
             </div>

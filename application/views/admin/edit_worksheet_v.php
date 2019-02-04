@@ -26,30 +26,31 @@ require_once 'templates/header.php';
                                 <input required type="text" name="slug" id="slug" class="form-control" value="<?= (!empty($edit_data->slug))?$edit_data->slug:'' ?>" readonly/>
                             </div>
                             <div class="col-lg-6 col-md-6 col-6">
-                                <label>Subject: </label>
-                                <?php
-                                echo form_dropdown('work_subject_id', form_dropdown_cr(array('id','name'),'work_subjects'), (!empty($edit_data->work_subject_id))?$edit_data->work_subject_id:'' ,array('class'=>'form-control','id'=>'work_subject_id'));
-                                ?>
-
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-6">
                                 <label>Grade: </label>
                                 <?php
                                 echo form_dropdown('work_grade_id', form_dropdown_cr(array('id','name'),'work_grades'), (!empty($edit_data->work_grade_id))?$edit_data->work_grade_id:'' ,array('class'=>'form-control','id'=>'work_grade_id'));
                                 ?>
                             </div>
                             <div class="col-lg-6 col-md-6 col-6">
+                                <label>Subject: </label>
+                                <?php
+                                echo form_dropdown('work_subject_id', form_dropdown_cr(array('id','name'),'work_subjects'), (!empty($edit_data->work_subject_id))?$edit_data->work_subject_id:'' ,array('class'=>'form-control','id'=>'work_subject_id'));
+                                ?>
+
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-6">
                                 <label>Category: </label>
                                 <?php
                                 echo form_dropdown('work_cat_id', form_dropdown_cr(array('id','name'),'work_categories'), (!empty($edit_data->work_cat_id))?$edit_data->work_cat_id:'' ,array('class'=>'form-control','id'=>'work_cat_id'));
                                 ?>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-6">
+                           <!-- <div class="col-lg-6 col-md-6 col-6">
                                 <label>Topic: </label>
                                 <?php
-                                echo form_dropdown('work_topic_id', form_dropdown_cr(array('id','name'),'work_topics'), (!empty($edit_data->work_topic_id))?$edit_data->work_topic_id:'',array('class'=>'form-control','id'=>'work_topic_id'));
-                                ?>
-                            </div>
+/*                                echo form_dropdown('work_topic_id', form_dropdown_cr(array('id','name'),'work_topics'), (!empty($edit_data->work_topic_id))?$edit_data->work_topic_id:'',array('class'=>'form-control','id'=>'work_topic_id'));
+                                */?>
+                            </div>-->
                             <!-- <div class="col-lg-6 col-md-6 col-6">
                                 <label>Featured Image: </label>
                                 <input type="file" name="worksheet_img" class="form-control" />

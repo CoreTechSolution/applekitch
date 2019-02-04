@@ -211,23 +211,11 @@ jQuery(document).ready(function() {
     });
     jQuery('body').on('change', '#work_subject_id', function (e) {
         var id = jQuery(this).val().trim();
+        var grade_id=jQuery('#work_grade_id').val();
         if (id.length > 0) {
             jQuery.ajax({
                 url: base_url + 'ajax/get_sub_wise_grade',
-                data: { id: id, table:'work_grades' },
-                type: 'post',
-                success: function (res) {
-                    jQuery('#work_grade_id').html(res);
-                }
-            })
-        }
-    });
-    jQuery('body').on('change', '#work_grade_id', function (e) {
-        var id = jQuery(this).val().trim();
-        if (id.length > 0) {
-            jQuery.ajax({
-                url: base_url + 'ajax/get_sub_wise_grade',
-                data: { id: id, table: 'work_categories' },
+                data: { id: id,grade_id:grade_id, table:'work_categories' },
                 type: 'post',
                 success: function (res) {
                     jQuery('#work_cat_id').html(res);
@@ -235,45 +223,7 @@ jQuery(document).ready(function() {
             })
         }
     });
-    jQuery('body').on('blur', '#work_grade_id', function (e) {
-        var id = jQuery(this).val().trim();
-        if (id.length > 0) {
-            jQuery.ajax({
-                url: base_url + 'ajax/get_sub_wise_grade',
-                data: { id: id, table: 'work_categories' },
-                type: 'post',
-                success: function (res) {
-                    jQuery('#work_cat_id').html(res);
-                }
-            })
-        }
-    });
-    jQuery('body').on('change', '#work_cat_id', function (e) {
-        var id = jQuery(this).val().trim();
-        if (id.length > 0) {
-            jQuery.ajax({
-                url: base_url + 'ajax/get_sub_wise_grade',
-                data: { id: id, table: 'work_topics' },
-                type: 'post',
-                success: function (res) {
-                    jQuery('#work_topic_id').html(res);
-                }
-            })
-        }
-    });
-    jQuery('body').on('blur', '#work_cat_id', function (e) {
-        var id = jQuery(this).val().trim();
-        if (id.length > 0) {
-            jQuery.ajax({
-                url: base_url + 'ajax/get_sub_wise_grade',
-                data: { id: id, table: 'work_topics' },
-                type: 'post',
-                success: function (res) {
-                    jQuery('#work_topic_id').html(res);
-                }
-            })
-        }
-    });
+
     jQuery('body').on('blur', '.work_subject_id', function (e) {
         var id = jQuery(this).val().trim();
         if (id.length > 0) {

@@ -17,15 +17,16 @@ require_once 'templates/header.php';
 					<div class="form-group">
 						<div class="row">
                             <div class="col-md-6">
+                                <label>Grade: </label>
+                                <?php echo form_dropdown('work_grade_id', '---------Choose--------', '1',array('class'=>'form-control','id'=>'work_grade_id'));
+                                ?>
+                            </div>
+                            <div class="col-md-6">
 								<label>Subject: </label>
                                 <?php echo form_dropdown('work_subject_id', form_dropdown_cr(array('id','name'),'work_subjects',false), '1',array('class'=>'form-control work_subject_id'));
                                 ?>
 							</div>
-                            <div class="col-md-6">
-								<label>Grade: </label>
-                                <?php echo form_dropdown('work_grade_id', '---------Choose--------', '1',array('class'=>'form-control','id'=>'work_grade_id'));
-                                ?>
-							</div>
+
 							<div class="col-md-6">
 								<label>Name: </label>
 								<input required type="text" name="name" id="name_work_cat" class="form-control" value=""/>

@@ -977,49 +977,60 @@ jQuery(document).ready(function() {
         prevText: '<img src="<?php bloginfo('template_directory'); ?>/images/left-arrow.png">'*/
     });
 });
+jQuery('body').on("click",'.category_li_side',function(e) {
+    var thiselement=jQuery(this);
+    var ul_id=thiselement.closest('ul').attr('id');
+    //console.log(ul_id);
+    jQuery('#'+ul_id).find('li').removeClass('active_work');
+    thiselement.parent('li').addClass('active_work');
+
+});
 function search_id_genarate(type,id,dom_id){
     //alert(dom_id);
     var sort_by=jQuery('#filter_short').val();
     sort_by=jQuery('select#filter_short option:selected').val();
     jQuery('.leading_worksheet').show();
     jQuery('#worksheet_list_main').html('');
+    var single_id=jQuery('#single_textbox').val();
     if(type=='subject'){
-        jQuery('.active_work').removeClass('active_work');
-        //var ids=(jQuery('#search_subject_id').val()!='') ? ','+id : id;
         jQuery('#search_subject_id').val(id);
+        //var ul_id=jQuery('#'+dom_id).closest('ul').attr('id');
+        //alert(ul_id);
+        //jQuery('#'+ul_id).find('li').removeClass('active_work');
         jQuery('#'+dom_id).parent('li').addClass('active_work');
-        //jQuery('#search_boardcumb').show();
-        //var old_html=jQuery('#search_boardcumb_ul').html();
-        /*var return_data=search_breadcumb('subject',id);
-        console.log(return_data);
-        alert(search_breadcumb('subject',id));
-        jQuery('#search_boardcumb_ul').html("subject: "+search_breadcumb('subject',id));*/
-    } else if(type=='grade'){
+        jQuery.ajax({
+            type : "post",
+            //dataType : "json",
+            url : base_url+'ajax/get_categories',
+            data : {subject_ids: jQuery('#search_subject_id').val(),grade_ids: jQuery('#search_grade_id').val(),single:jQuery('#single_textbox').val()},
+            success: function(res) {
+                //console.log(res);
+                if(res) {
+                    //alert(res);
+                    if(single_id=='1'){
+
+                        jQuery('#sidebar_category_listing_s').html(res);
+                    } else{
+                        jQuery('#sidebar_category_listing').html(res);
+                    }
+
+                }
+            }
+        });
+
+    }
+    if(type=='grade'){
         var ids=(jQuery('#search_grade_id').val()!='') ? ','+id : id;
-        //jQuery('#search_grade_id').val(jQuery('#search_grade_id').val()+ids);
         jQuery('#search_grade_id').val(id);
         jQuery('#'+dom_id).parent('li').addClass('active_work');
 
-        /*jQuery('#search_boardcumb').show();
-        var old_html=jQuery('#search_boardcumb_ul').html();
-        jQuery('#search_boardcumb_ul').html(old_html+search_breadcumb('grade',id));*/
-    } else if(type=='category'){
+    }
+    if(type=='category'){
         var ids=(jQuery('#search_cat_id').val()!='') ? ','+id : id;
-        //jQuery('#search_cat_id').val(jQuery('#search_cat_id').val()+ids);
         jQuery('#search_cat_id').val(id);
-        jQuery('#'+dom_id).parent('li').addClass('active_work');
 
-        /*jQuery('#search_boardcumb').show();
-        var old_html=jQuery('#search_boardcumb_ul').html();
-        jQuery('#search_boardcumb_ul').html(old_html+search_breadcumb('cat',id));*/
-    } else if(type=='topic'){
-        var ids=(jQuery('#search_topic_id').val()!='') ? ','+id : id;
-        //jQuery('#search_topic_id').val(jQuery('#search_topic_id').val()+ids);
-        jQuery('#search_topic_id').val(id);
-        jQuery('#'+dom_id).parent('li').addClass('active_work');
-        /*jQuery('#search_boardcumb').show();
-        var old_html=jQuery('#search_boardcumb_ul').html();
-        jQuery('#search_boardcumb_ul').html(old_html+search_breadcumb('topic',id));*/
+        //jQuery(document).('#'+dom_id).parent('li').addClass('active_work');
+
     }
 
     jQuery.ajax({

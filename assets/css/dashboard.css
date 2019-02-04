@@ -519,7 +519,7 @@ label {
 .spaceo_rating_widget{
     padding: 0px;
     margin: 0px;
-    float: left;
+    /*float: left;*/
 }
 .spaceo_rating_widget li {
   line-height: 0px;

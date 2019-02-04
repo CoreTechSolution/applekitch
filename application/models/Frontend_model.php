@@ -90,8 +90,6 @@ class Frontend_model extends CI_Model {
             $this->db->where($conditions);
         }
         $this->db->from('work_subjects');
-
-
         if($query = $this->db->get())
         {
             return $query->result();

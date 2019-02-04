@@ -550,10 +550,11 @@ class Ajax extends CI_Controller {
     public function get_sub_wise_grade(){
         $id=$_POST['id'];
         $table=$_POST['table'];
+        $grade_id=(!empty($_POST['grade_id']))? $_POST['grade_id'] : 0;
         //print_r($_POST); 
         $rtns=array();
         if(!empty($id)){
-            $rtns=$this->ajax_model->get_sub_wise_grade($id,$table);
+            $rtns=$this->ajax_model->get_sub_wise_grade($id,$table,$grade_id);
         }
         $rtntext='';
         if(!empty($rtns)){
@@ -563,6 +564,25 @@ class Ajax extends CI_Controller {
         }
         
         echo $rtntext;
+    }
+
+    public function  get_categories(){
+	    $rtn='';
+	    $subject_id=$_POST['subject_ids'];
+	    $grade_id=$_POST['grade_ids'];
+	    $single=$_POST['single'];
+	    $categories=$this->ajax_model->get_categories(array('work_subject_id'=>$subject_id,'work_grade_id'=>$grade_id));
+	    if(!empty($categories)){
+	        foreach ($categories as $category){
+	            if($single=='1'){
+                    $rtn.='<li><a id="search_click_c_'.$category->id.'" href="'.base_url('worksheets?type=cat&id='.$category->id).'" class="category_li_side">'.$category->name.'</a></li>';
+                } else{
+	                $rtn.='<li><a id="search_click_c_'.$category->id.'" href="javascript:void(0)" onclick="search_id_genarate('."'category'".','.$category->id.','."'this.id'".')" class="category_li_side">'. $category->name.'</a></li>';
+                }
+
+            }
+        }
+	    echo $rtn;
     }
     
 	public function question_submit(){
