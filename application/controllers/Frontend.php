@@ -152,7 +152,7 @@ class Frontend extends CI_Controller {
 		$this->load->view('frontend/questions_page',$data);
 	}
 
-	public function worksheets($subject_slug='',$grade_slug='',$cat_slug='',$topic_slug=''){
+	public function worksheets($grade_slug='',$subject_slug='',$cat_slug='',$topic_slug=''){
         $data['title']='Worksheets';
         $where='';
         if(!empty($_GET)){
@@ -173,14 +173,15 @@ class Frontend extends CI_Controller {
             $start_index = ($this->uri->segment(2)) ? $this->uri->segment(2) : 0;
         }
 
-        if($subject_slug!=''){
-            $subject_id=get_id_by_slug('id',$subject_slug,'work_subjects');
-            $where.=($where!='')?' AND work_subject_id='.$subject_id:' work_subject_id='.$subject_id;
-            $start_index = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-        }
+
         if($grade_slug!=''){
             $grade_id=get_id_by_slug('id',$grade_slug,'work_grades');
             $where.=($where!='')?' AND work_grade_id='.$grade_id:' work_grade_id='.$grade_id;
+            $start_index = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        }
+        if($subject_slug!=''){
+            $subject_id=get_id_by_slug('id',$subject_slug,'work_subjects');
+            $where.=($where!='')?' AND work_subject_id='.$subject_id:' work_subject_id='.$subject_id;
             $start_index = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
         }
         if($cat_slug!=''){
@@ -196,16 +197,7 @@ class Frontend extends CI_Controller {
         if($where!=''){
             $data['worksheets']=$this->frontend_model->get_worksheets($where);
         }
-        /*for pagination*/
 
-        //$limit_per_page = 32;
-
-        //$total_records = $this->Users->get_total();
-
-
-
-
-        //echo $this->db->last_query(); exit();
         $data['work_subjects']=$this->frontend_model->get_work_subjects();
         $data['work_grades']=$this->frontend_model->get_work_grades();
         $data['work_categories']=$this->frontend_model->get_work_categories();
@@ -213,7 +205,47 @@ class Frontend extends CI_Controller {
         $data['worksheetrating']=$this->frontend_model->get_worksheet_rating();
         $this->load->view('frontend/worksheet_list_page', $data);
 	}
-    public function worksheet($subject_slug,$grade_slug,$topic_slug,$worksheet_slug){
+	public function math_worksheet(){
+        $data['title']='Worksheets';
+        $where='';
+        $subject_id=get_id_by_slug('id','math','work_subjects');
+        $where.=($where!='')?' AND work_subject_id='.$subject_id:' work_subject_id='.$subject_id;
+        $data['worksheets']=$this->frontend_model->get_worksheets($where);
+        $data['work_subjects']=$this->frontend_model->get_work_subjects();
+        $data['work_grades']=$this->frontend_model->get_work_grades();
+        $data['work_categories']=$this->frontend_model->get_work_categories();
+        $data['work_topics']=$this->frontend_model->get_work_topics();
+        $data['worksheetrating']=$this->frontend_model->get_worksheet_rating();
+        $this->load->view('frontend/worksheet_list_page', $data);
+    }
+    public function english_worksheet(){
+        $data['title']='Worksheets';
+        $where='';
+        $subject_id=get_id_by_slug('id','english','work_subjects');
+        $where.=($where!='')?' AND work_subject_id='.$subject_id:' work_subject_id='.$subject_id;
+        $data['worksheets']=$this->frontend_model->get_worksheets($where);
+        $data['work_subjects']=$this->frontend_model->get_work_subjects();
+        $data['work_grades']=$this->frontend_model->get_work_grades();
+        $data['work_categories']=$this->frontend_model->get_work_categories();
+        $data['work_topics']=$this->frontend_model->get_work_topics();
+        $data['worksheetrating']=$this->frontend_model->get_worksheet_rating();
+        $this->load->view('frontend/worksheet_list_page', $data);
+    }
+    public function worksheet_favourite(){
+        $data['title']='Favourite Worksheets';
+        $data['worksheets']=$this->frontend_model->get_favourite_worksheets(array('user_id'=>get_current_user_id()));
+        //print_r($data);
+        /*$data['work_subjects']=$this->frontend_model->get_work_subjects();
+        $data['work_grades']=$this->frontend_model->get_work_grades();
+        $data['work_categories']=$this->frontend_model->get_work_categories();
+        $data['work_topics']=$this->frontend_model->get_work_topics();*/
+        $data['worksheetrating']=$this->frontend_model->get_worksheet_rating();
+        $this->load->view('frontend/favourite_worksheet_v', $data);
+    }
+    public function worksheet_recent(){
+
+    }
+    public function worksheet($grade_slug,$subject_slug,$category_slug,$worksheet_slug){
 	    $worksheet_id=$this->frontend_model->get_worksheet_by_slug(array('slug'=>$worksheet_slug));
 	    //print_r($worksheet_id[0]->id); exit();
         $data['worksheets']=$this->frontend_model->get_worksheets(array('id'=>$worksheet_id[0]->id));

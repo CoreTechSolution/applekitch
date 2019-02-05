@@ -1,5 +1,5 @@
 <?php
-$this->load->view('templates/header');
+$this->load->view('templates/header_worksheet');
 ?>
     <div class="wrapper inner-pages">
         <div class="breadcrumbs_section">
@@ -88,8 +88,8 @@ $this->load->view('templates/header');
                                                 <span class="stars-container stars-10" style="--bubble-color: <?php echo $percent .'%' ?>;">★★★★★</span> (<?= $rating_numbers; ?> ratings)
                                             </div>
                                             <div class="work_single_download">
-                                                <a class="work_single_download_btn" href="javascript:void(0)" onclick="worksheet_download('<?= $worksheets[0]->pdf_path ?>')"><i class="fa fa-download" aria-hidden="true"></i> Download </a>
-                                                <a class="work_single_print_btn" href="javascript:void(0)"  onclick="worksheet_print('<?= $worksheets[0]->pdf_path ?>')"><i class="fa fa-print" aria-hidden="true"></i> Print</a>
+                                                <a class="work_single_download_btn" href="javascript:void(0)" onclick="worksheet_download('<?= $worksheets[0]->pdf_path ?>')"><i class="fa fa-download" aria-hidden="true"></i> Download Worksheet </a>
+                                                <a class="work_single_print_btn" href="javascript:void(0)"  onclick="worksheet_print('<?= $worksheets[0]->pdf_path ?>')"><i class="fa fa-print" aria-hidden="true"></i> Print Worksheet</a>
 
                                             </div>
                                             <div class="work_single_download">

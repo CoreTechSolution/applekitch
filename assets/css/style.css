@@ -3341,13 +3341,45 @@ a.custom_button {
 .worksheet_sidebar {
     padding: 0px 0 0 0;
 }
-.worksheet_sidebar .sidebar_header {
-    font-size: 22px;
+
+.worksheet_sidebar .sidebar_list_main {
+    border: 1px solid #dadada;
+    margin-bottom: 20px;
+}
+.worksheet_sidebar .sidebar_list_main .sidebar_header {
+    font-size: 21px;
     font-weight: 500;
-    padding: 17px 8px 4px 8px;
-    /* background: #e84c24; */
-    color: #868080;
-    margin: 0 0 1px 0;
+    padding: 10px;
+    background: #e84c24;
+    color: #fff;
+    /* margin: 0 0 1px 0; */
+}
+.worksheet_sidebar .subject_list .sidebar_header {
+    background: #7dc146;
+}
+.worksheet_sidebar .grade_list .sidebar_header {
+    background: #65b7f5;
+}
+.worksheet_sidebar .cat_list .sidebar_header {
+    background: #e84c24;
+}
+.txt_blue{
+    color:#65b7f5 !important;
+}
+.txt_green{
+    color:#7dc146 !important;
+}
+.txt_orange{
+    color:#e84c24 !important;
+}
+.txt_blue a{
+    color:#65b7f5 !important;
+}
+.txt_green a{
+    color:#7dc146 !important;
+}
+.txt_orange a{
+    color:#e84c24 !important;
 }
 .work_related_div .bx-wrapper{
     border:none;
@@ -3361,18 +3393,19 @@ a.custom_button {
     padding: 10px;
 }
 .worksheet_sidebar ul {
-    padding: 0 0 0 8px;
+    padding: 0;
     list-style: none;
     margin: 0;
 }
 .worksheet_sidebar ul li {
-    /*padding: 2px 0;*/
-    /*border-bottom: 1px solid #e4e4e4;*/
+    padding: 10px 0;
+    border-bottom: 1px solid #e4e4e4;
     font-size: 14px;
 }
 .worksheet_sidebar ul li a {
     color: #474747;
     font-size: 17px;
+    padding: 0 0 0 10px;
 }
 .worksheet_sidebar ul li a:hover{
 
@@ -3380,7 +3413,12 @@ a.custom_button {
 .active_work {
     color: #e84c24;
     font-weight: 500;
-    background: #ededed;
+    background: #f3f3f3;
+}
+.worksheet_sidebar .clear_search {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 10px;
 }
 .filter_sort {
     text-align: right;
@@ -3455,10 +3493,10 @@ a.custom_button {
     background: #f9f9f9;
     margin: 32px 0 0 0;
 }
-.worksheet_single_sidebar .work_single_social_share {
+/*.worksheet_single_sidebar .work_single_social_share {
     padding: 6px 15px;
     border-bottom: 1px solid #dbdbdb;
-}
+}*/
 
 .worksheet_single_sidebar .work_single_details .work_single_id {
     font-size: 20px;
@@ -3479,11 +3517,6 @@ a.custom_button {
     text-transform: normal;
     width: 70%;
     font-weight: 400;
-} 
-.work_single_social_share {
-    font-size: 14px;
-    display: inline-block;
-    vertical-align: middle;
 }
 .work_single_download .work_single_print_btn {
     width: 100%;
@@ -3535,8 +3568,8 @@ a.custom_button {
 }
 .work_single_details {
     background: #f2f2f2;
-    padding: 10px;
-    width: 75%;
+    padding: 18px 20px;
+    width: 70%;
 }
 .work_single_table {
 
@@ -3726,10 +3759,15 @@ a.custom_button {
     font-weight: 500;
     color: #eb6c44 !important;
     margin: 0 0 25px 0;
-    padding-top: 0 !important;
+    padding-top: 20px !important;
 }
 .work_single_social_text {
     font-size: 12px;
     display: inline-block;
-    /* padding-top: 1px; */
+    margin-top: 28px;
+}
+.work_single_social_share {
+    display: inline-block;
+    font-size: 14px;
+    vertical-align: middle;
 }

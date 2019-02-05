@@ -51,6 +51,23 @@ class Frontend_model extends CI_Model {
             return false;
         }
     }
+    function get_favourite_worksheets($conditions=array()) {
+        $this->db->select('*');
+        if(!empty($conditions)){
+            $this->db->where($conditions);
+        }
+        $this->db->from('worksheet_favorite');
+        $this->db->join('worksheets','worksheet_favorite.worksheet_id=worksheets.id','left');
+        $this->db->join('worksheet_rating','worksheet_favorite.worksheet_id=worksheet_rating.worksheet_id','left');
+
+        if($query = $this->db->get())
+        {
+            return $query->result();
+        }
+        else{
+            return false;
+        }
+    }
     function get_worksheet_by_slug($conditions=array()) {
         $this->db->select('*');
         if(!empty($conditions)){

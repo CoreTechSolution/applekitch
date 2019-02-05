@@ -1,5 +1,5 @@
 <?php
-$this->load->view('templates/header');
+$this->load->view('templates/header_worksheet');
 ?>
     <div class="wrapper inner-pages">
         <div class="breadcrumbs_section">
@@ -32,10 +32,10 @@ $this->load->view('templates/header');
             <div class="container">
                 <div class="subject_top_nav">
                     <div class="row">
-                        <div class="col-lg-2 col-md-3">
+                        <div class="col-lg-3 col-md-3">
                             <?php $this->load->view('frontend/template_part/worksheet_sidebar'); ?>
                         </div>
-                        <div class="col-lg-10 col-md-9">
+                        <div class="col-lg-9 col-md-9">
                             <div class="row">
                                 <div class="col-lg-8 col-md-8">
                                     <h1 id="work_list_dynamic_title">All <?php echo ucfirst($title); ?></h1>
@@ -69,7 +69,7 @@ $this->load->view('templates/header');
                                             <?php foreach ($worksheets as $worksheet){ ?>
                                                 <li class="col-lg-3 col-md-4">
                                                         <div class="worksheet_box matchHeight1">
-                                                            <a href="<?php echo base_url('worksheet/'.get_returnfield('work_subjects','id',$worksheet->work_subject_id,'slug').'/'.get_returnfield('work_grades','id',$worksheet->work_grade_id,'slug').'/'.get_returnfield('work_categories','id',$worksheet->work_cat_id,'slug').'/'.$worksheet->slug) ?>">
+                                                            <a href="<?php echo base_url('worksheet/'.get_returnfield('work_grades','id',$worksheet->work_grade_id,'slug').'/'.get_returnfield('work_subjects','id',$worksheet->work_subject_id,'slug').'/'.get_returnfield('work_categories','id',$worksheet->work_cat_id,'slug').'/'.$worksheet->slug) ?>">
                                                                 <?php if($worksheet->label!='No Label'){ ?>
                                                                     <div class="work_list_label">
 

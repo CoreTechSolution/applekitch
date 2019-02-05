@@ -2497,7 +2497,7 @@ class Ajax extends CI_Controller {
                 $html.='
                  <li class="col-lg-3 col-md-4">
                  <div class="worksheet_box matchHeight1">
-                                         <a href="'.base_url('frontend/worksheet/'.get_returnfield('work_subjects','id',$worksheet->work_subject_id,'slug').'/'.get_returnfield('work_grades','id',$worksheet->work_grade_id,'slug').'/'.get_returnfield('work_categories','id',$worksheet->work_cat_id,'slug').'/'.$worksheet->slug) .'">
+                                         <a href="'.base_url('worksheet/'.get_returnfield('work_grades','id',$worksheet->work_grade_id,'slug').'/'.get_returnfield('work_subjects','id',$worksheet->work_subject_id,'slug').'/'.get_returnfield('work_categories','id',$worksheet->work_cat_id,'slug').'/'.$worksheet->slug) .'">
                                             
                                              <div class="work_list_label">
 

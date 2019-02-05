@@ -982,7 +982,7 @@ jQuery('body').on("click",'.category_li_side',function(e) {
     var ul_id=thiselement.closest('ul').attr('id');
     //console.log(ul_id);
     jQuery('#'+ul_id).find('li').removeClass('active_work');
-    thiselement.parent('li').addClass('active_work');
+    thiselement.parent('li').addClass('active_work txt_orange');
 
 });
 function search_id_genarate(type,id,dom_id){
@@ -992,12 +992,41 @@ function search_id_genarate(type,id,dom_id){
     jQuery('.leading_worksheet').show();
     jQuery('#worksheet_list_main').html('');
     var single_id=jQuery('#single_textbox').val();
+
+    if(type=='grade'){
+        var ids=(jQuery('#search_grade_id').val()!='') ? ','+id : id;
+        jQuery('#search_grade_id').val(id);
+        var ul_id=jQuery('#'+dom_id).closest('ul').attr('id');
+        jQuery('#'+ul_id).find('li').removeClass('active_work');
+        jQuery('#'+dom_id).parent('li').addClass('active_work txt_blue');
+        jQuery.ajax({
+            type : "post",
+            //dataType : "json",
+            url : base_url+'ajax/get_categories',
+            data : {subject_ids: jQuery('#search_subject_id').val(),grade_ids: jQuery('#search_grade_id').val(),single:jQuery('#single_textbox').val()},
+            success: function(res) {
+                //console.log(res);
+                if(res!=''){
+                    jQuery('#cat_listing_main_div').show();
+                    if(single_id=='1'){
+                        jQuery('#sidebar_category_listing_s').html('');
+                        jQuery('#sidebar_category_listing_s').html(res);
+                    } else{
+                        jQuery('#sidebar_category_listing').html(res);
+                    }
+                } else {
+                    jQuery('#cat_listing_main_div').hide();
+                }
+            }
+        });
+
+    }
     if(type=='subject'){
         jQuery('#search_subject_id').val(id);
-        //var ul_id=jQuery('#'+dom_id).closest('ul').attr('id');
+        var ul_id=jQuery('#'+dom_id).closest('ul').attr('id');
         //alert(ul_id);
-        //jQuery('#'+ul_id).find('li').removeClass('active_work');
-        jQuery('#'+dom_id).parent('li').addClass('active_work');
+        jQuery('#'+ul_id).find('li').removeClass('active_work');
+        jQuery('#'+dom_id).parent('li').addClass('active_work txt_green');
         jQuery.ajax({
             type : "post",
             //dataType : "json",
@@ -1007,24 +1036,25 @@ function search_id_genarate(type,id,dom_id){
                 //console.log(res);
                 if(res) {
                     //alert(res);
-                    if(single_id=='1'){
-
-                        jQuery('#sidebar_category_listing_s').html(res);
-                    } else{
-                        jQuery('#sidebar_category_listing').html(res);
+                    if(res!=''){
+                        jQuery('#cat_listing_main_div').show();
+                        if(single_id=='1'){
+                            jQuery('#sidebar_category_listing_s').html('');
+                            jQuery('#sidebar_category_listing_s').html(res);
+                        } else{
+                            jQuery('#sidebar_category_listing').html(res);
+                        }
+                    } else {
+                        jQuery('#cat_listing_main_div').hide();
                     }
+
 
                 }
             }
         });
 
     }
-    if(type=='grade'){
-        var ids=(jQuery('#search_grade_id').val()!='') ? ','+id : id;
-        jQuery('#search_grade_id').val(id);
-        jQuery('#'+dom_id).parent('li').addClass('active_work');
 
-    }
     if(type=='category'){
         var ids=(jQuery('#search_cat_id').val()!='') ? ','+id : id;
         jQuery('#search_cat_id').val(id);
