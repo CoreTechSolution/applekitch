@@ -79,7 +79,7 @@ $this->load->view('templates/header_worksheet');
                                         </div>
                                         <?php } else { ?>
                                                 <?php
-                                            $rating_numbers=get_worksheet_rating_number($worksheets[0]->id);
+                                            $rating_numbers=get_worksheet_rating_number($worksheets[0]->id,true);
                                             if($total_points!=0 && $rating_numbers!=0){
                                                 $percent= ($total_points/($rating_numbers*5))*100;
                                             } else{
@@ -105,9 +105,9 @@ $this->load->view('templates/header_worksheet');
                                             <?php
                                             //$rating_numbers=0;
                                             $total_points=get_worksheet_rating_point($worksheets[0]->id);
-                                            //echo $this->db->last_query(); exit();
+                                            echo $this->db->last_query(); exit();
                                             $rating_numbers=get_worksheet_rating_number($worksheets[0]->id);
-                                            //echo $total_points.'<br>'.$rating_numbers; exit();
+                                            echo $total_points.'<br>'.$rating_numbers; exit();
                                             if($total_points!=0 && $rating_numbers!=0){
                                                 $percent= ($total_points/($rating_numbers*5))*100;
                                             } else{
