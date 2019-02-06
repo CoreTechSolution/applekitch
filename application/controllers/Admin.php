@@ -1460,8 +1460,8 @@ class Admin extends CI_Controller {
                 if($insert){
 					$rat_value=array();
 					$rat_value['worksheet_id']=$insert;
-					$rat_value['rating_number']=$this->admin_model->get_ratting_number($insert)+1;
-					$rat_value['total_points']=$this->admin_model->get_total_points($insert)+$this->input->post('rating');
+					$rat_value['rating_number']=1;
+					$rat_value['total_points']=$this->input->post('rating');
 					$rat_value['created']=date('Y-m-d H:i:s');
 					$rat_value['modified']=date('Y-m-d H:i:s');
 					$insert_rating=$this->admin_model->insert_ratings($rat_value);

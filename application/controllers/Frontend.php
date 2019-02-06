@@ -233,7 +233,7 @@ class Frontend extends CI_Controller {
     }
     public function worksheet_favourite(){
         $data['title']='Favourite Worksheets';
-        $data['worksheets']=$this->frontend_model->get_favourite_worksheets(array('user_id'=>get_current_user_id()));
+        $data['worksheets']=$this->frontend_model->get_favourite_worksheets(array('worksheet_favorite.user_id'=>get_current_user_id()));
         //print_r($data);
         /*$data['work_subjects']=$this->frontend_model->get_work_subjects();
         $data['work_grades']=$this->frontend_model->get_work_grades();
@@ -243,7 +243,9 @@ class Frontend extends CI_Controller {
         $this->load->view('frontend/favourite_worksheet_v', $data);
     }
     public function worksheet_recent(){
-
+        $data['title']='Recently viewed worksheets';
+        $data['worksheets']=$this->frontend_model->get_worksheets('ID in ('.get_cookie('recent_work').')');
+        $this->load->view('frontend/favourite_worksheet_v', $data);
     }
     public function worksheet($grade_slug,$subject_slug,$category_slug,$worksheet_slug){
 	    $worksheet_id=$this->frontend_model->get_worksheet_by_slug(array('slug'=>$worksheet_slug));

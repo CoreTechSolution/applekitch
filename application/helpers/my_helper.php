@@ -560,3 +560,53 @@ function getPDFPages($source)
 
         return $pagecount;
 }
+
+function get_worksheet_rating_point($worksheet_id,$single_rating=false){
+    $CI = & get_instance();
+    $tottal=0;
+    if($single_rating==false){
+        $CI->db->select('SUM(total_points) as total_points');
+        $CI->db->where(array('worksheet_id'=>$worksheet_id));
+        $CI->db->from('worksheet_rating');
+        $queries=$CI->db->get();
+        if(!empty($queries->result())) {
+            $query = $queries->result();
+            $tottal = $query[0]->total_points;
+        }
+    } else{
+        $CI->db->select('total_points');
+        $CI->db->where(array('worksheet_id'=>$worksheet_id,'user_id'=>get_current_user_id()));
+        $CI->db->from('worksheet_rating');
+        $queries=$CI->db->get();
+        if(!empty($queries->result())){
+            $query=$queries->result();
+            $tottal=$query[0]->total_points;
+        }
+
+    }
+    return $tottal;
+}
+function get_worksheet_rating_number($worksheet_id,$single_rating=false){
+    $CI = & get_instance();
+    $tottal=0;
+    if($single_rating==false){
+        $CI->db->select('SUM(rating_number) as rating_number');
+        $CI->db->where(array('worksheet_id'=>$worksheet_id));
+        $CI->db->from('worksheet_rating');
+        $queries=$CI->db->get();
+        if(!empty($queries->result())) {
+            $query = $queries->result();
+            $tottal = $query[0]->rating_number;
+        }
+    } else{
+        $CI->db->select('rating_number');
+        $CI->db->where(array('worksheet_id'=>$worksheet_id,'user_id'=>get_current_user_id()));
+        $CI->db->from('worksheet_rating');
+        $queries=$CI->db->get();
+        if(!empty($queries->result())) {
+            $query = $queries->result();
+            $tottal = $query[0]->rating_number;
+        }
+    }
+    return $tottal;
+}

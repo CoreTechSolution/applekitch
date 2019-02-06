@@ -120,8 +120,6 @@
             <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
                 <div class="subjects">
                     <ul>
-                        <!--<li><a href="<?php /*echo base_url('math') */?>">Worksheet</a></li>
-                        <li><a href="<?php /*echo base_url('english') */?>">English</a></li>-->
                         <li><a href="<?php echo base_url('grades') ?>">Learning Exercises</a></li>
                         <li><a href="<?= base_url('worksheets') ?>">Worksheet</a></li>
                     </ul>
@@ -196,12 +194,10 @@
                     <ul id="menu-res">
                         <li><a href="<?php echo base_url('math-worksheet') ?>">Math Worksheets</a></li>
                         <li><a href="<?php echo base_url('english-worksheet') ?>">English Worksheets</a></li>
-
                         <?php if(loginCheck()==true){ ?>
                             <li><a href="<?php echo base_url('worksheet-favourite') ?>">My Favourites</a></li>
-                            <li><a href="#<?php //echo base_url('worksheet-recent') ?>">Recent Worksheets</a></li>
+                            <li><a href="<?php echo base_url('worksheet-recent') ?>">Recent Worksheets</a></li>
                         <?php } ?>
-
                     </ul>
                     <div id="res_menu"></div>
 

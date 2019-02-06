@@ -35,6 +35,16 @@ $this->load->view('templates/header_worksheet');
                 <div class="subject_top_nav">
                     <div class="row">
                         <?php if(!empty($worksheets)){ ?>
+                        <?php
+                        // worksheet to cookies for recent viewed
+                        $cookies_work_id=get_cookie('recent_work');
+                            if(!empty($cookies_work_id)){
+                                $cookies_work_id=$cookies_work_id.','.$worksheets[0]->id;
+                                set_cookie('recent_work',$cookies_work_id,3600000);
+                            } else{
+                                set_cookie('recent_work',$worksheets[0]->id,3600000);
+                            }
+                        ?>
                             <div class="col-lg-3 col-md-3">
                                 <?php
                                 $p_data=array();
@@ -61,10 +71,28 @@ $this->load->view('templates/header_worksheet');
                                         <div class="work_single_image">
                                             <img src="<?=  $worksheets[0]->worksheet_img; ?>" alt="">
                                         </div>
+                                        <?php  $total_points=get_worksheet_rating_point($worksheets[0]->id,true) ?>
+                                        <?php if(empty($total_points)){ ?>
                                         <div class="work_single_rating">
                                             Rate this item:
                                             <input name="rating" value="0" id="rating_star" type="hidden" postID="<?= $worksheets[0]->id; ?>" />
                                         </div>
+                                        <?php } else { ?>
+                                                <?php
+                                            $rating_numbers=get_worksheet_rating_number($worksheets[0]->id);
+                                            if($total_points!=0 && $rating_numbers!=0){
+                                                $percent= ($total_points/($rating_numbers*5))*100;
+                                            } else{
+                                                $percent= 0;
+                                            }
+                                            if(empty($rating_numbers)){
+                                                $rating_numbers=0;
+                                            }
+                                            ?>
+                                            <div class="work_single_rating">
+                                                Your Rating:  <span class="stars-container stars-10" style="--bubble-color: <?php echo $percent .'%' ?>;">★★★★★</span>
+                                            </div>
+                                        <?php } ?>
                                         <div class="work_single_pages">
                                             pages: <?= $worksheets[0]->pdf_page_count; ?>
                                         </div>
@@ -75,14 +103,17 @@ $this->load->view('templates/header_worksheet');
                                                 <?=  $worksheets[0]->content; ?>
                                             </div>
                                             <?php
-                                            $total_point=get_returnfield('worksheet_rating','worksheet_id',$worksheets[0]->id,'total_points');
-                                            $rating_numbers=get_returnfield('worksheet_rating','worksheet_id',$worksheets[0]->id,'rating_number');
-                                            if($total_point!=0 && $rating_numbers!=0){
-                                                $percent= ($total_point/($rating_numbers*5))*100;
+                                            //$rating_numbers=0;
+                                            $total_points=get_worksheet_rating_point($worksheets[0]->id);
+                                            $rating_numbers=get_worksheet_rating_number($worksheets[0]->id);
+                                            if($total_points!=0 && $rating_numbers!=0){
+                                                $percent= ($total_points/($rating_numbers*5))*100;
                                             } else{
                                                 $percent= 0;
                                             }
-
+                                            if(empty($rating_numbers)){
+                                                $rating_numbers=0;
+                                            }
                                             ?>
                                             <div class="star_rating_list">
                                                 <span class="stars-container stars-10" style="--bubble-color: <?php echo $percent .'%' ?>;">★★★★★</span> (<?= $rating_numbers; ?> ratings)
@@ -137,9 +168,9 @@ $this->load->view('templates/header_worksheet');
                                                             <?= word_limiter($related_worksheet->name,3); ?>
                                                         </div>
                                                         <?php
-                                                        $total_point=get_returnfield('worksheet_rating','worksheet_id',$related_worksheet->id,'total_points');
-                                                        $rating_numbers=get_returnfield('worksheet_rating','worksheet_id',$related_worksheet->id,'rating_number');
-                                                        if($total_point!=0 && $rating_numbers!=0){
+                                                        $total_points=get_worksheet_rating_point($related_worksheet->id);
+                                                        $rating_numbers=get_worksheet_rating_number($related_worksheet->id);
+                                                        if($total_points!=0 && $rating_numbers!=0){
                                                             $percent= ($total_point/($rating_numbers*5))*100;
                                                         } else{
                                                             $percent= 0;
