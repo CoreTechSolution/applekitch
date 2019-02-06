@@ -10,7 +10,7 @@ $this->load->view('templates/header_worksheet');
                             <?php //print_r($this->uri->segment(3)); ?>
                             <li class="breadcrumbs__item"><a href="<?= base_url(); ?>" class="breadcrumbs__element">Home</a></li>
                             <?php if(!empty($this->uri->segment(1))) { ?>
-                                <li class="breadcrumbs__item"><a href="<?= base_url($this->uri->segment(1)); ?>" class="breadcrumbs__element"><?php echo ucfirst($this->uri->segment(1)) ?></a></li>
+                                <li class="breadcrumbs__item"><a href="<?= base_url($this->uri->segment(1)); ?>" class="breadcrumbs__element"><?php echo ucfirst(explode('-',$this->uri->segment(1))[0]) ?></a></li>
                             <?php } ?>
                             <?php if(!empty($this->uri->segment(2))) { ?>
                                 <li class="breadcrumbs__item"><a href="<?= base_url('worksheets/'.$this->uri->segment(2)); ?>" class="breadcrumbs__element"><?php echo ucfirst($this->uri->segment(2)) ?></a></li>

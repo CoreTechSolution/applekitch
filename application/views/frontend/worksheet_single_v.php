@@ -105,9 +105,9 @@ $this->load->view('templates/header_worksheet');
                                             <?php
                                             //$rating_numbers=0;
                                             $total_points=get_worksheet_rating_point($worksheets[0]->id);
-                                            echo $this->db->last_query(); exit();
+                                            //echo $this->db->last_query(); exit();
                                             $rating_numbers=get_worksheet_rating_number($worksheets[0]->id);
-                                            echo $total_points.'<br>'.$rating_numbers; exit();
+                                            //echo $total_points.'<br>'.$rating_numbers; exit();
                                             if($total_points!=0 && $rating_numbers!=0){
                                                 $percent= ($total_points/($rating_numbers*5))*100;
                                             } else{
@@ -133,11 +133,11 @@ $this->load->view('templates/header_worksheet');
                                                 <table class="work_single_table">
                                                     <tr>
                                                         <th>Year Group</th>
-                                                        <td><a href="<?= base_url('worksheets/'.$this->uri->segment(2).'/'.$this->uri->segment(3)); ?>"><?= get_returnfield('work_grades','id',$worksheets[0]->work_grade_id,'name'); ?></a></td>
+                                                        <td><a href="<?= base_url('worksheets/'.$this->uri->segment(2)); ?>"><?= get_returnfield('work_grades','id',$worksheets[0]->work_grade_id,'name'); ?></a></td>
                                                     </tr>
                                                     <tr>
                                                         <th>Subject</th>
-                                                        <td><a href="<?= base_url('worksheets/'.$this->uri->segment(2)); ?>"><?= get_returnfield('work_subjects','id',$worksheets[0]->work_subject_id,'name'); ?></a></td>
+                                                        <td><a href="<?= base_url($this->uri->segment(3).'-worksheet'); ?>"><?= get_returnfield('work_subjects','id',$worksheets[0]->work_subject_id,'name'); ?></a></td>
                                                     </tr>
                                                     <tr>
                                                         <th>Category</th>

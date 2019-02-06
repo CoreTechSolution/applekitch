@@ -206,6 +206,8 @@ class Ajax_model extends CI_Model{
         if($sort_by=='most_recent'){
             $this->db->order_by("create_dt", "desc");
         } elseif($sort_by=='most_popular') {
+            $this->db->select('`id`, `name`, `slug`, `content`, `worksheet_img`, `pdf_path`, `pdf_page_count`, `work_subject_id`, `work_grade_id`, `work_cat_id`, `work_topic_id`, `label`, `new_days_limit`, `work_uni_id`, `create_dt`,`rating_id`, `worksheet_id`, `rating_number`, sum(total_points) as total_points, `user_id`, `created`, `modified`, `status`');
+            $this->db->group_by('worksheet_rating.worksheet_id');
             $this->db->order_by("total_points", "desc");
         } else{
             $this->db->order_by("create_dt", "desc");

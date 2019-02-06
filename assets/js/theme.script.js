@@ -982,6 +982,7 @@ jQuery('body').on("click",'.category_li_side',function(e) {
     var ul_id=thiselement.closest('ul').attr('id');
     //console.log(ul_id);
     jQuery('#'+ul_id).find('li').removeClass('active_work');
+    jQuery('#'+ul_id).find('li').removeClass('txt_orange');
     thiselement.parent('li').addClass('active_work txt_orange');
 
 });
@@ -998,6 +999,7 @@ function search_id_genarate(type,id,dom_id){
         jQuery('#search_grade_id').val(id);
         var ul_id=jQuery('#'+dom_id).closest('ul').attr('id');
         jQuery('#'+ul_id).find('li').removeClass('active_work');
+        jQuery('#'+ul_id).find('li').removeClass('txt_blue');
         jQuery('#'+dom_id).parent('li').addClass('active_work txt_blue');
         jQuery.ajax({
             type : "post",
@@ -1026,6 +1028,7 @@ function search_id_genarate(type,id,dom_id){
         var ul_id=jQuery('#'+dom_id).closest('ul').attr('id');
         //alert(ul_id);
         jQuery('#'+ul_id).find('li').removeClass('active_work');
+        jQuery('#'+ul_id).find('li').removeClass('txt_green');
         jQuery('#'+dom_id).parent('li').addClass('active_work txt_green');
         jQuery.ajax({
             type : "post",
