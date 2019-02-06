@@ -802,7 +802,7 @@ INNER JOIN country ON subject.country = country.id INNER JOIN grade ON subject.g
     }
 	function insert_ratings($value){
 
-	    $worksheet_rattings=get_rattings($value['worksheet_id']);
+	    //$worksheet_rattings=get_rattings($value['worksheet_id']);
 
 	    if(!empty($worksheet_rattings)){
 	        $this->db->where(array('worksheet_id'=>$value['worksheet_id']));

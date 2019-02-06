@@ -1515,7 +1515,15 @@ class Admin extends CI_Controller {
                 $insert=$this->admin_model->update_worksheet($value,$conditions);
                 //echo $this->db->last_query();exit();
                 if($insert){
+                    $rat_value=array();
+                    $rat_value['worksheet_id']=$id;
+                    $rat_value['rating_number']=1;
+                    $rat_value['total_points']=$this->input->post('rating');
+                    $rat_value['created']=date('Y-m-d H:i:s');
+                    $rat_value['modified']=date('Y-m-d H:i:s');
+                    $insert_rating=$this->admin_model->insert_ratings($rat_value);
                     $data['edit_data']=$this->admin_model->get_worksheets(array('id'=>$id),true);
+
                     $this->session->set_flashdata(array('msg_type'=>'success','msg'=>'Worksheet subject updated!'));
                     redirect('admin/worksheets');
                 } else{
