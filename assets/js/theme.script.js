@@ -1166,15 +1166,14 @@ function worksheet_print(work_id) {
             if(data) {
                 jQuery.ajax({
                     type : "post",
-                    dataType : "json",
-                    url : base_url+'ajax/download_pdf',
+                    url : base_url+'ajax/print_pdf',
                     data : {worksheet_id: work_id},
                     success: function(res) {
                         if(res!=''){
                             var iframe = document.createElement('iframe');
                             iframe.width="300px";
                             iframe.height="250px";
-                            iframe.id="worksheet_pdf_ifra";
+                            iframe.id="worksheet_pdf_print";
                             iframe.src = res;
                             document.body.appendChild(iframe);  // Add the frame to the web page.
                             iframe.onload = function() {
@@ -1248,14 +1247,34 @@ function worksheet_download(worksheet_id){
             if(data) {
                 jQuery.ajax({
                     type : "post",
-                    dataType : "json",
                     url : base_url+'ajax/download_pdf',
                     data : {worksheet_id: worksheet_id},
                     success: function(res) {
+                        console.log(res);
                         if(res!=''){
-                            myTempWindow = window.open(res,'','left=10000,screenX=10000');
-                            myTempWindow.document.execCommand('SaveAs','null','download.pdf');
-                            myTempWindow.close();
+                            if (!window.ActiveXObject) {
+                                var save = document.createElement('a');
+                                save.href = res;
+                                save.target = '_blank';
+                                save.download = 'workseet.pdf' || 'applekitch';
+
+                                var evt = new MouseEvent('click', {
+                                    'view': window,
+                                    'bubbles': true,
+                                    'cancelable': false
+                                });
+                                save.dispatchEvent(evt);
+
+                                (window.URL || window.webkitURL).revokeObjectURL(save.href);
+                            }
+
+                            // for IE < 11
+                            else if ( !! window.ActiveXObject && document.execCommand)     {
+                                var _window = window.open(fileURL, '_blank');
+                                _window.document.close();
+                                _window.document.execCommand('SaveAs', true, fileName || fileURL)
+                                _window.close();
+                            }
                         } else {
                             alert('No PDF file found!');
                         }

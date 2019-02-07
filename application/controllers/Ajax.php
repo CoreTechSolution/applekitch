@@ -2693,12 +2693,20 @@ class Ajax extends CI_Controller {
             echo false;
         }
     }
-
+    public function print_pdf(){
+        $worksheet_id=$_POST['worksheet_id'];
+        $worksheets=$this->ajax_model->get_worksheets(array('id'=>$worksheet_id));
+        if(!empty($worksheets[0]->pdf_path)){
+           echo $worksheets[0]->pdf_path;
+        } else {
+            echo '';
+        }
+    }
     public function download_pdf(){
 	    $worksheet_id=$_POST['worksheet_id'];
 	    $worksheets=$this->ajax_model->get_worksheets(array('id'=>$worksheet_id));
 	    if(!empty($worksheets[0]->pdf_path)){
-	        echo $worksheets[0]->pdf_path;
+            echo $worksheets[0]->pdf_path;
         } else{
 	        echo '';
         }
