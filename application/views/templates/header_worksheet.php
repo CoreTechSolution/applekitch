@@ -103,7 +103,7 @@
                 },
                 "theme": "classic",
                 "content": {
-                    "href": "http://localhost/applekitch/"
+                    "href": "http://www.applekitch.com/"
                 }
             })});
     </script>
