@@ -1253,6 +1253,7 @@ function worksheet_download(worksheet_id){
                         console.log(res);
                         if(res!=''){
                             if (!window.ActiveXObject) {
+                                va
                                 var save = document.createElement('a');
                                 save.href = res;
                                 save.target = '_blank';

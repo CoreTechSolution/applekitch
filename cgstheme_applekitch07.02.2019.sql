@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 18, 2019 at 07:49 AM
+-- Generation Time: Feb 07, 2019 at 05:56 AM
 -- Server version: 5.6.41-84.1
 -- PHP Version: 5.6.30
 
@@ -2147,7 +2147,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `fname`, `lname`, `phone`, `email_address`, `password`, `parent`, `role`, `membership_plan`, `price`, `profile_img`, `ym`, `start_date`, `stripe_cust_json`, `activation`, `social_action`, `award_click`) VALUES
 (2, 'Test', 'User', '', 'testuser@mailinator.com', 'b1b91a79faefd7ef31005218eb23bb04', 0, 1, 1, 100, 'http://applekitch.coregensolution.com/uploads/34.jpg', 'yearly', '2018-08-14', '{\"id\":\"cus_DPrm8YnwUMU0Cd\",\"object\":\"customer\",\"account_balance\":0,\"created\":1534251264,\"currency\":null,\"default_source\":\"card_DPrlobDo5taezn\",\"delinquent\":false,\"description\":null,\"discount\":null,\"email\":\"testuser@mailinator.com\",\"invoice_prefix\":\"0EA1E4', 1, '', ''),
-(7, 'Tanuj', 'Bhattacharya', NULL, 'tanujcoregen@gmail.com', 'b1b91a79faefd7ef31005218eb23bb04', 0, 4, 1, 100, 'http://www.applekitch.com/uploads/fruit-2200001_19201.jpg', 'monthly', '2018-07-03', '[]', 1, '', ''),
+(7, 'Rana', 'Ghosh', NULL, 'ranacoregen@gmail.com', 'b1b91a79faefd7ef31005218eb23bb04', 0, 4, 1, 100, 'http://www.applekitch.com/uploads/fruit-2200001_19201.jpg', 'monthly', '2018-07-03', '[]', 1, '', ''),
 (4, 'Bhul', 'Bhal', '1234567890', 'bhulbhal1981@gmail.com', 'b1b91a79faefd7ef31005218eb23bb04', 0, 2, 1, 100, NULL, 'monthly', '2018-07-03', '[]', 1, '', ''),
 (5, 'Rana', 'Ghosh', '7890023550', 'ranacoregen@gmail.com', 'e807f1fcf82d132f9bb018ca6738a19f', 0, 3, 0, 0, NULL, '', '0000-00-00', '', 1, '', ''),
 (10, 'Test', 'User', '', 'testchild@mailinator.com', 'b1b91a79faefd7ef31005218eb23bb04', 2, 3, 0, 0, NULL, '', '0000-00-00', '', 1, '', ''),
@@ -2180,7 +2180,8 @@ INSERT INTO `user` (`id`, `fname`, `lname`, `phone`, `email_address`, `password`
 (37, 'Little', 'kids', NULL, 'littlekids', '', 36, 3, 0, 0, 'http://www.applekitch.com/uploads/logo.PNG', '', NULL, '', 1, '', NULL),
 (38, 'Dejon', 'Yost', NULL, 'Ashley_Zulauf14@yahoo.com', 'a98fbdc49b36a6cac8ee2796f5c29e61', 0, 1, 0, 0, NULL, '', NULL, '', 0, '', NULL),
 (39, 'Odell', 'Green', NULL, 'Patricia_Haag61@gmail.com', 'ccfbd45f01c4c02750960168335c0db1', 0, 1, 0, 0, NULL, '', NULL, '', 0, '', NULL),
-(40, 'Verdie', 'Carroll', NULL, 'Werner.Ullrich80@hotmail.com', 'a736de3e27fe981831d82a616dfbb77e', 0, 1, 0, 0, NULL, '', NULL, '', 0, '', NULL);
+(40, 'Verdie', 'Carroll', NULL, 'Werner.Ullrich80@hotmail.com', 'a736de3e27fe981831d82a616dfbb77e', 0, 1, 0, 0, NULL, '', NULL, '', 0, '', NULL),
+(41, 'testwork', 'mailinator', NULL, 'testwork@mailinator.com', 'b1b91a79faefd7ef31005218eb23bb04', 0, 1, 0, 0, NULL, '', NULL, '', 1, '', NULL);
 
 -- --------------------------------------------------------
 
@@ -2217,20 +2218,75 @@ CREATE TABLE `worksheets` (
   `content` text COLLATE utf8_unicode_ci,
   `worksheet_img` text COLLATE utf8_unicode_ci NOT NULL,
   `pdf_path` text COLLATE utf8_unicode_ci NOT NULL,
+  `pdf_page_count` int(11) DEFAULT NULL,
   `work_subject_id` int(11) NOT NULL,
   `work_grade_id` int(11) NOT NULL,
   `work_cat_id` int(11) NOT NULL,
   `work_topic_id` int(11) NOT NULL,
-  `label` enum('Free','New','Premium') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'New'
+  `label` enum('Free','New','Premium','No Label') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'No Label',
+  `new_days_limit` int(11) DEFAULT NULL,
+  `work_uni_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `create_dt` datetime DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `worksheets`
 --
 
-INSERT INTO `worksheets` (`id`, `name`, `slug`, `content`, `worksheet_img`, `pdf_path`, `work_subject_id`, `work_grade_id`, `work_cat_id`, `work_topic_id`, `label`) VALUES
-(23, 'worksheet 1', 'worksheet-1', 'test comment', 'http://applekitch.coregensolution.com/uploads/worksheets/Sample_Worksheet1_0.jpg', 'http://applekitch.coregensolution.com/uploads/worksheets/Sample_Worksheet1.pdf', 1, 1, 2, 3, ''),
-(22, 'worksheet 1', 'worksheet-1', 'test comment', 'http://applekitch.coregensolution.com/uploads/worksheets/Sample_Worksheet_0.jpg', 'http://applekitch.coregensolution.com/uploads/worksheets/Sample_Worksheet.pdf', 1, 1, 2, 3, '');
+INSERT INTO `worksheets` (`id`, `name`, `slug`, `content`, `worksheet_img`, `pdf_path`, `pdf_page_count`, `work_subject_id`, `work_grade_id`, `work_cat_id`, `work_topic_id`, `label`, `new_days_limit`, `work_uni_id`, `create_dt`) VALUES
+(1, 'worksheet 1', 'worksheet-1', 'test new label', 'http://applekitch.coregensolution.com/uploads/worksheets/Sample_Worksheet4_0.jpg', 'http://applekitch.coregensolution.com/uploads/worksheets/Sample_Worksheet4.pdf', 5, 1, 1, 1, 1, '', 5, 'app-5c52d0f13c547', '2019-01-31 04:41:53'),
+(2, 'worksheet 2', 'worksheet-2', '', 'http://applekitch.coregensolution.com/uploads/worksheets/Sample_Worksheet5_0.jpg', 'http://applekitch.coregensolution.com/uploads/worksheets/Sample_Worksheet5.pdf', 5, 1, 1, 1, 1, 'Premium', 0, 'app-5c52d16540e4d', '2019-01-31 04:43:49'),
+(3, 'worksheet 3', 'worksheet-3', '', 'http://applekitch.coregensolution.com/uploads/worksheets/Sample_Worksheet6_0.jpg', 'http://applekitch.coregensolution.com/uploads/worksheets/Sample_Worksheet6.pdf', 5, 1, 1, 1, 1, 'Free', 0, 'app-5c52d19b61677', '2019-01-31 04:44:43'),
+(4, 'worksheet 4', 'worksheet-4', '', 'http://applekitch.coregensolution.com/uploads/worksheets/Sample_Worksheet7_0.jpg', 'http://applekitch.coregensolution.com/uploads/worksheets/Sample_Worksheet7.pdf', 5, 1, 1, 1, 1, 'New', 6, 'app-5c52d1cf70b54', '2019-01-31 04:45:35'),
+(5, 'Adding 1 to other numbers illustrated', 'adding-1-to-other-numbers-illustrated', 'This is example content', 'http://applekitch.coregensolution.com/uploads/worksheets/adding_1_0ther_numbers1_0.jpg', 'http://applekitch.coregensolution.com/uploads/worksheets/adding_1_0ther_numbers1.pdf', 1, 1, 1, 1, 1, 'New', 0, 'app-5c533df29932e', '2019-01-31 12:26:58'),
+(6, 'Adding 4 Numbers', 'adding-4-numbers', 'this is the worksheets to learn xyb', 'http://applekitch.coregensolution.com/uploads/worksheets/adding_1_0ther_numbers2_0.jpg', 'http://applekitch.coregensolution.com/uploads/worksheets/adding_1_0ther_numbers2.pdf', 1, 1, 1, 2, 2, 'New', 0, 'app-5c533fad1a54e', '2019-01-31 12:34:21'),
+(7, 'Writing numbers', 'writing-numbers', 'tgtgtgtgtg', 'http://applekitch.coregensolution.com/uploads/worksheets/fruit_smoothies2_0.jpg', 'http://applekitch.coregensolution.com/uploads/worksheets/fruit_smoothies2.pdf', 1, 1, 1, 1, 1, 'Free', 0, 'app-5c535cd93de5b', '2019-01-31 14:38:49'),
+(8, 'Banana bread recipe', 'banana-bread-recipe', 'There are lots of ways to boost your child\'s confidence in maths. The free activities below are a great start (including some rather yummy recipes), and we\'ve some fun interactive maths games too.\r\n\r\n', 'http://applekitch.coregensolution.com/uploads/worksheets/banana_bread1_0.jpg', 'http://applekitch.coregensolution.com/uploads/worksheets/banana_bread1.pdf', 1, 1, 1, 2, 2, 'New', 0, 'app-5c535d08bbb94', '2019-01-31 14:39:36'),
+(9, 'd with dice', 'd-with-dice', 'A simple year one worksheet on adding up two amounts of money. Using money is an important life skill.\r\n\r\n', 'http://applekitch.coregensolution.com/uploads/worksheets/OxOwl_AddWithDice_01_0.jpg', 'http://applekitch.coregensolution.com/uploads/worksheets/OxOwl_AddWithDice_01.pdf', 1, 1, 1, 1, 1, 'New', 0, 'app-5c535ddc31598', '2019-01-31 14:43:08'),
+(10, 'Recognising equal groups (3)', 'recognising-equal-groups-3', 'More on recognising equal groups.\r\n\r\n', 'http://applekitch.coregensolution.com/uploads/worksheets/OxOwl_AddWithDice_011_0.jpg', 'http://applekitch.coregensolution.com/uploads/worksheets/OxOwl_AddWithDice_011.pdf', 1, 1, 1, 1, 1, 'New', 0, 'app-5c536365611c8', '2019-01-31 15:06:45'),
+(11, 'Subtraction with a number line - monkeys', 'subtraction-with-a-number-line-monkeys', 'Using a number line to help with subtracting small numbers.\r\n\r\n', 'http://applekitch.coregensolution.com/uploads/worksheets/subtraction-with-a-number-line-monkeys_0.jpg', 'http://applekitch.coregensolution.com/uploads/worksheets/subtraction-with-a-number-line-monkeys.pdf', 5, 1, 1, 2, 2, 'Premium', 0, 'app-5c5364914c08d', '2019-01-31 15:11:45'),
+(12, 'Counting up to 10 - fish', 'counting-up-to-10-fish', 'Many children quickly learn how to say the numbers from 0 to 10, but this is not quite the same as being able to count a number of objects. Whether it\'s counting fish, footballs or planes, we have a great set of counting pages which are perfect to supplement all those opportunities there are in the home for counting sets of objects.\r\n\r\n', 'http://applekitch.coregensolution.com/uploads/worksheets/counting-up-to-10-fish_0.jpg', 'http://applekitch.coregensolution.com/uploads/worksheets/counting-up-to-10-fish.pdf', 4, 1, 1, 2, 2, 'New', 0, 'app-5c53654a92354', '2019-01-31 15:14:50'),
+(13, 'Counting up to 10 - planes', 'counting-up-to-10-planes', 'Many children quickly learn how to say the numbers from 0 to 10, but this is not quite the same as being able to count a number of objects. Whether it\'s counting fish, footballs or planes, we have a great set of counting pages which are perfect to supplement all those opportunities there are in the home for counting sets of objects.\r\n\r\n', 'http://applekitch.coregensolution.com/uploads/worksheets/counting-up-to-10-planes_0.jpg', 'http://applekitch.coregensolution.com/uploads/worksheets/counting-up-to-10-planes.pdf', 4, 1, 1, 2, 2, 'New', 0, 'app-5c53656d32d70', '2019-01-31 15:15:25'),
+(14, 'Counting up to 10 - balls', 'counting-up-to-10-balls', '', 'http://applekitch.coregensolution.com/uploads/worksheets/counting-up-to-10-balls_(1)_0.jpg', 'http://applekitch.coregensolution.com/uploads/worksheets/counting-up-to-10-balls_(1).pdf', 4, 1, 1, 2, 2, 'New', 0, 'app-5c53658293ac9', '2019-01-31 15:15:46'),
+(15, 'Counting up to 10 - tomatoes', 'counting-up-to-10-tomatoes', 'Another opportunity to consolidate those counting skills with numbers up to 10.\r\n\r\n', 'http://applekitch.coregensolution.com/uploads/worksheets/counting-up-to-10-tomatoes_0.jpg', 'http://applekitch.coregensolution.com/uploads/worksheets/counting-up-to-10-tomatoes.pdf', 4, 1, 1, 1, 1, 'New', 0, 'app-5c53659b87a3d', '2019-01-31 15:16:11'),
+(16, 'Counting up to 10 - flowers', 'counting-up-to-10-flowers', '', 'http://applekitch.coregensolution.com/uploads/worksheets/counting-up-to-10-flowers_0.jpg', 'http://applekitch.coregensolution.com/uploads/worksheets/counting-up-to-10-flowers.pdf', 5, 1, 1, 2, 2, 'New', 0, 'app-5c5365bb0d6e9', '2019-01-31 15:16:43'),
+(17, 'Counting up to 10 - gingerbread people', 'counting-up-to-10-gingerbread-people', 'Counting up to 10 - gingerbread people\r\n', 'http://applekitch.coregensolution.com/uploads/worksheets/counting-up-to-10-gingerbread-people_0.jpg', 'http://applekitch.coregensolution.com/uploads/worksheets/counting-up-to-10-gingerbread-people.pdf', 5, 1, 1, 2, 2, 'New', 0, 'app-5c5365de74da8', '2019-01-31 15:17:18'),
+(18, 'Counting up to 10 - rats', 'counting-up-to-10-rats', '', 'http://applekitch.coregensolution.com/uploads/worksheets/counting-up-to-10-rats_0.jpg', 'http://applekitch.coregensolution.com/uploads/worksheets/counting-up-to-10-rats.pdf', 5, 1, 1, 2, 2, 'New', 0, 'app-5c5365fa0c324', '2019-01-31 15:17:46'),
+(19, 'Counting up to 10 - fruit', 'counting-up-to-10-fruit', 'Counting fruit with totals up to 10.\r\n\r\n', 'http://applekitch.coregensolution.com/uploads/worksheets/counting-up-to-10-fruit_0.jpg', 'http://applekitch.coregensolution.com/uploads/worksheets/counting-up-to-10-fruit.pdf', 5, 1, 1, 2, 2, 'New', 0, 'app-5c5366239976a', '2019-01-31 15:18:27'),
+(20, 'Counting up to 10 - colouring rats', 'counting-up-to-10-colouring-rats', '', 'http://applekitch.coregensolution.com/uploads/worksheets/counting-up-to-10-colouring-rats_0.jpg', 'http://applekitch.coregensolution.com/uploads/worksheets/counting-up-to-10-colouring-rats.pdf', 4, 1, 1, 2, 2, 'New', 0, 'app-5c53663761481', '2019-01-31 15:18:47'),
+(21, 'Counting two sets - cows and goats', 'counting-two-sets-cows-and-goats', 'Perhaps the earliest practice of addition is when children count two sets of objects to make one total. We have a fantastic farmyard set of counting worksheets, counting cows and goats. Use these in conjunction with objects at home, eg counting red and blue counters, or the numbers on two dice, to make sure your child becomes really sharp with counting and understanding the term, \'How many altogether?\'\r\n\r\n', 'http://applekitch.coregensolution.com/uploads/worksheets/counting-two-sets-cows-and-goats_0.jpg', 'http://applekitch.coregensolution.com/uploads/worksheets/counting-two-sets-cows-and-goats.pdf', 4, 1, 1, 2, 2, 'New', 0, 'app-5c53664fb565d', '2019-01-31 15:19:11'),
+(22, 'Counting two sets - cats and dogs', 'counting-two-sets-cats-and-dogs', 'It\'s not raining cats and dogs but there are plenty to count here as children begin to understand the term, \'How many altogether?\' Still keeping to small numbers up to 5.\r\n\r\n', 'http://applekitch.coregensolution.com/uploads/worksheets/counting-two-sets-cats-and-dogs_0.jpg', 'http://applekitch.coregensolution.com/uploads/worksheets/counting-two-sets-cats-and-dogs.pdf', 4, 1, 1, 2, 2, 'New', 0, 'app-5c5366792fb13', '2019-01-31 15:19:53'),
+(23, 'Extension: counting footsteps', 'extension-counting-footsteps', '', 'http://applekitch.coregensolution.com/uploads/worksheets/extension-counting-footsteps_0.jpg', 'http://applekitch.coregensolution.com/uploads/worksheets/extension-counting-footsteps.pdf', 3, 1, 1, 1, 1, 'New', 0, 'app-5c536697a5543', '2019-01-31 15:20:23'),
+(24, 'Counting two sets - sea creatures', 'counting-two-sets-sea-creatures', '', 'http://applekitch.coregensolution.com/uploads/worksheets/counting-two-sets-sea-creatures_0.jpg', 'http://applekitch.coregensolution.com/uploads/worksheets/counting-two-sets-sea-creatures.pdf', 5, 1, 1, 2, 2, 'New', 0, 'app-5c5366ac4d552', '2019-01-31 15:20:44'),
+(25, 'Counting two sets - oranges and lemons', 'counting-two-sets-oranges-and-lemons', '', 'http://applekitch.coregensolution.com/uploads/worksheets/counting-two-sets-oranges-and-lemons_0.jpg', 'http://applekitch.coregensolution.com/uploads/worksheets/counting-two-sets-oranges-and-lemons.pdf', 5, 1, 1, 1, 1, 'New', 0, 'app-5c5367000decd', '2019-01-31 15:22:08'),
+(26, 'Extension: count on in ones beyond 10', 'extension-count-on-in-ones-beyond-10', '', 'http://applekitch.coregensolution.com/uploads/worksheets/extension-count-on-in-ones-beyond-10_0.jpg', 'http://applekitch.coregensolution.com/uploads/worksheets/extension-count-on-in-ones-beyond-10.pdf', 5, 1, 1, 1, 1, 'New', 0, 'app-5c53674080327', '2019-01-31 15:23:12'),
+(27, 'Counting two sets - frogs', 'counting-two-sets-frogs', '', 'http://applekitch.coregensolution.com/uploads/worksheets/counting-two-sets-frogs_0.jpg', 'http://applekitch.coregensolution.com/uploads/worksheets/counting-two-sets-frogs.pdf', 4, 1, 1, 2, 2, 'New', 0, 'app-5c5367534fd2f', '2019-01-31 15:23:31'),
+(30, 'English2', 'english2', '', 'http://applekitch.coregensolution.com/uploads/worksheets/SAMPLE_PDF8_0.jpg', 'http://applekitch.coregensolution.com/uploads/worksheets/SAMPLE_PDF8.pdf', 1, 1, 1, 1, 1, 'No Label', 0, 'app-5c5438fd97084', '2019-02-01 06:18:05'),
+(31, 'worksheet 4', 'worksheet-4-1', '', 'http://applekitch.coregensolution.com/uploads/worksheets/Sample_Worksheet9_0.jpg', 'http://applekitch.coregensolution.com/uploads/worksheets/Sample_Worksheet9.pdf', 5, 1, 1, 1, 1, 'No Label', 0, 'app-5c54397bbffa8', '2019-02-01 06:20:11'),
+(32, 'Testing 432`', 'testing-432', 'dddddddddddddddddddddd', 'http://applekitch.coregensolution.com/uploads/worksheets/OxOwl_AddWithDice_012_0.jpg', 'http://applekitch.coregensolution.com/uploads/worksheets/OxOwl_AddWithDice_012.pdf', 1, 1, 1, 1, 1, 'No Label', 0, 'app-5c5812e6296f3', '2019-02-04 04:24:38'),
+(33, 'test worksheet 1', 'test-worksheet-1', 'test', 'http://applekitch.coregensolution.com/uploads/worksheets/Sample_Worksheet10_0.jpg', 'http://applekitch.coregensolution.com/uploads/worksheets/Sample_Worksheet10.pdf', 5, 1, 1, 1, 0, 'Free', 0, 'app-5c5ad184ed741', '2019-02-06 06:22:28'),
+(34, 'test worksheet 2', 'test-worksheet-2', 'test', 'http://applekitch.coregensolution.com/uploads/worksheets/SAMPLE_PDF9_0.jpg', 'http://applekitch.coregensolution.com/uploads/worksheets/SAMPLE_PDF9.pdf', 1, 1, 1, 1, 0, 'Premium', 0, 'app-5c5ad248e2077', '2019-02-06 06:25:44');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `worksheet_favorite`
+--
+
+CREATE TABLE `worksheet_favorite` (
+  `fav_id` int(11) NOT NULL,
+  `worksheet_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `create_dt` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `worksheet_favorite`
+--
+
+INSERT INTO `worksheet_favorite` (`fav_id`, `worksheet_id`, `user_id`, `create_dt`) VALUES
+(1, 4, 20, '2019-01-31 12:32:06'),
+(2, 32, 13, '2019-02-06 04:52:19');
 
 -- --------------------------------------------------------
 
@@ -2243,6 +2299,7 @@ CREATE TABLE `worksheet_rating` (
   `worksheet_id` int(11) NOT NULL,
   `rating_number` int(11) NOT NULL,
   `total_points` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 = Block, 0 = Unblock'
@@ -2252,8 +2309,43 @@ CREATE TABLE `worksheet_rating` (
 -- Dumping data for table `worksheet_rating`
 --
 
-INSERT INTO `worksheet_rating` (`rating_id`, `worksheet_id`, `rating_number`, `total_points`, `created`, `modified`, `status`) VALUES
-(1, 23, 1, 3, '2019-01-16 02:56:53', '2019-01-16 02:56:53', 1);
+INSERT INTO `worksheet_rating` (`rating_id`, `worksheet_id`, `rating_number`, `total_points`, `user_id`, `created`, `modified`, `status`) VALUES
+(1, 1, 1, 5, 0, '2019-01-31 04:41:53', '2019-01-31 04:41:53', 1),
+(2, 2, 1, 4, 0, '2019-01-31 04:43:49', '2019-01-31 04:43:49', 1),
+(3, 3, 1, 3, 0, '2019-01-31 04:44:43', '2019-01-31 04:44:43', 1),
+(4, 4, 1, 4, 0, '2019-01-31 04:45:35', '2019-01-31 04:45:35', 1),
+(5, 5, 1, 5, 0, '2019-01-31 12:26:58', '2019-01-31 12:26:58', 1),
+(6, 6, 1, 5, 0, '2019-01-31 12:34:21', '2019-01-31 12:34:21', 1),
+(7, 7, 1, 5, 0, '2019-01-31 14:38:49', '2019-01-31 14:38:49', 1),
+(8, 8, 1, 5, 0, '2019-01-31 14:39:36', '2019-01-31 14:39:36', 1),
+(9, 9, 1, 5, 0, '2019-01-31 14:52:45', '2019-01-31 14:52:45', 1),
+(10, 10, 1, 5, 0, '2019-01-31 15:06:45', '2019-01-31 15:06:45', 1),
+(11, 11, 1, 4, 0, '2019-01-31 15:11:45', '2019-01-31 15:11:45', 1),
+(12, 12, 1, 4, 0, '2019-01-31 15:14:50', '2019-01-31 15:14:50', 1),
+(13, 13, 1, 4, 0, '2019-01-31 15:15:25', '2019-01-31 15:15:25', 1),
+(14, 14, 1, 5, 0, '2019-01-31 15:15:46', '2019-01-31 15:15:46', 1),
+(15, 15, 1, 4, 0, '2019-01-31 15:16:11', '2019-01-31 15:16:11', 1),
+(16, 16, 1, 4, 0, '2019-01-31 15:16:43', '2019-01-31 15:16:43', 1),
+(17, 17, 1, 4, 0, '2019-01-31 15:17:18', '2019-01-31 15:17:18', 1),
+(18, 18, 1, 4, 0, '2019-01-31 15:17:46', '2019-01-31 15:17:46', 1),
+(19, 19, 1, 4, 0, '2019-01-31 15:18:27', '2019-01-31 15:18:27', 1),
+(20, 20, 1, 4, 0, '2019-01-31 15:18:47', '2019-01-31 15:18:47', 1),
+(21, 21, 1, 4, 0, '2019-01-31 15:19:11', '2019-01-31 15:19:11', 1),
+(22, 22, 1, 4, 0, '2019-01-31 15:19:53', '2019-01-31 15:19:53', 1),
+(23, 23, 1, 4, 0, '2019-01-31 15:20:23', '2019-01-31 15:20:23', 1),
+(24, 24, 1, 5, 0, '2019-01-31 15:20:44', '2019-01-31 15:20:44', 1),
+(25, 25, 1, 4, 0, '2019-01-31 15:22:08', '2019-01-31 15:22:08', 1),
+(26, 26, 1, 4, 0, '2019-01-31 15:23:12', '2019-01-31 15:23:12', 1),
+(27, 27, 1, 4, 0, '2019-01-31 15:23:31', '2019-01-31 15:23:31', 1),
+(28, 28, 1, 4, 0, '2019-02-01 05:43:56', '2019-02-01 05:43:56', 1),
+(29, 29, 1, 4, 0, '2019-02-01 05:57:59', '2019-02-01 05:57:59', 1),
+(30, 30, 1, 3, 0, '2019-02-01 06:18:05', '2019-02-01 06:18:05', 1),
+(31, 31, 1, 4, 0, '2019-02-01 06:20:11', '2019-02-01 06:20:11', 1),
+(32, 32, 1, 4, 7, '2019-02-06 06:15:12', '2019-02-06 06:15:12', 1),
+(33, 33, 1, 4, 0, '2019-02-06 06:22:28', '2019-02-06 06:22:28', 1),
+(34, 34, 1, 3, 7, '2019-02-06 06:34:07', '2019-02-06 06:34:07', 1),
+(36, 34, 1, 5, 0, '2019-02-06 06:46:59', '2019-02-06 06:46:59', 1),
+(37, 26, 1, 4, 7, '2019-02-06 06:49:41', '2019-02-06 06:49:41', 1);
 
 -- --------------------------------------------------------
 
@@ -2277,7 +2369,9 @@ CREATE TABLE `work_categories` (
 --
 
 INSERT INTO `work_categories` (`id`, `name`, `slug`, `parent`, `work_grade_id`, `work_subject_id`, `country`, `cat_img`) VALUES
-(2, 'test cat 2', 'test-cat-2', NULL, 1, 1, NULL, NULL);
+(1, 'Category 1', 'category-1', NULL, 1, 1, NULL, NULL),
+(2, 'Addition', 'addition', NULL, 1, 1, NULL, NULL),
+(3, 'Subtraction', 'subtraction', NULL, 1, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -2298,7 +2392,9 @@ CREATE TABLE `work_grades` (
 --
 
 INSERT INTO `work_grades` (`id`, `name`, `slug`, `img`, `work_subject_id`) VALUES
-(1, 'Grade 1', 'grade-1', 0, 1);
+(1, 'Year 1', 'year-1', 0, 1),
+(3, 'Year 2', 'year-2', 0, 1),
+(4, 'Year 3', 'year-3', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -2319,8 +2415,8 @@ CREATE TABLE `work_subjects` (
 --
 
 INSERT INTO `work_subjects` (`id`, `name`, `slug`, `grade`, `country`) VALUES
-(1, 'Math', 'math', 5, 105),
-(2, 'English', 'english', 5, 105);
+(1, 'Math', 'math', NULL, NULL),
+(2, 'English', 'english', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -2343,7 +2439,8 @@ CREATE TABLE `work_topics` (
 --
 
 INSERT INTO `work_topics` (`id`, `name`, `slug`, `status`, `work_subject_id`, `work_grade_id`, `work_cat_id`) VALUES
-(3, 'test  topic 1', 'test-topic-1', 'active', 1, 1, 2);
+(1, 'Topic 1', 'topic-1', 'active', 1, 1, 1),
+(2, 'Adding', 'adding', 'active', 1, 1, 2);
 
 --
 -- Indexes for dumped tables
@@ -2480,6 +2577,12 @@ ALTER TABLE `user_roles`
 --
 ALTER TABLE `worksheets`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `worksheet_favorite`
+--
+ALTER TABLE `worksheet_favorite`
+  ADD PRIMARY KEY (`fav_id`);
 
 --
 -- Indexes for table `worksheet_rating`
@@ -2633,7 +2736,7 @@ ALTER TABLE `topics`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `user_roles`
@@ -2645,37 +2748,43 @@ ALTER TABLE `user_roles`
 -- AUTO_INCREMENT for table `worksheets`
 --
 ALTER TABLE `worksheets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+
+--
+-- AUTO_INCREMENT for table `worksheet_favorite`
+--
+ALTER TABLE `worksheet_favorite`
+  MODIFY `fav_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `worksheet_rating`
 --
 ALTER TABLE `worksheet_rating`
-  MODIFY `rating_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `rating_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `work_categories`
 --
 ALTER TABLE `work_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `work_grades`
 --
 ALTER TABLE `work_grades`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `work_subjects`
 --
 ALTER TABLE `work_subjects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `work_topics`
 --
 ALTER TABLE `work_topics`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
