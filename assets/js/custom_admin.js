@@ -224,7 +224,7 @@ jQuery(document).ready(function() {
         }
     });
 
-    jQuery('body').on('blur', '.work_subject_id', function (e) {
+   /* jQuery('body').on('blur', '.work_subject_id', function (e) {
         var id = jQuery(this).val().trim();
         if (id.length > 0) {
             jQuery.ajax({
@@ -236,7 +236,7 @@ jQuery(document).ready(function() {
                 }
             })
         }
-    });
+    });*/
     jQuery('body').on('change','#work_label_select', function (e) {
         var slug_text=jQuery(this).val().trim();
         if(slug_text=='New'){

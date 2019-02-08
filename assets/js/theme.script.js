@@ -1158,6 +1158,7 @@ function search_breadcumb(type, id){
     //return '<li>'+rtntext+'</li>';
 }
 function worksheet_print(work_id) {
+    jQuery('#loading_spinner_p').show();
     jQuery.ajax({
         type : "post",
         //dataType : "json",
@@ -1171,9 +1172,10 @@ function worksheet_print(work_id) {
                     success: function(res) {
                         if(res!=''){
                             var iframe = document.createElement('iframe');
-                            iframe.width="300px";
-                            iframe.height="250px";
+                            iframe.width="0";
+                            iframe.height="0";
                             iframe.id="worksheet_pdf_print";
+                            iframe.style="visibility: hidden";
                             iframe.src = res;
                             document.body.appendChild(iframe);  // Add the frame to the web page.
                             iframe.onload = function() {
@@ -1182,14 +1184,17 @@ function worksheet_print(work_id) {
                                     iframe.contentWindow.print();
                                 }, 1);
                             };
+                            jQuery('#loading_spinner_p').hide();
                         } else {
                             alert('No PDF file found!');
+                            jQuery('#loading_spinner_p').hide();
                         }
 
                     }
                 });
             } else{
                 jQuery('#modalLoginForm').modal('toggle');
+                jQuery('#loading_spinner_p').hide();
             }
         }
     });
@@ -1239,6 +1244,7 @@ function modal_register(){
 }
 
 function worksheet_download(worksheet_id){
+    jQuery('#loading_spinner_d').show();
     jQuery.ajax({
         type : "post",
         //dataType : "json",
@@ -1253,7 +1259,7 @@ function worksheet_download(worksheet_id){
                         console.log(res);
                         if(res!=''){
                             if (!window.ActiveXObject) {
-                                va
+                                //va
                                 var save = document.createElement('a');
                                 save.href = res;
                                 save.target = '_blank';
@@ -1276,8 +1282,10 @@ function worksheet_download(worksheet_id){
                                 _window.document.execCommand('SaveAs', true, fileName || fileURL)
                                 _window.close();
                             }
+                            jQuery('#loading_spinner_d').hide();
                         } else {
                             alert('No PDF file found!');
+                            jQuery('#loading_spinner_d').hide();
                         }
 
                     }
@@ -1286,6 +1294,7 @@ function worksheet_download(worksheet_id){
                 //window.location.href=doc;
             } else{
                 jQuery('#modalLoginForm').modal('toggle');
+                jQuery('#loading_spinner_d').hide();
             }
         }
     });

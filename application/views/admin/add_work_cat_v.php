@@ -18,7 +18,7 @@ require_once 'templates/header.php';
 						<div class="row">
                             <div class="col-md-6">
                                 <label>Grade: </label>
-                                <?php echo form_dropdown('work_grade_id', '---------Choose--------', '1',array('class'=>'form-control','id'=>'work_grade_id'));
+                                <?php echo form_dropdown('work_grade_id', form_dropdown_cr(array('id','name'),'work_grades',false), '1',array('class'=>'form-control','id'=>'work_grade_id'));
                                 ?>
                             </div>
                             <div class="col-md-6">

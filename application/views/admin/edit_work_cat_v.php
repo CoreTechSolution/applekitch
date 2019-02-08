@@ -17,14 +17,15 @@ require_once 'templates/header.php';
                 <form method="post" action="<?= base_url('admin/'.$method.'/'.$edit_data->id) ?>">
                     <div class="form-group">
                         <div class="row">
+                            <?php //print_r( $edit_data); exit(); ?>
                             <div class="col-md-6">
-                                <label>Subject: </label>
-                                <?php echo form_dropdown('work_subject_id', form_dropdown_cr(array('id','name'),'work_subjects',false), (!empty($edit_data->wotk_subject_id))?$edit_data->wotk_subject_id:'' ,array('class'=>'form-control work_subject_id'));
+                                <label>Grade: </label>
+                                <?php echo form_dropdown('work_grade_id', form_dropdown_cr(array('id','name'),'work_grades',false),  $edit_data->work_grade_id ,array('class'=>'form-control','id'=>'work_grade_id'));
                                 ?>
                             </div>
                             <div class="col-md-6">
-                                <label>Grade: </label>
-                                <?php echo form_dropdown('work_grade_id', form_dropdown_cr(array('id','name'),'work_grades',false), (!empty($edit_data->work_grade_id))?$edit_data->work_grade_id:'',array('class'=>'form-control','id'=>'work_grade_id'));
+                                <label>Subject: </label>
+                                <?php echo form_dropdown('work_subject_id', form_dropdown_cr(array('id','name'),'work_subjects',false), $edit_data->work_subject_id,array('class'=>'form-control work_subject_id'));
                                 ?>
                             </div>
                             <div class="col-md-6">

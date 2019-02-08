@@ -3702,6 +3702,7 @@ work_single_rating span{
     background: #eeeeee;
     font-size: 14px;
     font-weight: 500;
+    display: block;
 }
 .pagination li {
     display: inline-block;
@@ -3733,6 +3734,9 @@ work_single_rating span{
     background: #a8cf41;
     pointer-events: none;
     cursor: default;
+}
+.loading_spinner{
+    display: none;
 }
 @media screen and (max-width: 40em) {
    /* !* #menu is the original menu *!
