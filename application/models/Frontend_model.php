@@ -5,12 +5,14 @@ class Frontend_model extends CI_Model {
 	public function __construct() {
 		parent::__construct();
 	}
-	function get_questions($conditions=array(),$row=true){
+	function get_questions($conditions=array(),$row=true, $limit=''){
 		$this->db->select('*');
 		if(!empty($conditions)){
 			$this->db->where($conditions);
 		}
-
+        if($limit!=''){
+            $this->db->limit($limit, 0);
+        }
 		$this->db->from('questions');
 		$queries=$this->db->get();
 		if($row==true){
@@ -245,11 +247,14 @@ class Frontend_model extends CI_Model {
 		return $query;
 
 	}
-	function get_questions_by_one($conditions=array(),$row=true,$start='',$not_in=array()){
+	function get_questions_by_one($conditions=array(),$row=true,$start='',$not_in=array(),$where_in=array()){
 		$this->db->select('*');
 		if(!empty($conditions)){
 			$this->db->where($conditions);
 		}
+		if(!empty($where_in)){
+		    $this->db->where_in($where_in);
+        }
 		if(!empty($not_in)){
 			$this->db->where_not_in($not_in);
 		}

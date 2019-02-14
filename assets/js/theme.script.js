@@ -169,7 +169,10 @@ jQuery(document).ready(function(){
                     jQuery('.score_ans').find('.content').html(data['score_ans']);
                     jQuery('.score_smart').find('.content').html(data['score_smart']);
                     var topic = jQuery('.breadcrumbs .breadcrumbs__item_active').find('.breadcrumbs__element').html();
+                    // After question submit init gauge and progress bar
 
+
+                    // After question submit init gauge and progress bar end here
                     var exercise_complete_text = new Array("Exercise Complete!", "Mission accomplished!", "Mission Complete!");
                     var random_exercise_complete_text = exercise_complete_text[Math.floor( Math.random() * exercise_complete_text.length )];
                     var awesome_text = new Array("You are great!", "You're a star", "You're awesome");
@@ -434,6 +437,62 @@ jQuery(document).ready(function(){
                     }, 2000);
                     //////////////////////////////
                 }
+                var tQ_attend= jQuery('.score_ans').find('.content').html();
+                var qScore=jQuery('.score_smart').find('.content').html();
+                var total_time=data['total_time'];
+                var tQ_score=data['tQ_score'];
+                var color_zone_position1=0
+                var color_zone_position2=parseInt(parseInt(data['total_question_marks'])*(30/100));
+                var color_zone_position3=parseInt(color_zone_position2)+1;
+                var color_zone_position4=parseInt(parseInt(data['total_question_marks'])*(80/100));
+                var color_zone_position5=parseInt(color_zone_position4)+1;
+                var color_zone_position6=parseInt(data['total_question_marks']);
+                var opts = {
+                    angle: 0, // The span of the gauge arc
+                    lineWidth: 0.55, // The line thickness
+                    radiusScale: 1, // Relative radius
+                    pointer: {
+                        length: 0.8, // // Relative to gauge radius
+                        strokeWidth: 0.050, // The thickness
+                        color: '#FF4621' // Fill color
+                    },
+
+                    limitMax: false,     // If false, max value increases automatically if value > maxValue
+                    limitMin: false,     // If true, the min value of the gauge will be fixed
+                    colorStart: '#4ECF40',   // Colors
+                    colorStop: '#2CDA49',    // just experiment with them
+                    strokeColor: '#E0E0E0',  // to see which ones work best for you
+                    generateGradient: true,
+                    highDpiSupport: true,     // High resolution support
+
+                    staticZones: [
+                        {strokeStyle: "#F03E3E", min: color_zone_position1, max: color_zone_position2}, // Red from 100 to 130
+                        {strokeStyle: "#FFDD00", min: color_zone_position3, max: color_zone_position4}, // Yellow
+                        {strokeStyle: "#30B32D", min: color_zone_position5, max: color_zone_position6}, // Green
+                    ],
+
+                };
+                var target = document.getElementById('progress_meter'); // your canvas element
+                var gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
+                gauge.maxValue = data['total_question_marks']; // set max gauge value
+                gauge.setMinValue(0);  // Prefer setter over gauge.minValue = 0
+                gauge.animationSpeed = 32; // set animation speed (32 is default value)
+                gauge.set(qScore);
+                jQuery('.canvas_text').html('<span class="gauge_value">'+qScore+'</span> of <span class="gauge_value">'+data['total_question_marks']+'</span>');
+                jQuery('#e1').html('');
+                var  current_position=(parseInt(tQ_attend)+1);
+                //alert(current_position);
+                var tes=data['stepbar_count'];
+                var step=data['stepbar_count'].split(',');
+                //alert(tes);
+                jQuery('#e1').stepbar({
+                    items: step,
+                    color: '#84B1FA',
+                    fontColor: '#000',
+                    selectedColor: '#223D8F',
+                    selectedFontColor: '#fff',
+                    current: current_position
+                });
             }
         });
         svgCount = 0;

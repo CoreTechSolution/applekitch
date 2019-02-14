@@ -4,7 +4,7 @@
 		<img src="<?php echo $form_data['img']; ?>" alt="" class="img-thumbnail">
 	</div>
 	<div class="qAns_box">
-		<p>Answer: </p><span><input type="text" name="qAns_box" class="form-control"></span>
+        <div class="question_count">A. </div><span><input type="text" name="qAns_box" class="form-control"></span>
 	</div>
 <?php } elseif($question_option=='2'){ ?>
 	<?php $img_array = explode('|',$form_data['img_array']); ?>
@@ -17,7 +17,7 @@
 				$reversedParts = explode('/', strrev($img), 2);
 				$img_name = strrev($reversedParts[0]);
 				?>
-				<div class="col-lg-6">
+				<div class="col-lg-2">
 					<div class="form-group">
 						<div class="imgselector">
 							<label for="img_<?php echo $i; ?>">
@@ -85,7 +85,7 @@
 				$reversedParts = explode('/', strrev($img), 2);
 				$img_name = strrev($reversedParts[0]);
 				?>
-				<div class="col-lg-6">
+				<div class="col-lg-2">
 					<div class="form-group">
 						<div class="imgselectorMultiple">
 							<label for="img_<?php echo $i; ?>">
@@ -113,7 +113,7 @@
 <?php } elseif($question_option=='11'){ ?>
 	<?php //print_r($form_data); ?>
 	<div class="qAns_box">
-		<p>Answer: </p><span><input type="text" name="qAns_box" class="form-control"></span>
+		<span><input type="text" name="qAns_box" class="form-control"></span>
 	</div>
 <?php } elseif($question_option=='12'){ ?>
 	<?php
@@ -179,7 +179,7 @@
 				$reversedParts = explode('/', strrev($img), 2);
 				$img_name = strrev($reversedParts[0]);
 				?>
-				<div class="col-lg-6">
+				<div class="col-lg-2">
 					<div class="form-group">
 						<div class="imgselector">
 							<label for="img_<?php echo $i; ?>">
@@ -225,9 +225,11 @@
         </div>
     </div>
     <div class="row12">
+        <div class="question_count">A. </div>
         <ul>
         <?php $i = 0; ?>
         <?php foreach ($form_data['option_1'] as $option){ ?>
+
             <li>
                 <div class="boxed">
                     <input type="radio" id="options_<?php echo $i; ?>" name="selected_option" value="<?php echo $option; ?>">
@@ -411,7 +413,7 @@
                 $reversedParts = explode('/', strrev($img), 2);
                 $img_name = strrev($reversedParts[0]);
                 ?>
-                <div class="col-lg-6">
+                <div class="col-lg-2">
                     <div class="form-group">
                         <div class="imgselector">
                             <label for="img_<?php echo $i; ?>">

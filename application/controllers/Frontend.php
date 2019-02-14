@@ -139,7 +139,12 @@ class Frontend extends CI_Controller {
 		$subject_id=get_id_by_slug('id',$subject,'subject');
 		$topic_id=get_returnfield('topics','slug',$topic,'topic_id');
 		$data['subjects']=get_table_data(array('id','name'),'subject');
-		$data['questions']=$this->frontend_model->get_questions_by_one(array('grade_id'=>$grade_id,'subject_id'=>$subject_id,'topic_id'=>$topic_id),false,$start);
+		$this->set_question_bank(array('grade_id'=>$grade_id,'subject_id'=>$subject_id,'topic_id'=>$topic_id));
+		if(!empty($this->session->userdata('q_id_array'))){
+            $where_id_in=explode(',',$this->session->userdata('q_id_array'));
+        }
+
+		$data['questions']=$this->frontend_model->get_questions_by_one(array('grade_id'=>$grade_id,'subject_id'=>$subject_id,'topic_id'=>$topic_id),false,$start,array(),$where_id_in);
 		$data['start']=1;
 		$data['grade_id']=$grade_id;
 		$data['subject_id']=$subject_id;
@@ -151,7 +156,25 @@ class Frontend extends CI_Controller {
 		$this->session->unset_userdata('total_qScore');
 		$this->load->view('frontend/questions_page',$data);
 	}
-
+    public function set_question_bank($aa){
+        $all_q=$this->frontend_model->get_questions($aa,false);
+        $total_question_count=count($all_q);
+        if($total_question_count>10){
+            $all_q=$this->frontend_model->get_questions('',false, 10);
+            $total_question_count=count($all_q);
+        }
+        $q_id_array='';
+        $q_total_marks=0;
+        foreach ($all_q as $s_q){
+            //print_r($s_q); exit();
+            $q_id_array .=($q_id_array!='') ? ','.$s_q->question_id : $s_q->question_id;
+            $form_datas=unserialize($s_q->form_data);
+            $q_total_marks=$q_total_marks+$form_datas['q_score'];
+        }
+        $this->session->set_userdata('total_question_count',$total_question_count);
+        $this->session->set_userdata('total_question_marks',$q_total_marks);
+        $this->session->set_userdata('q_id_array',$q_id_array);
+    }
 	public function worksheets($grade_slug='',$subject_slug='',$cat_slug='',$topic_slug=''){
         $data['title']='Worksheets';
         $where='';

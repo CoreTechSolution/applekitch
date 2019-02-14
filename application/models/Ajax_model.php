@@ -121,11 +121,14 @@ class Ajax_model extends CI_Model{
 		}
 		return $insert_id;
 	}
-	function get_questions_by_one($conditions=array(),$row=true,$start='',$not_in=array()){
+	function get_questions_by_one($conditions=array(),$row=true,$start='',$not_in=array(),$where_in=array()){
 		$this->db->select('*');
 		if(!empty($conditions)){
 			$this->db->where($conditions);
 		}
+        if(!empty($where_in)){
+            $this->db->where_in($where_in);
+        }
 		if(!empty($not_in)){
 			$not_in = array_map('strval',$not_in);
 			$this->db->where_not_in('question_id', $not_in);

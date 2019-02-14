@@ -605,7 +605,8 @@ class Ajax extends CI_Controller {
             $conditions=array('question_id'=>$question_id);
             $questions=$this->ajax_model->get_questions($conditions,true);
             $form_data_ans=unserialize($questions->form_data);
-            $questions_next=$this->ajax_model->get_questions_by_one(array('grade_id'=>$grade_id,'subject_id'=>$subject_id,'topic_id'=>$topic_id),false,$start,$ids_not_in);
+            $ids_in=explode(',',$this->session->userdata('q_id_array'));
+            $questions_next=$this->ajax_model->get_questions_by_one(array('grade_id'=>$grade_id,'subject_id'=>$subject_id,'topic_id'=>$topic_id),false,$start,$ids_not_in,$ids_in);
             $your_ans='';
             $correct_ans='';
             $html='';
@@ -1317,7 +1318,16 @@ class Ajax extends CI_Controller {
             $rtntext['qRight_feedback']=(!empty($form_data_ans['qRight_feedback'])) ? $form_data_ans['qRight_feedback']:'Correct';
             $rtntext['qWrong_feedback']=(!empty($form_data_ans['qWrong_feedback'])) ? $form_data_ans['qWrong_feedback']:$rtntext['content'];
             $rtntext['tQ_score']=$this->session->userdata('total_qScore');
-
+            $rtntext['total_question_count']=$this->session->userdata('total_question_count');
+            $rtntext['total_question_marks']=$this->session->userdata('total_question_marks');
+            $q_id_array=$this->session->userdata('q_id_array');
+            $q_id_count=explode(',',$q_id_array);
+            $stepbar_count='';
+            for ($i=1; $i<=count($q_id_count); $i++){
+                $stepbar_count .= ($stepbar_count!='')  ? ", " : " ";
+            }
+            $rtntext['q_id_array']=$this->session->userdata('q_id_array');
+            $rtntext['stepbar_count']=$stepbar_count;
         }
         echo json_encode($rtntext);
     }
@@ -1565,7 +1575,7 @@ class Ajax extends CI_Controller {
                                             <img src="'.$form_serializedata['img'].'" alt="">
                                         </div>
                                         <div class="qAns_box">
-                                            <p>Answer: </p><span><input type="text" name="qAns_box" class="form-control"></span>
+                                            <div class="question_count">A. </div><span><input type="text" name="qAns_box" class="form-control"></span>
                                         </div>';
         $rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
         $rtntext.='</div>';
@@ -1692,7 +1702,7 @@ class Ajax extends CI_Controller {
                 $reversedParts = explode('/', strrev($img), 2);
                 $img_name = strrev($reversedParts[0]);
 
-                $rtntext.='<div class="col-lg-6">';
+                $rtntext.='<div class="col-lg-2">';
                 $rtntext.='<div class="form-group">';
                 $rtntext.='<div class="imgselectorMultiple">';
                 //$rtntext.='<input id="img_'.$i.'" type="radio" name="answer" value="'.$img_name.'" autocomplete="off">';
@@ -1741,7 +1751,7 @@ class Ajax extends CI_Controller {
         $form_serializedata=unserialize($data->form_data);
         $rtntext.='<input type="hidden" name="question_option" value="'.$form_serializedata['question_option'].'">';
         $rtntext.='<div class="qAns_box">
-                        <p>Answer: </p><span><input type="text" name="qAns_box" class="form-control"></span>
+                        <div class="question_count">A. </div><span><input type="text" name="qAns_box" class="form-control"></span>
                     </div>';
         $rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
         $rtntext.='</div>';
@@ -1837,7 +1847,7 @@ class Ajax extends CI_Controller {
                 $reversedParts = explode('/', strrev($img), 2);
                 $img_name = strrev($reversedParts[0]);
 
-                $rtntext.='<div class="col-lg-6">';
+                $rtntext.='<div class="col-lg-2">';
                 $rtntext.='<div class="form-group">';
                 $rtntext.='<div class="imgselector">';
                 //$rtntext.='<input id="img_'.$i.'" type="radio" name="answer" value="'.$img_name.'" autocomplete="off">';
@@ -2172,7 +2182,7 @@ class Ajax extends CI_Controller {
                 $reversedParts = explode('/', strrev($img), 2);
                 $img_name = strrev($reversedParts[0]);
 
-                $rtntext.='<div class="col-lg-6">';
+                $rtntext.='<div class="col-lg-2">';
                 $rtntext.='<div class="form-group">';
                 $rtntext.='<div class="imgselector">';
                 $rtntext.='<label for="img_'.$i.'">';
@@ -2240,11 +2250,10 @@ class Ajax extends CI_Controller {
                             <input type="hidden" name="topic_id" value="'.$topic_id.'" />';
         $rtnt.='<div class="row">';
         $rtnt.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
-                                <div class="col-lg-5">
-                                    <div class="question_count">Question <a href="javacript:void(0);" id="play_question" data-question="'.$data->question_name.'"><i class="fa fa-volume-up"></i></a></div>
-                                            <div class="question_display">'.$data->question_name.'</div>
+                                <div class="col-lg-12">
+                                    <div class="question_count">Q. <div class="question_display">'.$data->question_name.'</div> <a href="javacript:void(0);" id="play_question" data-question="'.($data->question_name).'"><i class="fa fa-volume-up"></i></a></div>
                                 </div>';
-        $rtnt.='<div class="col-lg-7">';
+        $rtnt.='<div class="col-lg-12">';
         return $rtnt;
     }
 	public function save_ans_certificate(){

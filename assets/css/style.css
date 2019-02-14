@@ -253,8 +253,8 @@ ul.dropdown_list li{
 }
 .subjects ul li a{
     font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
-    font-weight: 300;
+    font-size: 17px;
+    font-weight: 600;
     color: #30b5ab;
 }
 /*==================================*/
@@ -1534,13 +1534,14 @@ label.error{color: #FF0000; }
 /*designer radio button design*/
 .inputGroup {
     background-color: #fff;
-    display: block;
-    margin: 10px 0;
+    display: inline-block;
+    margin: 10px;
     position: relative;
+    width: 178px;
 }
 .inputGroup label {
     padding: 12px 30px;
-    width: 68%;
+    width: 100%;
     display: block;
     text-align: left;
     color: #3C454C;
@@ -1822,30 +1823,34 @@ label.error{color: #FF0000; }
     display: inline-block;
     vertical-align: super;
 }
-.question_view .question_count{
+.question_view .question_count {
     font-size: 20px;
     color: #f1693c;
     font-weight: 400;
-    margin-bottom: 25px;
+    display: inline-block;
+    margin: 0 10px 25px 0;
 }
 .question_view .question_display{
     font-size: 20px;
     font-weight: 400;
+    display: inline-block;
+    margin: 0 15px 0 15px;
+    color: #3C4858;
 }
 .breadcrumbs_section{
     background: #ececec;
 }
 .breadcrumbs{
 
-    height: 30px;
+    height: 28px;
     font-size: 12px;
     list-style: none;
     margin: 0;
     padding: 0;
 }
-.breadcrumbs li{
+.breadcrumbs li {
     display: inline-block;
-    padding: 3px 20px 5px 0;
+    padding: 1px 20px 3px 0;
 }
 .breadcrumbs li:after{
     content: "›";
@@ -1926,7 +1931,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
 .top_tap_sub {
     background: #65b7f5;
     color: #fff;
-    padding: 10px 0;
+    padding: 8px 0;
     margin: 10px 0 -10px 0;
     /* z-index: 999999999; */
 }
@@ -2133,6 +2138,7 @@ div.list-group a:nth-child(12):hover{
 }
 .ans_template_text{
     font-size: 20px !important;
+    /*text-align: center;*/
 }
 .award_subject {
     text-align: left;
@@ -2668,9 +2674,10 @@ div.list-group a:nth-child(12):hover{
 .row12{
     margin: 20px 0 0 0;
 }
-.row12 ul{
+.row12 ul {
     margin: 0;
     padding: 0;
+    display: inline-block;
 }
 .row12 ul li{
     display: inline-block;
@@ -3777,4 +3784,54 @@ work_single_rating span{
     display: inline-block;
     font-size: 14px;
     vertical-align: middle;
+}
+.topic_name_header {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #e1e1e1;
+    margin: 0 0 25px 0;
+}
+.topic_name_header h4 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #8c8c8c;
+    padding: 0;
+    margin: 0 0 10px 0;
+}
+.boxed {
+    text-align: center;
+}
+.ans_template_text img{
+    max-width:60%;
+}
+.low_padding{
+    padding: 18px 0 !important;
+}
+.score_time_count {
+    padding: 10px 22px;
+    border: 2px solid #f7931d;
+    color: #f7931d;
+    font-size: 18px;
+    font-weight: bold;
+}
+.score_time_count i{
+    margin-right: 10px;
+    font-size: 24px;
+}
+.progress_meter {
+    width: 200px;
+}
+.canvas_text {
+    width: 122%;
+    text-align: center;
+    font-weight: 400;
+    font-style: oblique;
+}
+.gauge_value {
+    font-size: 32px;
+    font-weight: bold;
+}
+#e1 {
+    margin: 55px 0 0 0;
+    width: 80%;
 }

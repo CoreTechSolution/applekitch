@@ -174,7 +174,8 @@
 <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
 <script src="<?php echo base_url('assets/js/rating.js'); ?>" type="text/javascript"></script>
 <script src="<?php echo base_url('assets/js/list.min.js'); ?>"></script>
-<script src="<?php echo base_url('assets/js/jquery-ajax-native.js'); ?>"></script>
+<script src="<?php echo base_url('assets/js/gauge.min.js'); ?>"></script>
+<script src="<?php echo base_url('assets/js/stepbar.js'); ?>"></script>
 
 <script src="<?php echo base_url('assets/js/combinations.js'); ?>"></script>
 <script>
