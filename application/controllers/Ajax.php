@@ -2247,7 +2247,9 @@ class Ajax extends CI_Controller {
                             <input type="hidden" name="grade_id" value="'.$grade_id.'" />
                             <input type="hidden" name="subject_id" value="'.$subject_id.'" />
                             <input type="hidden" name="id_not_in" value="'.$id_not_in.'" />
-                            <input type="hidden" name="topic_id" value="'.$topic_id.'" />';
+                            <input type="hidden" name="topic_id" value="'.$topic_id.'" />
+                            <input type="hidden" name="problem_q_name" id="problem_q_name" value="'.$data->question_id.'" />';
+
         $rtnt.='<div class="row">';
         $rtnt.='<input type="hidden" class="question_id" name="question_id" value="'.$data->question_id.'">
                                 <div class="col-lg-12">
@@ -2711,13 +2713,28 @@ class Ajax extends CI_Controller {
             echo '';
         }
     }
-    public function download_pdf(){
-	    $worksheet_id=$_POST['worksheet_id'];
-	    $worksheets=$this->ajax_model->get_worksheets(array('id'=>$worksheet_id));
-	    if(!empty($worksheets[0]->pdf_path)){
+    public function download_pdf()
+    {
+        $worksheet_id = $_POST['worksheet_id'];
+        $worksheets = $this->ajax_model->get_worksheets(array('id' => $worksheet_id));
+        if (!empty($worksheets[0]->pdf_path)) {
             echo $worksheets[0]->pdf_path;
-        } else{
-	        echo '';
+        } else {
+            echo '';
         }
     }
+
+    public function send_problem_ajax(){
+        if(!empty($_POST['q_id'])){
+            $qus=$this->ajax_model->get_questions(array('question_id'=>$_POST['q_id']),true);
+            $subject='Report_problem';
+            $message='One user submit a problem in this question. question details:<br>
+                Question: '.$qus->question_name.'<br>';
+            $to=admin_email();
+            send_mail($to,$subject,$message);
+            echo true;
+
+        }
+    }
+
 }

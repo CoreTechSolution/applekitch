@@ -124,6 +124,26 @@ jQuery(document).ready(function(){
         window.speechSynthesis.speak(msg);
 
     });
+    //////////////////////Report problem question /////////////////////
+    jQuery('body').on('click', '#report_problem', function(e) {
+        jQuery("#report_prob_modal").modal();
+        jQuery('#problem_q_id').val(jQuery('#problem_q_name').val())
+    });
+    jQuery('body').on('click', '.problem_send_btn', function(e) {
+        var q_id=jQuery('#problem_q_id').val();
+        jQuery.ajax({
+            type : "post",
+            //dataType : "json",
+            url : base_url+'ajax/send_problem_ajax',
+            data : {q_id: q_id},
+            success: function(response) {
+                console.log(response);
+                if(response == 'true') {
+                    window.location.href = base_url+'dashboard';
+                }
+            }
+        });
+    });
     ////////////////// Question submit AJAX ////////////////
     jQuery('body').on('click', '.qSubmit', function(e) {
         e.preventDefault();

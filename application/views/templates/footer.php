@@ -150,6 +150,30 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="report_prob_modal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" >
+                <h4><span class="glyphicon glyphicon-lock"></span> Report problem</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body" style="padding:40px 50px;">
+                <input type="hidden" id="problem_q_id" name="problem_q_id">
+
+                    <div class="form-group">
+                        <label for="usrname"><span class="glyphicon glyphicon-user"></span> Message</label>
+                        <textarea type="text" class="form-control" id="usrname" placeholder="Message"></textarea>
+                    </div>
+                    <button data-dismiss="modal" class="btn btn-success btn-block problem_send_btn"><span class="glyphicon glyphicon-off"></span> Send Report</button>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
 
 <!--<div class="text-center">
     <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm">Launch

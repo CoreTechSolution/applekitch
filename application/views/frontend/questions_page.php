@@ -40,6 +40,7 @@ $this->load->view('templates/header');
                             <div class="row">
                                 <?php foreach ($questions as $question){ ?>
                                     <input type="hidden" name="id_not_in" value="<?php echo $question->question_id; ?>" />
+                                    <input type="hidden" name="problem_q_name" id="problem_q_name" value="<?php echo $question->question_id; ?>" />
                                     <input type="hidden" class="question_id" name="question_id" value="<?php echo $question->question_id; ?>">
                                     <div class="col-lg-12">
                                         <div class="question_count">Q. <div class="question_display"><?php echo $question->question_name; ?></div> <a href="javacript:void(0);" id="play_question" data-question="<?php echo ($question->question_name); ?>"><i class="fa fa-volume-up"></i></a></div>
@@ -113,7 +114,7 @@ $this->load->view('templates/header');
                 </div>
                 <div class="col-lg-10"></div>
                 <div class="col-lg-2">
-                    <p class="report_link"><a data-toggle="modal" href="#myModal">Report a problem</a></p>
+                    <p class="report_link"><a href="javascript:void(0)" id="report_problem">Report a problem</a></p>
                 </div>
                 <!--<sup><a href="" class="stop_question_timer" id="stop_question_timer">Stop</a></sup>-->
             </div>
@@ -129,29 +130,7 @@ $this->load->view('templates/header');
 
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
 
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header" >
-                <h4><span class="glyphicon glyphicon-lock"></span> Report problem</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <div class="modal-body" style="padding:40px 50px;">
-                <form role="form">
-                    <div class="form-group">
-                        <label for="usrname"><span class="glyphicon glyphicon-user"></span> Message</label>
-                        <textarea type="text" class="form-control" id="usrname" placeholder="Message"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Send Report</button>
-                </form>
-            </div>
-
-        </div>
-
-    </div>
-</div>
 <?php
 $total_question_count=$this->session->userdata('total_question_count');
 $total_question_marks=$this->session->userdata('total_question_marks');
