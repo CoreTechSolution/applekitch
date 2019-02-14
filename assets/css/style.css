@@ -3835,3 +3835,10 @@ work_single_rating span{
     margin: 55px 0 0 0;
     width: 80%;
 }
+.report_link {
+    margin-top: 34px !important;
+    text-align: center;
+}
+.report_link a {
+    color: #888;
+}
