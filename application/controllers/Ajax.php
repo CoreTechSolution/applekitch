@@ -1575,7 +1575,7 @@ class Ajax extends CI_Controller {
                                             <img src="'.$form_serializedata['img'].'" alt="">
                                         </div>
                                         <div class="qAns_box">
-                                            <div class="question_count">A. </div><span><input type="text" name="qAns_box" class="form-control"></span>
+                                            <div class="question_count"><span>A. </span></div><span><input type="text" name="qAns_box" class="form-control"></span>
                                         </div>';
         $rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
         $rtntext.='</div>';
@@ -1751,7 +1751,7 @@ class Ajax extends CI_Controller {
         $form_serializedata=unserialize($data->form_data);
         $rtntext.='<input type="hidden" name="question_option" value="'.$form_serializedata['question_option'].'">';
         $rtntext.='<div class="qAns_box">
-                        <div class="question_count">A. </div><span><input type="text" name="qAns_box" class="form-control"></span>
+                        <div class="question_count"><span>A. </span></div><span><input type="text" name="qAns_box" class="form-control"></span>
                     </div>';
         $rtntext.='<input type="submit" value="Submit" class="btn btn-small btn-outline-default qSubmit">';
         $rtntext.='</div>';
@@ -2734,7 +2734,7 @@ class Ajax extends CI_Controller {
                 Report URL: '.$_POST['current_url'].'<br>
                 Question: '.$qus->question_name.'<br>';
             $to=admin_email();
-            send_mail('ranacoregen@gmail.com',$subject,$message);
+            send_mail($to,$subject,$message);
             echo true;
 
         }

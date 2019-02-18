@@ -28,7 +28,7 @@ $this->load->view('templates/header');
                 <div class="topic_name_header">
                     <h4><?= get_returnfield('topics','slug',$this->uri->segment(4),'topic_name'); ?></h4>
                 </div>
-                <div id="change_col1" class="question_view col-lg-10">
+                <div id="change_col1" class="question_view col-lg-10 col-md-9">
                     <!--<div id="wrong_ans_label" class="wAns">Wrong Answer&#8230;</div>-->
                     <?php if(!empty($questions)){ ?>
                         <form class="form qAns_form" method="post" action="" enctype="multipart/form-data">
@@ -43,7 +43,7 @@ $this->load->view('templates/header');
                                     <input type="hidden" name="problem_q_name" id="problem_q_name" value="<?php echo $question->question_id; ?>" />
                                     <input type="hidden" class="question_id" name="question_id" value="<?php echo $question->question_id; ?>">
                                     <div class="col-lg-12">
-                                        <div class="question_count">Q. <div class="question_display"><?php echo $question->question_name; ?></div> <a href="javacript:void(0);" id="play_question" data-question="<?php echo ($question->question_name); ?>"><i class="fa fa-volume-up"></i></a></div>
+                                        <div class="question_count"><span>Q. </span><div class="question_display"><?php echo $question->question_name; ?></div> <a href="javacript:void(0);" id="play_question" data-question="<?php echo ($question->question_name); ?>"><i class="fa fa-volume-up"></i></a></div>
 
                                         <!--<div id="play_text_div" class="play_text_div"></div>-->
                                     </div>
@@ -64,7 +64,7 @@ $this->load->view('templates/header');
                         </form>
                     <?php } ?>
                 </div>
-                <div class="col-lg-2" id="change_col2">
+                <div class="col-lg-2 col-md-3" id="change_col2">
                     <div class="score_time_count">
                         <i class="fa fa-clock-o" aria-hidden="true"></i>
                         <span class="score_time_count_hr">00</span>:<span class="score_time_count_min">00</span>:<span class="score_time_count_sec">00</span>
@@ -101,19 +101,19 @@ $this->load->view('templates/header');
                     </div>
                 </div>
 
-                <div class="col-lg-10">
+                <div class="col-lg-10 col-md-9">
                     <div id='e1'>
                     </div>
                 </div>
-                <div class="col-lg-2">
+                <div class="col-lg-2 col-md-3">
                     <canvas id="progress_meter" class="progress_meter"></canvas>
                     <div class="canvas_text">
                         <span class="gauge_value"><?= (!empty($this->session->userdata('score_smart')))? $this->session->userdata('score_smart'):'0' ?></span> of <span class="gauge_value"><?= $this->session->userdata('total_question_marks'); ?></span>
                     </div>
 
                 </div>
-                <div class="col-lg-10"></div>
-                <div class="col-lg-2">
+                <div class="col-lg-10 col-md-9"></div>
+                <div class="col-lg-2 col-md-3">
                     <p class="report_link"><a href="javascript:void(0)" id="report_problem">Report a problem</a></p>
                 </div>
                 <!--<sup><a href="" class="stop_question_timer" id="stop_question_timer">Stop</a></sup>-->

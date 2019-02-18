@@ -536,3 +536,8 @@ label {
     display: none;
 }
 .overall-rating{font-size: 14px;margin-top: 5px;color: #8e8d8d;}
+.image_size_noti {
+  font-style: italic;
+  color: #b34e4e;
+  font-size: 13px;
+}

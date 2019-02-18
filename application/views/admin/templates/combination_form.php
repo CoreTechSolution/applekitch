@@ -4,6 +4,7 @@
 			<div class="col-lg-6">
 				<label for="imageQ_upload">Image</label>
 				<input type="file" name="imageQ_upload" class="form-control imageQ_upload">
+                <span class="image_size_noti">Best Size for upload 250px X 145px</span>
 			</div>
 			<div class="col-lg-6">
 				<label for="ans_textbox">Answer</label>
@@ -19,6 +20,7 @@
             <div class="col-lg-6">
                 <label for="upload_images">Upload Images</label>
                 <input type="file" multiple name="upload_images[]" class="form-control upload_images">
+                <span class="image_size_noti">Best Size for upload 150px X 150px</span>
             </div>
             <div class="col-lg-6"></div>
         </div>
@@ -92,6 +94,7 @@
             <div class="col-lg-6">
                 <label for="upload_images">Upload Images</label>
                 <input type="file" multiple name="upload_images[]" class="form-control upload_select_multiple_images">
+                <span class="image_size_noti">Best Size for upload 150px X 150px</span>
             </div>
             <div class="col-lg-6"></div>
         </div>
@@ -202,6 +205,7 @@
             <div class="col-lg-6">
                 <label for="upload_images">Upload Images</label>
                 <input type="file" multiple name="upload_images[]" class="form-control upload_images">
+                <span class="image_size_noti">Best Size for upload 150px X 150px</span>
             </div>
             <div class="col-lg-6"></div>
         </div>
@@ -234,6 +238,7 @@
             <div class="col-lg-6">
                 <label for="imageQ_upload">Image</label>
                 <input type="file" name="imageQ_upload" class="form-control imageQ_upload">
+                <span class="image_size_noti">Best Size for upload 250px X 150px</span>
             </div>
             <div class="col-lg-6">
                 <label for="ans_textbox">Answer</label>
@@ -258,6 +263,7 @@
             <div class="col-lg-6">
                 <label for="imageQ_upload">Image</label>
                 <input type="file" name="imageQ_upload" class="form-control imageQ_upload" required>
+                <span class="image_size_noti">Best Size for upload 250px X 150px</span>
             </div>
             <div class="col-lg-6">
                 <label for="ans_textbox">Answer</label>
@@ -296,6 +302,7 @@
             <div class="col-lg-6">
                 <label for="upload_images">Upload Pattern Images</label>
                 <input type="file" multiple name="upload_images[]" class="form-control question_with_put_images">
+                <span class="image_size_noti">Best Size for upload 50px X 50px</span>
                 <br/>
                 <a href="javascript:void(0);" class="btn add_row_save question_with_put_images_done"><!--<span data-feather="plus-archive"></span>-->Done</a>
             </div>
@@ -315,6 +322,7 @@
             <div class="col-lg-6">
                 <label for="imageQ_upload">Question Image</label>
                 <input type="file" name="imageQ_upload" class="form-control imageQ_upload" required>
+                <span class="image_size_noti">Best Size for upload 250px X 150px</span>
             </div>
             <div class="col-lg-12">
                 <label for="second_question">Question</label>
@@ -339,6 +347,7 @@
             <div class="col-lg-6">
                 <label for="base_image">Base Image</label>
                 <input type="file" name="base_image" class="form-control base_image ans_textbox">
+                <span class="image_size_noti">Best Size for upload 350px X 350px</span>
             </div>
             <div class="col-lg-6">
                 <div class="drag_drop_img"></div>
@@ -376,6 +385,7 @@
                     <div class="col-lg-6">
                         <label for="imageQ_upload">Question Image</label>
                         <input type="file" name="imageQ_uploads[]" class="form-control imageQ_upload" required>
+                        <span class="image_size_noti">Best Size for upload 80px X 50px</span>
                     </div>
                     <div class="col-lg-6">
                         <label for="imageQ_upload">Answer</label>
