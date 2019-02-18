@@ -1,6 +1,6 @@
 <div class="ans_template_text">
 <?php if ($question_option=='1'){ ?>
-	<div class="question_image">
+	<div class="question_image option_img_1">
 		<img src="<?php echo $form_data['img']; ?>" alt="" class="img-thumbnail">
 	</div>
 	<div class="qAns_box">
@@ -19,7 +19,7 @@
 				?>
 				<div class="col-lg-2">
 					<div class="form-group">
-						<div class="imgselector">
+						<div class="imgselector option_img_2">
 							<label for="img_<?php echo $i; ?>">
 								<img data-img_name="<?php echo $img_name; ?>" src="<?php echo $img; ?>" class="img-thumbnail" style="max-width: 100%;width: auto;height: 150px;">
 							</label>
@@ -87,7 +87,7 @@
 				?>
 				<div class="col-lg-2">
 					<div class="form-group">
-						<div class="imgselectorMultiple">
+						<div class="imgselectorMultiple option_img_8">
 							<label for="img_<?php echo $i; ?>">
 								<img data-img_name="<?php echo $img_name; ?>" src="<?php echo $img; ?>" class="img-thumbnail" style="max-width: 100%;width: auto;height: 150px;">
 							</label>
@@ -181,7 +181,7 @@
 				?>
 				<div class="col-lg-2">
 					<div class="form-group">
-						<div class="imgselector">
+						<div class="imgselector option_img_15">
 							<label for="img_<?php echo $i; ?>">
 								<img data-img_name="<?php echo $img_name; ?>" src="<?php echo $img; ?>" class="img-thumbnail" style="max-width: 100%;width: auto;height: 150px;">
 							</label>
@@ -204,7 +204,7 @@
 <?php } elseif($question_option=='19'){ ?>
 <?php } elseif($question_option=='20'){ ?>
 	<div class="option_list_d onlyclickable">
-		<div class="question_image">
+		<div class="question_image option_img_20">
 			<img src="<?php echo $form_data['img']; ?>" alt="" class="img-thumbnail">
 		</div>
 		<?php $option_counter=1; ?>
@@ -220,7 +220,7 @@
 	</div>
 <?php } elseif($question_option=='26'){ ?>
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-12 option_img_26">
             <img src="<?php echo $form_data['img']; ?>">
         </div>
     </div>
@@ -256,7 +256,7 @@
 		        }
 	        }
 
-            echo '<div class="putBoxes1">';
+            echo '<div class="putBoxes1 option_img_27">';
             $ans_textbox = $form_data['ans_textbox'];
             if(!empty($ans_textbox)) {
 	            $ans_textbox_ar = array();
@@ -301,7 +301,7 @@
     ?>
 <?php } elseif($question_option=='28'){ ?>
 	<?php //print_r($form_data); ?>
-    <div class="question_image">
+    <div class="question_image option_img_28">
         <img src="<?php echo $form_data['img']; ?>" alt="" class="img-thumbnail">
     </div>
     <div class="second_q">
@@ -313,7 +313,7 @@
 
 	</div>
 <?php } elseif($question_option=='29'){ ?>
-	<div id="DragDropImg"><img src="<?php echo $form_data['base_image']; ?>" /></div>
+	<div id="DragDropImg" class="option_img_29"><img src="<?php echo $form_data['base_image']; ?>"/></div>
     <ul class="DragDropExtra">
         <?php
             $total = $form_data['ans_textbox'];
@@ -330,7 +330,7 @@
         <div class="pre_text">
             <?php echo $form_data['ans_check_with']; ?>
         </div>
-        <div class="question_box">
+        <div class="question_box option_img_31">
             <?php $option_counter=0; ?>
             <?php foreach ($form_data['imgs'] as $imgs){ ?>
                 <?php if($option_counter==0){ ?>
@@ -373,7 +373,7 @@
     <?php //print_r($form_data); ?>
     <div class="multiple_text_image">
         <?php if( $form_data['qst_layout']== '1'){ ?>
-        <div class="question_box">
+        <div class="question_box option_img_33">
             <?php $option_counter=0; ?>
             <?php foreach ($form_data['imgs'] as $imgs){ ?>
                 <?php if($option_counter==0){ ?>
@@ -400,7 +400,7 @@
     <?php $img_array = explode('|',$form_data['img_array']); ?>
     <?php if(!empty($img_array)){ ?>
         <div class="row">
-            <div class="question_image">
+            <div class="question_image option_img_34">
                 <img src="<?php echo $form_data['img']; ?>" alt="" class="img-thumbnail">
             </div>
             <div class="second_q">
@@ -415,7 +415,7 @@
                 ?>
                 <div class="col-lg-2">
                     <div class="form-group">
-                        <div class="imgselector">
+                        <div class="imgselector option_img_34">
                             <label for="img_<?php echo $i; ?>">
                                 <img data-img_name="<?php echo $img_name; ?>" src="<?php echo $img; ?>" class="img-thumbnail" style="max-width: 100%;width: auto;height: 150px;">
                             </label>
@@ -428,7 +428,7 @@
     <?php } ?>
 <?php } elseif($question_option=='35'){ ?>
     <?php //print_r($form_data); ?>
-    <div class="imageQ_bg_img_wrap">
+    <div class="imageQ_bg_img_wrap option_img_35">
         <?php if(!empty($form_data['imageQ_bg_upload'])) { ?>
             <img src="<?php echo $form_data['imageQ_bg_upload']; ?>" />
         <?php } ?>

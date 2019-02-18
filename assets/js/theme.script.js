@@ -131,15 +131,16 @@ jQuery(document).ready(function(){
     });
     jQuery('body').on('click', '.problem_send_btn', function(e) {
         var q_id=jQuery('#problem_q_id').val();
+        var url      = window.location.href;
         jQuery.ajax({
             type : "post",
             //dataType : "json",
             url : base_url+'ajax/send_problem_ajax',
-            data : {q_id: q_id},
+            data : {q_id: q_id, current_url:url},
             success: function(response) {
                 console.log(response);
                 if(response == 'true') {
-                    window.location.href = base_url+'dashboard';
+                    alert('Report send to administrator');
                 }
             }
         });
@@ -279,7 +280,7 @@ jQuery(document).ready(function(){
                             html+='<div class="greenclass">';
                             html+='<div class="text1">You spent</div>';
                             html+='<div class="text2">'+ score_time_count_min + ':'+ score_time_count_sec+'</div>';
-                            html+='<div class="text3">Time</div>';
+                            html+='<div class="text3">Minutes</div>';
                             html+='</div>';
                             html+='</div>';
                             html+='</div>';
@@ -312,7 +313,7 @@ jQuery(document).ready(function(){
                             jQuery('.qAns_form').html(data['html']);
                             jQuery('html, body').animate({
                                 scrollTop: jQuery('.qAns_form').offset().top
-                            }, 2000);
+                            }, 100);
                             jQuery( "#sortable" ).sortable();
                             jQuery( "#sortable" ).disableSelection();
                             jQuery(init);
@@ -415,7 +416,7 @@ jQuery(document).ready(function(){
                             html+='<div class="greenclass">';
                             html+='<div class="text1">You spent</div>';
                             html+='<div class="text2">'+ score_time_count_min + ':'+ score_time_count_sec+'</div>';
-                            html+='<div class="text3">Time</div>';
+                            html+='<div class="text3">Minutes</div>';
                             html+='</div>';
                             html+='</div>';
                             html+='</div>';
@@ -448,7 +449,7 @@ jQuery(document).ready(function(){
                             jQuery('.qAns_form').html(data['html']);
                             jQuery('html, body').animate({
                                 scrollTop: jQuery('.qAns_form').offset().top
-                            }, 2000);
+                            }, 100);
                             jQuery( "#sortable" ).sortable();
                             jQuery( "#sortable" ).disableSelection();
                             jQuery(init);

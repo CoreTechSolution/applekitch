@@ -1571,7 +1571,7 @@ class Ajax extends CI_Controller {
         $form_serializedata=unserialize($data->form_data);
         //print_r($form_serializedata);
         $rtntext.='<input type="hidden" name="question_option" value="'.$form_serializedata['question_option'].'">';
-        $rtntext.='<div class="question_image">
+        $rtntext.='<div class="question_image option_img_1">
                                             <img src="'.$form_serializedata['img'].'" alt="">
                                         </div>
                                         <div class="qAns_box">
@@ -1600,9 +1600,9 @@ class Ajax extends CI_Controller {
                 $reversedParts = explode('/', strrev($img), 2);
                 $img_name = strrev($reversedParts[0]);
 
-                $rtntext.='<div class="col-lg-6">';
+                $rtntext.='<div class="col-lg-3">';
                 $rtntext.='<div class="form-group">';
-                $rtntext.='<div class="imgselector">';
+                $rtntext.='<div class="imgselector option_img_2">';
                 //$rtntext.='<input id="img_'.$i.'" type="radio" name="answer" value="'.$img_name.'" autocomplete="off">';
                 $rtntext.='<label for="img_'.$i.'">';
                 $rtntext.='<img data-img_name="'.$img_name.'"src="'.$img.'" class="img-thumbnail" style="max-width: 100%;width: auto;height: 150px;">';
@@ -1704,7 +1704,7 @@ class Ajax extends CI_Controller {
 
                 $rtntext.='<div class="col-lg-2">';
                 $rtntext.='<div class="form-group">';
-                $rtntext.='<div class="imgselectorMultiple">';
+                $rtntext.='<div class="imgselectorMultiple option_img_8">';
                 //$rtntext.='<input id="img_'.$i.'" type="radio" name="answer" value="'.$img_name.'" autocomplete="off">';
                 $rtntext.='<label for="img_'.$i.'">';
                 $rtntext.='<img data-img_name="'.$img_name.'"src="'.$img.'" class="img-thumbnail" style="max-width: 100%;width: auto;height: 150px;">';
@@ -1849,7 +1849,7 @@ class Ajax extends CI_Controller {
 
                 $rtntext.='<div class="col-lg-2">';
                 $rtntext.='<div class="form-group">';
-                $rtntext.='<div class="imgselector">';
+                $rtntext.='<div class="imgselector  option_img_15">';
                 //$rtntext.='<input id="img_'.$i.'" type="radio" name="answer" value="'.$img_name.'" autocomplete="off">';
                 $rtntext.='<label for="img_'.$i.'">';
                 $rtntext.='<img data-img_name="'.$img_name.'"src="'.$img.'" class="img-thumbnail" style="max-width: 100%;width: auto;height: 150px;">';
@@ -1895,7 +1895,7 @@ class Ajax extends CI_Controller {
         $rtntext.=$this->qView_common_part($data,$start,$grade_id,$subject_id,$id_not_in,$topic_id );
         $form_serializedata=unserialize($data->form_data);
         $rtntext.='<input type="hidden" name="question_option" value="'.$form_serializedata['question_option'].'">';
-        $rtntext.='<div class="question_image">
+        $rtntext.='<div class="question_image option_img_20">
                                             <img src="'.$form_serializedata['img'].'" alt="">
                                         </div>';
         $rtntext.='<div class="option_list_d onlyclickable">';
@@ -1921,7 +1921,7 @@ class Ajax extends CI_Controller {
         $rtntext.=$this->qView_common_part($data,$start,$grade_id,$subject_id,$id_not_in,$topic_id );
         $form_serializedata=unserialize($data->form_data);
         $rtntext.='<input type="hidden" name="question_option" value="'.$form_serializedata['question_option'].'">';
-        $rtntext.='<div class="row"><div class="col-lg-12"><img src="'.$form_serializedata['img'].'"></div></div>';
+        $rtntext.='<div class="row"><div class="col-lg-12 option_img_26"><img src="'.$form_serializedata['img'].'"></div></div>';
         $rtntext.='<div class="row12"><ul>';
         $option_counter=1;
         foreach ($form_serializedata['option_1'] as $option){
@@ -1963,7 +1963,7 @@ class Ajax extends CI_Controller {
                 }
             }
 
-            $rtntext .= '<div class="putBoxes1">';
+            $rtntext .= '<div class="putBoxes1 option_img_27">';
             $ans_textbox = $form_serializedata['ans_textbox'];
             if(!empty($ans_textbox)) {
                 $ans_textbox_ar = array();
@@ -2019,7 +2019,7 @@ class Ajax extends CI_Controller {
         $form_serializedata=unserialize($data->form_data);
         //print_r($form_serializedata);
         $rtntext.='<input type="hidden" name="question_option" value="'.$form_serializedata['question_option'].'">';
-        $rtntext.='<div class="question_image">
+        $rtntext.='<div class="question_image option_img_28">
                                             <img src="'.$form_serializedata['img'].'" alt="">
                                         </div>
                                         <div class="qAns_box">
@@ -2040,7 +2040,7 @@ class Ajax extends CI_Controller {
         $form_serializedata=unserialize($data->form_data);
         //print_r($form_serializedata);
         $rtntext.='<input type="hidden" name="question_option" value="'.$form_serializedata['question_option'].'">';
-        $rtntext.='<div id="DragDropImg"><img src="'.$form_serializedata['base_image'].'" /></div>';
+        $rtntext.='<div id="DragDropImg" class="option_img_29"><img src="'.$form_serializedata['base_image'].'" /></div>';
         $rtntext.='<ul class="DragDropExtra">';
         $total = $form_serializedata['ans_textbox'];
         $rand = rand($total, ($total+5));
@@ -2066,7 +2066,7 @@ class Ajax extends CI_Controller {
         <div class="pre_text">'
             .$form_serializedata['ans_check_with'].'
         </div>
-        <div class="question_box">';
+        <div class="question_box option_img_31">';
         $option_counter=0;
         foreach ($form_serializedata['imgs'] as $imgs){
             if($option_counter==0){
@@ -2128,7 +2128,7 @@ class Ajax extends CI_Controller {
 
         $rtntext.='<div class="multiple_text_image">';
         if( $form_serializedata['qst_layout']== '1'){
-            $rtntext.='<div class="question_box">';
+            $rtntext.='<div class="question_box option_img_33">';
             $option_counter=0;
             foreach ($form_serializedata['imgs'] as $imgs){
                 if($option_counter==0){
@@ -2169,7 +2169,7 @@ class Ajax extends CI_Controller {
         $img_array = explode('|',$form_serializedata['img_array']);
         if(!empty($img_array)){
             $rtntext.='<div class="row">';
-            $rtntext.='   <div class="question_image">';
+            $rtntext.='   <div class="question_image option_img_34">';
             $rtntext.='<img src="'. $form_serializedata['img'].'" alt="" class="img-thumbnail">';
             $rtntext.='</div>';
             $rtntext.='<div class="second_q">';
@@ -2212,7 +2212,7 @@ class Ajax extends CI_Controller {
         //print_r($form_serializedata);
         $rtntext.='<input type="hidden" name="question_option" value="'.$form_serializedata['question_option'].'">';
 
-        $rtntext.= '<div class="imageQ_bg_img_wrap">';
+        $rtntext.= '<div class="imageQ_bg_img_wrap option_img_35">';
 	    if(!empty($form_serializedata['imageQ_bg_upload'])) {
 	    	$rtntext.='<img src="'.$form_serializedata['imageQ_bg_upload'].'" />';
 	    }
@@ -2731,9 +2731,10 @@ class Ajax extends CI_Controller {
             $qus=$this->ajax_model->get_questions(array('question_id'=>$_POST['q_id']),true);
             $subject='Report_problem';
             $message='One user submit a problem in this question. question details:<br>
+                Report URL: '.$_POST['current_url'].'<br>
                 Question: '.$qus->question_name.'<br>';
             $to=admin_email();
-            send_mail($to,$subject,$message);
+            send_mail('ranacoregen@gmail.com',$subject,$message);
             echo true;
 
         }

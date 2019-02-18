@@ -2957,12 +2957,12 @@ ul.svgButton li a img {
     margin: 0 0 12px 0;
 }
 #DragDropImg {
-    padding: 15px;
-    border: 1px solid #cccccc;
+    /*padding: 15px;
+    border: 1px solid #cccccc;*/
     margin-bottom: 15px;
 }
 #DragDropImg img {
-    width: 100%;
+    /*width: 100%;*/
 }
 #DragDropImg li {
     display: none;
@@ -3841,4 +3841,60 @@ work_single_rating span{
 }
 .report_link a {
     color: #888;
+}
+.option_img_2 img{
+width: auto !important;
+    height: 150px !important;
+}
+.option_img_2 img{
+width: auto !important;
+    height: 150px !important;
+}
+.option_img_8 img{
+width: auto !important;
+    height: 150px !important;
+}
+.option_img_15 img{
+width: auto !important;
+    height: 150px !important;
+}
+.option_img_20 img{
+width: auto !important;
+    height: 150px !important;
+}
+.option_img_26 img{
+width: auto !important;
+    height: 150px !important;
+}
+/*.option_img_27 img{
+width: auto !important;
+    height: 150px !important;
+}*/
+.option_img_28 img{
+width: auto !important;
+    height: 150px !important;
+}
+.option_img_29 img {
+    width: 350px;
+    height: 350px;
+}
+.option_img_31 img{
+    width:80px !important;
+}
+/*.option_img_33 img{
+width: auto !important;
+    height: 150px !important;
+}*/
+.option_img_34 img{
+width: auto !important;
+    height: 150px !important;
+}
+.option_img_35 img{
+width: auto !important;
+    height: 150px !important;
+}
+.dragdrop_img {
+    width: auto !important;
+    height: 300px !important;
+    margin-bottom: 20px;
 }
