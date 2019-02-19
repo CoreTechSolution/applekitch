@@ -650,7 +650,7 @@ INNER JOIN country ON subject.country = country.id INNER JOIN grade ON subject.g
 			$this->db->where($conditions);
 		}
         $this->db->from('work_grades');
-        $this->db->order_by("id", "desc");
+        $this->db->order_by("grade_order", "asc");
 
         if($query = $this->db->get())
         {
