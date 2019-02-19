@@ -3836,8 +3836,9 @@ work_single_rating span{
     width: 80%;
 }
 .report_link {
-    margin-top: 34px !important;
+    margin-top: 18px !important;
     text-align: center;
+    padding: 0 0 0 40px;
 }
 .report_link a {
     color: #888;
@@ -3933,6 +3934,10 @@ width: auto !important;
         width: 100%;
         margin: 0;
     }
+    .breadcrumbs {
+        height: auto;
+
+    }
 
 }
 @media screen and (max-width: 768px) {
@@ -3970,10 +3975,11 @@ width: auto !important;
         width: 100%;
         margin: 40px 0 0 0;
     }
-    .report_link{
-        position: absolute;
-        top: -31px;
-        left: 40px;
+    .report_link {
+        /* position: absolute; */
+        /* top: -31px; */
+        /* left: 40px; */
+        padding: 0 10px 0 0;
     }
 
 }
