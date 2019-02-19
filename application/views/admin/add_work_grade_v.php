@@ -21,14 +21,18 @@ require_once 'templates/header.php';
                                 <?php /*echo form_dropdown('work_subject_id', form_dropdown_cr(array('id','name'),'work_subjects',false), '1',array('class'=>'form-control'));
                                 */?>
 							</div>-->
-							<div class="col-md-6">
+							<div class="col-md-3">
 								<label>Name: </label>
 								<input required type="text" name="name" id="name_work_grade" class="form-control" value=""/>
 							</div>
-                            <div class="col-md-6">
+                            <div class="col-md-3">
 								<label>Slug: </label>
 								<input required type="text" name="slug" id="slug" class="form-control" value="" readonly/>
 							</div>
+                            <div class="col-md-3">
+                                <label>Grade Order: </label>
+                                <input required type="number" name="grade_order" id="grade_order"  min="0" class="form-control"/>
+                            </div>
                            
 						</div>
 					</div>

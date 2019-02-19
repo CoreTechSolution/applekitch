@@ -22,13 +22,17 @@ require_once 'templates/header.php';
                                 <?php /*echo form_dropdown('work_subject_id', form_dropdown_cr(array('id','name'),'work_subjects',false), (!empty($edit_data->name))?$edit_data->work_subject_id:'' ,array('class'=>'form-control'));
                                 */?>
                             </div>-->
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <label>Name: </label>
                                 <input required type="text" name="name" id="name_work_grade" class="form-control" value="<?= (!empty($edit_data->name))?$edit_data->name:'' ?>"/>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <label>Slug: </label>
                                 <input required type="text" name="slug" id="slug" class="form-control" value="<?= (!empty($edit_data->slug))?$edit_data->slug:'' ?>" readonly/>
+                            </div>
+                            <div class="col-md-3">
+                                <label>Grade Order: </label>
+                                <input required type="number" name="grade_order" id="grade_order" class="form-control" min="0" value="<?= (!empty($edit_data->grade_order))?$edit_data->grade_order:'' ?>"/>
                             </div>
 
                         </div>

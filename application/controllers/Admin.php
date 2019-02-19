@@ -1613,11 +1613,13 @@ class Admin extends CI_Controller {
         if(!empty($this->input->post('save'))){
             $this->form_validation->set_rules('name', 'Name', 'required');
             $this->form_validation->set_rules('slug', 'Slug', 'required');
+            $this->form_validation->set_rules('grade_order', 'Grade Order', 'required');
             if ($this->form_validation->run() == FALSE){
                 $this->load->view( 'admin/add_work_grade_v', $data );
             } else{
 				$value['name']=$this->input->post('name');
                 $value['slug']=$this->input->post('slug');
+                $value['grade_order']=$this->input->post('grade_order');
                 //$value['work_subject_id']=$this->input->post('work_subject_id');
                 
                 $insert=$this->admin_model->insert_work_grade($value);
@@ -1639,11 +1641,13 @@ class Admin extends CI_Controller {
         if(!empty($this->input->post('save'))){
             $this->form_validation->set_rules('name', 'Name', 'required');
             $this->form_validation->set_rules('slug', 'Slug', 'required');
+            $this->form_validation->set_rules('grade_order', 'Grade Order', 'required');
             if ($this->form_validation->run() == FALSE){
                 $this->load->view( 'admin/edit_work_grade_v', $data );
             } else{
                 $value['name']=$this->input->post('name');
                 $value['slug']=$this->input->post('slug');
+                $value['grade_order']=$this->input->post('grade_order');
                 //$value['work_subject_id']=$this->input->post('work_subject_id');
                 $conditions=array('id'=>$id);
                 $insert=$this->admin_model->update_work_grade($value,$conditions);

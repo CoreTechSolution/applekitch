@@ -144,7 +144,7 @@ class Frontend_model extends CI_Model {
             $this->db->where($conditions);
         }
         $this->db->from('work_grades');
-        $this->db->order_by("id", "desc");
+        $this->db->order_by("id", "asc");
 
         if($query = $this->db->get())
         {
