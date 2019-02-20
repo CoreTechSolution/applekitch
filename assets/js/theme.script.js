@@ -1162,6 +1162,9 @@ function search_id_genarate(type,id,dom_id){
                     pagination: true
                 });
                 jQuery('.matchHeight1').matchHeight();
+                jQuery('html, body').animate({
+                    scrollTop: jQuery('#worksheet_list_main').offset().top
+                }, 100);
             }
         }
     });
