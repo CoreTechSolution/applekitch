@@ -1163,8 +1163,8 @@ function search_id_genarate(type,id,dom_id){
                 });
                 jQuery('.matchHeight1').matchHeight();
                 jQuery('html, body').animate({
-                    scrollTop: jQuery('#worksheet_list_main').offset().top
-                }, 100);
+                    scrollTop: jQuery('.worksheet_top_div').offset().top
+                }, 1000);
             }
         }
     });

@@ -35,7 +35,7 @@ $this->load->view('templates/header_worksheet');
                         <div class="col-lg-3 col-md-3">
                             <?php $this->load->view('frontend/template_part/worksheet_sidebar'); ?>
                         </div>
-                        <div class="col-lg-9 col-md-9">
+                        <div class="col-lg-9 col-md-9 worksheet_top_div">
                             <div class="row">
                                 <div class="col-lg-8 col-md-8">
                                     <h1 id="work_list_dynamic_title">All <?php echo ucfirst($title); ?></h1>

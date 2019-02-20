@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="applekitch.coregensolution.com">
+  <component name="PublishConfigData" serverName="applekitch.coregensolution.com" uploadOnCheckin="fb2f24d3-b74b-4b12-9d44-a81400532870">
     <serverData>
+      <paths name="applekitch.com">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="applekitch.coregensolution.com">
         <serverdata>
           <mappings>
@@ -10,5 +17,6 @@
         </serverdata>
       </paths>
     </serverData>
+    <option name="myUploadOnCheckinName" value="applekitch.coregensolution.com" />
   </component>
 </project>
