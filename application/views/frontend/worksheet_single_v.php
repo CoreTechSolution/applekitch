@@ -157,11 +157,12 @@ $this->load->view('templates/header_worksheet');
                                             <div>
                                                 <div class="worksheet_box matchHeight1">
                                                     <a href="<?php echo base_url('frontend/worksheet/'.get_returnfield('work_subjects','id',$related_worksheet->work_subject_id,'slug').'/'.get_returnfield('work_grades','id',$related_worksheet->work_grade_id,'slug').'/'.get_returnfield('work_categories','id',$related_worksheet->work_cat_id,'slug').'/'.$related_worksheet->slug) ?>">
-
+                                                        <?php if($related_worksheet->label!='No Label'){ ?>
                                                         <div class="work_list_label">
 
                                                             <span class="badge badge-default"><?= $related_worksheet->label; ?></span>
                                                         </div>
+                                                        <?php } ?>
                                                         <div class="work_img">
                                                             <img src="<?= $related_worksheet->worksheet_img; ?>" alt="">
                                                         </div>
