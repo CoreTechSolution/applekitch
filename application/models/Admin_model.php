@@ -3,6 +3,8 @@ class Admin_model extends CI_Model {
 
 	protected $username = 'admin';
 	protected $password = 'qweQWE123!@#';
+	protected $username2 = 'admin2';
+	protected $password2 = 'X7UWCf55s\NQ/jpp';
 
 	public function __construct() {
 		parent::__construct();
@@ -12,7 +14,9 @@ class Admin_model extends CI_Model {
 	function login($admin) {
 		if($admin['username'] == $this->username && $admin['password'] == md5($this->password)) {
 			return true;
-		} else {
+		} else if($admin['username'] == $this->username2 && $admin['password'] == md5($this->password2)) {
+            return true;
+        } else {
 			return false;
 		}
 	}
